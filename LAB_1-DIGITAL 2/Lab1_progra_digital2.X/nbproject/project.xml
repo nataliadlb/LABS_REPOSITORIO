@@ -6,7 +6,7 @@
             <name>Lab1_progra_digital2</name>
             <creation-uuid>1d788213-800f-4306-9095-9009dc0b8bb1</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions/>
             <asminc-extensions/>

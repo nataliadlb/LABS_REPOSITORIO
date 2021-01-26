@@ -1,12 +1,12 @@
 /*
  * File:  Main_Lab1_Digital2.c
- * Autor: Natalia de Le?n Berci?n
- * Carn?: 18193
- * Secci?n: 20
+ * Autor: Natalia de Leon Bercian
+ * Carne: 18193
+ * Seccion: 20
  * 
- * T?tulo: 
+ * Titulo: 
  * 
- * Created on 25 de enero de 2021, 10:08 AM
+ * Created on 25 de enero de 2021
  */
 
 //****************************************************************************//
@@ -36,8 +36,10 @@
 //****************************************************************************//
 //DEFINE                                                                      //
 //****************************************************************************//
-
-//#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 8000000
+#define LED_ROJO PORTAbits.RA0
+#define LED_AMARILLO PORTAbits.RA1
+#define LED_VERDE PORTAbits.RA2
 
 
 //****************************************************************************//
@@ -46,10 +48,10 @@
 
 
 //****************************************************************************//
-//PROTOTIPOs DE FUNCIONES                                                      //
+//PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-
+void semaforo(void);
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -62,18 +64,66 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        if (PORTBbits.RB0 == 1)
+            semaforo();
     }
 
 }
 
 //****************************************************************************//
-//CONFIGURACION  (puertos, bits...)                                                            //
+//CONFIGURACION  (puertos, bits...)                                           //
 //****************************************************************************//
 
 void setup(void) {
+    ANSEL = 0;
+    ANSELH = 0;
+    TRISA = 0b11111000;
+    PORTA = 0;
+    TRISB = 0b00000111;
+    PORTB = 0;
+    TRISC = 0;
+    PORTC = 0;
+    TRISD = 0;
+    PORTD = 0;
+    TRISE = 0;
+    PORTE = 0;
+    
 }
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
-
+void semaforo(void){
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;
+    __delay_ms(800);
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 1;
+    PORTAbits.RA2 = 0;
+    __delay_ms(300); 
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 1;
+    __delay_ms(200);
+    PORTAbits.RA0 = 0;
+    PORTAbits.RA1 = 0;
+    PORTAbits.RA2 = 0;
+     
+//    LED_ROJO = 1;
+//    LED_AMARILLO = 0;
+//    LED_VERDE = 0;
+//    __delay_ms(800);
+//    LED_ROJO = 0;
+//    LED_AMARILLO = 1;
+//    LED_VERDE = 0;
+//    __delay_ms(800);
+//    LED_ROJO = 0;
+//    LED_AMARILLO = 0;
+//    LED_VERDE = 1;
+//    __delay_ms(800);
+//    LED_ROJO = 0;
+//    LED_AMARILLO = 0;
+//    LED_VERDE = 0;
+    
+}
