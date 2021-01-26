@@ -2509,7 +2509,7 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 49 "Main_lab1.c"
+# 46 "Main_lab1.c"
 int contador1 = 0;
 int contador2 = 0;
 int seguro_semaforo = 0;
@@ -2537,9 +2537,14 @@ void main(void) {
 
     while (1) {
         if (PORTBbits.RB0 == 1){
+            while (PORTBbits.RB0 == 1){
+                seguro_semaforo = 0;
+            }
             semaforo();
         }
         if (seguro_semaforo == 1){
+
+
             if (J1_GANADOR != 1){
                 if (PORTBbits.RB1 == 1){
                     while (PORTBbits.RB1 == 1){
@@ -2553,6 +2558,7 @@ void main(void) {
             }
             else {
                 J1_WIN();}
+
 
             if (J2_GANADOR != 1){
                 if (PORTBbits.RB2 == 1){
@@ -2568,8 +2574,6 @@ void main(void) {
             else{
             J2_WIN();}
         }
-
-
     }
 }
 
@@ -2619,31 +2623,24 @@ void semaforo(void){
 void conteoJ1(void){
     if (contador1 == 1){
     PORTC = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 2){
     PORTC = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 3){
     PORTC = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 4){
     PORTC = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 5){
     PORTC = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 6){
     PORTC = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador1 == 7){
     PORTC = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else {
     PORTC = 0b10000000;
@@ -2657,31 +2654,24 @@ void conteoJ1(void){
 void conteoJ2(void){
     if (contador2 == 1){
     PORTD = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 2){
     PORTD = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 3){
     PORTD = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 4){
     PORTD = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 5){
     PORTD = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 6){
     PORTD = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else if (contador2 == 7){
     PORTD = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
     }
     else {
     PORTD = 0b10000000;

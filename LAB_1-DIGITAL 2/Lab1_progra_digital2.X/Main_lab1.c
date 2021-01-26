@@ -70,6 +70,9 @@ void main(void) {
     //************************************************************************//
     while (1) {
         if (PORTBbits.RB0 == 1){ //push del semaforo
+            while (PORTBbits.RB0 == 1){//DEBOUNCING
+                seguro_semaforo = 0;
+            }
             semaforo();
         }
         if (seguro_semaforo == 1){//No avanzan hasta que haya pasado el semaforo
@@ -152,36 +155,29 @@ void semaforo(void){ //enciende con delays las tres luces del semaforo
 //FUNCION DEL BOTON DEL PRIMER JUGADOR
 void conteoJ1(void){     //al presionar el push, se aumenta el contador y segun 
     if (contador1 == 1){ //sea el valor, se enciende el led que es
-    PORTC = 0b00000001;
-    //__delay_ms(400);
+    PORTC = 0b00000001;    
     }
     else if (contador1 == 2){
     PORTC = 0b00000010;
-    //__delay_ms(400);
     }
     else if (contador1 == 3){
     PORTC = 0b00000100;
-    //__delay_ms(400);
     }
     else if (contador1 == 4){
     PORTC = 0b00001000;
-    //__delay_ms(400);
     }
     else if (contador1 == 5){
     PORTC = 0b00010000;
-    //__delay_ms(400);
     }
     else if (contador1 == 6){
     PORTC = 0b00100000;
-    //__delay_ms(400);
     }
     else if (contador1 == 7){
     PORTC = 0b01000000;
-    //__delay_ms(400);
     }
     else {
     PORTC = 0b10000000;
-    //__delay_ms(400);
+    __delay_ms(400);
     PORTC = 0b00000000;
     J1_GANADOR = 1; //cuando ya llega a los 8, se activa esta variable para que
     }               //indique quien gana
@@ -191,31 +187,24 @@ void conteoJ1(void){     //al presionar el push, se aumenta el contador y segun
 void conteoJ2(void){
     if (contador2 == 1){
     PORTD = 0b00000001;
-    __delay_ms(400);
     }
     else if (contador2 == 2){
     PORTD = 0b00000010;
-    __delay_ms(400);
     }
     else if (contador2 == 3){
     PORTD = 0b00000100;
-    __delay_ms(400);
     }
     else if (contador2 == 4){
     PORTD = 0b00001000;
-    __delay_ms(400);
     }
     else if (contador2 == 5){
     PORTD = 0b00010000;
-    __delay_ms(400);
     }
     else if (contador2 == 6){
     PORTD = 0b00100000;
-    __delay_ms(400);
     }
     else if (contador2 == 7){
     PORTD = 0b01000000;
-    __delay_ms(400);
     }
     else {
     PORTD = 0b10000000;

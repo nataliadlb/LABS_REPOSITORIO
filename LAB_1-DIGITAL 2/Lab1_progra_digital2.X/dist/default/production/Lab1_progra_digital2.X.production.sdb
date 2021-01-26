@@ -11,19 +11,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"68 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+"65 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
 [v _main main `(v  1 e 1 0 ]
-"115
+"116
 [v _setup setup `(v  1 e 1 0 ]
-"134
+"135
 [v _semaforo semaforo `(v  1 e 1 0 ]
-"155
+"156
 [v _conteoJ1 conteoJ1 `(v  1 e 1 0 ]
-"193
+"187
 [v _conteoJ2 conteoJ2 `(v  1 e 1 0 ]
-"230
+"217
 [v _J1_WIN J1_WIN `(v  1 e 1 0 ]
-"242
+"229
 [v _J2_WIN J2_WIN `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -81,48 +81,48 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"49 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+"46 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
 [v _contador1 contador1 `i  1 e 2 0 ]
-"50
+"47
 [v _contador2 contador2 `i  1 e 2 0 ]
-"51
+"48
 [v _seguro_semaforo seguro_semaforo `i  1 e 2 0 ]
-"52
+"49
 [v _J1_GANADOR J1_GANADOR `i  1 e 2 0 ]
-"53
+"50
 [v _J2_GANADOR J2_GANADOR `i  1 e 2 0 ]
-"68
+"65
 [v _main main `(v  1 e 1 0 ]
 {
-"110
+"111
 } 0
-"115
+"116
 [v _setup setup `(v  1 e 1 0 ]
 {
-"129
+"130
 } 0
-"134
+"135
 [v _semaforo semaforo `(v  1 e 1 0 ]
 {
-"152
+"153
 } 0
-"193
+"187
 [v _conteoJ2 conteoJ2 `(v  1 e 1 0 ]
 {
-"228
+"215
 } 0
-"155
+"156
 [v _conteoJ1 conteoJ1 `(v  1 e 1 0 ]
 {
-"190
+"184
 } 0
-"242
+"229
 [v _J2_WIN J2_WIN `(v  1 e 1 0 ]
 {
-"252
+"239
 } 0
-"230
+"217
 [v _J1_WIN J1_WIN `(v  1 e 1 0 ]
 {
-"240
+"227
 } 0

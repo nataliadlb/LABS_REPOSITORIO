@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"58 Main_lab1.c
-[; ;Main_lab1.c: 58: void setup(void);
+"55 Main_lab1.c
+[; ;Main_lab1.c: 55: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
 "234 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 234:     struct {
@@ -14,20 +14,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "245
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
 [v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
-"59 Main_lab1.c
-[; ;Main_lab1.c: 59: void semaforo(void);
+"56 Main_lab1.c
+[; ;Main_lab1.c: 56: void semaforo(void);
 [v _semaforo `(v ~T0 @X0 0 ef ]
-"60
-[; ;Main_lab1.c: 60: void conteoJ1(void);
+"57
+[; ;Main_lab1.c: 57: void conteoJ1(void);
 [v _conteoJ1 `(v ~T0 @X0 0 ef ]
-"62
-[; ;Main_lab1.c: 62: void J1_WIN(void);
+"59
+[; ;Main_lab1.c: 59: void J1_WIN(void);
 [v _J1_WIN `(v ~T0 @X0 0 ef ]
-"61
-[; ;Main_lab1.c: 61: void conteoJ2(void);
+"58
+[; ;Main_lab1.c: 58: void conteoJ2(void);
 [v _conteoJ2 `(v ~T0 @X0 0 ef ]
-"63
-[; ;Main_lab1.c: 63: void J2_WIN(void);
+"60
+[; ;Main_lab1.c: 60: void J2_WIN(void);
 [v _J2_WIN `(v ~T0 @X0 0 ef ]
 "3387 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
@@ -349,54 +349,70 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V  =  BOR40V    ]
 "34
 [p x WRT  =  OFF         ]
-"49
-[; ;Main_lab1.c: 49: int contador1 = 0;
+"46
+[; ;Main_lab1.c: 46: int contador1 = 0;
 [v _contador1 `i ~T0 @X0 1 e ]
 [i _contador1
 -> 0 `i
 ]
-"50
-[; ;Main_lab1.c: 50: int contador2 = 0;
+"47
+[; ;Main_lab1.c: 47: int contador2 = 0;
 [v _contador2 `i ~T0 @X0 1 e ]
 [i _contador2
 -> 0 `i
 ]
-"51
-[; ;Main_lab1.c: 51: int seguro_semaforo = 0;
+"48
+[; ;Main_lab1.c: 48: int seguro_semaforo = 0;
 [v _seguro_semaforo `i ~T0 @X0 1 e ]
 [i _seguro_semaforo
 -> 0 `i
 ]
-"52
-[; ;Main_lab1.c: 52: int J1_GANADOR = 0;
+"49
+[; ;Main_lab1.c: 49: int J1_GANADOR = 0;
 [v _J1_GANADOR `i ~T0 @X0 1 e ]
 [i _J1_GANADOR
 -> 0 `i
 ]
-"53
-[; ;Main_lab1.c: 53: int J2_GANADOR = 0;
+"50
+[; ;Main_lab1.c: 50: int J2_GANADOR = 0;
 [v _J2_GANADOR `i ~T0 @X0 1 e ]
 [i _J2_GANADOR
 -> 0 `i
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"68
-[; ;Main_lab1.c: 68: void main(void) {
+"65
+[; ;Main_lab1.c: 65: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"69
-[; ;Main_lab1.c: 69:     setup();
+"66
+[; ;Main_lab1.c: 66:     setup();
 [e ( _setup ..  ]
-"74
-[; ;Main_lab1.c: 74:     while (1) {
+"71
+[; ;Main_lab1.c: 71:     while (1) {
 [e :U 140 ]
 {
-"75
-[; ;Main_lab1.c: 75:         if (PORTBbits.RB0 == 1){
+"72
+[; ;Main_lab1.c: 72:         if (PORTBbits.RB0 == 1){
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 142  ]
 {
+"73
+[; ;Main_lab1.c: 73:             while (PORTBbits.RB0 == 1){
+[e $U 143  ]
+[e :U 144 ]
+{
+"74
+[; ;Main_lab1.c: 74:                 seguro_semaforo = 0;
+[e = _seguro_semaforo -> 0 `i ]
+"75
+[; ;Main_lab1.c: 75:             }
+}
+[e :U 143 ]
+"73
+[; ;Main_lab1.c: 73:             while (PORTBbits.RB0 == 1){
+[e $ == -> . . _PORTBbits 0 0 `i -> 1 `i 144  ]
+[e :U 145 ]
 "76
 [; ;Main_lab1.c: 76:             semaforo();
 [e ( _semaforo ..  ]
@@ -406,590 +422,548 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 142 ]
 "78
 [; ;Main_lab1.c: 78:         if (seguro_semaforo == 1){
-[e $ ! == _seguro_semaforo -> 1 `i 143  ]
-{
-"79
-[; ;Main_lab1.c: 79:             if (J1_GANADOR != 1){
-[e $ ! != _J1_GANADOR -> 1 `i 144  ]
-{
-"80
-[; ;Main_lab1.c: 80:                 if (PORTBbits.RB1 == 1){
-[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 145  ]
+[e $ ! == _seguro_semaforo -> 1 `i 146  ]
 {
 "81
-[; ;Main_lab1.c: 81:                     while (PORTBbits.RB1 == 1){
-[e $U 146  ]
-[e :U 147 ]
+[; ;Main_lab1.c: 81:             if (J1_GANADOR != 1){
+[e $ ! != _J1_GANADOR -> 1 `i 147  ]
 {
 "82
-[; ;Main_lab1.c: 82:                         contador1 = contador1;
-[e = _contador1 _contador1 ]
-"83
-[; ;Main_lab1.c: 83:                         }
-}
-[e :U 146 ]
-"81
-[; ;Main_lab1.c: 81:                     while (PORTBbits.RB1 == 1){
-[e $ == -> . . _PORTBbits 0 1 `i -> 1 `i 147  ]
-[e :U 148 ]
-"84
-[; ;Main_lab1.c: 84:                     contador1 = contador1 + 1;
-[e = _contador1 + _contador1 -> 1 `i ]
-"85
-[; ;Main_lab1.c: 85:                     if (contador1 >= 0 && contador1 <= 9){
-[e $ ! && >= _contador1 -> 0 `i <= _contador1 -> 9 `i 149  ]
+[; ;Main_lab1.c: 82:                 if (PORTBbits.RB1 == 1){
+[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 148  ]
 {
-"86
-[; ;Main_lab1.c: 86:                         conteoJ1();
-[e ( _conteoJ1 ..  ]
-"87
-[; ;Main_lab1.c: 87:                     }
+"83
+[; ;Main_lab1.c: 83:                     while (PORTBbits.RB1 == 1){
+[e $U 149  ]
+[e :U 150 ]
+{
+"84
+[; ;Main_lab1.c: 84:                         contador1 = contador1;
+[e = _contador1 _contador1 ]
+"85
+[; ;Main_lab1.c: 85:                         }
 }
 [e :U 149 ]
+"83
+[; ;Main_lab1.c: 83:                     while (PORTBbits.RB1 == 1){
+[e $ == -> . . _PORTBbits 0 1 `i -> 1 `i 150  ]
+[e :U 151 ]
+"86
+[; ;Main_lab1.c: 86:                     contador1 = contador1 + 1;
+[e = _contador1 + _contador1 -> 1 `i ]
+"87
+[; ;Main_lab1.c: 87:                     if (contador1 >= 0 && contador1 <= 9){
+[e $ ! && >= _contador1 -> 0 `i <= _contador1 -> 9 `i 152  ]
+{
 "88
-[; ;Main_lab1.c: 88:                 }
-}
-[e :U 145 ]
+[; ;Main_lab1.c: 88:                         conteoJ1();
+[e ( _conteoJ1 ..  ]
 "89
-[; ;Main_lab1.c: 89:             }
-}
-[e $U 150  ]
-"90
-[; ;Main_lab1.c: 90:             else {
-[e :U 144 ]
-{
-"91
-[; ;Main_lab1.c: 91:                 J1_WIN();}
-[e ( _J1_WIN ..  ]
-}
-[e :U 150 ]
-"93
-[; ;Main_lab1.c: 93:             if (J2_GANADOR != 1){
-[e $ ! != _J2_GANADOR -> 1 `i 151  ]
-{
-"94
-[; ;Main_lab1.c: 94:                 if (PORTBbits.RB2 == 1){
-[e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 152  ]
-{
-"95
-[; ;Main_lab1.c: 95:                     while (PORTBbits.RB2 == 1){
-[e $U 153  ]
-[e :U 154 ]
-{
-"96
-[; ;Main_lab1.c: 96:                         contador2 = contador2;
-[e = _contador2 _contador2 ]
-"97
-[; ;Main_lab1.c: 97:                         }
-}
-[e :U 153 ]
-"95
-[; ;Main_lab1.c: 95:                     while (PORTBbits.RB2 == 1){
-[e $ == -> . . _PORTBbits 0 2 `i -> 1 `i 154  ]
-[e :U 155 ]
-"98
-[; ;Main_lab1.c: 98:                     contador2 = contador2 + 1;
-[e = _contador2 + _contador2 -> 1 `i ]
-"99
-[; ;Main_lab1.c: 99:                     if (contador2 >= 0 && contador2 <= 9){
-[e $ ! && >= _contador2 -> 0 `i <= _contador2 -> 9 `i 156  ]
-{
-"100
-[; ;Main_lab1.c: 100:                         conteoJ2();
-[e ( _conteoJ2 ..  ]
-"101
-[; ;Main_lab1.c: 101:                     }
-}
-[e :U 156 ]
-"102
-[; ;Main_lab1.c: 102:                 }
+[; ;Main_lab1.c: 89:                     }
 }
 [e :U 152 ]
-"103
-[; ;Main_lab1.c: 103:             }
+"90
+[; ;Main_lab1.c: 90:                 }
 }
-[e $U 157  ]
-"104
-[; ;Main_lab1.c: 104:             else{
-[e :U 151 ]
+[e :U 148 ]
+"91
+[; ;Main_lab1.c: 91:             }
+}
+[e $U 153  ]
+"92
+[; ;Main_lab1.c: 92:             else {
+[e :U 147 ]
 {
+"93
+[; ;Main_lab1.c: 93:                 J1_WIN();}
+[e ( _J1_WIN ..  ]
+}
+[e :U 153 ]
+"96
+[; ;Main_lab1.c: 96:             if (J2_GANADOR != 1){
+[e $ ! != _J2_GANADOR -> 1 `i 154  ]
+{
+"97
+[; ;Main_lab1.c: 97:                 if (PORTBbits.RB2 == 1){
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 155  ]
+{
+"98
+[; ;Main_lab1.c: 98:                     while (PORTBbits.RB2 == 1){
+[e $U 156  ]
+[e :U 157 ]
+{
+"99
+[; ;Main_lab1.c: 99:                         contador2 = contador2;
+[e = _contador2 _contador2 ]
+"100
+[; ;Main_lab1.c: 100:                         }
+}
+[e :U 156 ]
+"98
+[; ;Main_lab1.c: 98:                     while (PORTBbits.RB2 == 1){
+[e $ == -> . . _PORTBbits 0 2 `i -> 1 `i 157  ]
+[e :U 158 ]
+"101
+[; ;Main_lab1.c: 101:                     contador2 = contador2 + 1;
+[e = _contador2 + _contador2 -> 1 `i ]
+"102
+[; ;Main_lab1.c: 102:                     if (contador2 >= 0 && contador2 <= 9){
+[e $ ! && >= _contador2 -> 0 `i <= _contador2 -> 9 `i 159  ]
+{
+"103
+[; ;Main_lab1.c: 103:                         conteoJ2();
+[e ( _conteoJ2 ..  ]
+"104
+[; ;Main_lab1.c: 104:                     }
+}
+[e :U 159 ]
 "105
-[; ;Main_lab1.c: 105:             J2_WIN();}
+[; ;Main_lab1.c: 105:                 }
+}
+[e :U 155 ]
+"106
+[; ;Main_lab1.c: 106:             }
+}
+[e $U 160  ]
+"107
+[; ;Main_lab1.c: 107:             else{
+[e :U 154 ]
+{
+"108
+[; ;Main_lab1.c: 108:             J2_WIN();}
 [e ( _J2_WIN ..  ]
 }
-[e :U 157 ]
-"106
-[; ;Main_lab1.c: 106:         }
-}
-[e :U 143 ]
+[e :U 160 ]
 "109
-[; ;Main_lab1.c: 109:     }
+[; ;Main_lab1.c: 109:         }
+}
+[e :U 146 ]
+"110
+[; ;Main_lab1.c: 110:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"110
-[; ;Main_lab1.c: 110: }
+"111
+[; ;Main_lab1.c: 111: }
 [e :UE 138 ]
 }
-"115
-[; ;Main_lab1.c: 115: void setup(void){
+"116
+[; ;Main_lab1.c: 116: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"116
-[; ;Main_lab1.c: 116:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
 "117
-[; ;Main_lab1.c: 117:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 117:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
 "118
-[; ;Main_lab1.c: 118:     TRISA = 0b11111000;
-[e = _TRISA -> -> 248 `i `uc ]
+[; ;Main_lab1.c: 118:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "119
-[; ;Main_lab1.c: 119:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 119:     TRISA = 0b11111000;
+[e = _TRISA -> -> 248 `i `uc ]
 "120
-[; ;Main_lab1.c: 120:     TRISB = 0b00000111;
-[e = _TRISB -> -> 7 `i `uc ]
+[; ;Main_lab1.c: 120:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "121
-[; ;Main_lab1.c: 121:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 121:     TRISB = 0b00000111;
+[e = _TRISB -> -> 7 `i `uc ]
 "122
-[; ;Main_lab1.c: 122:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 122:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "123
-[; ;Main_lab1.c: 123:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 123:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
 "124
-[; ;Main_lab1.c: 124:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 124:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "125
-[; ;Main_lab1.c: 125:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 125:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "126
-[; ;Main_lab1.c: 126:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 126:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "127
-[; ;Main_lab1.c: 127:     PORTE = 0;
+[; ;Main_lab1.c: 127:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
+"128
+[; ;Main_lab1.c: 128:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"129
-[; ;Main_lab1.c: 129:     }
-[e :UE 158 ]
+"130
+[; ;Main_lab1.c: 130:     }
+[e :UE 161 ]
 }
-"134
-[; ;Main_lab1.c: 134: void semaforo(void){
+"135
+[; ;Main_lab1.c: 135: void semaforo(void){
 [v _semaforo `(v ~T0 @X0 1 ef ]
 {
 [e :U _semaforo ]
 [f ]
-"135
-[; ;Main_lab1.c: 135:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
 "136
-[; ;Main_lab1.c: 136:     PORTAbits.RA0 = 1;
-[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+[; ;Main_lab1.c: 136:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
 "137
-[; ;Main_lab1.c: 137:     PORTAbits.RA1 = 0;
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 137:     PORTAbits.RA0 = 1;
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
 "138
-[; ;Main_lab1.c: 138:     PORTAbits.RA2 = 0;
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 138:     PORTAbits.RA1 = 0;
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
 "139
-[; ;Main_lab1.c: 139:     _delay((unsigned long)((800)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Main_lab1.c: 139:     PORTAbits.RA2 = 0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 "140
-[; ;Main_lab1.c: 140:     PORTAbits.RA0 = 0;
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 140:     _delay((unsigned long)((800)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "141
-[; ;Main_lab1.c: 141:     PORTAbits.RA1 = 1;
-[e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
+[; ;Main_lab1.c: 141:     PORTAbits.RA0 = 0;
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
 "142
-[; ;Main_lab1.c: 142:     PORTAbits.RA2 = 0;
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+[; ;Main_lab1.c: 142:     PORTAbits.RA1 = 1;
+[e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
 "143
-[; ;Main_lab1.c: 143:     _delay((unsigned long)((600)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 600 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"144
-[; ;Main_lab1.c: 144:     PORTAbits.RA0 = 0;
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
-"145
-[; ;Main_lab1.c: 145:     PORTAbits.RA1 = 0;
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-"146
-[; ;Main_lab1.c: 146:     PORTAbits.RA2 = 1;
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-"147
-[; ;Main_lab1.c: 147:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"148
-[; ;Main_lab1.c: 148:     PORTAbits.RA0 = 0;
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
-"149
-[; ;Main_lab1.c: 149:     PORTAbits.RA1 = 0;
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-"150
-[; ;Main_lab1.c: 150:     PORTAbits.RA2 = 0;
+[; ;Main_lab1.c: 143:     PORTAbits.RA2 = 0;
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+"144
+[; ;Main_lab1.c: 144:     _delay((unsigned long)((600)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 600 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"145
+[; ;Main_lab1.c: 145:     PORTAbits.RA0 = 0;
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"146
+[; ;Main_lab1.c: 146:     PORTAbits.RA1 = 0;
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+"147
+[; ;Main_lab1.c: 147:     PORTAbits.RA2 = 1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"148
+[; ;Main_lab1.c: 148:     _delay((unsigned long)((400)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"149
+[; ;Main_lab1.c: 149:     PORTAbits.RA0 = 0;
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"150
+[; ;Main_lab1.c: 150:     PORTAbits.RA1 = 0;
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
 "151
-[; ;Main_lab1.c: 151:     seguro_semaforo = 1;
-[e = _seguro_semaforo -> 1 `i ]
+[; ;Main_lab1.c: 151:     PORTAbits.RA2 = 0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 "152
-[; ;Main_lab1.c: 152:     }
-[e :UE 159 ]
+[; ;Main_lab1.c: 152:     seguro_semaforo = 1;
+[e = _seguro_semaforo -> 1 `i ]
+"153
+[; ;Main_lab1.c: 153:     }
+[e :UE 162 ]
 }
-"155
-[; ;Main_lab1.c: 155: void conteoJ1(void){
+"156
+[; ;Main_lab1.c: 156: void conteoJ1(void){
 [v _conteoJ1 `(v ~T0 @X0 1 ef ]
 {
 [e :U _conteoJ1 ]
 [f ]
-"156
-[; ;Main_lab1.c: 156:     if (contador1 == 1){
-[e $ ! == _contador1 -> 1 `i 161  ]
-{
 "157
-[; ;Main_lab1.c: 157:     PORTC = 0b00000001;
-[e = _PORTC -> -> 1 `i `uc ]
+[; ;Main_lab1.c: 157:     if (contador1 == 1){
+[e $ ! == _contador1 -> 1 `i 164  ]
+{
 "158
-[; ;Main_lab1.c: 158:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Main_lab1.c: 158:     PORTC = 0b00000001;
+[e = _PORTC -> -> 1 `i `uc ]
 "159
 [; ;Main_lab1.c: 159:     }
 }
-[e $U 162  ]
+[e $U 165  ]
 "160
 [; ;Main_lab1.c: 160:     else if (contador1 == 2){
-[e :U 161 ]
-[e $ ! == _contador1 -> 2 `i 163  ]
+[e :U 164 ]
+[e $ ! == _contador1 -> 2 `i 166  ]
 {
 "161
 [; ;Main_lab1.c: 161:     PORTC = 0b00000010;
 [e = _PORTC -> -> 2 `i `uc ]
 "162
-[; ;Main_lab1.c: 162:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Main_lab1.c: 162:     }
+}
+[e $U 167  ]
 "163
-[; ;Main_lab1.c: 163:     }
-}
-[e $U 164  ]
+[; ;Main_lab1.c: 163:     else if (contador1 == 3){
+[e :U 166 ]
+[e $ ! == _contador1 -> 3 `i 168  ]
+{
 "164
-[; ;Main_lab1.c: 164:     else if (contador1 == 3){
-[e :U 163 ]
-[e $ ! == _contador1 -> 3 `i 165  ]
-{
-"165
-[; ;Main_lab1.c: 165:     PORTC = 0b00000100;
+[; ;Main_lab1.c: 164:     PORTC = 0b00000100;
 [e = _PORTC -> -> 4 `i `uc ]
-"166
-[; ;Main_lab1.c: 166:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"167
-[; ;Main_lab1.c: 167:     }
+"165
+[; ;Main_lab1.c: 165:     }
 }
-[e $U 166  ]
-"168
-[; ;Main_lab1.c: 168:     else if (contador1 == 4){
-[e :U 165 ]
-[e $ ! == _contador1 -> 4 `i 167  ]
+[e $U 169  ]
+"166
+[; ;Main_lab1.c: 166:     else if (contador1 == 4){
+[e :U 168 ]
+[e $ ! == _contador1 -> 4 `i 170  ]
 {
-"169
-[; ;Main_lab1.c: 169:     PORTC = 0b00001000;
+"167
+[; ;Main_lab1.c: 167:     PORTC = 0b00001000;
 [e = _PORTC -> -> 8 `i `uc ]
+"168
+[; ;Main_lab1.c: 168:     }
+}
+[e $U 171  ]
+"169
+[; ;Main_lab1.c: 169:     else if (contador1 == 5){
+[e :U 170 ]
+[e $ ! == _contador1 -> 5 `i 172  ]
+{
 "170
-[; ;Main_lab1.c: 170:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Main_lab1.c: 170:     PORTC = 0b00010000;
+[e = _PORTC -> -> 16 `i `uc ]
 "171
 [; ;Main_lab1.c: 171:     }
 }
-[e $U 168  ]
+[e $U 173  ]
 "172
-[; ;Main_lab1.c: 172:     else if (contador1 == 5){
-[e :U 167 ]
-[e $ ! == _contador1 -> 5 `i 169  ]
+[; ;Main_lab1.c: 172:     else if (contador1 == 6){
+[e :U 172 ]
+[e $ ! == _contador1 -> 6 `i 174  ]
 {
 "173
-[; ;Main_lab1.c: 173:     PORTC = 0b00010000;
-[e = _PORTC -> -> 16 `i `uc ]
-"174
-[; ;Main_lab1.c: 174:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"175
-[; ;Main_lab1.c: 175:     }
-}
-[e $U 170  ]
-"176
-[; ;Main_lab1.c: 176:     else if (contador1 == 6){
-[e :U 169 ]
-[e $ ! == _contador1 -> 6 `i 171  ]
-{
-"177
-[; ;Main_lab1.c: 177:     PORTC = 0b00100000;
+[; ;Main_lab1.c: 173:     PORTC = 0b00100000;
 [e = _PORTC -> -> 32 `i `uc ]
-"178
-[; ;Main_lab1.c: 178:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"179
-[; ;Main_lab1.c: 179:     }
+"174
+[; ;Main_lab1.c: 174:     }
 }
-[e $U 172  ]
-"180
-[; ;Main_lab1.c: 180:     else if (contador1 == 7){
-[e :U 171 ]
-[e $ ! == _contador1 -> 7 `i 173  ]
+[e $U 175  ]
+"175
+[; ;Main_lab1.c: 175:     else if (contador1 == 7){
+[e :U 174 ]
+[e $ ! == _contador1 -> 7 `i 176  ]
 {
-"181
-[; ;Main_lab1.c: 181:     PORTC = 0b01000000;
+"176
+[; ;Main_lab1.c: 176:     PORTC = 0b01000000;
 [e = _PORTC -> -> 64 `i `uc ]
-"182
-[; ;Main_lab1.c: 182:     _delay((unsigned long)((400)*(8000000/4000.0)));
+"177
+[; ;Main_lab1.c: 177:     }
+}
+[e $U 177  ]
+"178
+[; ;Main_lab1.c: 178:     else {
+[e :U 176 ]
+{
+"179
+[; ;Main_lab1.c: 179:     PORTC = 0b10000000;
+[e = _PORTC -> -> 128 `i `uc ]
+"180
+[; ;Main_lab1.c: 180:     _delay((unsigned long)((400)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"181
+[; ;Main_lab1.c: 181:     PORTC = 0b00000000;
+[e = _PORTC -> -> 0 `i `uc ]
+"182
+[; ;Main_lab1.c: 182:     J1_GANADOR = 1;
+[e = _J1_GANADOR -> 1 `i ]
 "183
 [; ;Main_lab1.c: 183:     }
 }
-[e $U 174  ]
-"184
-[; ;Main_lab1.c: 184:     else {
+[e :U 177 ]
+[e :U 175 ]
 [e :U 173 ]
-{
-"185
-[; ;Main_lab1.c: 185:     PORTC = 0b10000000;
-[e = _PORTC -> -> 128 `i `uc ]
-"186
-[; ;Main_lab1.c: 186:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[e :U 171 ]
+[e :U 169 ]
+[e :U 167 ]
+[e :U 165 ]
+"184
+[; ;Main_lab1.c: 184: }
+[e :UE 163 ]
+}
 "187
-[; ;Main_lab1.c: 187:     PORTC = 0b00000000;
-[e = _PORTC -> -> 0 `i `uc ]
-"188
-[; ;Main_lab1.c: 188:     J1_GANADOR = 1;
-[e = _J1_GANADOR -> 1 `i ]
-"189
-[; ;Main_lab1.c: 189:     }
-}
-[e :U 174 ]
-[e :U 172 ]
-[e :U 170 ]
-[e :U 168 ]
-[e :U 166 ]
-[e :U 164 ]
-[e :U 162 ]
-"190
-[; ;Main_lab1.c: 190: }
-[e :UE 160 ]
-}
-"193
-[; ;Main_lab1.c: 193: void conteoJ2(void){
+[; ;Main_lab1.c: 187: void conteoJ2(void){
 [v _conteoJ2 `(v ~T0 @X0 1 ef ]
 {
 [e :U _conteoJ2 ]
 [f ]
+"188
+[; ;Main_lab1.c: 188:     if (contador2 == 1){
+[e $ ! == _contador2 -> 1 `i 179  ]
+{
+"189
+[; ;Main_lab1.c: 189:     PORTD = 0b00000001;
+[e = _PORTD -> -> 1 `i `uc ]
+"190
+[; ;Main_lab1.c: 190:     }
+}
+[e $U 180  ]
+"191
+[; ;Main_lab1.c: 191:     else if (contador2 == 2){
+[e :U 179 ]
+[e $ ! == _contador2 -> 2 `i 181  ]
+{
+"192
+[; ;Main_lab1.c: 192:     PORTD = 0b00000010;
+[e = _PORTD -> -> 2 `i `uc ]
+"193
+[; ;Main_lab1.c: 193:     }
+}
+[e $U 182  ]
 "194
-[; ;Main_lab1.c: 194:     if (contador2 == 1){
-[e $ ! == _contador2 -> 1 `i 176  ]
+[; ;Main_lab1.c: 194:     else if (contador2 == 3){
+[e :U 181 ]
+[e $ ! == _contador2 -> 3 `i 183  ]
 {
 "195
-[; ;Main_lab1.c: 195:     PORTD = 0b00000001;
-[e = _PORTD -> -> 1 `i `uc ]
-"196
-[; ;Main_lab1.c: 196:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"197
-[; ;Main_lab1.c: 197:     }
-}
-[e $U 177  ]
-"198
-[; ;Main_lab1.c: 198:     else if (contador2 == 2){
-[e :U 176 ]
-[e $ ! == _contador2 -> 2 `i 178  ]
-{
-"199
-[; ;Main_lab1.c: 199:     PORTD = 0b00000010;
-[e = _PORTD -> -> 2 `i `uc ]
-"200
-[; ;Main_lab1.c: 200:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"201
-[; ;Main_lab1.c: 201:     }
-}
-[e $U 179  ]
-"202
-[; ;Main_lab1.c: 202:     else if (contador2 == 3){
-[e :U 178 ]
-[e $ ! == _contador2 -> 3 `i 180  ]
-{
-"203
-[; ;Main_lab1.c: 203:     PORTD = 0b00000100;
+[; ;Main_lab1.c: 195:     PORTD = 0b00000100;
 [e = _PORTD -> -> 4 `i `uc ]
+"196
+[; ;Main_lab1.c: 196:     }
+}
+[e $U 184  ]
+"197
+[; ;Main_lab1.c: 197:     else if (contador2 == 4){
+[e :U 183 ]
+[e $ ! == _contador2 -> 4 `i 185  ]
+{
+"198
+[; ;Main_lab1.c: 198:     PORTD = 0b00001000;
+[e = _PORTD -> -> 8 `i `uc ]
+"199
+[; ;Main_lab1.c: 199:     }
+}
+[e $U 186  ]
+"200
+[; ;Main_lab1.c: 200:     else if (contador2 == 5){
+[e :U 185 ]
+[e $ ! == _contador2 -> 5 `i 187  ]
+{
+"201
+[; ;Main_lab1.c: 201:     PORTD = 0b00010000;
+[e = _PORTD -> -> 16 `i `uc ]
+"202
+[; ;Main_lab1.c: 202:     }
+}
+[e $U 188  ]
+"203
+[; ;Main_lab1.c: 203:     else if (contador2 == 6){
+[e :U 187 ]
+[e $ ! == _contador2 -> 6 `i 189  ]
+{
 "204
-[; ;Main_lab1.c: 204:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Main_lab1.c: 204:     PORTD = 0b00100000;
+[e = _PORTD -> -> 32 `i `uc ]
 "205
 [; ;Main_lab1.c: 205:     }
 }
-[e $U 181  ]
+[e $U 190  ]
 "206
-[; ;Main_lab1.c: 206:     else if (contador2 == 4){
-[e :U 180 ]
-[e $ ! == _contador2 -> 4 `i 182  ]
+[; ;Main_lab1.c: 206:     else if (contador2 == 7){
+[e :U 189 ]
+[e $ ! == _contador2 -> 7 `i 191  ]
 {
 "207
-[; ;Main_lab1.c: 207:     PORTD = 0b00001000;
-[e = _PORTD -> -> 8 `i `uc ]
-"208
-[; ;Main_lab1.c: 208:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"209
-[; ;Main_lab1.c: 209:     }
-}
-[e $U 183  ]
-"210
-[; ;Main_lab1.c: 210:     else if (contador2 == 5){
-[e :U 182 ]
-[e $ ! == _contador2 -> 5 `i 184  ]
-{
-"211
-[; ;Main_lab1.c: 211:     PORTD = 0b00010000;
-[e = _PORTD -> -> 16 `i `uc ]
-"212
-[; ;Main_lab1.c: 212:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"213
-[; ;Main_lab1.c: 213:     }
-}
-[e $U 185  ]
-"214
-[; ;Main_lab1.c: 214:     else if (contador2 == 6){
-[e :U 184 ]
-[e $ ! == _contador2 -> 6 `i 186  ]
-{
-"215
-[; ;Main_lab1.c: 215:     PORTD = 0b00100000;
-[e = _PORTD -> -> 32 `i `uc ]
-"216
-[; ;Main_lab1.c: 216:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"217
-[; ;Main_lab1.c: 217:     }
-}
-[e $U 187  ]
-"218
-[; ;Main_lab1.c: 218:     else if (contador2 == 7){
-[e :U 186 ]
-[e $ ! == _contador2 -> 7 `i 188  ]
-{
-"219
-[; ;Main_lab1.c: 219:     PORTD = 0b01000000;
+[; ;Main_lab1.c: 207:     PORTD = 0b01000000;
 [e = _PORTD -> -> 64 `i `uc ]
-"220
-[; ;Main_lab1.c: 220:     _delay((unsigned long)((400)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"221
-[; ;Main_lab1.c: 221:     }
+"208
+[; ;Main_lab1.c: 208:     }
 }
-[e $U 189  ]
-"222
-[; ;Main_lab1.c: 222:     else {
-[e :U 188 ]
+[e $U 192  ]
+"209
+[; ;Main_lab1.c: 209:     else {
+[e :U 191 ]
 {
-"223
-[; ;Main_lab1.c: 223:     PORTD = 0b10000000;
+"210
+[; ;Main_lab1.c: 210:     PORTD = 0b10000000;
 [e = _PORTD -> -> 128 `i `uc ]
-"224
-[; ;Main_lab1.c: 224:     _delay((unsigned long)((400)*(8000000/4000.0)));
+"211
+[; ;Main_lab1.c: 211:     _delay((unsigned long)((400)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 400 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"225
-[; ;Main_lab1.c: 225:     PORTD = 0b00000000;
+"212
+[; ;Main_lab1.c: 212:     PORTD = 0b00000000;
 [e = _PORTD -> -> 0 `i `uc ]
-"226
-[; ;Main_lab1.c: 226:     J2_GANADOR = 1;
+"213
+[; ;Main_lab1.c: 213:     J2_GANADOR = 1;
 [e = _J2_GANADOR -> 1 `i ]
-"227
-[; ;Main_lab1.c: 227:     }
+"214
+[; ;Main_lab1.c: 214:     }
 }
-[e :U 189 ]
-[e :U 187 ]
-[e :U 185 ]
-[e :U 183 ]
-[e :U 181 ]
-[e :U 179 ]
-[e :U 177 ]
-"228
-[; ;Main_lab1.c: 228: }
-[e :UE 175 ]
+[e :U 192 ]
+[e :U 190 ]
+[e :U 188 ]
+[e :U 186 ]
+[e :U 184 ]
+[e :U 182 ]
+[e :U 180 ]
+"215
+[; ;Main_lab1.c: 215: }
+[e :UE 178 ]
 }
-"230
-[; ;Main_lab1.c: 230: void J1_WIN(void){
+"217
+[; ;Main_lab1.c: 217: void J1_WIN(void){
 [v _J1_WIN `(v ~T0 @X0 1 ef ]
 {
 [e :U _J1_WIN ]
 [f ]
-"231
-[; ;Main_lab1.c: 231:     PORTEbits.RE0 = 1;
+"218
+[; ;Main_lab1.c: 218:     PORTEbits.RE0 = 1;
 [e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
-"232
-[; ;Main_lab1.c: 232:     PORTEbits.RE1 = 0;
+"219
+[; ;Main_lab1.c: 219:     PORTEbits.RE1 = 0;
 [e = . . _PORTEbits 0 1 -> -> 0 `i `uc ]
-"233
-[; ;Main_lab1.c: 233:     seguro_semaforo = 0;
+"220
+[; ;Main_lab1.c: 220:     seguro_semaforo = 0;
 [e = _seguro_semaforo -> 0 `i ]
-"234
-[; ;Main_lab1.c: 234:     contador1 = 0;
+"221
+[; ;Main_lab1.c: 221:     contador1 = 0;
 [e = _contador1 -> 0 `i ]
-"235
-[; ;Main_lab1.c: 235:     contador2 = 0;
+"222
+[; ;Main_lab1.c: 222:     contador2 = 0;
 [e = _contador2 -> 0 `i ]
-"236
-[; ;Main_lab1.c: 236:     J1_GANADOR = 0;
+"223
+[; ;Main_lab1.c: 223:     J1_GANADOR = 0;
 [e = _J1_GANADOR -> 0 `i ]
-"237
-[; ;Main_lab1.c: 237:     J2_GANADOR = 0;
+"224
+[; ;Main_lab1.c: 224:     J2_GANADOR = 0;
 [e = _J2_GANADOR -> 0 `i ]
-"238
-[; ;Main_lab1.c: 238:     PORTC = 0;
+"225
+[; ;Main_lab1.c: 225:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"239
-[; ;Main_lab1.c: 239:     PORTD = 0;
+"226
+[; ;Main_lab1.c: 226:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"240
-[; ;Main_lab1.c: 240: }
-[e :UE 190 ]
+"227
+[; ;Main_lab1.c: 227: }
+[e :UE 193 ]
 }
-"242
-[; ;Main_lab1.c: 242: void J2_WIN(void){
+"229
+[; ;Main_lab1.c: 229: void J2_WIN(void){
 [v _J2_WIN `(v ~T0 @X0 1 ef ]
 {
 [e :U _J2_WIN ]
 [f ]
-"243
-[; ;Main_lab1.c: 243:     PORTEbits.RE0 = 0;
+"230
+[; ;Main_lab1.c: 230:     PORTEbits.RE0 = 0;
 [e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-"244
-[; ;Main_lab1.c: 244:     PORTEbits.RE1 = 1;
+"231
+[; ;Main_lab1.c: 231:     PORTEbits.RE1 = 1;
 [e = . . _PORTEbits 0 1 -> -> 1 `i `uc ]
-"245
-[; ;Main_lab1.c: 245:     seguro_semaforo = 0;
+"232
+[; ;Main_lab1.c: 232:     seguro_semaforo = 0;
 [e = _seguro_semaforo -> 0 `i ]
-"246
-[; ;Main_lab1.c: 246:     contador1 = 0;
+"233
+[; ;Main_lab1.c: 233:     contador1 = 0;
 [e = _contador1 -> 0 `i ]
-"247
-[; ;Main_lab1.c: 247:     contador2 = 0;
+"234
+[; ;Main_lab1.c: 234:     contador2 = 0;
 [e = _contador2 -> 0 `i ]
-"248
-[; ;Main_lab1.c: 248:     J1_GANADOR = 0;
+"235
+[; ;Main_lab1.c: 235:     J1_GANADOR = 0;
 [e = _J1_GANADOR -> 0 `i ]
-"249
-[; ;Main_lab1.c: 249:     J2_GANADOR = 0;
+"236
+[; ;Main_lab1.c: 236:     J2_GANADOR = 0;
 [e = _J2_GANADOR -> 0 `i ]
-"250
-[; ;Main_lab1.c: 250:     PORTC = 0;
+"237
+[; ;Main_lab1.c: 237:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"251
-[; ;Main_lab1.c: 251:     PORTD = 0;
+"238
+[; ;Main_lab1.c: 238:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"252
-[; ;Main_lab1.c: 252: }
-[e :UE 191 ]
+"239
+[; ;Main_lab1.c: 239: }
+[e :UE 194 ]
 }
