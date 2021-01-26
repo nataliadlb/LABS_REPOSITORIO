@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Lab1_Digital2.X
+PROJECTNAME=Lab1_progra_digital2.X
 
 # Active Configuration
 DEFAULTCONF=default
