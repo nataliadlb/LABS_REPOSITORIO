@@ -2513,8 +2513,6 @@ extern __bank0 __bit __timeout;
 int contador1 = 0;
 int contador2 = 0;
 int seguro_semaforo = 0;
-int J1_GANADOR = 0;
-int J2_GANADOR = 0;
 
 
 
@@ -2523,8 +2521,7 @@ void setup(void);
 void semaforo(void);
 void conteoJ1(void);
 void conteoJ2(void);
-void J1_WIN(void);
-void J2_WIN(void);
+
 
 
 
@@ -2536,37 +2533,22 @@ void main(void) {
 
 
     while (1) {
-        if (PORTBbits.RB0 == 1){
+        if (PORTBbits.RB0 == 0){
             semaforo();
         }
         if (seguro_semaforo == 1){
-            if (J1_GANADOR != 1){
-                if (PORTBbits.RB1 == 1){
-                    while (PORTBbits.RB1 == 1){
-                        contador1 = contador1;
-                        }
-                    contador1 = contador1 + 1;
-                    if (contador1 >= 0 && contador1 <= 9){
-                        conteoJ1();
-                    }
+            if (PORTBbits.RB1 == 0){
+                contador1 = contador1 + 1;
+                if (contador1 >= 0 && contador1 <= 8){
+                    conteoJ1();
                 }
             }
-            else {
-                J1_WIN();}
-
-            if (J2_GANADOR != 1){
-                if (PORTBbits.RB2 == 1){
-                    while (PORTBbits.RB2 == 1){
-                        contador2 = contador2;
-                        }
-                    contador2 = contador2 + 1;
-                    if (contador2 >= 0 && contador2 <= 9){
-                        conteoJ2();
-                    }
+            if (PORTBbits.RB2 == 1){
+                contador2 = contador2 + 1;
+                if (0 >= contador2 && contador2 <= 8){
+                    conteoJ2();
                 }
             }
-            else{
-            J2_WIN();}
         }
 
 
@@ -2596,7 +2578,6 @@ void setup(void){
 
 
 void semaforo(void){
-    PORTE = 0;
     PORTAbits.RA0 = 1;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 0;
@@ -2604,52 +2585,49 @@ void semaforo(void){
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 1;
     PORTAbits.RA2 = 0;
-    _delay((unsigned long)((600)*(8000000/4000.0)));
+    _delay((unsigned long)((300)*(8000000/4000.0)));
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 1;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 0;
     seguro_semaforo = 1;
     }
 
-
 void conteoJ1(void){
     if (contador1 == 1){
     PORTC = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 2){
     PORTC = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 3){
     PORTC = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 4){
     PORTC = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 5){
     PORTC = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 6){
     PORTC = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else if (contador1 == 7){
     PORTC = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+
     }
     else {
     PORTC = 0b10000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    PORTC = 0b00000000;
-    J1_GANADOR = 1;
+
     }
 }
 
@@ -2657,60 +2635,34 @@ void conteoJ1(void){
 void conteoJ2(void){
     if (contador2 == 1){
     PORTD = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 2){
     PORTD = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 3){
     PORTD = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 4){
     PORTD = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 5){
     PORTD = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 6){
     PORTD = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else if (contador2 == 7){
     PORTD = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     else {
     PORTD = 0b10000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    PORTD = 0b00000000;
-    J2_GANADOR = 1;
+    _delay((unsigned long)((200)*(8000000/4000.0)));
     }
-}
-
-void J1_WIN(void){
-    PORTEbits.RE0 = 1;
-    PORTEbits.RE1 = 0;
-    seguro_semaforo = 0;
-    contador1 = 0;
-    contador2 = 0;
-    J1_GANADOR = 0;
-    J2_GANADOR = 0;
-    PORTC = 0;
-    PORTD = 0;
-}
-
-void J2_WIN(void){
-    PORTEbits.RE0 = 0;
-    PORTEbits.RE1 = 1;
-    seguro_semaforo = 0;
-    contador1 = 0;
-    contador2 = 0;
-    J1_GANADOR = 0;
-    J2_GANADOR = 0;
-    PORTC = 0;
-    PORTD = 0;
 }

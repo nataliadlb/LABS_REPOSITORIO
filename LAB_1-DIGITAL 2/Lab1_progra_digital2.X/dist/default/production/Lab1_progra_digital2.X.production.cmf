@@ -12,13 +12,18 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\Lab1_progra_digital2.X.production.o
-cinit CODE 0 7FC 7FC 4 2
-text1 CODE 0 79C 79C 24 2
-text2 CODE 0 7C0 7C0 3C 2
-maintext CODE 0 788 788 14 2
-cstackCOMMON COMMON 1 70 70 3 1
+cinit CODE 0 7F2 7F2 E 2
+text1 CODE 0 58C 58C 25 2
+text2 CODE 0 5B1 5B1 40 2
+text3 CODE 0 733 733 BF 2
+text4 CODE 0 674 674 BF 2
+text5 CODE 0 57B 57B 11 2
+text6 CODE 0 56A 56A 11 2
+maintext CODE 0 5F1 5F1 83 2
+cstackCOMMON COMMON 1 7A 7A 3 1
+bssCOMMON COMMON 1 70 70 A 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\cnata\AppData\Local\Temp\si14.o
+$C:\Users\cnata\AppData\Local\Temp\s224.o
 end_init CODE 0 0 0 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -35,23 +40,23 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 3-787 2
+CONST 3-569 2
 CONST 800-1FFF 2
-ENTRY 3-787 2
+ENTRY 3-569 2
 ENTRY 800-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
-CODE 3-787 2
+CODE 3-569 2
 CODE 800-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 73-7D 1
+COMMON 7D-7D 1
 EEDATA 2100-21FF 2
-STRCODE 3-787 2
+STRCODE 3-569 2
 STRCODE 800-1FFF 2
-STRING 3-787 2
+STRING 3-569 2
 STRING 800-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -67,46 +72,166 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab1_progra_digital2.X.production.o
-7FC cinit CODE >453:C:\Users\cnata\AppData\Local\Temp\si14.s
-7FC cinit CODE >456:C:\Users\cnata\AppData\Local\Temp\si14.s
-7FC cinit CODE >462:C:\Users\cnata\AppData\Local\Temp\si14.s
-7FC cinit CODE >464:C:\Users\cnata\AppData\Local\Temp\si14.s
-7FD cinit CODE >465:C:\Users\cnata\AppData\Local\Temp\si14.s
-7C0 text2 CODE >96:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7C0 text2 CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7C3 text2 CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7C4 text2 CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7C5 text2 CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7D2 text2 CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7D5 text2 CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7D6 text2 CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7D7 text2 CODE >104:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7E4 text2 CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7E7 text2 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7E8 text2 CODE >107:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7E9 text2 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7F6 text2 CODE >109:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7F9 text2 CODE >110:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7FA text2 CODE >111:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7FB text2 CODE >113:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-79C text1 CODE >77:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-79C text1 CODE >78:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-79F text1 CODE >79:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7A0 text1 CODE >80:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7A3 text1 CODE >81:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7A6 text1 CODE >82:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7AA text1 CODE >83:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7AD text1 CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7B0 text1 CODE >85:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7B3 text1 CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7B6 text1 CODE >87:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7B9 text1 CODE >88:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7BC text1 CODE >89:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-7BF text1 CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-788 maintext CODE >60:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-788 maintext CODE >61:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-78D maintext CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
-793 maintext CODE >68:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7F2 cinit CODE >464:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F2 cinit CODE >467:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F2 cinit CODE >490:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F3 cinit CODE >491:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F4 cinit CODE >492:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F5 cinit CODE >493:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F6 cinit CODE >494:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F7 cinit CODE >495:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F8 cinit CODE >496:C:\Users\cnata\AppData\Local\Temp\s224.s
+7F9 cinit CODE >497:C:\Users\cnata\AppData\Local\Temp\s224.s
+7FA cinit CODE >498:C:\Users\cnata\AppData\Local\Temp\s224.s
+7FB cinit CODE >499:C:\Users\cnata\AppData\Local\Temp\s224.s
+7FC cinit CODE >505:C:\Users\cnata\AppData\Local\Temp\s224.s
+7FC cinit CODE >507:C:\Users\cnata\AppData\Local\Temp\s224.s
+7FD cinit CODE >508:C:\Users\cnata\AppData\Local\Temp\s224.s
+56A text6 CODE >230:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+56A text6 CODE >231:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+56D text6 CODE >232:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+56E text6 CODE >233:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+570 text6 CODE >234:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+572 text6 CODE >235:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+574 text6 CODE >236:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+576 text6 CODE >237:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+578 text6 CODE >238:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+579 text6 CODE >239:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+57A text6 CODE >240:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+57B text5 CODE >242:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+57B text5 CODE >243:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+57E text5 CODE >244:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+57F text5 CODE >245:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+581 text5 CODE >246:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+583 text5 CODE >247:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+585 text5 CODE >248:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+587 text5 CODE >249:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+589 text5 CODE >250:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+58A text5 CODE >251:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+58B text5 CODE >252:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+674 text4 CODE >155:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+674 text4 CODE >156:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+67A text4 CODE >157:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+67E text4 CODE >158:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+68A text4 CODE >159:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+68B text4 CODE >160:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+692 text4 CODE >161:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+696 text4 CODE >162:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6A2 text4 CODE >163:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6A3 text4 CODE >164:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6AA text4 CODE >165:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6AE text4 CODE >166:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6BA text4 CODE >167:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6BB text4 CODE >168:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6C2 text4 CODE >169:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6C6 text4 CODE >170:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6D2 text4 CODE >171:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6D3 text4 CODE >172:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6DA text4 CODE >173:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6DE text4 CODE >174:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6EA text4 CODE >175:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6EB text4 CODE >176:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6F2 text4 CODE >177:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+6F6 text4 CODE >178:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+702 text4 CODE >179:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+703 text4 CODE >180:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+70A text4 CODE >181:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+70E text4 CODE >182:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+71A text4 CODE >183:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+71B text4 CODE >185:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+71F text4 CODE >186:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+72B text4 CODE >187:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+72E text4 CODE >188:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+732 text4 CODE >190:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+733 text3 CODE >193:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+733 text3 CODE >194:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+739 text3 CODE >195:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+73D text3 CODE >196:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+749 text3 CODE >197:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+74A text3 CODE >198:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+751 text3 CODE >199:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+755 text3 CODE >200:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+761 text3 CODE >201:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+762 text3 CODE >202:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+769 text3 CODE >203:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+76D text3 CODE >204:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+779 text3 CODE >205:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+77A text3 CODE >206:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+781 text3 CODE >207:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+785 text3 CODE >208:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+791 text3 CODE >209:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+792 text3 CODE >210:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+799 text3 CODE >211:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+79D text3 CODE >212:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7A9 text3 CODE >213:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7AA text3 CODE >214:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7B1 text3 CODE >215:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7B5 text3 CODE >216:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7C1 text3 CODE >217:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7C2 text3 CODE >218:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7C9 text3 CODE >219:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7CD text3 CODE >220:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7D9 text3 CODE >221:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7DA text3 CODE >223:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7DE text3 CODE >224:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7EA text3 CODE >225:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7ED text3 CODE >226:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+7F1 text3 CODE >228:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B1 text2 CODE >134:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B1 text2 CODE >135:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B4 text2 CODE >136:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B5 text2 CODE >137:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B6 text2 CODE >138:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B7 text2 CODE >139:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5C4 text2 CODE >140:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5C7 text2 CODE >141:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5C8 text2 CODE >142:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5C9 text2 CODE >143:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5D6 text2 CODE >144:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5D9 text2 CODE >145:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5DA text2 CODE >146:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5DB text2 CODE >147:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5E7 text2 CODE >148:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5EA text2 CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5EB text2 CODE >150:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5EC text2 CODE >151:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5F0 text2 CODE >152:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+58C text1 CODE >115:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+58C text1 CODE >116:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+58F text1 CODE >117:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+590 text1 CODE >118:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+594 text1 CODE >119:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+597 text1 CODE >120:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+59B text1 CODE >121:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+59E text1 CODE >122:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5A1 text1 CODE >123:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5A4 text1 CODE >124:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5A7 text1 CODE >125:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5AA text1 CODE >126:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5AD text1 CODE >127:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5B0 text1 CODE >129:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5F1 maintext CODE >68:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5F1 maintext CODE >69:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5F6 maintext CODE >75:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+5FC maintext CODE >76:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+601 maintext CODE >78:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+607 maintext CODE >79:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+60D maintext CODE >80:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+613 maintext CODE >81:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+613 maintext CODE >83:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+617 maintext CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+61F maintext CODE >85:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+630 maintext CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+636 maintext CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+63B maintext CODE >93:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+641 maintext CODE >94:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+647 maintext CODE >95:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+647 maintext CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+64B maintext CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+653 maintext CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+664 maintext CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+66A maintext CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
+670 maintext CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB_1-DIGITAL 2\Lab1_progra_digital2.X\Main_lab1.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -121,34 +246,45 @@ $dist/default/production\Lab1_progra_digital2.X.production.o
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 __Hspace_0 800 0 ABS 0 - -
-__Hspace_1 73 0 ABS 0 - -
+__Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
+__end_of_J1_WIN AF6 0 CODE 0 text6 dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_J2_WIN B18 0 CODE 0 text5 dist/default/production\Lab1_progra_digital2.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\si14.o
-_main F10 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\s224.o
+_main BE2 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
-start 0 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\si14.o
+start 0 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\s224.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
+__HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\si14.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s224.o
+__LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
+_seguro_semaforo 74 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\si14.o
-___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\si14.o
+_J1_WIN AD4 0 CODE 0 text6 dist/default/production\Lab1_progra_digital2.X.production.o
+_J2_WIN AF6 0 CODE 0 text5 dist/default/production\Lab1_progra_digital2.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\s224.o
+___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\s224.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
-start_initialization FF8 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\si14.o
+start_initialization FE4 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
+_contador1 78 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
+_contador2 76 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
+__size_of_J1_WIN 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
+__size_of_J2_WIN 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\s224.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -162,10 +298,11 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit FE4 0 CODE 0 cinit -
 __Lstack 0 0 STACK 2 stack -
 _PORTAbits 5 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _PORTBbits 6 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
+_PORTEbits 9 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hinit 0 0 CODE 0 init -
@@ -184,39 +321,47 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __S0 800 0 ABS 0 - -
-__S1 73 0 ABS 0 - -
+__S1 7D 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
+_J1_GANADOR 72 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
 __Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\si14.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\s224.o
 __size_of_semaforo 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
-__pmaintext F10 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
+__pmaintext BE2 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-_semaforo F80 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
+_semaforo B62 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
+__pbssCOMMON 70 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
 __Lend_init 0 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__end_of_semaforo FF8 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_semaforo BE2 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
 end_of_initialization FF8 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
 __Hintentry 0 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 0 0 CODE 0 reset_vec -
-__ptext1 F38 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
-__ptext2 F80 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext1 B18 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext2 B62 0 CODE 0 text2 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext3 E66 0 CODE 0 text3 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext4 CE8 0 CODE 0 text4 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext5 AF6 0 CODE 0 text5 dist/default/production\Lab1_progra_digital2.X.production.o
+__ptext6 AD4 0 CODE 0 text6 dist/default/production\Lab1_progra_digital2.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
+__size_of_conteoJ1 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
+__size_of_conteoJ2 0 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 __end_of__initialization FF8 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
-__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
+__pcstackCOMMON 7A 0 COMMON 1 cstackCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
 __Hend_init 6 0 CODE 0 end_init -
-__end_of_main F38 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_main CE8 0 CODE 0 maintext dist/default/production\Lab1_progra_digital2.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
@@ -228,11 +373,16 @@ _TRISB 86 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _TRISC 87 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
 _TRISE 89 0 ABS 0 - dist/default/production\Lab1_progra_digital2.X.production.o
-__end_of_setup F80 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_setup B62 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_setup F38 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
-__initialization FF8 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
+_setup B18 0 CODE 0 text1 dist/default/production\Lab1_progra_digital2.X.production.o
+_conteoJ1 CE8 0 CODE 0 text4 dist/default/production\Lab1_progra_digital2.X.production.o
+_conteoJ2 E66 0 CODE 0 text3 dist/default/production\Lab1_progra_digital2.X.production.o
+__initialization FE4 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2.X.production.o
+_J2_GANADOR 70 0 COMMON 1 bssCOMMON dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_conteoJ1 E66 0 CODE 0 text4 dist/default/production\Lab1_progra_digital2.X.production.o
+__end_of_conteoJ2 FE4 0 CODE 0 text3 dist/default/production\Lab1_progra_digital2.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -258,12 +408,16 @@ __initialization FF8 0 CODE 0 cinit dist/default/production\Lab1_progra_digital2
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-text1 0 79C F38 24 2
-text2 0 7C0 F80 3C 2
-maintext 0 788 F10 14 2
-cstackCOMMON 1 70 70 3 1
+cinit 0 7F2 FE4 E 2
+text1 0 58C B18 25 2
+text2 0 5B1 B62 40 2
+text3 0 733 E66 BF 2
+text4 0 674 CE8 BF 2
+text5 0 57B AF6 11 2
+text6 0 56A AD4 11 2
+maintext 0 5F1 BE2 83 2
 reset_vec 0 0 0 3 2
+bssCOMMON 1 70 70 D 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

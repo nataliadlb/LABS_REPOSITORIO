@@ -4,7 +4,7 @@
  * Carne: 18193
  * Seccion: 20
  * 
- * Titulo: 
+ * Titulo: LABORATORIO 1 -- JUEGO DE CARRERAS 
  * 
  * Created on 25 de enero de 2021
  */
@@ -45,14 +45,22 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-
+//char contador = 0;
+int contador1 = 0;
+int contador2 = 0;
+int seguro_semaforo = 0; //Asegura que no pueden empezar antes del semaforo
+int J1_GANADOR = 0; //indica cuando ya llega a 8
+int J2_GANADOR = 0;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
 void semaforo(void);
-
+void conteoJ1(void);
+void conteoJ2(void);
+void J1_WIN(void);
+void J2_WIN(void);
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
@@ -64,17 +72,47 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        if (PORTBbits.RB0 == 1)
+        if (PORTBbits.RB0 == 1){ //push del semaforo
             semaforo();
+        }
+        if (seguro_semaforo == 1){//No avanzan hasta que haya pasado el semaforo
+            if (J1_GANADOR != 1){ 
+                if (PORTBbits.RB1 == 1){ //por cada botonazo aumenta el contador
+                    while (PORTBbits.RB1 == 1){ //DEBOUNCING
+                        contador1 = contador1;
+                        }
+                    contador1 = contador1 + 1;
+                    if (contador1 >= 0  && contador1 <= 9){//se asegura que solo
+                        conteoJ1();                         //cuente hasta 8
+                    } 
+                }
+            }
+            else {        //cuando ya termino de contar y se activa la variable
+                J1_WIN();}//que manda a encender el led de GANAR
+            
+            if (J2_GANADOR != 1){
+                if (PORTBbits.RB2 == 1){
+                    while (PORTBbits.RB2 == 1){//DEBOUNCING
+                        contador2 = contador2;
+                        }
+                    contador2 = contador2 + 1;
+                    if (contador2 >= 0 && contador2 <= 9){
+                        conteoJ2();
+                    }
+                }
+            }
+            else{
+            J2_WIN();}
+        }
+        
+
     }
-
 }
-
 //****************************************************************************//
 //CONFIGURACION  (puertos, bits...)                                           //
 //****************************************************************************//
 
-void setup(void) {
+void setup(void){
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0b11111000;
@@ -88,12 +126,13 @@ void setup(void) {
     TRISE = 0;
     PORTE = 0;
     
-}
+    }
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
-void semaforo(void){
+void semaforo(void){ //enciende con delays las tres luces del semaforo
+    PORTE = 0;
     PORTAbits.RA0 = 1;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 0;
@@ -101,29 +140,113 @@ void semaforo(void){
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 1;
     PORTAbits.RA2 = 0;
-    __delay_ms(300); 
+    __delay_ms(600); 
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 1;
-    __delay_ms(200);
+    __delay_ms(400);
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 0;
     PORTAbits.RA2 = 0;
-     
-//    LED_ROJO = 1;
-//    LED_AMARILLO = 0;
-//    LED_VERDE = 0;
-//    __delay_ms(800);
-//    LED_ROJO = 0;
-//    LED_AMARILLO = 1;
-//    LED_VERDE = 0;
-//    __delay_ms(800);
-//    LED_ROJO = 0;
-//    LED_AMARILLO = 0;
-//    LED_VERDE = 1;
-//    __delay_ms(800);
-//    LED_ROJO = 0;
-//    LED_AMARILLO = 0;
-//    LED_VERDE = 0;
-    
+    seguro_semaforo = 1; //se activa, para que ya se puedan presionar los push
+    }                   // de los jugadores
+
+//FUNCION DEL BOTON DEL PRIMER JUGADOR
+void conteoJ1(void){     //al presionar el push, se aumenta el contador y segun 
+    if (contador1 == 1){ //sea el valor, se enciende el led que es
+    PORTC = 0b00000001;
+    __delay_ms(400);
+    }
+    else if (contador1 == 2){
+    PORTC = 0b00000010;
+    __delay_ms(400);
+    }
+    else if (contador1 == 3){
+    PORTC = 0b00000100;
+    __delay_ms(400);
+    }
+    else if (contador1 == 4){
+    PORTC = 0b00001000;
+    __delay_ms(400);
+    }
+    else if (contador1 == 5){
+    PORTC = 0b00010000;
+    __delay_ms(400);
+    }
+    else if (contador1 == 6){
+    PORTC = 0b00100000;
+    __delay_ms(400);
+    }
+    else if (contador1 == 7){
+    PORTC = 0b01000000;
+    __delay_ms(400);
+    }
+    else {
+    PORTC = 0b10000000;
+    __delay_ms(400);
+    PORTC = 0b00000000;
+    J1_GANADOR = 1; //cuando ya llega a los 8, se activa esta variable para que
+    }               //indique quien gana
+}
+
+//FUNCION DEL BOTON DEL SEGUNDO JUGADOR
+void conteoJ2(void){
+    if (contador2 == 1){
+    PORTD = 0b00000001;
+    __delay_ms(400);
+    }
+    else if (contador2 == 2){
+    PORTD = 0b00000010;
+    __delay_ms(400);
+    }
+    else if (contador2 == 3){
+    PORTD = 0b00000100;
+    __delay_ms(400);
+    }
+    else if (contador2 == 4){
+    PORTD = 0b00001000;
+    __delay_ms(400);
+    }
+    else if (contador2 == 5){
+    PORTD = 0b00010000;
+    __delay_ms(400);
+    }
+    else if (contador2 == 6){
+    PORTD = 0b00100000;
+    __delay_ms(400);
+    }
+    else if (contador2 == 7){
+    PORTD = 0b01000000;
+    __delay_ms(400);
+    }
+    else {
+    PORTD = 0b10000000;
+    __delay_ms(400);
+    PORTD = 0b00000000;
+    J2_GANADOR = 1;
+    }
+}
+
+void J1_WIN(void){ //cuando gana J1 se enciende el led RE0
+    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 0;
+    seguro_semaforo = 0;//se resetean todas las variables para que se pueda 
+    contador1 = 0;      //jugar de nuevo sin tener que reiniciar el programa
+    contador2 = 0;
+    J1_GANADOR = 0;
+    J2_GANADOR = 0;
+    PORTC = 0;
+    PORTD = 0;
+}
+
+void J2_WIN(void){ //cuando gana J2 se enciende el led RE1
+    PORTEbits.RE0 = 0;
+    PORTEbits.RE1 = 1;
+    seguro_semaforo = 0;
+    contador1 = 0;
+    contador2 = 0;
+    J1_GANADOR = 0;
+    J2_GANADOR = 0;
+    PORTC = 0;
+    PORTD = 0;
 }

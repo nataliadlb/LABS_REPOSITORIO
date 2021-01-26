@@ -1,4 +1,4 @@
-# 1 "Main_lab1.c"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Main_lab1.c" 2
-# 15 "Main_lab1.c"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,229 +2487,176 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "Main_lab1.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
 
 
 
 
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
+{
+ volatile unsigned char *cp = to;
 
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)from;
+ while(size--) {
+  while (EECON1bits.WR) continue;
 
-#pragma config FOSC = XT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
+  EECON1 &= 0x7F;
 
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 49 "Main_lab1.c"
-int contador1 = 0;
-int contador2 = 0;
-int seguro_semaforo = 0;
-int J1_GANADOR = 0;
-int J2_GANADOR = 0;
-
-
-
-
-void setup(void);
-void semaforo(void);
-void conteoJ1(void);
-void conteoJ2(void);
-void J1_WIN(void);
-void J2_WIN(void);
-
-
-
-
-void main(void) {
-    setup();
-
-
-
-
-    while (1) {
-        if (PORTBbits.RB0 == 1){
-            semaforo();
-        }
-        if (seguro_semaforo == 1){
-            if (J1_GANADOR != 1){
-                if (PORTBbits.RB1 == 1){
-                    while (PORTBbits.RB1 == 1){
-                        contador1 = contador1;
-                        }
-                    contador1 = contador1 + 1;
-                    if (contador1 >= 0 && contador1 <= 9){
-                        conteoJ1();
-                    }
-                }
-            }
-            else {
-                J1_WIN();}
-
-            if (J2_GANADOR != 1){
-                if (PORTBbits.RB2 == 1){
-                    while (PORTBbits.RB2 == 1){
-                        contador2 = contador2;
-                        }
-                    contador2 = contador2 + 1;
-                    if (contador2 >= 0 && contador2 <= 9){
-                        conteoJ2();
-                    }
-                }
-            }
-            else{
-            J2_WIN();}
-        }
-
-
-    }
+  EECON1bits.RD = 1;
+  *cp++ = EEDATA;
+  ++EEADR;
+ }
+# 36 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
+{
+ const unsigned char *ptr =from;
 
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)to - 1U;
 
+ EECON1 &= 0x7F;
 
-void setup(void){
-    ANSEL = 0;
-    ANSELH = 0;
-    TRISA = 0b11111000;
-    PORTA = 0;
-    TRISB = 0b00000111;
-    PORTB = 0;
-    TRISC = 0;
-    PORTC = 0;
-    TRISD = 0;
-    PORTD = 0;
-    TRISE = 0;
-    PORTE = 0;
-
-    }
-
-
-
-
-void semaforo(void){
-    PORTE = 0;
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;
-    _delay((unsigned long)((800)*(8000000/4000.0)));
-    PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 1;
-    PORTAbits.RA2 = 0;
-    _delay((unsigned long)((600)*(8000000/4000.0)));
-    PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 1;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    PORTAbits.RA0 = 0;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;
-    seguro_semaforo = 1;
-    }
-
-
-void conteoJ1(void){
-    if (contador1 == 1){
-    PORTC = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 2){
-    PORTC = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 3){
-    PORTC = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 4){
-    PORTC = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 5){
-    PORTC = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 6){
-    PORTC = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador1 == 7){
-    PORTC = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else {
-    PORTC = 0b10000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    PORTC = 0b00000000;
-    J1_GANADOR = 1;
-    }
+ while(size--) {
+  while (EECON1bits.WR) {
+   continue;
+  }
+  EEDATA = *ptr++;
+  ++EEADR;
+  STATUSbits.CARRY = 0;
+  if (INTCONbits.GIE) {
+   STATUSbits.CARRY = 1;
+  }
+  INTCONbits.GIE = 0;
+  EECON1bits.WREN = 1;
+  EECON2 = 0x55;
+  EECON2 = 0xAA;
+  EECON1bits.WR = 1;
+  EECON1bits.WREN = 0;
+  if (STATUSbits.CARRY) {
+   INTCONbits.GIE = 1;
+  }
+ }
+# 101 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
-
-void conteoJ2(void){
-    if (contador2 == 1){
-    PORTD = 0b00000001;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 2){
-    PORTD = 0b00000010;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 3){
-    PORTD = 0b00000100;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 4){
-    PORTD = 0b00001000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 5){
-    PORTD = 0b00010000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 6){
-    PORTD = 0b00100000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else if (contador2 == 7){
-    PORTD = 0b01000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    }
-    else {
-    PORTD = 0b10000000;
-    _delay((unsigned long)((400)*(8000000/4000.0)));
-    PORTD = 0b00000000;
-    J2_GANADOR = 1;
-    }
+unsigned char
+__eetoc(__eeprom void *addr)
+{
+ unsigned char data;
+ __eecpymem((unsigned char *) &data,addr,1);
+ return data;
 }
 
-void J1_WIN(void){
-    PORTEbits.RE0 = 1;
-    PORTEbits.RE1 = 0;
-    seguro_semaforo = 0;
-    contador1 = 0;
-    contador2 = 0;
-    J1_GANADOR = 0;
-    J2_GANADOR = 0;
-    PORTC = 0;
-    PORTD = 0;
+unsigned int
+__eetoi(__eeprom void *addr)
+{
+ unsigned int data;
+ __eecpymem((unsigned char *) &data,addr,2);
+ return data;
 }
 
-void J2_WIN(void){
-    PORTEbits.RE0 = 0;
-    PORTEbits.RE1 = 1;
-    seguro_semaforo = 0;
-    contador1 = 0;
-    contador2 = 0;
-    J1_GANADOR = 0;
-    J2_GANADOR = 0;
-    PORTC = 0;
-    PORTD = 0;
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
+{
+ __uint24 data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__eetol(__eeprom void *addr)
+{
+ unsigned long data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
+{
+ unsigned long long data;
+ __eecpymem((unsigned char *) &data,addr,8);
+ return data;
+}
+#pragma warning pop
+
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+ __memcpyee(addr,(unsigned char *) &data,1);
+ return data;
+}
+
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
+{
+ __memcpyee(addr,(unsigned char *) &data,2);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,8);
+ return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+ float data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+
+double
+__eetofl(__eeprom void *addr)
+{
+ double data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
+
+float
+__fttoee(__eeprom void *addr, float data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+
+double
+__fltoee(__eeprom void *addr, double data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
 }
