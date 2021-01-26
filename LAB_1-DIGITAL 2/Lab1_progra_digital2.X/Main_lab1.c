@@ -37,9 +37,6 @@
 //DEFINE                                                                      //
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
-#define LED_ROJO PORTAbits.RA0
-#define LED_AMARILLO PORTAbits.RA1
-#define LED_VERDE PORTAbits.RA2
 
 
 //****************************************************************************//
@@ -76,7 +73,9 @@ void main(void) {
             semaforo();
         }
         if (seguro_semaforo == 1){//No avanzan hasta que haya pasado el semaforo
-            if (J1_GANADOR != 1){ 
+            
+            //Programa para jugador 1
+            if (J1_GANADOR != 1){//Si no ha terminado conteo, revisa push 
                 if (PORTBbits.RB1 == 1){ //por cada botonazo aumenta el contador
                     while (PORTBbits.RB1 == 1){ //DEBOUNCING
                         contador1 = contador1;
@@ -90,6 +89,7 @@ void main(void) {
             else {        //cuando ya termino de contar y se activa la variable
                 J1_WIN();}//que manda a encender el led de GANAR
             
+            //Programa para jugador (practicamente lo mismo que en J1)
             if (J2_GANADOR != 1){
                 if (PORTBbits.RB2 == 1){
                     while (PORTBbits.RB2 == 1){//DEBOUNCING
@@ -104,8 +104,6 @@ void main(void) {
             else{
             J2_WIN();}
         }
-        
-
     }
 }
 //****************************************************************************//
@@ -133,9 +131,9 @@ void setup(void){
 //****************************************************************************//
 void semaforo(void){ //enciende con delays las tres luces del semaforo
     PORTE = 0;
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 0;
-    PORTAbits.RA2 = 0;
+    PORTAbits.RA0 = 1; //led rojo
+    PORTAbits.RA1 = 0; //led amarillo
+    PORTAbits.RA2 = 0; //led verde
     __delay_ms(800);
     PORTAbits.RA0 = 0;
     PORTAbits.RA1 = 1;
@@ -155,41 +153,41 @@ void semaforo(void){ //enciende con delays las tres luces del semaforo
 void conteoJ1(void){     //al presionar el push, se aumenta el contador y segun 
     if (contador1 == 1){ //sea el valor, se enciende el led que es
     PORTC = 0b00000001;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 2){
     PORTC = 0b00000010;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 3){
     PORTC = 0b00000100;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 4){
     PORTC = 0b00001000;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 5){
     PORTC = 0b00010000;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 6){
     PORTC = 0b00100000;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else if (contador1 == 7){
     PORTC = 0b01000000;
-    __delay_ms(400);
+    //__delay_ms(400);
     }
     else {
     PORTC = 0b10000000;
-    __delay_ms(400);
+    //__delay_ms(400);
     PORTC = 0b00000000;
     J1_GANADOR = 1; //cuando ya llega a los 8, se activa esta variable para que
     }               //indique quien gana
 }
 
-//FUNCION DEL BOTON DEL SEGUNDO JUGADOR
+//FUNCION DEL BOTON DEL SEGUNDO JUGADOR (lo mismo practicamente que J1)
 void conteoJ2(void){
     if (contador2 == 1){
     PORTD = 0b00000001;
@@ -242,7 +240,7 @@ void J1_WIN(void){ //cuando gana J1 se enciende el led RE0
 void J2_WIN(void){ //cuando gana J2 se enciende el led RE1
     PORTEbits.RE0 = 0;
     PORTEbits.RE1 = 1;
-    seguro_semaforo = 0;
+    seguro_semaforo = 0;//reset a toda las variables
     contador1 = 0;
     contador2 = 0;
     J1_GANADOR = 0;
