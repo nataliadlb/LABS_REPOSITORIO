@@ -2509,12 +2509,12 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 46 "Main_lab1.c"
-int contador1 = 0;
-int contador2 = 0;
-int seguro_semaforo = 0;
-int J1_GANADOR = 0;
-int J2_GANADOR = 0;
+# 45 "Main_lab1.c"
+unsigned char contador1 = 0;
+unsigned char contador2 = 0;
+unsigned char seguro_semaforo = 0;
+unsigned char J1_GANADOR = 0;
+unsigned char J2_GANADOR = 0;
 
 
 
@@ -2525,6 +2525,7 @@ void conteoJ1(void);
 void conteoJ2(void);
 void J1_WIN(void);
 void J2_WIN(void);
+
 
 
 
@@ -2551,7 +2552,7 @@ void main(void) {
                         contador1 = contador1;
                         }
                     contador1 = contador1 + 1;
-                    if (contador1 >= 0 && contador1 <= 9){
+                    if (contador1 >= 0 && contador1 <= 8){
                         conteoJ1();
                     }
                 }

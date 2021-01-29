@@ -38,16 +38,15 @@
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
 
-
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
 //char contador = 0;
-int contador1 = 0;
-int contador2 = 0;
-int seguro_semaforo = 0; //Asegura que no pueden empezar antes del semaforo
-int J1_GANADOR = 0; //indica cuando ya llega a 8
-int J2_GANADOR = 0;
+unsigned char contador1 = 0;
+unsigned char contador2 = 0;
+unsigned char seguro_semaforo = 0; //Asegura que no pueden empezar antes del semaforo
+unsigned char J1_GANADOR = 0; //indica cuando ya llega a 8
+unsigned char J2_GANADOR = 0;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
@@ -58,6 +57,7 @@ void conteoJ1(void);
 void conteoJ2(void);
 void J1_WIN(void);
 void J2_WIN(void);
+
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
@@ -84,7 +84,7 @@ void main(void) {
                         contador1 = contador1;
                         }
                     contador1 = contador1 + 1;
-                    if (contador1 >= 0  && contador1 <= 9){//se asegura que solo
+                    if (contador1 >= 0  && contador1 <= 8){//se asegura que solo
                         conteoJ1();                         //cuente hasta 8
                     } 
                 }
@@ -99,7 +99,7 @@ void main(void) {
                         contador2 = contador2;
                         }
                     contador2 = contador2 + 1;
-                    if (contador2 >= 0 && contador2 <= 9){
+                    if (contador2 >= 0 && contador2 <= 8){
                         conteoJ2();
                     }
                 }

@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"55 Main_lab1.c
-[; ;Main_lab1.c: 55: void setup(void);
+"54 Main_lab1.c
+[; ;Main_lab1.c: 54: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
 "234 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 234:     struct {
@@ -14,20 +14,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "245
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
 [v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
-"56 Main_lab1.c
-[; ;Main_lab1.c: 56: void semaforo(void);
+"55 Main_lab1.c
+[; ;Main_lab1.c: 55: void semaforo(void);
 [v _semaforo `(v ~T0 @X0 0 ef ]
-"57
-[; ;Main_lab1.c: 57: void conteoJ1(void);
+"56
+[; ;Main_lab1.c: 56: void conteoJ1(void);
 [v _conteoJ1 `(v ~T0 @X0 0 ef ]
-"59
-[; ;Main_lab1.c: 59: void J1_WIN(void);
-[v _J1_WIN `(v ~T0 @X0 0 ef ]
 "58
-[; ;Main_lab1.c: 58: void conteoJ2(void);
+[; ;Main_lab1.c: 58: void J1_WIN(void);
+[v _J1_WIN `(v ~T0 @X0 0 ef ]
+"57
+[; ;Main_lab1.c: 57: void conteoJ2(void);
 [v _conteoJ2 `(v ~T0 @X0 0 ef ]
-"60
-[; ;Main_lab1.c: 60: void J2_WIN(void);
+"59
+[; ;Main_lab1.c: 59: void J2_WIN(void);
 [v _J2_WIN `(v ~T0 @X0 0 ef ]
 "3387 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
@@ -349,35 +349,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V  =  BOR40V    ]
 "34
 [p x WRT  =  OFF         ]
-"46
-[; ;Main_lab1.c: 46: int contador1 = 0;
-[v _contador1 `i ~T0 @X0 1 e ]
+"45
+[; ;Main_lab1.c: 45: unsigned char contador1 = 0;
+[v _contador1 `uc ~T0 @X0 1 e ]
 [i _contador1
--> 0 `i
+-> -> 0 `i `uc
+]
+"46
+[; ;Main_lab1.c: 46: unsigned char contador2 = 0;
+[v _contador2 `uc ~T0 @X0 1 e ]
+[i _contador2
+-> -> 0 `i `uc
 ]
 "47
-[; ;Main_lab1.c: 47: int contador2 = 0;
-[v _contador2 `i ~T0 @X0 1 e ]
-[i _contador2
--> 0 `i
+[; ;Main_lab1.c: 47: unsigned char seguro_semaforo = 0;
+[v _seguro_semaforo `uc ~T0 @X0 1 e ]
+[i _seguro_semaforo
+-> -> 0 `i `uc
 ]
 "48
-[; ;Main_lab1.c: 48: int seguro_semaforo = 0;
-[v _seguro_semaforo `i ~T0 @X0 1 e ]
-[i _seguro_semaforo
--> 0 `i
+[; ;Main_lab1.c: 48: unsigned char J1_GANADOR = 0;
+[v _J1_GANADOR `uc ~T0 @X0 1 e ]
+[i _J1_GANADOR
+-> -> 0 `i `uc
 ]
 "49
-[; ;Main_lab1.c: 49: int J1_GANADOR = 0;
-[v _J1_GANADOR `i ~T0 @X0 1 e ]
-[i _J1_GANADOR
--> 0 `i
-]
-"50
-[; ;Main_lab1.c: 50: int J2_GANADOR = 0;
-[v _J2_GANADOR `i ~T0 @X0 1 e ]
+[; ;Main_lab1.c: 49: unsigned char J2_GANADOR = 0;
+[v _J2_GANADOR `uc ~T0 @X0 1 e ]
 [i _J2_GANADOR
--> 0 `i
+-> -> 0 `i `uc
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "65
@@ -404,7 +404,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "74
 [; ;Main_lab1.c: 74:                 seguro_semaforo = 0;
-[e = _seguro_semaforo -> 0 `i ]
+[e = _seguro_semaforo -> -> 0 `i `uc ]
 "75
 [; ;Main_lab1.c: 75:             }
 }
@@ -422,11 +422,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 142 ]
 "78
 [; ;Main_lab1.c: 78:         if (seguro_semaforo == 1){
-[e $ ! == _seguro_semaforo -> 1 `i 146  ]
+[e $ ! == -> _seguro_semaforo `i -> 1 `i 146  ]
 {
 "81
 [; ;Main_lab1.c: 81:             if (J1_GANADOR != 1){
-[e $ ! != _J1_GANADOR -> 1 `i 147  ]
+[e $ ! != -> _J1_GANADOR `i -> 1 `i 147  ]
 {
 "82
 [; ;Main_lab1.c: 82:                 if (PORTBbits.RB1 == 1){
@@ -450,10 +450,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 151 ]
 "86
 [; ;Main_lab1.c: 86:                     contador1 = contador1 + 1;
-[e = _contador1 + _contador1 -> 1 `i ]
+[e = _contador1 -> + -> _contador1 `i -> 1 `i `uc ]
 "87
-[; ;Main_lab1.c: 87:                     if (contador1 >= 0 && contador1 <= 9){
-[e $ ! && >= _contador1 -> 0 `i <= _contador1 -> 9 `i 152  ]
+[; ;Main_lab1.c: 87:                     if (contador1 >= 0 && contador1 <= 8){
+[e $ ! && >= -> _contador1 `i -> 0 `i <= -> _contador1 `i -> 8 `i 152  ]
 {
 "88
 [; ;Main_lab1.c: 88:                         conteoJ1();
@@ -481,7 +481,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 153 ]
 "96
 [; ;Main_lab1.c: 96:             if (J2_GANADOR != 1){
-[e $ ! != _J2_GANADOR -> 1 `i 154  ]
+[e $ ! != -> _J2_GANADOR `i -> 1 `i 154  ]
 {
 "97
 [; ;Main_lab1.c: 97:                 if (PORTBbits.RB2 == 1){
@@ -505,10 +505,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 158 ]
 "101
 [; ;Main_lab1.c: 101:                     contador2 = contador2 + 1;
-[e = _contador2 + _contador2 -> 1 `i ]
+[e = _contador2 -> + -> _contador2 `i -> 1 `i `uc ]
 "102
 [; ;Main_lab1.c: 102:                     if (contador2 >= 0 && contador2 <= 9){
-[e $ ! && >= _contador2 -> 0 `i <= _contador2 -> 9 `i 159  ]
+[e $ ! && >= -> _contador2 `i -> 0 `i <= -> _contador2 `i -> 9 `i 159  ]
 {
 "103
 [; ;Main_lab1.c: 103:                         conteoJ2();
@@ -650,7 +650,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 "152
 [; ;Main_lab1.c: 152:     seguro_semaforo = 1;
-[e = _seguro_semaforo -> 1 `i ]
+[e = _seguro_semaforo -> -> 1 `i `uc ]
 "153
 [; ;Main_lab1.c: 153:     }
 [e :UE 162 ]
@@ -663,7 +663,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "157
 [; ;Main_lab1.c: 157:     if (contador1 == 1){
-[e $ ! == _contador1 -> 1 `i 164  ]
+[e $ ! == -> _contador1 `i -> 1 `i 164  ]
 {
 "158
 [; ;Main_lab1.c: 158:     PORTC = 0b00000001;
@@ -675,7 +675,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "160
 [; ;Main_lab1.c: 160:     else if (contador1 == 2){
 [e :U 164 ]
-[e $ ! == _contador1 -> 2 `i 166  ]
+[e $ ! == -> _contador1 `i -> 2 `i 166  ]
 {
 "161
 [; ;Main_lab1.c: 161:     PORTC = 0b00000010;
@@ -687,7 +687,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "163
 [; ;Main_lab1.c: 163:     else if (contador1 == 3){
 [e :U 166 ]
-[e $ ! == _contador1 -> 3 `i 168  ]
+[e $ ! == -> _contador1 `i -> 3 `i 168  ]
 {
 "164
 [; ;Main_lab1.c: 164:     PORTC = 0b00000100;
@@ -699,7 +699,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "166
 [; ;Main_lab1.c: 166:     else if (contador1 == 4){
 [e :U 168 ]
-[e $ ! == _contador1 -> 4 `i 170  ]
+[e $ ! == -> _contador1 `i -> 4 `i 170  ]
 {
 "167
 [; ;Main_lab1.c: 167:     PORTC = 0b00001000;
@@ -711,7 +711,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "169
 [; ;Main_lab1.c: 169:     else if (contador1 == 5){
 [e :U 170 ]
-[e $ ! == _contador1 -> 5 `i 172  ]
+[e $ ! == -> _contador1 `i -> 5 `i 172  ]
 {
 "170
 [; ;Main_lab1.c: 170:     PORTC = 0b00010000;
@@ -723,7 +723,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "172
 [; ;Main_lab1.c: 172:     else if (contador1 == 6){
 [e :U 172 ]
-[e $ ! == _contador1 -> 6 `i 174  ]
+[e $ ! == -> _contador1 `i -> 6 `i 174  ]
 {
 "173
 [; ;Main_lab1.c: 173:     PORTC = 0b00100000;
@@ -735,7 +735,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "175
 [; ;Main_lab1.c: 175:     else if (contador1 == 7){
 [e :U 174 ]
-[e $ ! == _contador1 -> 7 `i 176  ]
+[e $ ! == -> _contador1 `i -> 7 `i 176  ]
 {
 "176
 [; ;Main_lab1.c: 176:     PORTC = 0b01000000;
@@ -759,7 +759,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _PORTC -> -> 0 `i `uc ]
 "182
 [; ;Main_lab1.c: 182:     J1_GANADOR = 1;
-[e = _J1_GANADOR -> 1 `i ]
+[e = _J1_GANADOR -> -> 1 `i `uc ]
 "183
 [; ;Main_lab1.c: 183:     }
 }
@@ -782,7 +782,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "188
 [; ;Main_lab1.c: 188:     if (contador2 == 1){
-[e $ ! == _contador2 -> 1 `i 179  ]
+[e $ ! == -> _contador2 `i -> 1 `i 179  ]
 {
 "189
 [; ;Main_lab1.c: 189:     PORTD = 0b00000001;
@@ -794,7 +794,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "191
 [; ;Main_lab1.c: 191:     else if (contador2 == 2){
 [e :U 179 ]
-[e $ ! == _contador2 -> 2 `i 181  ]
+[e $ ! == -> _contador2 `i -> 2 `i 181  ]
 {
 "192
 [; ;Main_lab1.c: 192:     PORTD = 0b00000010;
@@ -806,7 +806,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "194
 [; ;Main_lab1.c: 194:     else if (contador2 == 3){
 [e :U 181 ]
-[e $ ! == _contador2 -> 3 `i 183  ]
+[e $ ! == -> _contador2 `i -> 3 `i 183  ]
 {
 "195
 [; ;Main_lab1.c: 195:     PORTD = 0b00000100;
@@ -818,7 +818,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "197
 [; ;Main_lab1.c: 197:     else if (contador2 == 4){
 [e :U 183 ]
-[e $ ! == _contador2 -> 4 `i 185  ]
+[e $ ! == -> _contador2 `i -> 4 `i 185  ]
 {
 "198
 [; ;Main_lab1.c: 198:     PORTD = 0b00001000;
@@ -830,7 +830,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "200
 [; ;Main_lab1.c: 200:     else if (contador2 == 5){
 [e :U 185 ]
-[e $ ! == _contador2 -> 5 `i 187  ]
+[e $ ! == -> _contador2 `i -> 5 `i 187  ]
 {
 "201
 [; ;Main_lab1.c: 201:     PORTD = 0b00010000;
@@ -842,7 +842,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "203
 [; ;Main_lab1.c: 203:     else if (contador2 == 6){
 [e :U 187 ]
-[e $ ! == _contador2 -> 6 `i 189  ]
+[e $ ! == -> _contador2 `i -> 6 `i 189  ]
 {
 "204
 [; ;Main_lab1.c: 204:     PORTD = 0b00100000;
@@ -854,7 +854,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "206
 [; ;Main_lab1.c: 206:     else if (contador2 == 7){
 [e :U 189 ]
-[e $ ! == _contador2 -> 7 `i 191  ]
+[e $ ! == -> _contador2 `i -> 7 `i 191  ]
 {
 "207
 [; ;Main_lab1.c: 207:     PORTD = 0b01000000;
@@ -878,7 +878,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _PORTD -> -> 0 `i `uc ]
 "213
 [; ;Main_lab1.c: 213:     J2_GANADOR = 1;
-[e = _J2_GANADOR -> 1 `i ]
+[e = _J2_GANADOR -> -> 1 `i `uc ]
 "214
 [; ;Main_lab1.c: 214:     }
 }
@@ -907,19 +907,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PORTEbits 0 1 -> -> 0 `i `uc ]
 "220
 [; ;Main_lab1.c: 220:     seguro_semaforo = 0;
-[e = _seguro_semaforo -> 0 `i ]
+[e = _seguro_semaforo -> -> 0 `i `uc ]
 "221
 [; ;Main_lab1.c: 221:     contador1 = 0;
-[e = _contador1 -> 0 `i ]
+[e = _contador1 -> -> 0 `i `uc ]
 "222
 [; ;Main_lab1.c: 222:     contador2 = 0;
-[e = _contador2 -> 0 `i ]
+[e = _contador2 -> -> 0 `i `uc ]
 "223
 [; ;Main_lab1.c: 223:     J1_GANADOR = 0;
-[e = _J1_GANADOR -> 0 `i ]
+[e = _J1_GANADOR -> -> 0 `i `uc ]
 "224
 [; ;Main_lab1.c: 224:     J2_GANADOR = 0;
-[e = _J2_GANADOR -> 0 `i ]
+[e = _J2_GANADOR -> -> 0 `i `uc ]
 "225
 [; ;Main_lab1.c: 225:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
@@ -944,19 +944,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PORTEbits 0 1 -> -> 1 `i `uc ]
 "232
 [; ;Main_lab1.c: 232:     seguro_semaforo = 0;
-[e = _seguro_semaforo -> 0 `i ]
+[e = _seguro_semaforo -> -> 0 `i `uc ]
 "233
 [; ;Main_lab1.c: 233:     contador1 = 0;
-[e = _contador1 -> 0 `i ]
+[e = _contador1 -> -> 0 `i `uc ]
 "234
 [; ;Main_lab1.c: 234:     contador2 = 0;
-[e = _contador2 -> 0 `i ]
+[e = _contador2 -> -> 0 `i `uc ]
 "235
 [; ;Main_lab1.c: 235:     J1_GANADOR = 0;
-[e = _J1_GANADOR -> 0 `i ]
+[e = _J1_GANADOR -> -> 0 `i `uc ]
 "236
 [; ;Main_lab1.c: 236:     J2_GANADOR = 0;
-[e = _J2_GANADOR -> 0 `i ]
+[e = _J2_GANADOR -> -> 0 `i `uc ]
 "237
 [; ;Main_lab1.c: 237:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
