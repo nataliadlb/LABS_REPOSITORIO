@@ -70,7 +70,6 @@ void __interrupt() ISR(void){
     }
    
     if (PIR1bits.ADIF == 1){
-        PORTEbits.RE0 = 1;
         ADC_VALOR = (ADRESL << 8) | ADRESH;
         PIR1bits.ADIF = 0;
         __delay_ms(10);                  //Time to wait for the next convertion ---> ¿? doubt here
@@ -98,6 +97,12 @@ void main(void) {
     while (1) {
         ContadorLEDS();
         DisplayADC();
+        if (ADC_VALOR >= contador){
+            PORTEbits.RE0 = 1;
+        }
+        else {
+            PORTEbits.RE0 = 0;
+        }
     }
 
 }

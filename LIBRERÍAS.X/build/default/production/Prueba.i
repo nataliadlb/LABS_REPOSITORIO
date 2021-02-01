@@ -2698,7 +2698,6 @@ void __attribute__((picinterrupt(("")))) ISR(void){
     }
 
     if (PIR1bits.ADIF == 1){
-        PORTEbits.RE0 = 1;
         ADC_VALOR = (ADRESL << 8) | ADRESH;
         PIR1bits.ADIF = 0;
         _delay((unsigned long)((10)*(8000000/4000.0)));
@@ -2726,6 +2725,12 @@ void main(void) {
     while (1) {
         ContadorLEDS();
         DisplayADC();
+        if (ADC_VALOR >= contador){
+            PORTEbits.RE0 = 1;
+        }
+        else {
+            PORTEbits.RE0 = 0;
+        }
     }
 
 }

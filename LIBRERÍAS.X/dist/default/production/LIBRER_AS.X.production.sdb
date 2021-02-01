@@ -15,13 +15,13 @@
 [v _initOsc initOsc `(v  1 e 1 0 ]
 "54 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"92
+"91
 [v _main main `(v  1 e 1 0 ]
-"109
+"114
 [v _setup setup `(v  1 e 1 0 ]
-"138
+"143
 [v _ContadorLEDS ContadorLEDS `(v  1 e 1 0 ]
-"142
+"147
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -45,14 +45,14 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S134 . 1 `uc 1 RE0 1 0 :1:0 
+[s S200 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S139 . 1 `S134 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES139  1 e 1 @9 ]
+[u S205 . 1 `S200 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES205  1 e 1 @9 ]
 [s S62 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
@@ -85,13 +85,13 @@
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1245
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S155 . 1 `uc 1 ADON 1 0 :1:0 
+[s S142 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S160 . 1 `uc 1 . 1 0 :1:0 
+[s S147 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -100,14 +100,14 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S169 . 1 `uc 1 . 1 0 :1:0 
+[s S156 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S172 . 1 `uc 1 . 1 0 :1:0 
+[s S159 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S175 . 1 `S155 1 . 1 0 `S160 1 . 1 0 `S169 1 . 1 0 `S172 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES175  1 e 1 @31 ]
+[u S162 . 1 `S142 1 . 1 0 `S147 1 . 1 0 `S156 1 . 1 0 `S159 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES162  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
@@ -167,15 +167,15 @@
 [v _Valor_hex Valor_hex `uc  1 e 1 0 ]
 "49
 [v _ADC_VALOR ADC_VALOR `uc  1 e 1 0 ]
-"92
+"91
 [v _main main `(v  1 e 1 0 ]
 {
-"103
+"108
 } 0
-"109
+"114
 [v _setup setup `(v  1 e 1 0 ]
 {
-"133
+"138
 } 0
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -185,18 +185,18 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 6 ]
 "53
 } 0
-"142 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
+"147 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
 {
-"145
+"150
 } 0
-"138
+"143
 [v _ContadorLEDS ContadorLEDS `(v  1 e 1 0 ]
 {
-"140
+"145
 } 0
 "54
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"79
+"78
 } 0
