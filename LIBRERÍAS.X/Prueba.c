@@ -1,19 +1,20 @@
 /*
-/*
- * File:  Main_Lab1_Digital2.c
+ * File:  Main_Lab2 _Digital2.c
  * Autor: Natalia de Leon Bercian
  * Carne: 18193
  * Seccion: 20
  * 
  * Titulo: 
  * 
- * Created on 25 de enero de 2021
+ * Created on 29 de enero de 2021
  */
 
 //****************************************************************************//
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include "Display.h"
+#include "Oscilador.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
@@ -43,25 +44,54 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
+uint8_t contador;
+uint8_t Valor_hex;
 
+//****************************************************************************//
+//INTERRUPCIONES                                                                //
+//****************************************************************************//
+void __interrupt() ISR(void){
+    
+    if (INTCONbits.RBIF == 1){
+        if (PORTBbits.RB0 == 1){
+            while (PORTBbits.RB0 == 1){
+                contador = contador;
+            }
+            contador++;
+            //PORTC = contador;
+        }
+        if (PORTBbits.RB1 == 1){
+            while (PORTBbits.RB1 == 1){
+            contador = contador;
+            }
+            contador--;
+            //PORTC = contador;
+        }
+        INTCONbits.RBIF = 0;
+    }
+    
+}
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-
+void ContadorLEDS(void);
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 
 void main(void) {
+    contador = 0;
     setup();
-
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        ContadorLEDS();
+        INTCONbits.RBIF = 1;
+//        Display(4);
     }
 
 }
@@ -71,10 +101,27 @@ void main(void) {
 //****************************************************************************//
 
 void setup(void) {
-    
-    
+    initOsc(0b00000110);
+    ANSEL = 0b00000001; // RA0 analogico para POT
+    ANSELH = 0;
+    TRISA = 0b00000001; // RA0 como input
+    PORTA = 0;
+    TRISB = 0b00000011;
+    PORTB = 0;
+    TRISC = 0;
+    PORTC = 0;
+    TRISD = 0;
+    PORTD = 0;
+    TRISE = 0;
+    PORTE = 0;
+    INTCONbits.GIE = 1; // enable de todas las interrupciones
+    INTCONbits.RBIE = 1; //enable interrupcion on change
+    INTCONbits.RBIF = 0; // 0 la bandera de la interrupcion on change
 }
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
+void ContadorLEDS(void){
+    PORTC = contador;
+}
