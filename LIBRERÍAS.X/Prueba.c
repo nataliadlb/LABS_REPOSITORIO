@@ -38,7 +38,7 @@
 //****************************************************************************//
 //DEFINE                                                                      //
 //****************************************************************************//
-
+#define _XTAL_FREQ 8000000
 
 
 //****************************************************************************//
@@ -46,6 +46,7 @@
 //****************************************************************************//
 uint8_t contador;
 uint8_t Valor_hex;
+uint8_t ADC_VALOR;
 
 //****************************************************************************//
 //INTERRUPCIONES                                                                //
@@ -67,7 +68,14 @@ void __interrupt() ISR(void){
         }
         INTCONbits.RBIF = 0;
     }
-    
+   
+    if (PIR1bits.ADIF == 1){
+        PORTEbits.RE0 = 1;
+        ADC_VALOR = (ADRESL << 8) | ADRESH;
+        PIR1bits.ADIF = 0;
+        __delay_ms(10);                  //Time to wait for the next convertion ---> ¿? doubt here
+        ADCON0bits.GO_nDONE = 1;
+    }
 }
 
 //****************************************************************************//
@@ -75,6 +83,7 @@ void __interrupt() ISR(void){
 //****************************************************************************//
 void setup(void);
 void ContadorLEDS(void);
+void DisplayADC(void);
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -88,7 +97,7 @@ void main(void) {
     //************************************************************************//
     while (1) {
         ContadorLEDS();
-//        Display(4);
+        DisplayADC();
     }
 
 }
@@ -119,7 +128,8 @@ void setup(void) {
     INTCONbits.PEIE = 1; // enables  all unmasked peripheral interrupts
     PIE1bits.ADIE = 1; // enables ADC interrupt
     PIR1bits.ADIF = 0; // clear A/D Converter Interrupt Flag bit
-    ADCON0 = 0b01000001;
+    ADCON0 = 0b11000001;
+    ADCON0bits.GO_nDONE = 1;
 }
 
 //****************************************************************************//
@@ -127,4 +137,9 @@ void setup(void) {
 //****************************************************************************//
 void ContadorLEDS(void){
     PORTC = contador;
+}
+
+void DisplayADC(void){
+    PORTEbits.RE1 = 1;
+    PORTD = ADC_VALOR;
 }

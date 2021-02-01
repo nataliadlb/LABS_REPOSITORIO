@@ -2674,6 +2674,7 @@ void initOsc(uint8_t IRCF);
 # 47 "Prueba.c"
 uint8_t contador;
 uint8_t Valor_hex;
+uint8_t ADC_VALOR;
 
 
 
@@ -2696,6 +2697,13 @@ void __attribute__((picinterrupt(("")))) ISR(void){
         INTCONbits.RBIF = 0;
     }
 
+    if (PIR1bits.ADIF == 1){
+        PORTEbits.RE0 = 1;
+        ADC_VALOR = (ADRESL << 8) | ADRESH;
+        PIR1bits.ADIF = 0;
+        _delay((unsigned long)((10)*(8000000/4000.0)));
+        ADCON0bits.GO_nDONE = 1;
+    }
 }
 
 
@@ -2703,6 +2711,7 @@ void __attribute__((picinterrupt(("")))) ISR(void){
 
 void setup(void);
 void ContadorLEDS(void);
+void DisplayADC(void);
 
 
 
@@ -2716,7 +2725,7 @@ void main(void) {
 
     while (1) {
         ContadorLEDS();
-
+        DisplayADC();
     }
 
 }
@@ -2747,7 +2756,8 @@ void setup(void) {
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
-    ADCON0 = 0b01000001;
+    ADCON0 = 0b11000001;
+    ADCON0bits.GO_nDONE = 1;
 }
 
 
@@ -2755,4 +2765,9 @@ void setup(void) {
 
 void ContadorLEDS(void){
     PORTC = contador;
+}
+
+void DisplayADC(void){
+    PORTEbits.RE1 = 1;
+    PORTD = ADC_VALOR;
 }
