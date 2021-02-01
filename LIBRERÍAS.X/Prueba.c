@@ -58,14 +58,12 @@ void __interrupt() ISR(void){
                 contador = contador;
             }
             contador++;
-            //PORTC = contador;
         }
         if (PORTBbits.RB1 == 1){
             while (PORTBbits.RB1 == 1){
             contador = contador;
             }
             contador--;
-            //PORTC = contador;
         }
         INTCONbits.RBIF = 0;
     }
@@ -90,7 +88,6 @@ void main(void) {
     //************************************************************************//
     while (1) {
         ContadorLEDS();
-        INTCONbits.RBIF = 1;
 //        Display(4);
     }
 
@@ -117,6 +114,12 @@ void setup(void) {
     INTCONbits.GIE = 1; // enable de todas las interrupciones
     INTCONbits.RBIE = 1; //enable interrupcion on change
     INTCONbits.RBIF = 0; // 0 la bandera de la interrupcion on change
+    IOCBbits.IOCB0 = 1;
+    IOCBbits.IOCB1 = 1;
+    INTCONbits.PEIE = 1; // enables  all unmasked peripheral interrupts
+    PIE1bits.ADIE = 1; // enables ADC interrupt
+    PIR1bits.ADIF = 0; // clear A/D Converter Interrupt Flag bit
+    ADCON0 = 0b01000001;
 }
 
 //****************************************************************************//

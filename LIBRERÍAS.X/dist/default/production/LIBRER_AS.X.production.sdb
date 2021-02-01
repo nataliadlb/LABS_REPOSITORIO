@@ -15,11 +15,11 @@
 [v _initOsc initOsc `(v  1 e 1 0 ]
 "53 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"85
+"83
 [v _main main `(v  1 e 1 0 ]
-"103
+"100
 [v _setup setup `(v  1 e 1 0 ]
-"125
+"128
 [v _ContadorLEDS ContadorLEDS `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -60,6 +60,19 @@
 ]
 [u S76 . 1 `S62 1 . 1 0 `S71 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES76  1 e 1 @11 ]
+[s S181 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S189 . 1 `S181 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES189  1 e 1 @12 ]
+"1245
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
@@ -70,6 +83,17 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S162 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"1718
+[u S170 . 1 `S162 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES170  1 e 1 @140 ]
 [s S22 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
@@ -84,6 +108,20 @@
 ]
 [u S33 . 1 `S22 1 . 1 0 `S28 1 . 1 0 ]
 [v _OSCCONbits OSCCONbits `VES33  1 e 1 @143 ]
+[s S136 . 1 `uc 1 IOCB 1 0 :8:0 
+]
+"2436
+[s S138 . 1 `uc 1 IOCB0 1 0 :1:0 
+`uc 1 IOCB1 1 0 :1:1 
+`uc 1 IOCB2 1 0 :1:2 
+`uc 1 IOCB3 1 0 :1:3 
+`uc 1 IOCB4 1 0 :1:4 
+`uc 1 IOCB5 1 0 :1:5 
+`uc 1 IOCB6 1 0 :1:6 
+`uc 1 IOCB7 1 0 :1:7 
+]
+[u S147 . 1 `S136 1 . 1 0 `S138 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES147  1 e 1 @150 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -92,15 +130,15 @@
 [v _contador contador `uc  1 e 1 0 ]
 "48
 [v _Valor_hex Valor_hex `uc  1 e 1 0 ]
-"85
+"83
 [v _main main `(v  1 e 1 0 ]
 {
-"97
+"94
 } 0
-"103
+"100
 [v _setup setup `(v  1 e 1 0 ]
 {
-"120
+"123
 } 0
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -110,13 +148,13 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 5 ]
 "53
 } 0
-"125 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
+"128 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba.c
 [v _ContadorLEDS ContadorLEDS `(v  1 e 1 0 ]
 {
-"127
+"130
 } 0
 "53
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"73
+"71
 } 0
