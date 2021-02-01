@@ -34,7 +34,7 @@
 // CONFIG2
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
-
+    
 //****************************************************************************//
 //DEFINE                                                                      //
 //****************************************************************************//
@@ -45,8 +45,7 @@
 //VARIABLES                                                                   //
 //****************************************************************************//
 uint8_t contador;
-uint8_t Valor_hex;
-uint8_t ADC_VALOR;
+int ADC_VALOR;
 
 //****************************************************************************//
 //INTERRUPCIONES                                                                //
@@ -96,7 +95,9 @@ void main(void) {
     //************************************************************************//
     while (1) {
         ContadorLEDS();
-        DisplayADC();
+        PORTEbits.RE1 = 1;
+        PORTD = display(0b00000000);
+        //DisplayADC();
         if (ADC_VALOR >= contador){
             PORTEbits.RE0 = 1;
         }
@@ -146,5 +147,5 @@ void ContadorLEDS(void){
 
 void DisplayADC(void){
     PORTEbits.RE1 = 1;
-    PORTD = ADC_VALOR;
+    PORTD = display(ADC_VALOR);
 }

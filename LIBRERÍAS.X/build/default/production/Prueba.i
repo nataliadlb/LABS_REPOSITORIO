@@ -2634,7 +2634,7 @@ typedef uint16_t uintptr_t;
 
 
 
-void display(uint8_t NUM);
+uint8_t display(uint8_t ADC_VALOR);
 # 16 "Prueba.c" 2
 
 # 1 "./Oscilador.h" 1
@@ -2673,8 +2673,7 @@ void initOsc(uint8_t IRCF);
 #pragma config WRT = OFF
 # 47 "Prueba.c"
 uint8_t contador;
-uint8_t Valor_hex;
-uint8_t ADC_VALOR;
+int ADC_VALOR;
 
 
 
@@ -2724,7 +2723,9 @@ void main(void) {
 
     while (1) {
         ContadorLEDS();
-        DisplayADC();
+        PORTEbits.RE1 = 1;
+        PORTD = display(0b00000000);
+
         if (ADC_VALOR >= contador){
             PORTEbits.RE0 = 1;
         }
@@ -2774,5 +2775,5 @@ void ContadorLEDS(void){
 
 void DisplayADC(void){
     PORTEbits.RE1 = 1;
-    PORTD = ADC_VALOR;
+    PORTD = display(ADC_VALOR);
 }

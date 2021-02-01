@@ -237,22 +237,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Display.c: 3: uint8_t Valor_hex;
 [v _Valor_hex `uc ~T0 @X0 1 e ]
 "5
-[; ;Display.c: 5: void display(uint8_t NUM){
-[v _display `(v ~T0 @X0 1 ef1`uc ]
+[; ;Display.c: 5: uint8_t display(uint8_t ADC_VALOR){
+[v _display `(uc ~T0 @X0 1 ef1`uc ]
 {
 [e :U _display ]
-[v _NUM `uc ~T0 @X0 1 r1 ]
+[v _ADC_VALOR `uc ~T0 @X0 1 r1 ]
 [f ]
 "7
-[; ;Display.c: 7:     switch(NUM){
+[; ;Display.c: 7:     switch(ADC_VALOR){
 [e $U 140  ]
 {
 "8
 [; ;Display.c: 8:         case 0:
 [e :U 141 ]
 "9
-[; ;Display.c: 9:             Valor_hex = 0b11111100;
-[e = _Valor_hex -> -> 252 `i `uc ]
+[; ;Display.c: 9:             Valor_hex = 0b00111111;
+[e = _Valor_hex -> -> 63 `i `uc ]
 "10
 [; ;Display.c: 10:             break;
 [e $U 139  ]
@@ -260,8 +260,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Display.c: 11:         case 1:
 [e :U 142 ]
 "12
-[; ;Display.c: 12:             Valor_hex = 0b01100000;
-[e = _Valor_hex -> -> 96 `i `uc ]
+[; ;Display.c: 12:             Valor_hex = 0b000000110;
+[e = _Valor_hex -> -> 6 `i `uc ]
 "13
 [; ;Display.c: 13:             break;
 [e $U 139  ]
@@ -405,7 +405,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 139  ]
 [e :U 140 ]
-[e [\ -> _NUM `i , $ -> 0 `i 141
+[e [\ -> _ADC_VALOR `i , $ -> 0 `i 141
  , $ -> 1 `i 142
  , $ -> 2 `i 143
  , $ -> 3 `i 144
@@ -424,6 +424,10 @@ Version 4.0 HI-TECH Software Intermediate Code
  157 ]
 [e :U 139 ]
 "60
-[; ;Display.c: 60: }
+[; ;Display.c: 60:    return Valor_hex;
+[e ) _Valor_hex ]
+[e $UE 138  ]
+"61
+[; ;Display.c: 61: }
 [e :UE 138 ]
 }

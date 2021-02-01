@@ -2633,20 +2633,20 @@ typedef uint16_t uintptr_t;
 
 
 
-void display(uint8_t NUM);
+uint8_t display(uint8_t ADC_VALOR);
 # 1 "Display.c" 2
 
 
 uint8_t Valor_hex;
 
-void display(uint8_t NUM){
+uint8_t display(uint8_t ADC_VALOR){
 
-    switch(NUM){
+    switch(ADC_VALOR){
         case 0:
-            Valor_hex = 0b11111100;
+            Valor_hex = 0b00111111;
             break;
         case 1:
-            Valor_hex = 0b01100000;
+            Valor_hex = 0b000000110;
             break;
         case 2:
             Valor_hex = 0b11011010;
@@ -2694,4 +2694,5 @@ void display(uint8_t NUM){
             Valor_hex = 0b11111100;
             break;
     }
+   return Valor_hex;
 }

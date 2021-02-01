@@ -19,7 +19,7 @@
 // En el parámetro NUM se coloca el valor en decimal que se quiere que aparezca 
 // en el display y se carga los leds del display para que aparezca
 //******************************************************************************
-void display(uint8_t NUM);
+uint8_t display(uint8_t ADC_VALOR);
 
 #endif	/* DISPLAY_H */
 
