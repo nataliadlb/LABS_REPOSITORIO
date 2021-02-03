@@ -20,6 +20,9 @@
 // en el display y se carga los leds del display para que aparezca
 //******************************************************************************
 uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+uint8_t SWAP_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE1_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP);
 
 #endif	/* CONFIG_ADC_H */
 

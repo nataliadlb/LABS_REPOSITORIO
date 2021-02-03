@@ -2665,6 +2665,9 @@ void initOsc(uint8_t IRCF);
 
 
 uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+uint8_t SWAP_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE1_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP);
 # 18 "Prueba.c" 2
 
 
@@ -2692,7 +2695,6 @@ int ADC_VALOR;
 uint8_t ADC_SWAP;
 uint8_t ADC_NIBBLE1;
 uint8_t ADC_NIBBLE2;
-uint8_t _NIBBLE1;
 
 
 
@@ -2717,9 +2719,9 @@ void __attribute__((picinterrupt(("")))) ISR(void){
 
     if (PIR1bits.ADIF == 1){
         ADC_VALOR = ADC(ADRESL, ADRESH);
-        ADC_SWAP = (((ADC_SWAP & 0x0F)<<4) | ((ADC_SWAP & 0xF0)>>4));
-        ADC_NIBBLE1 = ADC_VALOR & 15;
-        ADC_NIBBLE2 = ADC_SWAP & 15;
+        ADC_SWAP = SWAP_ADC(ADC_VALOR);
+        ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
+        ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
         PIR1bits.ADIF = 0;
         _delay((unsigned long)((10)*(8000000/4000.0)));
         ADCON0bits.GO_nDONE = 1;

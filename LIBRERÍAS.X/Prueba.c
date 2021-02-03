@@ -50,7 +50,6 @@ int ADC_VALOR;
 uint8_t ADC_SWAP;
 uint8_t ADC_NIBBLE1;
 uint8_t ADC_NIBBLE2;
-uint8_t _NIBBLE1;
 
 //****************************************************************************//
 //INTERRUPCIONES                                                                //
@@ -75,9 +74,9 @@ void __interrupt() ISR(void){
    
     if (PIR1bits.ADIF == 1){
         ADC_VALOR = ADC(ADRESL, ADRESH);
-        ADC_SWAP = (((ADC_SWAP & 0x0F)<<4) | ((ADC_SWAP & 0xF0)>>4));
-        ADC_NIBBLE1 = ADC_VALOR & 15;
-        ADC_NIBBLE2 = ADC_SWAP & 15;
+        ADC_SWAP = SWAP_ADC(ADC_VALOR);
+        ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
+        ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
         PIR1bits.ADIF = 0;
         __delay_ms(10);     //Time to wait for the next convertion ---> ¿? doubt here
         ADCON0bits.GO_nDONE = 1;
