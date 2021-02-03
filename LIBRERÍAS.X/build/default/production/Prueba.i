@@ -2652,6 +2652,21 @@ uint8_t display(uint8_t ADC_VALOR);
 void initOsc(uint8_t IRCF);
 # 17 "Prueba.c" 2
 
+# 1 "./Config_ADC.h" 1
+# 14 "./Config_ADC.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./Config_ADC.h" 2
+
+
+
+
+
+
+
+
+uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+# 18 "Prueba.c" 2
+
 
 
 
@@ -2671,9 +2686,13 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 47 "Prueba.c"
+# 48 "Prueba.c"
 uint8_t contador;
 int ADC_VALOR;
+uint8_t ADC_SWAP;
+uint8_t ADC_NIBBLE1;
+uint8_t ADC_NIBBLE2;
+uint8_t _NIBBLE1;
 
 
 
@@ -2697,7 +2716,10 @@ void __attribute__((picinterrupt(("")))) ISR(void){
     }
 
     if (PIR1bits.ADIF == 1){
-        ADC_VALOR = (ADRESL << 8) | ADRESH;
+        ADC_VALOR = ADC(ADRESL, ADRESH);
+        ADC_SWAP = (((ADC_SWAP & 0x0F)<<4) | ((ADC_SWAP & 0xF0)>>4));
+        ADC_NIBBLE1 = ADC_VALOR & 15;
+        ADC_NIBBLE2 = ADC_SWAP & 15;
         PIR1bits.ADIF = 0;
         _delay((unsigned long)((10)*(8000000/4000.0)));
         ADCON0bits.GO_nDONE = 1;
@@ -2723,8 +2745,8 @@ void main(void) {
 
     while (1) {
         ContadorLEDS();
-        PORTEbits.RE1 = 1;
-        PORTD = display(0b00000000);
+        PORTEbits.RE2 = 1;
+        PORTD = display(ADC_NIBBLE1);
 
         if (ADC_VALOR >= contador){
             PORTEbits.RE0 = 1;

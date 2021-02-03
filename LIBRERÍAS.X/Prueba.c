@@ -15,6 +15,7 @@
 #include <xc.h>
 #include "Display.h"
 #include "Oscilador.h"
+#include "Config_ADC.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
@@ -46,6 +47,10 @@
 //****************************************************************************//
 uint8_t contador;
 int ADC_VALOR;
+uint8_t ADC_SWAP;
+uint8_t ADC_NIBBLE1;
+uint8_t ADC_NIBBLE2;
+uint8_t _NIBBLE1;
 
 //****************************************************************************//
 //INTERRUPCIONES                                                                //
@@ -69,9 +74,12 @@ void __interrupt() ISR(void){
     }
    
     if (PIR1bits.ADIF == 1){
-        ADC_VALOR = (ADRESL << 8) | ADRESH;
+        ADC_VALOR = ADC(ADRESL, ADRESH);
+        ADC_SWAP = (((ADC_SWAP & 0x0F)<<4) | ((ADC_SWAP & 0xF0)>>4));
+        ADC_NIBBLE1 = ADC_VALOR & 15;
+        ADC_NIBBLE2 = ADC_SWAP & 15;
         PIR1bits.ADIF = 0;
-        __delay_ms(10);                  //Time to wait for the next convertion ---> ¿? doubt here
+        __delay_ms(10);     //Time to wait for the next convertion ---> ¿? doubt here
         ADCON0bits.GO_nDONE = 1;
     }
 }
@@ -95,8 +103,8 @@ void main(void) {
     //************************************************************************//
     while (1) {
         ContadorLEDS();
-        PORTEbits.RE1 = 1;
-        PORTD = display(0b00000000);
+        PORTEbits.RE2 = 1;
+        PORTD = display(ADC_NIBBLE1);
         //DisplayADC();
         if (ADC_VALOR >= contador){
             PORTEbits.RE0 = 1;

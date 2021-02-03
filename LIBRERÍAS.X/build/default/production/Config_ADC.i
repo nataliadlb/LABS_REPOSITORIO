@@ -1,4 +1,4 @@
-# 1 "Display.c"
+# 1 "Config_ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Display.c" 2
-# 1 "./Display.h" 1
-# 13 "./Display.h"
+# 1 "Config_ADC.c" 2
+# 1 "./Config_ADC.h" 1
+# 13 "./Config_ADC.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2489,7 +2489,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 13 "./Display.h" 2
+# 13 "./Config_ADC.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2624,7 +2624,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 14 "./Display.h" 2
+# 14 "./Config_ADC.h" 2
 
 
 
@@ -2633,66 +2633,13 @@ typedef uint16_t uintptr_t;
 
 
 
-uint8_t display(uint8_t ADC_VALOR);
-# 1 "Display.c" 2
+uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+# 1 "Config_ADC.c" 2
 
 
-uint8_t Valor_hex;
+uint8_t VAL;
 
-uint8_t display(uint8_t ADC_VALOR){
-
-    switch(ADC_VALOR){
-        case 0:
-            Valor_hex = 0b00111111;
-            break;
-        case 1:
-            Valor_hex = 0b000000110;
-            break;
-        case 2:
-            Valor_hex = 0b11011011;
-            break;
-        case 3:
-            Valor_hex = 0b01001111;
-            break;
-        case 4:
-            Valor_hex = 0b01100110;
-            break;
-        case 5:
-            Valor_hex = 0b01101101;
-            break;
-        case 6:
-            Valor_hex = 0b01111101;
-            break;
-        case 7:
-            Valor_hex = 0b00000111;
-            break;
-        case 8:
-            Valor_hex = 0b01111111;
-            break;
-        case 9:
-            Valor_hex = 0b01101111;
-            break;
-        case 10:
-            Valor_hex = 0b01110111;
-            break;
-        case 11:
-            Valor_hex = 0b01111100;
-            break;
-        case 12:
-            Valor_hex = 0b00111001;
-            break;
-        case 13:
-            Valor_hex = 0b01011110;
-            break;
-        case 14:
-            Valor_hex = 0b01111001;
-            break;
-        case 15 :
-            Valor_hex = 0b01110001;
-            break;
-        default:
-            Valor_hex = 0b00111111;
-            break;
-    }
-   return Valor_hex;
+uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_){
+    VAL = (ADRESL << 8) | ADRESH;
+    return VAL;
 }

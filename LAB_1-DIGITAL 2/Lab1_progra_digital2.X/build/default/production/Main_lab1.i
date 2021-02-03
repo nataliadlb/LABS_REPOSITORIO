@@ -2546,36 +2546,37 @@ void main(void) {
         if (seguro_semaforo == 1){
 
 
-            if (J1_GANADOR != 1){
-                if (PORTBbits.RB1 == 1){
+            if (J1_GANADOR != 1 && J2_GANADOR != 1){
+                if (PORTBbits.RB1 == 1 | PORTBbits.RB2 == 1){
                     while (PORTBbits.RB1 == 1){
                         contador1 = contador1;
+                        if (PORTBbits.RB2 == 1){
+                            contador2 = contador2++;
+                            conteoJ2();
+                        }}
+
                         }
-                    contador1 = contador1 + 1;
-                    if (contador1 >= 0 && contador1 <= 8){
-                        conteoJ1();
-                    }
+
+                    if (PORTBbits.RB1 == 1){
+                        contador1 = contador1 + 1;
+                        if (contador1 >= 0 && contador1 <= 8){
+                            conteoJ1();
+                        }
+                        else{
+                            J1_WIN();}
+                        }
+
+                    if (PORTBbits.RB2 == 1){
+                        contador2 = contador2 + 1;
+                        if (contador2 >= 0 && contador2 <= 8){
+                            conteoJ2();
+                        }
+                   }
+                    else{J1_WIN();}
                 }
             }
-            else {
-                J1_WIN();}
-
-
-            if (J2_GANADOR != 1){
-                if (PORTBbits.RB2 == 1){
-                    while (PORTBbits.RB2 == 1){
-                        contador2 = contador2;
-                        }
-                    contador2 = contador2 + 1;
-                    if (contador2 >= 0 && contador2 <= 9){
-                        conteoJ2();
-                    }
-                }
-            }
-            else{
-            J2_WIN();}
         }
-    }
+
 }
 
 

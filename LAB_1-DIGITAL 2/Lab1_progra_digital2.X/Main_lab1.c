@@ -78,8 +78,9 @@ void main(void) {
         if (seguro_semaforo == 1){//No avanzan hasta que haya pasado el semaforo
             
             //Programa para jugador 1
-            if (J1_GANADOR != 1){//Si no ha terminado conteo, revisa push 
-                if (PORTBbits.RB1 == 1){ //por cada botonazo aumenta el contador
+            if (J1_GANADOR != 1 && J2_GANADOR != 1){//Si no ha terminado conteo, revisa push 
+                if (PORTBbits.RB1 == 1 | PORTBbits.RB2 == 1){ //por cada botonazo aumenta el contador
+                    
                     while (PORTBbits.RB1 == 1){ //DEBOUNCING
                         contador1 = contador1;
                         }
