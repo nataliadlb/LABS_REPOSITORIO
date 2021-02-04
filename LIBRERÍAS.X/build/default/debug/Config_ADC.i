@@ -1,4 +1,4 @@
-# 1 "Prueba.c"
+# 1 "Config_ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Prueba.c" 2
-# 15 "Prueba.c"
+# 1 "Config_ADC.c" 2
+# 1 "./Config_ADC.h" 1
+# 13 "./Config_ADC.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,10 +2489,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "Prueba.c" 2
+# 13 "./Config_ADC.h" 2
 
-# 1 "./Display.h" 1
-# 14 "./Display.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2625,36 +2624,6 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 14 "./Display.h" 2
-
-
-
-
-
-
-
-
-uint8_t display(uint8_t ADC_VALOR);
-# 16 "Prueba.c" 2
-
-# 1 "./Oscilador.h" 1
-# 14 "./Oscilador.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 14 "./Oscilador.h" 2
-
-
-
-
-
-
-
-
-void initOsc(uint8_t IRCF);
-# 17 "Prueba.c" 2
-
-# 1 "./Config_ADC.h" 1
-# 14 "./Config_ADC.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 14 "./Config_ADC.h" 2
 
 
@@ -2668,175 +2637,31 @@ uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
 uint8_t SWAP_ADC(uint8_t VAL_ADC);
 uint8_t NIBBLE1_ADC(uint8_t VAL_ADC);
 uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP);
-# 18 "Prueba.c" 2
+# 1 "Config_ADC.c" 2
 
 
+uint8_t VAL;
+uint8_t VAL_SWAP;
+uint8_t VAL_NIBBLE1;
+uint8_t VAL_NIBBLE2;
 
 
-
-
-#pragma config FOSC = XT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 48 "Prueba.c"
-uint8_t contador;
-int ADC_VALOR;
-uint8_t ADC_SWAP;
-uint8_t ADC_NIBBLE1;
-uint8_t ADC_NIBBLE2;
-uint8_t cont_multiplex;
-
-
-
-
-void __attribute__((picinterrupt(("")))) ISR(void){
-
-    if (INTCONbits.RBIF == 1){
-        if (PORTBbits.RB0 == 1){
-            while (PORTBbits.RB0 == 1){
-                contador = contador;
-            }
-            contador++;
-        }
-        if (PORTBbits.RB1 == 1){
-            while (PORTBbits.RB1 == 1){
-            contador = contador;
-            }
-            contador--;
-        }
-        INTCONbits.RBIF = 0;
-    }
-
-    if (PIR1bits.ADIF == 1){
-        ADC_VALOR = ADC(ADRESL, ADRESH);
-        ADC_SWAP = SWAP_ADC(ADC_VALOR);
-        ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
-        ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
-        PIR1bits.ADIF = 0;
-        _delay((unsigned long)((10)*(8000000/4000.0)));
-        ADCON0bits.GO_nDONE = 1;
-    }
-
-    if (INTCONbits.TMR0IF == 1){
-        cont_multiplex++;
-        TMR0 = 61;
-        INTCONbits.TMR0IF = 0;
-
-       }
+uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_){
+    VAL = (ADRESL << 8) | ADRESH;
+    return VAL;
 }
 
-
-
-
-void setup(void);
-void InitTimer0(void);
-void ContadorLEDS(void);
-void DisplayADC1(void);
-void DisplayADC2(void);
-
-
-
-
-
-void main(void) {
-    setup();
-    contador = 0;
-    cont_multiplex = 0;
-    PORTEbits.RE1 = 1;
-
-
-
-
-    while (1) {
-        ContadorLEDS();
-        if (cont_multiplex == 20){
-            PORTD++;
-            cont_multiplex = 0;
-        }
-
-
-
-
-
-
-
-    }
-
+uint8_t SWAP_ADC(uint8_t VAL_ADC){
+    VAL_SWAP = (((VAL_ADC & 0x0F)<<4) | ((VAL_ADC & 0xF0)>>4));
+    return VAL_SWAP;
 }
 
-
-
-
-
-void setup(void) {
-    initOsc(0b00000110);
-    ANSEL = 0b00000001;
-    ANSELH = 0;
-    TRISA = 0b00000001;
-    PORTA = 0;
-    TRISB = 0b00000011;
-    PORTB = 0;
-    TRISC = 0;
-    PORTC = 0;
-    TRISD = 0;
-    PORTD = 0;
-    TRISE = 0;
-    PORTE = 0;
-    INTCONbits.GIE = 1;
-    INTCONbits.T0IE = 1;
-    OPTION_REGbits.nRBPU =1;
-    OPTION_REGbits.PS0 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS2 = 1;
-    TMR0 = 61;
-    InitTimer0();
-
-
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
-    IOCBbits.IOCB0 = 1;
-    IOCBbits.IOCB1 = 1;
-
-
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-    ADCON0 = 0b11000001;
-    ADCON0bits.GO_nDONE = 1;
-
+uint8_t NIBBLE1_ADC(uint8_t VAL_ADC){
+    VAL_NIBBLE1 = VAL_ADC & 15;
+    return VAL_NIBBLE1;
 }
 
-
-
-
-void ContadorLEDS(void){
-    PORTC = contador;
-}
-
-
-void InitTimer0(void){
-  OPTION_REG = 0x87;
-  TMR0 = 61;
-  INTCON = 0xA0;
-}
-
-void DisplayADC1(void){
-
-    PORTD = display(ADC_NIBBLE1);
-}
-
-void DisplayADC2(void){
-
-    PORTD = display(ADC_NIBBLE2);
+uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP){
+    VAL_NIBBLE2 = VAL_SWAP & 15;
+    return VAL_NIBBLE2;
 }

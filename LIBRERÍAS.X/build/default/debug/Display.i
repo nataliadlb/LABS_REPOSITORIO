@@ -2633,65 +2633,66 @@ typedef uint16_t uintptr_t;
 
 
 
-void display(uint8_t NUM);
+uint8_t display(uint8_t ADC_VALOR);
 # 1 "Display.c" 2
 
 
 uint8_t Valor_hex;
 
-void display(uint8_t NUM){
+uint8_t display(uint8_t ADC_VALOR){
 
-    switch(NUM){
+    switch(ADC_VALOR){
         case 0:
-            Valor_hex = 0b11111100;
+            Valor_hex = 0b00111111;
             break;
         case 1:
-            Valor_hex = 0b01100000;
+            Valor_hex = 0b000000110;
             break;
         case 2:
-            Valor_hex = 0b11011010;
+            Valor_hex = 0b11011011;
             break;
         case 3:
-            Valor_hex = 0b11110010;
+            Valor_hex = 0b01001111;
             break;
         case 4:
             Valor_hex = 0b01100110;
             break;
         case 5:
-            Valor_hex = 0b10110110;
+            Valor_hex = 0b01101101;
             break;
         case 6:
-            Valor_hex = 0b10111110;
+            Valor_hex = 0b01111101;
             break;
         case 7:
-            Valor_hex = 0b11100000;
+            Valor_hex = 0b00000111;
             break;
         case 8:
-            Valor_hex = 0b11111110;
+            Valor_hex = 0b01111111;
             break;
         case 9:
-            Valor_hex = 0b11110110;
+            Valor_hex = 0b01101111;
             break;
         case 10:
-            Valor_hex = 0b11101110;
+            Valor_hex = 0b01110111;
             break;
         case 11:
-            Valor_hex = 0b00111110;
+            Valor_hex = 0b01111100;
             break;
         case 12:
-            Valor_hex = 0b10011100;
+            Valor_hex = 0b00111001;
             break;
         case 13:
-            Valor_hex = 0b01111010 ;
+            Valor_hex = 0b01011110;
             break;
         case 14:
-            Valor_hex = 0b10011110;
+            Valor_hex = 0b01111001;
             break;
         case 15 :
-            Valor_hex = 0b10001110;
+            Valor_hex = 0b01110001;
             break;
         default:
-            Valor_hex = 0b11111100;
+            Valor_hex = 0b00111111;
             break;
     }
+   return Valor_hex;
 }

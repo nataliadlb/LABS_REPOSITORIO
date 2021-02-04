@@ -1,4 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"2970 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2970: extern volatile unsigned char ADRESL __attribute__((address(0x09E)));
+[v _ADRESL `Vuc ~T0 @X0 0 e@158 ]
+"1238
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
+[v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -233,201 +239,88 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"3 Display.c
-[; ;Display.c: 3: uint8_t Valor_hex;
-[v _Valor_hex `uc ~T0 @X0 1 e ]
+"3 Config_ADC.c
+[; ;Config_ADC.c: 3: uint8_t VAL;
+[v _VAL `uc ~T0 @X0 1 e ]
+"4
+[; ;Config_ADC.c: 4: uint8_t VAL_SWAP;
+[v _VAL_SWAP `uc ~T0 @X0 1 e ]
 "5
-[; ;Display.c: 5: uint8_t display(uint8_t ADC_VALOR){
-[v _display `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _display ]
-[v _ADC_VALOR `uc ~T0 @X0 1 r1 ]
-[f ]
-"7
-[; ;Display.c: 7:     switch(ADC_VALOR){
-[e $U 140  ]
-{
-"8
-[; ;Display.c: 8:         case 0:
-[e :U 141 ]
+[; ;Config_ADC.c: 5: uint8_t VAL_NIBBLE1;
+[v _VAL_NIBBLE1 `uc ~T0 @X0 1 e ]
+"6
+[; ;Config_ADC.c: 6: uint8_t VAL_NIBBLE2;
+[v _VAL_NIBBLE2 `uc ~T0 @X0 1 e ]
 "9
-[; ;Display.c: 9:             Valor_hex = 0b00111111;
-[e = _Valor_hex -> -> 63 `i `uc ]
+[; ;Config_ADC.c: 9: uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_){
+[v _ADC `(uc ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _ADC ]
+[v _ADRESL_ `uc ~T0 @X0 1 r1 ]
+[v _ADRESH_ `uc ~T0 @X0 1 r2 ]
+[f ]
 "10
-[; ;Display.c: 10:             break;
-[e $U 139  ]
+[; ;Config_ADC.c: 10:     VAL = (ADRESL << 8) | ADRESH;
+[e = _VAL -> | << -> _ADRESL `i -> 8 `i -> _ADRESH `i `uc ]
 "11
-[; ;Display.c: 11:         case 1:
-[e :U 142 ]
-"12
-[; ;Display.c: 12:             Valor_hex = 0b000000110;
-[e = _Valor_hex -> -> 6 `i `uc ]
-"13
-[; ;Display.c: 13:             break;
-[e $U 139  ]
-"14
-[; ;Display.c: 14:         case 2:
-[e :U 143 ]
-"15
-[; ;Display.c: 15:             Valor_hex = 0b11011011;
-[e = _Valor_hex -> -> 219 `i `uc ]
-"16
-[; ;Display.c: 16:             break;
-[e $U 139  ]
-"17
-[; ;Display.c: 17:         case 3:
-[e :U 144 ]
-"18
-[; ;Display.c: 18:             Valor_hex = 0b01001111;
-[e = _Valor_hex -> -> 79 `i `uc ]
-"19
-[; ;Display.c: 19:             break;
-[e $U 139  ]
-"20
-[; ;Display.c: 20:         case 4:
-[e :U 145 ]
-"21
-[; ;Display.c: 21:             Valor_hex = 0b01100110;
-[e = _Valor_hex -> -> 102 `i `uc ]
-"22
-[; ;Display.c: 22:             break;
-[e $U 139  ]
-"23
-[; ;Display.c: 23:         case 5:
-[e :U 146 ]
-"24
-[; ;Display.c: 24:             Valor_hex = 0b01101101;
-[e = _Valor_hex -> -> 109 `i `uc ]
-"25
-[; ;Display.c: 25:             break;
-[e $U 139  ]
-"26
-[; ;Display.c: 26:         case 6:
-[e :U 147 ]
-"27
-[; ;Display.c: 27:             Valor_hex = 0b01111101;
-[e = _Valor_hex -> -> 125 `i `uc ]
-"28
-[; ;Display.c: 28:             break;
-[e $U 139  ]
-"29
-[; ;Display.c: 29:         case 7:
-[e :U 148 ]
-"30
-[; ;Display.c: 30:             Valor_hex = 0b00000111;
-[e = _Valor_hex -> -> 7 `i `uc ]
-"31
-[; ;Display.c: 31:             break;
-[e $U 139  ]
-"32
-[; ;Display.c: 32:         case 8:
-[e :U 149 ]
-"33
-[; ;Display.c: 33:             Valor_hex = 0b01111111;
-[e = _Valor_hex -> -> 127 `i `uc ]
-"34
-[; ;Display.c: 34:             break;
-[e $U 139  ]
-"35
-[; ;Display.c: 35:         case 9:
-[e :U 150 ]
-"36
-[; ;Display.c: 36:             Valor_hex = 0b01101111;
-[e = _Valor_hex -> -> 111 `i `uc ]
-"37
-[; ;Display.c: 37:             break;
-[e $U 139  ]
-"38
-[; ;Display.c: 38:         case 10:
-[e :U 151 ]
-"39
-[; ;Display.c: 39:             Valor_hex = 0b01110111;
-[e = _Valor_hex -> -> 119 `i `uc ]
-"40
-[; ;Display.c: 40:             break;
-[e $U 139  ]
-"41
-[; ;Display.c: 41:         case 11:
-[e :U 152 ]
-"42
-[; ;Display.c: 42:             Valor_hex = 0b01111100;
-[e = _Valor_hex -> -> 124 `i `uc ]
-"43
-[; ;Display.c: 43:             break;
-[e $U 139  ]
-"44
-[; ;Display.c: 44:         case 12:
-[e :U 153 ]
-"45
-[; ;Display.c: 45:             Valor_hex = 0b00111001;
-[e = _Valor_hex -> -> 57 `i `uc ]
-"46
-[; ;Display.c: 46:             break;
-[e $U 139  ]
-"47
-[; ;Display.c: 47:         case 13:
-[e :U 154 ]
-"48
-[; ;Display.c: 48:             Valor_hex = 0b01011110;
-[e = _Valor_hex -> -> 94 `i `uc ]
-"49
-[; ;Display.c: 49:             break;
-[e $U 139  ]
-"50
-[; ;Display.c: 50:         case 14:
-[e :U 155 ]
-"51
-[; ;Display.c: 51:             Valor_hex = 0b01111001;
-[e = _Valor_hex -> -> 121 `i `uc ]
-"52
-[; ;Display.c: 52:             break;
-[e $U 139  ]
-"53
-[; ;Display.c: 53:         case 15 :
-[e :U 156 ]
-"54
-[; ;Display.c: 54:             Valor_hex = 0b01110001;
-[e = _Valor_hex -> -> 113 `i `uc ]
-"55
-[; ;Display.c: 55:             break;
-[e $U 139  ]
-"56
-[; ;Display.c: 56:         default:
-[e :U 157 ]
-"57
-[; ;Display.c: 57:             Valor_hex = 0b00111111;
-[e = _Valor_hex -> -> 63 `i `uc ]
-"58
-[; ;Display.c: 58:             break;
-[e $U 139  ]
-"59
-[; ;Display.c: 59:     }
-}
-[e $U 139  ]
-[e :U 140 ]
-[e [\ -> _ADC_VALOR `i , $ -> 0 `i 141
- , $ -> 1 `i 142
- , $ -> 2 `i 143
- , $ -> 3 `i 144
- , $ -> 4 `i 145
- , $ -> 5 `i 146
- , $ -> 6 `i 147
- , $ -> 7 `i 148
- , $ -> 8 `i 149
- , $ -> 9 `i 150
- , $ -> 10 `i 151
- , $ -> 11 `i 152
- , $ -> 12 `i 153
- , $ -> 13 `i 154
- , $ -> 14 `i 155
- , $ -> 15 `i 156
- 157 ]
-[e :U 139 ]
-"60
-[; ;Display.c: 60:    return Valor_hex;
-[e ) _Valor_hex ]
+[; ;Config_ADC.c: 11:     return VAL;
+[e ) _VAL ]
 [e $UE 138  ]
-"61
-[; ;Display.c: 61: }
+"12
+[; ;Config_ADC.c: 12: }
 [e :UE 138 ]
+}
+"14
+[; ;Config_ADC.c: 14: uint8_t SWAP_ADC(uint8_t VAL_ADC){
+[v _SWAP_ADC `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _SWAP_ADC ]
+[v _VAL_ADC `uc ~T0 @X0 1 r1 ]
+[f ]
+"15
+[; ;Config_ADC.c: 15:     VAL_SWAP = (((VAL_ADC & 0x0F)<<4) | ((VAL_ADC & 0xF0)>>4));
+[e = _VAL_SWAP -> | << & -> _VAL_ADC `i -> 15 `i -> 4 `i >> & -> _VAL_ADC `i -> 240 `i -> 4 `i `uc ]
+"16
+[; ;Config_ADC.c: 16:     return VAL_SWAP;
+[e ) _VAL_SWAP ]
+[e $UE 139  ]
+"17
+[; ;Config_ADC.c: 17: }
+[e :UE 139 ]
+}
+"19
+[; ;Config_ADC.c: 19: uint8_t NIBBLE1_ADC(uint8_t VAL_ADC){
+[v _NIBBLE1_ADC `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _NIBBLE1_ADC ]
+[v _VAL_ADC `uc ~T0 @X0 1 r1 ]
+[f ]
+"20
+[; ;Config_ADC.c: 20:     VAL_NIBBLE1 = VAL_ADC & 15;
+[e = _VAL_NIBBLE1 -> & -> _VAL_ADC `i -> 15 `i `uc ]
+"21
+[; ;Config_ADC.c: 21:     return VAL_NIBBLE1;
+[e ) _VAL_NIBBLE1 ]
+[e $UE 140  ]
+"22
+[; ;Config_ADC.c: 22: }
+[e :UE 140 ]
+}
+"24
+[; ;Config_ADC.c: 24: uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP){
+[v _NIBBLE2_ADC `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _NIBBLE2_ADC ]
+[v _VAL_SWAP `uc ~T0 @X0 1 r1 ]
+[f ]
+"25
+[; ;Config_ADC.c: 25:     VAL_NIBBLE2 = VAL_SWAP & 15;
+[e = _VAL_NIBBLE2 -> & -> _VAL_SWAP `i -> 15 `i `uc ]
+"26
+[; ;Config_ADC.c: 26:     return VAL_NIBBLE2;
+[e ) _VAL_NIBBLE2 ]
+[e $UE 141  ]
+"27
+[; ;Config_ADC.c: 27: }
+[e :UE 141 ]
 }

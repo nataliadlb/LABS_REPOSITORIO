@@ -2634,7 +2634,7 @@ typedef uint16_t uintptr_t;
 
 
 
-void display(uint8_t NUM);
+uint8_t display(uint8_t ADC_VALOR);
 # 16 "Prueba.c" 2
 
 # 1 "./Oscilador.h" 1
@@ -2651,6 +2651,24 @@ void display(uint8_t NUM);
 
 void initOsc(uint8_t IRCF);
 # 17 "Prueba.c" 2
+
+# 1 "./Config_ADC.h" 1
+# 14 "./Config_ADC.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./Config_ADC.h" 2
+
+
+
+
+
+
+
+
+uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+uint8_t SWAP_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE1_ADC(uint8_t VAL_ADC);
+uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP);
+# 18 "Prueba.c" 2
 
 
 
@@ -2671,9 +2689,13 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 47 "Prueba.c"
+# 48 "Prueba.c"
 uint8_t contador;
-uint8_t Valor_hex;
+int ADC_VALOR;
+uint8_t ADC_SWAP;
+uint8_t ADC_NIBBLE1;
+uint8_t ADC_NIBBLE2;
+uint8_t cont_multiplex;
 
 
 
@@ -2686,40 +2708,71 @@ void __attribute__((picinterrupt(("")))) ISR(void){
                 contador = contador;
             }
             contador++;
-
         }
         if (PORTBbits.RB1 == 1){
             while (PORTBbits.RB1 == 1){
             contador = contador;
             }
             contador--;
-
         }
         INTCONbits.RBIF = 0;
     }
 
+    if (PIR1bits.ADIF == 1){
+        ADC_VALOR = ADC(ADRESL, ADRESH);
+        ADC_SWAP = SWAP_ADC(ADC_VALOR);
+        ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
+        ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
+        PIR1bits.ADIF = 0;
+        _delay((unsigned long)((10)*(8000000/4000.0)));
+        ADCON0bits.GO_nDONE = 1;
+    }
+
+    if (INTCONbits.TMR0IF == 1){
+        PORTEbits.RE1 = 1;
+        PORTEbits.RE2 = 0;
+        PORTD = display(ADC_NIBBLE1);
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        PORTEbits.RE1 = 0;
+        PORTEbits.RE2 = 1;
+        PORTD = display(ADC_NIBBLE2);
+        TMR0 = 100;
+        INTCONbits.TMR0IF = 0;
+
+    }
 }
 
 
 
 
 void setup(void);
+void InitTimer0(void);
 void ContadorLEDS(void);
+void DisplayADC1(void);
+void DisplayADC2(void);
 
 
 
 
 
 void main(void) {
-    contador = 0;
     setup();
+    contador = 0;
+    cont_multiplex = 0;
+
+
 
 
 
     while (1) {
-        INTCONbits.RBIF = 1;
         ContadorLEDS();
 
+        if (ADC_VALOR >= contador){
+            PORTEbits.RE0 = 1;
+        }
+        else {
+            PORTEbits.RE0 = 0;
+        }
     }
 
 }
@@ -2742,9 +2795,21 @@ void setup(void) {
     PORTD = 0;
     TRISE = 0;
     PORTE = 0;
-    INTCONbits.GIE = 1;
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
+    InitTimer0();
+
+
+
+
+    IOCBbits.IOCB0 = 1;
+    IOCBbits.IOCB1 = 1;
+
+
+
+    PIE1bits.ADIE = 1;
+    PIR1bits.ADIF = 0;
+    ADCON0 = 0b11000001;
+    ADCON0bits.GO_nDONE = 1;
+
 }
 
 
@@ -2752,4 +2817,21 @@ void setup(void) {
 
 void ContadorLEDS(void){
     PORTC = contador;
+}
+
+
+void InitTimer0(void){
+  OPTION_REG = 0x86;
+  TMR0 = 100;
+  INTCON = 0b1110101;
+}
+
+void DisplayADC1(void){
+
+    PORTD = display(ADC_NIBBLE1);
+}
+
+void DisplayADC2(void){
+
+    PORTD = display(ADC_NIBBLE2);
 }
