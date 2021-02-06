@@ -13,6 +13,7 @@
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include <stdint.h>
 #include "Display.h"
 #include "Oscilador.h"
 #include "Config_ADC.h"
@@ -21,7 +22,7 @@
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -39,20 +40,32 @@
 //****************************************************************************//
 //DEFINE                                                                      //
 //****************************************************************************//
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 4000000 //8000000
 
 
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-uint8_t contador;
-int ADC_VALOR;
-uint8_t ADC_SWAP;
-uint8_t ADC_NIBBLE1;
-uint8_t ADC_NIBBLE2;
-uint8_t cont_multiplex;
-uint8_t debouncing1;
-uint8_t debouncing2;
+uint8_t contador = 0;
+unsigned int val_1;
+unsigned int ADC_VALOR;
+unsigned int ADC_SWAP;
+unsigned int ADC_NIBBLE1;
+unsigned int ADC_NIBBLE2;
+uint8_t cont_timer = 0;
+uint8_t toggle = 0;
+uint8_t debouncing1 = 0;
+uint8_t debouncing2 = 0;
+
+//****************************************************************************//
+//PROTOTIPOS DE FUNCIONES                                                     //
+//****************************************************************************//
+void setup(void);
+void Config_INTERRUPT(void);
+void DisplayADC(void);
+void TOGGLE(void);
+void CONVERSION_ADC(void);
+void Revision(void);
 
 //****************************************************************************//
 //INTERRUPCIONES                                                                //
@@ -86,39 +99,32 @@ void __interrupt() ISR(void){
         PIR1bits.ADIF = 0;
         __delay_ms(2);
         ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 1){
+        while (ADCON0bits.GO != 0){
+            //val_1 = ADRESH;
             ADC_VALOR = ADC(ADRESL, ADRESH); // de la libreria se obtiene la conver.
-            ADC_SWAP = SWAP_ADC(ADC_VALOR); // swap de los nibbles
-            ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR); // AND con 0b00001111 para dejar 
-            ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);  // solo el nibble que necesito
+            CONVERSION_ADC();
+            //PORTD = val_1;
+            //CONVERSION_ADC();
+            DisplayADC();
         }
-     //   __delay_ms(10);     //tiempo para iniciar otra conversion
-        //ADCON0bits.GO_nDONE = 1;
-    }
-    
+        
+        
+        }
+
     if (INTCONbits.TMR0IF == 1){
-        PORTEbits.RE1 = 1;
-        PORTEbits.RE2 = 0;
-        PORTD =  display(ADC_NIBBLE2);
-        __delay_ms(1);  
-        PORTEbits.RE1 = 0;
-        PORTEbits.RE2 = 1;
-        PORTD =  display(ADC_NIBBLE1);
-        //cont_multiplex++;
-        TMR0 = 4;  
+        
+        cont_timer++;
         INTCONbits.TMR0IF = 0;
-//        
+        if (cont_timer >= 1){
+            cont_timer =0;
+            TOGGLE();
+        }
+        Revision();
+        TMR0 = 1; 
+        
        }
 }
 
-//****************************************************************************//
-//PROTOTIPOS DE FUNCIONES                                                     //
-//****************************************************************************//
-void setup(void);
-void InitTimer0(void);
-void ContadorLEDS(void);
-void DisplayADC1(void);
-void DisplayADC2(void);
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -126,27 +132,29 @@ void DisplayADC2(void);
 
 void main(void) {
     setup();
-    contador = 0;
-    cont_multiplex = 0;
-    //PORTEbits.RE2 = 1;
-    
+    Config_INTERRUPT();
+//    contador = 0;
+
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        //ContadorLEDS(); //funcion en que se manda el valor de contador a leds
-//        if (cont_multiplex == 20){
-//            PORTD++;
-//            cont_multiplex = 0;
+//        if (cont_timer >= 1){
+//            cont_timer =0;
+//            TOGGLE();
+// 
 //        }
-        //DisplayADC1(); 
-        if (ADC_VALOR >= contador){ // control si el valor de la conversion es 
-            PORTEbits.RE0 = 1;      // mayor que el contador
-        }
-        else {
-            PORTEbits.RE0 = 0;
-        }
+        //CONVERSION_ADC();
+        
+//        if (ADC_VALOR > contador) {
+//            PORTEbits.RE0 = 1;
+//
+//        }
+//        else if (ADC_VALOR < contador) {
+//            PORTEbits.RE0 = 0;
+//        }
     }
+    return;
 
 }
 
@@ -155,7 +163,7 @@ void main(void) {
 //****************************************************************************//
 
 void setup(void) {
-    initOsc(0b00000110);
+    initOsc(0b00000111); //4MHz
     ANSEL = 0b00000001; // RA0 analogico para POT
     ANSELH = 0;
     TRISA = 0b00000001; // RA0 como input
@@ -168,51 +176,70 @@ void setup(void) {
     PORTD = 0;
     TRISE = 0;
     PORTE = 0;
+   
+}
+//****************************************************************************//
+//INTERRUPCIONES                                                              //
+//****************************************************************************//
+void Config_INTERRUPT(void){
+    TMR0 = 1;
+    INTCON = 0b10101001;//0b11101000; //config de interrupciones 0b10101001;
+    OPTION_REG = 0b10000001; //0b10000000; //config TMR0
     
-//   INTCONbits.GIE = 1;
-//    INTCONbits.T0IE = 1;
-//    OPTION_REGbits.nRBPU =1;
-//    OPTION_REGbits.PS0 = 1;
-//    OPTION_REGbits.PS1 = 1;
-//    OPTION_REGbits.PS2 = 1;
-
-//    InitTimer0();
-    TMR0 = 4;
-    OPTION_REG = 0b10000001;
-    INTCON = 0b11101001;
-    
-
-    
-    //INTERUPCION ON CHANGE
- //   INTCONbits.RBIE = 1; //enable interrupcion on change
- //   INTCONbits.RBIF = 0; // 0 la bandera de la interrupcion on change
+    //CONFIG PUERTOS INTERRUPCION ON CHANGE
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
-    //OPTION_REGbits.nRBPU = 0;
-    
-    // ADC CONFIGURACIONES
-//    INTCONbits.PEIE = 1; // enables  all unmasked peripheral interrupts
+
+    // CONFIG ADC
     PIE1bits.ADIE = 1; // enables ADC interrupt
-    PIR1bits.ADIF = 0; // clear A/D Converter Interrupt Flag bit
-    ADCON0 = 0b01000001;
-    ADCON0bits.GO = 1;
-    
+    PIR1bits.ADIF = 1;//0; // clear A/D Converter Interrupt Flag bit
+    ADCON1 = 0b00000000;
+    ADCON0 = 0b01000001; 
+    //ADCON0bits.GO = 1;
 }
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
-void ContadorLEDS(void){
-    PORTC = contador;
+
+void DisplayADC(void) {
+    PORTE = 0;
+    if (toggle == 0) {
+        //display(ADC_NIBBLE1);
+        PORTEbits.RE1 = 1;
+        PORTD = display(ADC_NIBBLE1);
+        
+        //PORTEbits.RE2  = 0;
+    } else if (toggle == 1) {
+        //display(ADC_NIBBLE2);
+        PORTEbits.RE2 = 1;
+        PORTD = display(ADC_NIBBLE2);
+        
+        //PORTEbits.RE1 = 0;
+    }
+}   
+
+void TOGGLE(void){
+    if (toggle == 1) {
+        toggle = 0;
+    } 
+    else if (toggle == 0) {
+        toggle = 1;
+    }   
 }
 
-
-void DisplayADC1(void){
-    PORTEbits.RE1 = 1;
-    PORTD = display(ADC_NIBBLE1);
+void CONVERSION_ADC(void){
+    ADC_SWAP = SWAP_ADC(ADC_VALOR); // swap de los nibbles
+    ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR); // AND con 0b00001111 para dejar 
+    ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP); 
 }
 
-void DisplayADC2(void){
-    //PORTEbits.RE1 = 1;
-    PORTD = display(ADC_NIBBLE2);
+void Revision(void){
+    if (ADC_VALOR >= contador) {
+        PORTEbits.RE0 = 1;
+
+        }
+    else  {
+        PORTEbits.RE0 = 0;
+        }
 }

@@ -17,8 +17,8 @@
                    projectFiles="true">
       <itemPath>Oscilador.c</itemPath>
       <itemPath>Display.c</itemPath>
-      <itemPath>Prueba.c</itemPath>
       <itemPath>Config_ADC.c</itemPath>
+      <itemPath>Prueba2_lab2.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

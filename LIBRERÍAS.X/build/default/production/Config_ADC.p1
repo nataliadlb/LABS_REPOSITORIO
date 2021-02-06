@@ -240,20 +240,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "3 Config_ADC.c
-[; ;Config_ADC.c: 3: uint8_t VAL;
-[v _VAL `uc ~T0 @X0 1 e ]
+[; ;Config_ADC.c: 3: int VAL;
+[v _VAL `i ~T0 @X0 1 e ]
 "4
 [; ;Config_ADC.c: 4: uint8_t VAL_SWAP;
 [v _VAL_SWAP `uc ~T0 @X0 1 e ]
 "5
-[; ;Config_ADC.c: 5: uint8_t VAL_NIBBLE1;
-[v _VAL_NIBBLE1 `uc ~T0 @X0 1 e ]
+[; ;Config_ADC.c: 5: int VAL_NIBBLE1;
+[v _VAL_NIBBLE1 `i ~T0 @X0 1 e ]
 "6
-[; ;Config_ADC.c: 6: uint8_t VAL_NIBBLE2;
-[v _VAL_NIBBLE2 `uc ~T0 @X0 1 e ]
+[; ;Config_ADC.c: 6: int VAL_NIBBLE2;
+[v _VAL_NIBBLE2 `i ~T0 @X0 1 e ]
 "9
-[; ;Config_ADC.c: 9: uint8_t ADC(uint8_t ADRESL_, uint8_t ADRESH_){
-[v _ADC `(uc ~T0 @X0 1 ef2`uc`uc ]
+[; ;Config_ADC.c: 9: int ADC(uint8_t ADRESL_, uint8_t ADRESH_){
+[v _ADC `(i ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _ADC ]
 [v _ADRESL_ `uc ~T0 @X0 1 r1 ]
@@ -261,7 +261,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "10
 [; ;Config_ADC.c: 10:     VAL = (ADRESL << 8) | ADRESH;
-[e = _VAL -> | << -> _ADRESL `i -> 8 `i -> _ADRESH `i `uc ]
+[e = _VAL | << -> _ADRESL `i -> 8 `i -> _ADRESH `i ]
 "11
 [; ;Config_ADC.c: 11:     return VAL;
 [e ) _VAL ]
@@ -296,11 +296,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _VAL_ADC `uc ~T0 @X0 1 r1 ]
 [f ]
 "20
-[; ;Config_ADC.c: 20:     VAL_NIBBLE1 = VAL_ADC & 15;
-[e = _VAL_NIBBLE1 -> & -> _VAL_ADC `i -> 15 `i `uc ]
+[; ;Config_ADC.c: 20:     VAL_NIBBLE1 = (VAL_ADC & 15);
+[e = _VAL_NIBBLE1 & -> _VAL_ADC `i -> 15 `i ]
 "21
 [; ;Config_ADC.c: 21:     return VAL_NIBBLE1;
-[e ) _VAL_NIBBLE1 ]
+[e ) -> _VAL_NIBBLE1 `uc ]
 [e $UE 140  ]
 "22
 [; ;Config_ADC.c: 22: }
@@ -314,11 +314,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _VAL_SWAP `uc ~T0 @X0 1 r1 ]
 [f ]
 "25
-[; ;Config_ADC.c: 25:     VAL_NIBBLE2 = VAL_SWAP & 15;
-[e = _VAL_NIBBLE2 -> & -> _VAL_SWAP `i -> 15 `i `uc ]
+[; ;Config_ADC.c: 25:     VAL_NIBBLE2 = (VAL_SWAP & 15);
+[e = _VAL_NIBBLE2 & -> _VAL_SWAP `i -> 15 `i ]
 "26
 [; ;Config_ADC.c: 26:     return VAL_NIBBLE2;
-[e ) _VAL_NIBBLE2 ]
+[e ) -> _VAL_NIBBLE2 `uc ]
 [e $UE 141  ]
 "27
 [; ;Config_ADC.c: 27: }

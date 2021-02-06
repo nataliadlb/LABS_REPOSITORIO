@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Oscilador.c Display.c Prueba.c Config_ADC.c
+SOURCEFILES_QUOTED_IF_SPACED=Oscilador.c Display.c Config_ADC.c Prueba2_lab2.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/Display.p1 ${OBJECTDIR}/Prueba.p1 ${OBJECTDIR}/Config_ADC.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/Oscilador.p1.d ${OBJECTDIR}/Display.p1.d ${OBJECTDIR}/Prueba.p1.d ${OBJECTDIR}/Config_ADC.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/Display.p1 ${OBJECTDIR}/Config_ADC.p1 ${OBJECTDIR}/Prueba2_lab2.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/Oscilador.p1.d ${OBJECTDIR}/Display.p1.d ${OBJECTDIR}/Config_ADC.p1.d ${OBJECTDIR}/Prueba2_lab2.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/Display.p1 ${OBJECTDIR}/Prueba.p1 ${OBJECTDIR}/Config_ADC.p1
+OBJECTFILES=${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/Display.p1 ${OBJECTDIR}/Config_ADC.p1 ${OBJECTDIR}/Prueba2_lab2.p1
 
 # Source Files
-SOURCEFILES=Oscilador.c Display.c Prueba.c Config_ADC.c
+SOURCEFILES=Oscilador.c Display.c Config_ADC.c Prueba2_lab2.c
 
 
 
@@ -110,14 +110,6 @@ ${OBJECTDIR}/Display.p1: Display.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/Display.d ${OBJECTDIR}/Display.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/Prueba.p1: Prueba.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Prueba.p1.d 
-	@${RM} ${OBJECTDIR}/Prueba.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Prueba.p1 Prueba.c 
-	@-${MV} ${OBJECTDIR}/Prueba.d ${OBJECTDIR}/Prueba.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/Prueba.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/Config_ADC.p1: Config_ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Config_ADC.p1.d 
@@ -125,6 +117,14 @@ ${OBJECTDIR}/Config_ADC.p1: Config_ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Config_ADC.p1 Config_ADC.c 
 	@-${MV} ${OBJECTDIR}/Config_ADC.d ${OBJECTDIR}/Config_ADC.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Config_ADC.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/Prueba2_lab2.p1: Prueba2_lab2.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Prueba2_lab2.p1.d 
+	@${RM} ${OBJECTDIR}/Prueba2_lab2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Prueba2_lab2.p1 Prueba2_lab2.c 
+	@-${MV} ${OBJECTDIR}/Prueba2_lab2.d ${OBJECTDIR}/Prueba2_lab2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/Prueba2_lab2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/Oscilador.p1: Oscilador.c  nbproject/Makefile-${CND_CONF}.mk
@@ -143,14 +143,6 @@ ${OBJECTDIR}/Display.p1: Display.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/Display.d ${OBJECTDIR}/Display.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/Prueba.p1: Prueba.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Prueba.p1.d 
-	@${RM} ${OBJECTDIR}/Prueba.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Prueba.p1 Prueba.c 
-	@-${MV} ${OBJECTDIR}/Prueba.d ${OBJECTDIR}/Prueba.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/Prueba.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/Config_ADC.p1: Config_ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Config_ADC.p1.d 
@@ -158,6 +150,14 @@ ${OBJECTDIR}/Config_ADC.p1: Config_ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Config_ADC.p1 Config_ADC.c 
 	@-${MV} ${OBJECTDIR}/Config_ADC.d ${OBJECTDIR}/Config_ADC.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Config_ADC.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/Prueba2_lab2.p1: Prueba2_lab2.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Prueba2_lab2.p1.d 
+	@${RM} ${OBJECTDIR}/Prueba2_lab2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Prueba2_lab2.p1 Prueba2_lab2.c 
+	@-${MV} ${OBJECTDIR}/Prueba2_lab2.d ${OBJECTDIR}/Prueba2_lab2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/Prueba2_lab2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
