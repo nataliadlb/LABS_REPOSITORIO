@@ -2731,15 +2731,16 @@ void __attribute__((picinterrupt(("")))) ISR(void){
     if (INTCONbits.TMR0IF == 1){
         PORTEbits.RE1 = 1;
         PORTEbits.RE2 = 0;
-        PORTD = display(ADC_NIBBLE1);
+        PORTD = display(ADC_NIBBLE2);
         _delay((unsigned long)((1)*(8000000/4000.0)));
         PORTEbits.RE1 = 0;
         PORTEbits.RE2 = 1;
-        PORTD = display(ADC_NIBBLE2);
+        PORTD = display(ADC_NIBBLE1);
+
         TMR0 = 100;
         INTCONbits.TMR0IF = 0;
 
-    }
+       }
 }
 
 
@@ -2766,13 +2767,7 @@ void main(void) {
 
     while (1) {
         ContadorLEDS();
-
-        if (ADC_VALOR >= contador){
-            PORTEbits.RE0 = 1;
-        }
-        else {
-            PORTEbits.RE0 = 0;
-        }
+# 136 "Prueba.c"
     }
 
 }
@@ -2795,16 +2790,18 @@ void setup(void) {
     PORTD = 0;
     TRISE = 0;
     PORTE = 0;
+# 166 "Prueba.c"
     InitTimer0();
 
 
-
-
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
+    OPTION_REGbits.nRBPU = 0;
 
 
-
+    INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
     ADCON0 = 0b11000001;
@@ -2823,7 +2820,7 @@ void ContadorLEDS(void){
 void InitTimer0(void){
   OPTION_REG = 0x86;
   TMR0 = 100;
-  INTCON = 0b1110101;
+  INTCON = 0xA0;
 }
 
 void DisplayADC1(void){
