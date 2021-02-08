@@ -23,7 +23,7 @@ int ADC(uint8_t ADRESL_, uint8_t ADRESH_);
 int SWAP_ADC(uint8_t VAL_ADC);
 int NIBBLE1_ADC(uint8_t VAL_ADC);
 int NIBBLE2_ADC(uint8_t VAL_SWAP);
-void ADC_channel (uint8_t AN_num);
+void ADC_Config (uint8_t AN_num);
 
 #endif	/* CONFIG_ADC_H */
 

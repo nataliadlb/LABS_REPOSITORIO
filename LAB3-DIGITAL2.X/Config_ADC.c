@@ -1,5 +1,5 @@
-#include <proc/pic16f887.h>
 
+//#include <proc/pic16f887.h>
 #include "Config_ADC.h"
 
 int VAL;
@@ -28,7 +28,7 @@ int NIBBLE2_ADC(uint8_t VAL_SWAP){
     return VAL_NIBBLE2;
 }
 
-void ADC_channel(uint8_t AN_num){
+void ADC_Config(uint8_t AN_num){
     
     switch(AN_num){
         case 0: //AN0 (RA0)
@@ -134,4 +134,8 @@ void ADC_channel(uint8_t AN_num){
             ADCON0bits.CHS0 = 0;
             break; 
     }
+    ADCON1 = 0b00000000;
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1;  
 }    

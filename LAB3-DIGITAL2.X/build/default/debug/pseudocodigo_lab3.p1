@@ -51,9 +51,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1238
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
-"228
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [p mainexit ]
 "66 pseudocodigo_lab3.c
 [; ;pseudocodigo_lab3.c: 66: void setup(void);
@@ -61,6 +58,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "67
 [; ;pseudocodigo_lab3.c: 67: void Config_INTERRUPT(void);
 [v _Config_INTERRUPT `(v ~T0 @X0 0 ef ]
+"228 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "22 ./Oscilador.h
 [; ;./Oscilador.h: 22: void initOsc(uint8_t IRCF);
 [v _initOsc `(v ~T0 @X0 0 ef1`uc ]
@@ -414,137 +414,112 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;pseudocodigo_lab3.c: 80:         while (ADCON0bits.GO != 0) {
 [e $ != -> . . _ADCON0bits 1 1 `i -> 0 `i 141  ]
 [e :U 142 ]
-"85
-[; ;pseudocodigo_lab3.c: 85:         ADC_Config (1);
-[e ( _ADC_Config (1 -> -> 1 `i `uc ]
-"86
-[; ;pseudocodigo_lab3.c: 86:         _delay((unsigned long)((2)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"87
-[; ;pseudocodigo_lab3.c: 87:         ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"88
-[; ;pseudocodigo_lab3.c: 88:         while (ADCON0bits.GO != 0) {
-[e $U 143  ]
-[e :U 144 ]
-{
-"89
-[; ;pseudocodigo_lab3.c: 89:             ADC_VALOR_2 = ADC(ADRESL, ADRESH);
-[e = _ADC_VALOR_2 ( _ADC (2 , _ADRESL _ADRESH ]
 "90
-[; ;pseudocodigo_lab3.c: 90:         }
-}
-[e :U 143 ]
-"88
-[; ;pseudocodigo_lab3.c: 88:         while (ADCON0bits.GO != 0) {
-[e $ != -> . . _ADCON0bits 1 1 `i -> 0 `i 144  ]
-[e :U 145 ]
-"91
-[; ;pseudocodigo_lab3.c: 91:         PORTB = ADC_VALOR_2;
-[e = _PORTB -> _ADC_VALOR_2 `uc ]
-"92
-[; ;pseudocodigo_lab3.c: 92:     }
+[; ;pseudocodigo_lab3.c: 90:     }
 }
 [e :U 139 ]
-"94
-[; ;pseudocodigo_lab3.c: 94: }
+"92
+[; ;pseudocodigo_lab3.c: 92: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"100
-[; ;pseudocodigo_lab3.c: 100: void main(void) {
+"98
+[; ;pseudocodigo_lab3.c: 98: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"101
-[; ;pseudocodigo_lab3.c: 101:     setup();
+"99
+[; ;pseudocodigo_lab3.c: 99:     setup();
 [e ( _setup ..  ]
-"102
-[; ;pseudocodigo_lab3.c: 102:     Config_INTERRUPT();
+"100
+[; ;pseudocodigo_lab3.c: 100:     Config_INTERRUPT();
 [e ( _Config_INTERRUPT ..  ]
-"107
-[; ;pseudocodigo_lab3.c: 107:     while (1) {
-[e :U 148 ]
+"105
+[; ;pseudocodigo_lab3.c: 105:     while (1) {
+[e :U 145 ]
 {
+"106
+[; ;pseudocodigo_lab3.c: 106:         PORTB = ADC_VALOR_1;
+[e = _PORTB -> _ADC_VALOR_1 `uc ]
+"107
+[; ;pseudocodigo_lab3.c: 107:     }
+}
+[e :U 144 ]
+[e $U 145  ]
+[e :U 146 ]
+"108
+[; ;pseudocodigo_lab3.c: 108:     return;
+[e $UE 143  ]
 "109
-[; ;pseudocodigo_lab3.c: 109:     }
+[; ;pseudocodigo_lab3.c: 109: }
+[e :UE 143 ]
 }
-[e :U 147 ]
-[e $U 148  ]
-[e :U 149 ]
-"110
-[; ;pseudocodigo_lab3.c: 110:     return;
-[e $UE 146  ]
-"111
-[; ;pseudocodigo_lab3.c: 111: }
-[e :UE 146 ]
-}
-"119
-[; ;pseudocodigo_lab3.c: 119: void setup(void) {
+"117
+[; ;pseudocodigo_lab3.c: 117: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"120
-[; ;pseudocodigo_lab3.c: 120:     initOsc(0b00000111);
+"118
+[; ;pseudocodigo_lab3.c: 118:     initOsc(0b00000111);
 [e ( _initOsc (1 -> -> 7 `i `uc ]
-"121
-[; ;pseudocodigo_lab3.c: 121:     ANSEL = 0b00000011;
+"119
+[; ;pseudocodigo_lab3.c: 119:     ANSEL = 0b00000011;
 [e = _ANSEL -> -> 3 `i `uc ]
-"122
-[; ;pseudocodigo_lab3.c: 122:     ANSELH = 0;
+"120
+[; ;pseudocodigo_lab3.c: 120:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"123
-[; ;pseudocodigo_lab3.c: 123:     TRISA = 0b00000011;
+"121
+[; ;pseudocodigo_lab3.c: 121:     TRISA = 0b00000011;
 [e = _TRISA -> -> 3 `i `uc ]
-"124
-[; ;pseudocodigo_lab3.c: 124:     PORTA = 0;
+"122
+[; ;pseudocodigo_lab3.c: 122:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"125
-[; ;pseudocodigo_lab3.c: 125:     PORTB = 0;
+"123
+[; ;pseudocodigo_lab3.c: 123:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"126
-[; ;pseudocodigo_lab3.c: 126:     PORTC = 0;
+"124
+[; ;pseudocodigo_lab3.c: 124:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"127
-[; ;pseudocodigo_lab3.c: 127:     TRISB = 0;
+"125
+[; ;pseudocodigo_lab3.c: 125:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
-"128
-[; ;pseudocodigo_lab3.c: 128:     TRISC = 0;
+"126
+[; ;pseudocodigo_lab3.c: 126:     TRISC = 0;
 [e = _TRISC -> -> 0 `i `uc ]
-"129
-[; ;pseudocodigo_lab3.c: 129:     TRISD = 0;
+"127
+[; ;pseudocodigo_lab3.c: 127:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
-"130
-[; ;pseudocodigo_lab3.c: 130:     PORTD = 0;
+"128
+[; ;pseudocodigo_lab3.c: 128:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"131
-[; ;pseudocodigo_lab3.c: 131:     TRISE = 0;
+"129
+[; ;pseudocodigo_lab3.c: 129:     TRISE = 0;
 [e = _TRISE -> -> 0 `i `uc ]
-"132
-[; ;pseudocodigo_lab3.c: 132:     PORTE = 0;
+"130
+[; ;pseudocodigo_lab3.c: 130:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"133
-[; ;pseudocodigo_lab3.c: 133: }
-[e :UE 150 ]
+"131
+[; ;pseudocodigo_lab3.c: 131: }
+[e :UE 147 ]
 }
-"137
-[; ;pseudocodigo_lab3.c: 137: void Config_INTERRUPT(void) {
+"135
+[; ;pseudocodigo_lab3.c: 135: void Config_INTERRUPT(void) {
 [v _Config_INTERRUPT `(v ~T0 @X0 1 ef ]
 {
 [e :U _Config_INTERRUPT ]
 [f ]
-"138
-[; ;pseudocodigo_lab3.c: 138:     INTCON = 0b11000000;
+"136
+[; ;pseudocodigo_lab3.c: 136:     INTCON = 0b11000000;
 [e = _INTCON -> -> 192 `i `uc ]
-"139
-[; ;pseudocodigo_lab3.c: 139:     PIE1bits.ADIE = 1;
+"137
+[; ;pseudocodigo_lab3.c: 137:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"140
-[; ;pseudocodigo_lab3.c: 140:     PIR1bits.ADIF = 1;
+"138
+[; ;pseudocodigo_lab3.c: 138:     PIR1bits.ADIF = 1;
 [e = . . _PIR1bits 0 6 -> -> 1 `i `uc ]
-"145
-[; ;pseudocodigo_lab3.c: 145: }
-[e :UE 151 ]
+"143
+[; ;pseudocodigo_lab3.c: 143: }
+[e :UE 148 ]
 }

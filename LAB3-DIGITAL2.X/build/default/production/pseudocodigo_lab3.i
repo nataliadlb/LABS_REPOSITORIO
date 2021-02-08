@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "pseudocodigo_lab3.c" 2
-# 15 "pseudocodigo_lab3.c"
+# 13 "pseudocodigo_lab3.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "pseudocodigo_lab3.c" 2
+# 13 "pseudocodigo_lab3.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,8 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 16 "pseudocodigo_lab3.c" 2
+# 14 "pseudocodigo_lab3.c" 2
+
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2638,15 +2639,57 @@ typedef uint16_t uintptr_t;
 
 
 void initOsc(uint8_t IRCF);
+# 16 "pseudocodigo_lab3.c" 2
+
+# 1 "./LCD.h" 1
+# 63 "./LCD.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 63 "./LCD.h" 2
+
+
+
+
+
+
+
+
+void Lcd_Init(void);
+void Lcd_Port(char a);
+void Lcd_Cmd(char a);
+void Lcd_Set_Cursor(char a, char b);
+void Lcd_Write_Char(char a);
+void Lcd_Write_String(char *a);
+void Lcd_Shift_Right();
+void Lcd_Shift_Left();
+void Lcd_Clear(void);
 # 17 "pseudocodigo_lab3.c" 2
 
+# 1 "./Config_ADC.h" 1
+# 14 "./Config_ADC.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./Config_ADC.h" 2
 
 
 
 
 
 
-#pragma config FOSC = INTRC_NOCLKOUT
+
+
+int ADC(uint8_t ADRESL_, uint8_t ADRESH_);
+int SWAP_ADC(uint8_t VAL_ADC);
+int NIBBLE1_ADC(uint8_t VAL_ADC);
+int NIBBLE2_ADC(uint8_t VAL_SWAP);
+void ADC_Config (uint8_t AN_num);
+# 18 "pseudocodigo_lab3.c" 2
+
+
+
+
+
+
+
+#pragma config FOSC = XT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2660,7 +2703,13 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 53 "pseudocodigo_lab3.c"
+# 60 "pseudocodigo_lab3.c"
+int ADC_VALOR_1;
+int ADC_VALOR_2;
+
+
+
+
 void setup(void);
 void Config_INTERRUPT(void);
 
@@ -2669,8 +2718,27 @@ void Config_INTERRUPT(void);
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
 
-}
 
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        ADC_Config (0);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
+
+        }
+
+        ADC_Config (1);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_2 = ADC(ADRESL, ADRESH);
+        }
+        PORTB = ADC_VALOR_2;
+    }
+
+}
 
 
 
@@ -2684,6 +2752,7 @@ void main(void) {
 
 
     while (1) {
+
     }
     return;
 }
@@ -2695,14 +2764,14 @@ void main(void) {
 
 
 void setup(void) {
-    initOsc(0b00000110);
-    ANSEL = 0b00000001;
+    initOsc(0b00000111);
+    ANSEL = 0b00000011;
     ANSELH = 0;
-    TRISA = 0b00000001;
+    TRISA = 0b00000011;
     PORTA = 0;
-    TRISB = 0b00000011;
     PORTB = 0;
     PORTC = 0;
+    TRISB = 0;
     TRISC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -2713,12 +2782,11 @@ void setup(void) {
 
 
 void Config_INTERRUPT(void) {
-    TMR0 = 6;
-    OPTION_REG = 0b10001000;
-    INTCON = 0b10101001;
-    IOCB = 0b00000011;
+    INTCON = 0b11000000;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 1;
-    ADCON1 = 0b00000000;
-    ADCON0 = 0b01000001;
+
+
+
+
 }

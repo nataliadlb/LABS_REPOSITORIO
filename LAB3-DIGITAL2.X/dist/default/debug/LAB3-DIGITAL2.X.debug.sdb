@@ -25,11 +25,11 @@
 [v _initOsc initOsc `(v  1 e 1 0 ]
 "72 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"100
+"98
 [v _main main `(v  1 e 1 0 ]
-"119
+"117
 [v _setup setup `(v  1 e 1 0 ]
-"137
+"135
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -140,17 +140,15 @@
 [v _VAL_NIBBLE2 VAL_NIBBLE2 `i  1 e 2 0 ]
 "60 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 [v _ADC_VALOR_1 ADC_VALOR_1 `i  1 e 2 0 ]
-"61
-[v _ADC_VALOR_2 ADC_VALOR_2 `i  1 e 2 0 ]
-"100
+"98
 [v _main main `(v  1 e 1 0 ]
 {
-"111
+"109
 } 0
-"119
+"117
 [v _setup setup `(v  1 e 1 0 ]
 {
-"133
+"131
 } 0
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -160,15 +158,15 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 2 ]
 "53
 } 0
-"137 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+"135 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"145
+"143
 } 0
 "72
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"94
+"92
 } 0
 "31 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Config_ADC.c
 [v _ADC_Config ADC_Config `(v  1 e 1 0 ]

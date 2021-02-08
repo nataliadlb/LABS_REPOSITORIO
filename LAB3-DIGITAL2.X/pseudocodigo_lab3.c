@@ -22,7 +22,7 @@
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config FOSC = XT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -74,18 +74,25 @@ void __interrupt() ISR(void) {
     // ---- Interrupción del ADC ----
     if (PIR1bits.ADIF) {
         PIR1bits.ADIF = 0;
-        
+        ADC_Config (0);
         __delay_ms(2); //Inicio de conversion ADC
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
             ADC_VALOR_1 = ADC(ADRESL, ADRESH);
             
+        } 
+        
+        ADC_Config (1);
+        __delay_ms(2); //Inicio de conversion ADC
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+            ADC_VALOR_2 = ADC(ADRESL, ADRESH);
         }
+        PORTB = ADC_VALOR_2;
     }
-
+    
 }
     
-
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -98,6 +105,7 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+//        PORTB = ADC_VALOR_1;
     }
     return;
 }
@@ -116,6 +124,7 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
+    TRISB = 0;
     TRISC = 0; 
     TRISD = 0; 
     PORTD = 0;
@@ -129,9 +138,8 @@ void Config_INTERRUPT(void) {
     INTCON = 0b11000000;
     PIE1bits.ADIE = 1; // enables ADC interrupt
     PIR1bits.ADIF = 1;
-    ADCON1 = 0b00000000;
-    ADCON0bits.ADCS1 = 0;
-    ADCON0bits.ADCS0 = 1;
-    ADCON0bits.ADON = 1
-      
+//    ADCON1 = 0b00000000;
+//    ADCON0bits.ADCS1 = 0;
+//    ADCON0bits.ADCS0 = 1;
+//    ADCON0bits.ADON = 1;   
 }
