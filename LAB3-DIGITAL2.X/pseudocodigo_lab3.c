@@ -1,10 +1,10 @@
 /*
- * Laboratorio # 2
+ * Pseudocodigo -- Laboratorio # 3
  * Author: Natalia de León Bercián
  * carné: 18193
  * Digital 2
  *
- * Created on 29 de enero de 2021
+ * Created on 7 de febrero de 2021
  */
 
 //****************************************************************************//
@@ -12,7 +12,10 @@
 //****************************************************************************//
 #include <xc.h>
 #include <stdint.h>
+#include <pic16f887.h>
 #include "Oscilador.h"
+#include "LCD.h"
+#include "Config_ADC.h"
 
 
 //****************************************************************************//
@@ -37,23 +40,50 @@
 //****************************************************************************//
 //DEFINE                                                                      //
 //****************************************************************************//
+#define _XTAL_FREQ 8000000
 
-#define _XTAL_FREQ 4000000 
+#define RS PORTEbits.RE0
+#define RW PORTEbits.RE1
+#define EN PORTEbits.RE2
+#define D0 PORTDbits.RD0
+#define D1 PORTDbits.RD1
+#define D2 PORTDbits.RD2
+#define D3 PORTDbits.RD3
+#define D4 PORTDbits.RD4
+#define D5 PORTDbits.RD5
+#define D6 PORTDbits.RD6
+#define D7 PORTDbits.RD7
 
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-
+int ADC_VALOR_1;
+int ADC_VALOR_2;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void); 
 void Config_INTERRUPT(void);
+
 //****************************************************************************//
 //INTERRUPCIONES                                                              //
 //****************************************************************************//
 void __interrupt() ISR(void) {
+    
+    // ---- Interrupción del ADC ----
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        
+        __delay_ms(2); //Inicio de conversion ADC
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
+            
+        }
+    }
+
+}
     
 
 
@@ -79,12 +109,11 @@ void main(void) {
 //********************* CONFIGURACION PRINCIPAL ******************************//
 
 void setup(void) { //Configuración de puertos de entrada y salida
-    initOsc(0b00000110);
-    ANSEL = 0b00000001; //RA0 como analogico
+    initOsc(0b00000111); //8MHz
+    ANSEL = 0b00000011; //RA0 y RA1 como analogico
     ANSELH = 0; 
-    TRISA = 0b00000001; //potenciometro, como entrada
+    TRISA = 0b00000011; //potenciometros, como entrada
     PORTA = 0; 
-    TRISB = 0b00000011; // pussh, como entradas
     PORTB = 0;
     PORTC = 0;
     TRISC = 0; 
@@ -97,13 +126,12 @@ void setup(void) { //Configuración de puertos de entrada y salida
 //**************** **** CONFIGURACION INTERRUPCIONES *************************//
 
 void Config_INTERRUPT(void) {
-    TMR0 = 6; // Valor que se le agrega al TMR0 para que ocurra cada 1000ns
-    OPTION_REG = 0b10001000;
-    INTCON = 0b10101001;
-    IOCB = 0b00000011;
+    INTCON = 0b11000000;
     PIE1bits.ADIE = 1; // enables ADC interrupt
     PIR1bits.ADIF = 1;
     ADCON1 = 0b00000000;
-    ADCON0 = 0b01000001;
-    
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1
+      
 }
