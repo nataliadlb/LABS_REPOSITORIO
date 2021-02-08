@@ -2653,22 +2653,18 @@ void Lcd_Init(){
   Lcd_Cmd(0x030);
     _delay((unsigned long)((5)*(8000000/4000.0)));
   Lcd_Cmd(0x030);
-    _delay((unsigned long)((160)*(8000000/4000000.0)));
+    _delay((unsigned long)((11)*(8000000/4000.0)));
   Lcd_Cmd(0x030);
-    _delay((unsigned long)((160)*(8000000/4000000.0)));
-
-
-  Lcd_Cmd(0x030);
+  Lcd_Cmd(0x032);
   Lcd_Cmd(0x008);
   Lcd_Cmd(0x001);
-  Lcd_Cmd(0x00);
   Lcd_Cmd(0x006);
 }
 
 
 void Lcd_Port(char a){
     PORTD = a;
-# 74 "LCD.c"
+
 }
 
 void Lcd_Cmd(char a){
@@ -2707,7 +2703,7 @@ void Lcd_Set_Cursor(char a, char b){
 
 void Lcd_Write_Char(char a){
    Lcd_Port(a);
-# 126 "LCD.c"
+# 84 "LCD.c"
 }
 
 

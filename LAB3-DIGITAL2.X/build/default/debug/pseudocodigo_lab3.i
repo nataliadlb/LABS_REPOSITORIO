@@ -2706,51 +2706,54 @@ void ADC_Config (uint8_t AN_num);
 # 60 "pseudocodigo_lab3.c"
 int ADC_VALOR_1;
 int ADC_VALOR_2;
+unsigned int a;
+float S1_val;
+float S2_val;
+uint8_t S3_cont;
+unsigned int x;
 
 
 
 
 void setup(void);
 void Config_INTERRUPT(void);
+float bin_to_float(uint8_t ADC_VAL);
 
-
-
-
-void __attribute__((picinterrupt(("")))) ISR(void) {
-
-
-    if (PIR1bits.ADIF) {
-        PIR1bits.ADIF = 0;
-        ADC_Config (0);
-        _delay((unsigned long)((2)*(8000000/4000.0)));
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) {
-            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
-
-        }
-
-
-
-
-
-
-    }
-
-}
-
-
-
-
-
+void USART_Init_transmission(void);
+void USART_Init_reception(void);
+void Trasmission(void);
+void Receive(void);
+# 109 "pseudocodigo_lab3.c"
 void main(void) {
     setup();
-    Config_INTERRUPT();
+
+    Lcd_Init();
+    USART_Init_transmission();
+    USART_Init_reception();
 
 
 
 
     while (1) {
-        PORTB = ADC_VALOR_1;
+        S1_val = bin_to_float(ADC_VALOR_1);
+        S2_val = bin_to_float(ADC_VALOR_2);
+
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,2);
+        Lcd_Write_String("S1:");
+        Lcd_Set_Cursor(1,8);
+        Lcd_Write_String("S2:");
+        Lcd_Set_Cursor(1,13);
+        Lcd_Write_String("S3:");
+
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(S1_val);
+        Lcd_Set_Cursor(2,7);
+        Lcd_Write_Char(S2_val);
+        Lcd_Set_Cursor(2,13);
+        Lcd_Write_Char(S3_cont);
+        _delay((unsigned long)((2000)*(8000000/4000.0)));
+
     }
     return;
 }
@@ -2758,6 +2761,18 @@ void main(void) {
 
 
 
+float bin_to_float(uint8_t ADC_VAL){
+
+
+}
+
+void Trasmission(void){
+
+}
+
+void Receive(void){
+
+}
 
 
 
@@ -2783,8 +2798,19 @@ void Config_INTERRUPT(void) {
     INTCON = 0b11000000;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 1;
+}
 
 
+void USART_Init_transmission(void){
+    BRGH = 1;
+    TXEN = 1;
+    SYNC = 0;
+    SPEN = 1;
+}
 
+void USART_Init_reception(void){
+    SPEN =1;
+    CREN =1;
+    SREN = 1;
 
 }
