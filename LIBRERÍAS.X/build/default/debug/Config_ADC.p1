@@ -243,8 +243,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Config_ADC.c: 3: int VAL;
 [v _VAL `i ~T0 @X0 1 e ]
 "4
-[; ;Config_ADC.c: 4: uint8_t VAL_SWAP;
-[v _VAL_SWAP `uc ~T0 @X0 1 e ]
+[; ;Config_ADC.c: 4: int VAL_SWAP;
+[v _VAL_SWAP `i ~T0 @X0 1 e ]
 "5
 [; ;Config_ADC.c: 5: int VAL_NIBBLE1;
 [v _VAL_NIBBLE1 `i ~T0 @X0 1 e ]
@@ -271,15 +271,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 138 ]
 }
 "14
-[; ;Config_ADC.c: 14: uint8_t SWAP_ADC(uint8_t VAL_ADC){
-[v _SWAP_ADC `(uc ~T0 @X0 1 ef1`uc ]
+[; ;Config_ADC.c: 14: int SWAP_ADC(uint8_t VAL_ADC){
+[v _SWAP_ADC `(i ~T0 @X0 1 ef1`uc ]
 {
 [e :U _SWAP_ADC ]
 [v _VAL_ADC `uc ~T0 @X0 1 r1 ]
 [f ]
 "15
 [; ;Config_ADC.c: 15:     VAL_SWAP = (((VAL_ADC & 0x0F)<<4) | ((VAL_ADC & 0xF0)>>4));
-[e = _VAL_SWAP -> | << & -> _VAL_ADC `i -> 15 `i -> 4 `i >> & -> _VAL_ADC `i -> 240 `i -> 4 `i `uc ]
+[e = _VAL_SWAP | << & -> _VAL_ADC `i -> 15 `i -> 4 `i >> & -> _VAL_ADC `i -> 240 `i -> 4 `i ]
 "16
 [; ;Config_ADC.c: 16:     return VAL_SWAP;
 [e ) _VAL_SWAP ]
@@ -289,8 +289,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 139 ]
 }
 "19
-[; ;Config_ADC.c: 19: uint8_t NIBBLE1_ADC(uint8_t VAL_ADC){
-[v _NIBBLE1_ADC `(uc ~T0 @X0 1 ef1`uc ]
+[; ;Config_ADC.c: 19: int NIBBLE1_ADC(uint8_t VAL_ADC){
+[v _NIBBLE1_ADC `(i ~T0 @X0 1 ef1`uc ]
 {
 [e :U _NIBBLE1_ADC ]
 [v _VAL_ADC `uc ~T0 @X0 1 r1 ]
@@ -300,15 +300,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _VAL_NIBBLE1 & -> _VAL_ADC `i -> 15 `i ]
 "21
 [; ;Config_ADC.c: 21:     return VAL_NIBBLE1;
-[e ) -> _VAL_NIBBLE1 `uc ]
+[e ) _VAL_NIBBLE1 ]
 [e $UE 140  ]
 "22
 [; ;Config_ADC.c: 22: }
 [e :UE 140 ]
 }
 "24
-[; ;Config_ADC.c: 24: uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP){
-[v _NIBBLE2_ADC `(uc ~T0 @X0 1 ef1`uc ]
+[; ;Config_ADC.c: 24: int NIBBLE2_ADC(uint8_t VAL_SWAP){
+[v _NIBBLE2_ADC `(i ~T0 @X0 1 ef1`uc ]
 {
 [e :U _NIBBLE2_ADC ]
 [v _VAL_SWAP `uc ~T0 @X0 1 r1 ]
@@ -318,7 +318,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _VAL_NIBBLE2 & -> _VAL_SWAP `i -> 15 `i ]
 "26
 [; ;Config_ADC.c: 26:     return VAL_NIBBLE2;
-[e ) -> _VAL_NIBBLE2 `uc ]
+[e ) _VAL_NIBBLE2 ]
 [e $UE 141  ]
 "27
 [; ;Config_ADC.c: 27: }

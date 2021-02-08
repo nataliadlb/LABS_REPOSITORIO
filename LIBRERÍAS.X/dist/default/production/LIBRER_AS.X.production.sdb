@@ -14,30 +14,30 @@
 "9 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Config_ADC.c
 [v _ADC ADC `(i  1 e 2 0 ]
 "14
-[v _SWAP_ADC SWAP_ADC `(uc  1 e 1 0 ]
+[v _SWAP_ADC SWAP_ADC `(i  1 e 2 0 ]
 "19
-[v _NIBBLE1_ADC NIBBLE1_ADC `(uc  1 e 1 0 ]
+[v _NIBBLE1_ADC NIBBLE1_ADC `(i  1 e 2 0 ]
 "24
-[v _NIBBLE2_ADC NIBBLE2_ADC `(uc  1 e 1 0 ]
+[v _NIBBLE2_ADC NIBBLE2_ADC `(i  1 e 2 0 ]
 "5 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Display.c
 [v _display display `(uc  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
-"54 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
+"52 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"98
+"97
 [v _main main `(v  1 e 1 0 ]
-"116
+"114
 [v _TOGGLE_1 TOGGLE_1 `(v  1 e 1 0 ]
-"125
+"123
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
-"136
+"140
 [v _CONVERSION_ADC CONVERSION_ADC `(v  1 e 1 0 ]
-"145
+"147
 [v _Revision Revision `(v  1 e 1 0 ]
-"155
+"157
 [v _setup setup `(v  1 e 1 0 ]
-"171
+"173
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -63,14 +63,14 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S233 . 1 `uc 1 RE0 1 0 :1:0 
+[s S231 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S238 . 1 `S233 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES238  1 e 1 @9 ]
+[u S236 . 1 `S231 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES236  1 e 1 @9 ]
 "459
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
 [s S77 . 1 `uc 1 RBIF 1 0 :1:0 
@@ -178,40 +178,40 @@
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Config_ADC.c
 [v _VAL VAL `i  1 e 2 0 ]
 "4
-[v _VAL_SWAP VAL_SWAP `uc  1 e 1 0 ]
+[v _VAL_SWAP VAL_SWAP `i  1 e 2 0 ]
 "5
 [v _VAL_NIBBLE1 VAL_NIBBLE1 `i  1 e 2 0 ]
 "6
 [v _VAL_NIBBLE2 VAL_NIBBLE2 `i  1 e 2 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Display.c
 [v _Valor_hex Valor_hex `uc  1 e 1 0 ]
-"43 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
-[v _contador contador `ui  1 e 2 0 ]
-"44
+"41 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
+[v _contador contador `uc  1 e 1 0 ]
+"42
 [v _debouncing1 debouncing1 `uc  1 e 1 0 ]
-"45
+"43
 [v _debouncing2 debouncing2 `uc  1 e 1 0 ]
-"46
+"44
 [v _cont_timer cont_timer `uc  1 e 1 0 ]
-"47
+"45
 [v _toggle toggle `uc  1 e 1 0 ]
+"47
+[v _ADC_NIBBLE1 ADC_NIBBLE1 `i  1 e 2 0 ]
+"48
+[v _ADC_NIBBLE2 ADC_NIBBLE2 `i  1 e 2 0 ]
 "49
-[v _ADC_NIBBLE1 ADC_NIBBLE1 `ui  1 e 2 0 ]
+[v _ADC_VALOR ADC_VALOR `i  1 e 2 0 ]
 "50
-[v _ADC_NIBBLE2 ADC_NIBBLE2 `ui  1 e 2 0 ]
-"51
-[v _ADC_VALOR ADC_VALOR `ui  1 e 2 0 ]
-"52
-[v _ADC_SWAP ADC_SWAP `ui  1 e 2 0 ]
-"98
+[v _ADC_SWAP ADC_SWAP `i  1 e 2 0 ]
+"97
 [v _main main `(v  1 e 1 0 ]
 {
-"114
+"112
 } 0
-"155
+"157
 [v _setup setup `(v  1 e 1 0 ]
 {
-"169
+"171
 } 0
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -221,59 +221,59 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 2 ]
 "53
 } 0
-"116 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
+"114 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
 [v _TOGGLE_1 TOGGLE_1 `(v  1 e 1 0 ]
 {
-"123
+"121
 } 0
-"145
-[v _Revision Revision `(v  1 e 1 0 ]
-{
-"153
-} 0
-"171
+"173
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"181
+"183
 } 0
-"136
+"140
 [v _CONVERSION_ADC CONVERSION_ADC `(v  1 e 1 0 ]
 {
-"143
+"145
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Config_ADC.c
-[v _SWAP_ADC SWAP_ADC `(uc  1 e 1 0 ]
+[v _SWAP_ADC SWAP_ADC `(i  1 e 2 0 ]
 {
 [v SWAP_ADC@VAL_ADC VAL_ADC `uc  1 a 1 wreg ]
 [v SWAP_ADC@VAL_ADC VAL_ADC `uc  1 a 1 wreg ]
-[v SWAP_ADC@VAL_ADC VAL_ADC `uc  1 a 1 4 ]
+[v SWAP_ADC@VAL_ADC VAL_ADC `uc  1 a 1 7 ]
 "17
 } 0
 "24
-[v _NIBBLE2_ADC NIBBLE2_ADC `(uc  1 e 1 0 ]
+[v _NIBBLE2_ADC NIBBLE2_ADC `(i  1 e 2 0 ]
 {
 [v NIBBLE2_ADC@VAL_SWAP VAL_SWAP `uc  1 a 1 wreg ]
 [v NIBBLE2_ADC@VAL_SWAP VAL_SWAP `uc  1 a 1 wreg ]
-[v NIBBLE2_ADC@VAL_SWAP VAL_SWAP `uc  1 a 1 2 ]
+[v NIBBLE2_ADC@VAL_SWAP VAL_SWAP `uc  1 a 1 4 ]
 "27
 } 0
 "19
-[v _NIBBLE1_ADC NIBBLE1_ADC `(uc  1 e 1 0 ]
+[v _NIBBLE1_ADC NIBBLE1_ADC `(i  1 e 2 0 ]
 {
 [v NIBBLE1_ADC@VAL_ADC VAL_ADC `uc  1 a 1 wreg ]
 [v NIBBLE1_ADC@VAL_ADC VAL_ADC `uc  1 a 1 wreg ]
-[v NIBBLE1_ADC@VAL_ADC VAL_ADC `uc  1 a 1 2 ]
+[v NIBBLE1_ADC@VAL_ADC VAL_ADC `uc  1 a 1 4 ]
 "22
 } 0
-"54 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
+"52 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Prueba2_lab2.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"96
+"95
 } 0
-"125
+"147
+[v _Revision Revision `(v  1 e 1 0 ]
+{
+"155
+} 0
+"123
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
 {
-"134
+"138
 } 0
 "5 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LIBRERÍAS.X\Display.c
 [v _display display `(uc  1 e 1 0 ]

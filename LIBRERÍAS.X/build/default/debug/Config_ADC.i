@@ -2634,14 +2634,14 @@ typedef uint16_t uintptr_t;
 
 
 int ADC(uint8_t ADRESL_, uint8_t ADRESH_);
-uint8_t SWAP_ADC(uint8_t VAL_ADC);
-uint8_t NIBBLE1_ADC(uint8_t VAL_ADC);
-uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP);
+int SWAP_ADC(uint8_t VAL_ADC);
+int NIBBLE1_ADC(uint8_t VAL_ADC);
+int NIBBLE2_ADC(uint8_t VAL_SWAP);
 # 1 "Config_ADC.c" 2
 
 
 int VAL;
-uint8_t VAL_SWAP;
+int VAL_SWAP;
 int VAL_NIBBLE1;
 int VAL_NIBBLE2;
 
@@ -2651,17 +2651,17 @@ int ADC(uint8_t ADRESL_, uint8_t ADRESH_){
     return VAL;
 }
 
-uint8_t SWAP_ADC(uint8_t VAL_ADC){
+int SWAP_ADC(uint8_t VAL_ADC){
     VAL_SWAP = (((VAL_ADC & 0x0F)<<4) | ((VAL_ADC & 0xF0)>>4));
     return VAL_SWAP;
 }
 
-uint8_t NIBBLE1_ADC(uint8_t VAL_ADC){
+int NIBBLE1_ADC(uint8_t VAL_ADC){
     VAL_NIBBLE1 = (VAL_ADC & 15);
     return VAL_NIBBLE1;
 }
 
-uint8_t NIBBLE2_ADC(uint8_t VAL_SWAP){
+int NIBBLE2_ADC(uint8_t VAL_SWAP){
     VAL_NIBBLE2 = (VAL_SWAP & 15);
     return VAL_NIBBLE2;
 }

@@ -31,25 +31,23 @@
 
 #define _XTAL_FREQ 4000000 
 
-
 void setup(void); 
-void Config_INTERRUPT(void); 
-//void OSCILADOR(void); //
-void CONVERSION_ADC(void); //void CONVERSION_ADC(void);
+void Config_INTERRUPT(void);
+void CONVERSION_ADC(void); 
 void TOGGLE_1(void); 
-void DisplayADC(void); //void DisplayADC(void);
+void DisplayADC(void); 
 void Revision(void);
 
-uint16_t contador = 0; //Variable de incremento para contador 
+uint8_t contador = 0; //Variable de incremento para contador 
 uint8_t debouncing1 = 0; 
 uint8_t debouncing2 = 0; 
 uint8_t cont_timer = 0; 
 uint8_t toggle = 0; 
-unsigned int val_1; 
-unsigned int ADC_NIBBLE1; // unsigned int ADC_NIBBLE1;
-unsigned int ADC_NIBBLE2; //unsigned int ADC_NIBBLE2;
-unsigned int ADC_VALOR;
-unsigned int ADC_SWAP;
+int val_1; 
+int ADC_NIBBLE1; // unsigned int ADC_NIBBLE1;
+int ADC_NIBBLE2; //unsigned int ADC_NIBBLE2;
+int ADC_VALOR;
+int ADC_SWAP;
 
 void __interrupt() ISR(void) {
 
@@ -82,22 +80,22 @@ void __interrupt() ISR(void) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) { //Mientras el bit go sea distinto de cero entonces:
             ADC_VALOR = ADC(ADRESL, ADRESH);
-            //val_1 = ADRESH; //val_1
-            //PORTD = val_1;//val_1
+            Revision();
             DisplayADC();
         }
     }
 
     if (INTCONbits.TMR0IF == 1) { //Configuracion del timer 0 es base al ejemplo hecho en clase.
         INTCONbits.TMR0IF  = 0;
-        TMR0 = 4;
+        TMR0 = 6;
+        Revision();
         cont_timer++; //cont_timer++
+//        Revision();
     }
 }
 
 void main(void) {
     setup(); //Configuracion de puertos de entrada y salida
-    //OSCILADOR(); //initOsc(0b00000111); //OSCCON = 0b01100001;
     Config_INTERRUPT(); //Configuracion de la interrupcion del puerto B
 
     
@@ -107,10 +105,10 @@ void main(void) {
             TOGGLE_1();
         }
         CONVERSION_ADC(); //Separacion de Nibbles
-        Revision();
+//        Revision();
     }
 
-    //return;
+    return;
 }
 
 void TOGGLE_1(void) {
@@ -125,11 +123,17 @@ void TOGGLE_1(void) {
 void DisplayADC(void) {
     PORTE = 0;
     if (toggle == 0) {
-        PORTD = display(ADC_NIBBLE2);
         PORTEbits.RE1 = 1;
+        PORTD = display(ADC_NIBBLE2);
+        
+        //__delay_ms(1);
+        //PORTEbits.RE2 = 0;
     } else if (toggle == 1) {
-        PORTD = display(ADC_NIBBLE1);
         PORTEbits.RE2 = 1;
+        PORTD = display(ADC_NIBBLE1);
+        
+        //__delay_ms(1);
+        //PORTEbits.RE1 = 0;
     }
 }
 
@@ -137,23 +141,21 @@ void CONVERSION_ADC(void) { //CONFIGURACION DE SEPARACION DE NIBBLES en base a e
     ADC_SWAP = SWAP_ADC(ADC_VALOR); // swap de los nibbles
     ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR); // AND con 0b00001111 para dejar 
     ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP); 
-    
-//    ADC_NIBBLE1 = (0b11110000 & val_1) >> 4;
-//    ADC_NIBBLE2 = (0b00001111 & val_1) << 4;
+
 }
 
 void Revision(void){
-    if (val_1 > contador) {
+    if (ADC_VALOR >= contador) {
             PORTEbits.RE0 = 1;
 
         }
-        else if (val_1 < contador) {
+    else if (ADC_VALOR < contador){
             PORTEbits.RE0 = 0;
         }
 }
 
 void setup(void) { //Configuraci?n de puertos de entrada y salida
-    initOsc(0b00000111);
+    initOsc(0b00000110);
     ANSEL = 0b00000001; //Salida
     ANSELH = 0; //Se utiliza ?nicamente el canal AN0
     TRISA = 0b00000001; //Salida.
@@ -169,8 +171,8 @@ void setup(void) { //Configuraci?n de puertos de entrada y salida
 }
 
 void Config_INTERRUPT(void) {
-    TMR0 = 4;
-    OPTION_REG = 0b10000001;
+    TMR0 = 6;
+    OPTION_REG = 0b10001000;
     INTCON = 0b10101001;
     IOCB = 0b00000011;
     PIE1bits.ADIE = 1; // enables ADC interrupt
