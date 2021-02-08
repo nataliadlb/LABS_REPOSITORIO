@@ -59,13 +59,23 @@
 //****************************************************************************//
 int ADC_VALOR_1;
 int ADC_VALOR_2;
+unsigned int a;
+float S1_val;
+float S2_val;
+uint8_t S3_cont;
+unsigned int x;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void); 
 void Config_INTERRUPT(void);
-
+float bin_to_float(uint8_t ADC_VAL); //funcion para convertir el valor de la 
+                                     //conversion ADC en decimales
+void USART_Init_transmission(void); // Config Trasmision //char y const long int
+void USART_Init_reception(void);// Config recepcion de datos
+void Trasmission(void)// funcion para constantemente mandar los valores ADC
+void Receive(void); //funcion para constantemente recibir datos de la compu
 //****************************************************************************//
 //INTERRUPCIONES                                                              //
 //****************************************************************************//
@@ -100,12 +110,33 @@ void __interrupt() ISR(void) {
 void main(void) {
     setup(); //Configuracion de puertos de entrada y salida
     Config_INTERRUPT(); //Configuracion de la interrupcion del puerto B
-
+    Lcd_Init();
+    USART_Init_transmission();
+    USART_Init_reception();
+    
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-//        PORTB = ADC_VALOR_1;
+        S1_val = bin_to_float(ADC_VALOR_1);
+        S2_val = bin_to_float(ADC_VALOR_2);
+        //nombres S1, S2 y S3
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,2);
+        Lcd_Write_String("S1:");
+        Lcd_Set_Cursor(1,8);
+        Lcd_Write_String("S2:");
+        Lcd_Set_Cursor(1,13);
+        Lcd_Write_String("S3:");
+        //Valores de S1 y S2
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(S1_val);
+        Lcd_Set_Cursor(2,7);
+        Lcd_Write_Char(S2_val);
+        Lcd_Set_Cursor(2,13);
+        Lcd_Write_Char(S3_cont);
+        __delay_ms(2000);
+
     }
     return;
 }
@@ -113,6 +144,18 @@ void main(void) {
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
+float bin_to_float(uint8_t ADC_VAL){
+//convertir cada valor de la conversion ADC (cada POT) y parasrlo a decimal para
+    //poder desplegarlo en la LCD
+}
+
+void Trasmission(void){
+    //trasmitir los valores de la conversion ADC a la computadora
+}
+
+void Receive(void){
+    //Recibir el valor del contador, cada vez que se presione + o -
+}
 
 //********************* CONFIGURACION PRINCIPAL ******************************//
 
@@ -142,4 +185,19 @@ void Config_INTERRUPT(void) {
 //    ADCON0bits.ADCS1 = 0;
 //    ADCON0bits.ADCS0 = 1;
 //    ADCON0bits.ADON = 1;   
+}
+
+//********************* CONFIGURACION COM SERIAL *****************************//
+void USART_Init_transmission(void){
+    BRGH = 1;
+    TXEN = 1;
+    SYNC = 0;
+    SPEN = 1;
+}
+
+void USART_Init_reception(void){
+    SPEN =1;
+    CREN =1;
+    SREN = 1;
+    
 }
