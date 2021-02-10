@@ -288,11 +288,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCD.c: 22:   Lcd_Cmd(0x038);
 [e ( _Lcd_Cmd (1 -> -> 56 `i `uc ]
 "23
-[; ;LCD.c: 23:   Lcd_Cmd(0x008);
-[e ( _Lcd_Cmd (1 -> -> 8 `i `uc ]
-"24
-[; ;LCD.c: 24:   Lcd_Cmd(0x001);
-[e ( _Lcd_Cmd (1 -> -> 1 `i `uc ]
+[; ;LCD.c: 23:   Lcd_Cmd(0x00C);
+[e ( _Lcd_Cmd (1 -> -> 12 `i `uc ]
 "25
 [; ;LCD.c: 25:   Lcd_Cmd(0x006);
 [e ( _Lcd_Cmd (1 -> -> 6 `i `uc ]

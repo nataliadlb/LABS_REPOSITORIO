@@ -326,7 +326,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30
 [p x CPD  =  OFF         ]
 "31
-[p x BOREN  =  OFF       ]
+[p x BOREN  =  ON       ]
 "32
 [p x IESO  =  OFF        ]
 "33

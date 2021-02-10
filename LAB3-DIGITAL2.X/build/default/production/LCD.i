@@ -2656,8 +2656,8 @@ void Lcd_Init(){
     _delay((unsigned long)((11)*(8000000/4000.0)));
   Lcd_Cmd(0x030);
   Lcd_Cmd(0x038);
-  Lcd_Cmd(0x008);
-  Lcd_Cmd(0x001);
+  Lcd_Cmd(0x00C);
+
   Lcd_Cmd(0x006);
 }
 
