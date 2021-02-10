@@ -77,10 +77,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1238
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
-"64 Lab2-programa.c
-[; ;Lab2-programa.c: 64: void Revision(void);
-[v _Revision `(v ~T0 @X0 0 ef ]
-"63
+"63 Lab2-programa.c
 [; ;Lab2-programa.c: 63: void DisplayADC(void);
 [v _DisplayADC `(v ~T0 @X0 0 ef ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
@@ -110,6 +107,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "61
 [; ;Lab2-programa.c: 61: void CONVERSION_ADC(void);
 [v _CONVERSION_ADC `(v ~T0 @X0 0 ef ]
+"64
+[; ;Lab2-programa.c: 64: void Revision(void);
+[v _Revision `(v ~T0 @X0 0 ef ]
 "414 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 414: extern volatile unsigned char PORTE __attribute__((address(0x009)));
 [v _PORTE `Vuc ~T0 @X0 0 e@9 ]
@@ -580,289 +580,286 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Lab2-programa.c: 101:             ADC_VALOR = ADC(ADRESL, ADRESH);
 [e = _ADC_VALOR ( _ADC (2 , _ADRESL _ADRESH ]
 "102
-[; ;Lab2-programa.c: 102:             Revision();
-[e ( _Revision ..  ]
-"103
-[; ;Lab2-programa.c: 103:             DisplayADC();
+[; ;Lab2-programa.c: 102:             DisplayADC();
 [e ( _DisplayADC ..  ]
-"104
-[; ;Lab2-programa.c: 104:         }
+"103
+[; ;Lab2-programa.c: 103:         }
 }
 [e :U 145 ]
 "100
 [; ;Lab2-programa.c: 100:         while (ADCON0bits.GO != 0) {
 [e $ != -> . . _ADCON0bits 1 1 `i -> 0 `i 146  ]
 [e :U 147 ]
-"105
-[; ;Lab2-programa.c: 105:     }
+"104
+[; ;Lab2-programa.c: 104:     }
 }
 [e :U 144 ]
-"108
-[; ;Lab2-programa.c: 108:     if (INTCONbits.TMR0IF == 1) {
+"107
+[; ;Lab2-programa.c: 107:     if (INTCONbits.TMR0IF == 1) {
 [e $ ! == -> . . _INTCONbits 1 1 `i -> 1 `i 148  ]
 {
-"109
-[; ;Lab2-programa.c: 109:         INTCONbits.TMR0IF = 0;
+"108
+[; ;Lab2-programa.c: 108:         INTCONbits.TMR0IF = 0;
 [e = . . _INTCONbits 1 1 -> -> 0 `i `uc ]
+"109
+[; ;Lab2-programa.c: 109:         TMR0 = 4;
+[e = _TMR0 -> -> 4 `i `uc ]
 "110
-[; ;Lab2-programa.c: 110:         TMR0 = 6;
-[e = _TMR0 -> -> 6 `i `uc ]
-"111
-[; ;Lab2-programa.c: 111:         Revision();
-[e ( _Revision ..  ]
-"112
-[; ;Lab2-programa.c: 112:         TOGGLE_1();
+[; ;Lab2-programa.c: 110:         TOGGLE_1();
 [e ( _TOGGLE_1 ..  ]
-"113
-[; ;Lab2-programa.c: 113:     }
+"111
+[; ;Lab2-programa.c: 111:     }
 }
 [e :U 148 ]
-"114
-[; ;Lab2-programa.c: 114: }
+"112
+[; ;Lab2-programa.c: 112: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"119
-[; ;Lab2-programa.c: 119: void main(void) {
+"117
+[; ;Lab2-programa.c: 117: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"120
-[; ;Lab2-programa.c: 120:     PORTEbits.RE0 = 0;
+"118
+[; ;Lab2-programa.c: 118:     PORTEbits.RE0 = 0;
 [e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-"121
-[; ;Lab2-programa.c: 121:     setup();
+"119
+[; ;Lab2-programa.c: 119:     setup();
 [e ( _setup ..  ]
-"122
-[; ;Lab2-programa.c: 122:     Config_INTERRUPT();
+"120
+[; ;Lab2-programa.c: 120:     Config_INTERRUPT();
 [e ( _Config_INTERRUPT ..  ]
-"127
-[; ;Lab2-programa.c: 127:     while (1) {
+"125
+[; ;Lab2-programa.c: 125:     while (1) {
 [e :U 151 ]
 {
-"128
-[; ;Lab2-programa.c: 128:         CONVERSION_ADC();
+"126
+[; ;Lab2-programa.c: 126:         CONVERSION_ADC();
 [e ( _CONVERSION_ADC ..  ]
-"129
-[; ;Lab2-programa.c: 129:     }
+"127
+[; ;Lab2-programa.c: 127:         Revision();
+[e ( _Revision ..  ]
+"128
+[; ;Lab2-programa.c: 128:     }
 }
 [e :U 150 ]
 [e $U 151  ]
 [e :U 152 ]
-"130
-[; ;Lab2-programa.c: 130:     return;
+"129
+[; ;Lab2-programa.c: 129:     return;
 [e $UE 149  ]
-"131
-[; ;Lab2-programa.c: 131: }
+"130
+[; ;Lab2-programa.c: 130: }
 [e :UE 149 ]
 }
-"137
-[; ;Lab2-programa.c: 137: void TOGGLE_1(void) {
+"136
+[; ;Lab2-programa.c: 136: void TOGGLE_1(void) {
 [v _TOGGLE_1 `(v ~T0 @X0 1 ef ]
 {
 [e :U _TOGGLE_1 ]
 [f ]
-"138
-[; ;Lab2-programa.c: 138:     if (toggle == 1) {
+"137
+[; ;Lab2-programa.c: 137:     if (toggle == 1) {
 [e $ ! == -> _toggle `i -> 1 `i 154  ]
 {
-"139
-[; ;Lab2-programa.c: 139:         toggle = 0;
+"138
+[; ;Lab2-programa.c: 138:         toggle = 0;
 [e = _toggle -> -> 0 `i `uc ]
-"140
-[; ;Lab2-programa.c: 140:     } else if (toggle == 0) {
+"139
+[; ;Lab2-programa.c: 139:     } else if (toggle == 0) {
 }
 [e $U 155  ]
 [e :U 154 ]
 [e $ ! == -> _toggle `i -> 0 `i 156  ]
 {
-"141
-[; ;Lab2-programa.c: 141:         toggle = 1;
+"140
+[; ;Lab2-programa.c: 140:         toggle = 1;
 [e = _toggle -> -> 1 `i `uc ]
-"142
-[; ;Lab2-programa.c: 142:     }
+"141
+[; ;Lab2-programa.c: 141:     }
 }
 [e :U 156 ]
 [e :U 155 ]
-"143
-[; ;Lab2-programa.c: 143: }
+"142
+[; ;Lab2-programa.c: 142: }
 [e :UE 153 ]
 }
-"145
-[; ;Lab2-programa.c: 145: void DisplayADC(void) {
+"144
+[; ;Lab2-programa.c: 144: void DisplayADC(void) {
 [v _DisplayADC `(v ~T0 @X0 1 ef ]
 {
 [e :U _DisplayADC ]
 [f ]
-"146
-[; ;Lab2-programa.c: 146:     PORTE = 0;
+"145
+[; ;Lab2-programa.c: 145:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"147
-[; ;Lab2-programa.c: 147:     if (toggle == 0) {
+"146
+[; ;Lab2-programa.c: 146:     if (toggle == 0) {
 [e $ ! == -> _toggle `i -> 0 `i 158  ]
 {
-"148
-[; ;Lab2-programa.c: 148:         PORTEbits.RE1 = 1;
+"147
+[; ;Lab2-programa.c: 147:         PORTEbits.RE1 = 1;
 [e = . . _PORTEbits 0 1 -> -> 1 `i `uc ]
-"149
-[; ;Lab2-programa.c: 149:         PORTD = display(ADC_NIBBLE2);
+"148
+[; ;Lab2-programa.c: 148:         PORTD = display(ADC_NIBBLE2);
 [e = _PORTD ( _display (1 -> _ADC_NIBBLE2 `uc ]
-"150
-[; ;Lab2-programa.c: 150:     } else if (toggle == 1) {
+"149
+[; ;Lab2-programa.c: 149:     } else if (toggle == 1) {
 }
 [e $U 159  ]
 [e :U 158 ]
 [e $ ! == -> _toggle `i -> 1 `i 160  ]
 {
-"151
-[; ;Lab2-programa.c: 151:         PORTEbits.RE2 = 1;
+"150
+[; ;Lab2-programa.c: 150:         PORTEbits.RE2 = 1;
 [e = . . _PORTEbits 0 2 -> -> 1 `i `uc ]
-"152
-[; ;Lab2-programa.c: 152:         PORTD = display(ADC_NIBBLE1);
+"151
+[; ;Lab2-programa.c: 151:         PORTD = display(ADC_NIBBLE1);
 [e = _PORTD ( _display (1 -> _ADC_NIBBLE1 `uc ]
-"153
-[; ;Lab2-programa.c: 153:     }
+"152
+[; ;Lab2-programa.c: 152:     }
 }
 [e :U 160 ]
 [e :U 159 ]
-"154
-[; ;Lab2-programa.c: 154: }
+"153
+[; ;Lab2-programa.c: 153: }
 [e :UE 157 ]
 }
-"156
-[; ;Lab2-programa.c: 156: void CONVERSION_ADC(void) {
+"155
+[; ;Lab2-programa.c: 155: void CONVERSION_ADC(void) {
 [v _CONVERSION_ADC `(v ~T0 @X0 1 ef ]
 {
 [e :U _CONVERSION_ADC ]
 [f ]
-"157
-[; ;Lab2-programa.c: 157:     ADC_SWAP = SWAP_ADC(ADC_VALOR);
+"156
+[; ;Lab2-programa.c: 156:     ADC_SWAP = SWAP_ADC(ADC_VALOR);
 [e = _ADC_SWAP ( _SWAP_ADC (1 -> _ADC_VALOR `uc ]
-"159
-[; ;Lab2-programa.c: 159:     ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
+"158
+[; ;Lab2-programa.c: 158:     ADC_NIBBLE1 = NIBBLE1_ADC(ADC_VALOR);
 [e = _ADC_NIBBLE1 ( _NIBBLE1_ADC (1 -> _ADC_VALOR `uc ]
-"160
-[; ;Lab2-programa.c: 160:     ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
+"159
+[; ;Lab2-programa.c: 159:     ADC_NIBBLE2 = NIBBLE2_ADC(ADC_SWAP);
 [e = _ADC_NIBBLE2 ( _NIBBLE2_ADC (1 -> _ADC_SWAP `uc ]
-"162
-[; ;Lab2-programa.c: 162: }
+"161
+[; ;Lab2-programa.c: 161: }
 [e :UE 161 ]
 }
-"164
-[; ;Lab2-programa.c: 164: void Revision(void){
+"163
+[; ;Lab2-programa.c: 163: void Revision(void){
 [v _Revision `(v ~T0 @X0 1 ef ]
 {
 [e :U _Revision ]
 [f ]
-"165
-[; ;Lab2-programa.c: 165:     if (ADC_VALOR > contador) {
+"164
+[; ;Lab2-programa.c: 164:     if (ADC_VALOR > contador) {
 [e $ ! > _ADC_VALOR -> _contador `i 163  ]
 {
-"166
-[; ;Lab2-programa.c: 166:             PORTEbits.RE0 = 1;
+"165
+[; ;Lab2-programa.c: 165:             PORTEbits.RE0 = 1;
 [e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
-"168
-[; ;Lab2-programa.c: 168:         }
+"166
+[; ;Lab2-programa.c: 166:         }
 }
 [e $U 164  ]
-"169
-[; ;Lab2-programa.c: 169:     else if (ADC_VALOR < contador){
+"167
+[; ;Lab2-programa.c: 167:     else if (ADC_VALOR < contador){
 [e :U 163 ]
 [e $ ! < _ADC_VALOR -> _contador `i 165  ]
 {
-"170
-[; ;Lab2-programa.c: 170:             PORTEbits.RE0 = 0;
+"168
+[; ;Lab2-programa.c: 168:             PORTEbits.RE0 = 0;
 [e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-"171
-[; ;Lab2-programa.c: 171:         }
+"169
+[; ;Lab2-programa.c: 169:         }
 }
 [e :U 165 ]
 [e :U 164 ]
-"172
-[; ;Lab2-programa.c: 172: }
+"170
+[; ;Lab2-programa.c: 170: }
 [e :UE 162 ]
 }
-"176
-[; ;Lab2-programa.c: 176: void setup(void) {
+"174
+[; ;Lab2-programa.c: 174: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"177
-[; ;Lab2-programa.c: 177:     initOsc(0b00000110);
+"175
+[; ;Lab2-programa.c: 175:     initOsc(0b00000110);
 [e ( _initOsc (1 -> -> 6 `i `uc ]
-"178
-[; ;Lab2-programa.c: 178:     ANSEL = 0b00000001;
+"176
+[; ;Lab2-programa.c: 176:     ANSEL = 0b00000001;
 [e = _ANSEL -> -> 1 `i `uc ]
-"179
-[; ;Lab2-programa.c: 179:     ANSELH = 0;
+"177
+[; ;Lab2-programa.c: 177:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"180
-[; ;Lab2-programa.c: 180:     TRISA = 0b00000001;
+"178
+[; ;Lab2-programa.c: 178:     TRISA = 0b00000001;
 [e = _TRISA -> -> 1 `i `uc ]
-"181
-[; ;Lab2-programa.c: 181:     PORTA = 0;
+"179
+[; ;Lab2-programa.c: 179:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"182
-[; ;Lab2-programa.c: 182:     TRISB = 0b00000011;
+"180
+[; ;Lab2-programa.c: 180:     TRISB = 0b00000011;
 [e = _TRISB -> -> 3 `i `uc ]
-"183
-[; ;Lab2-programa.c: 183:     PORTB = 0;
+"181
+[; ;Lab2-programa.c: 181:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"184
-[; ;Lab2-programa.c: 184:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
-"185
-[; ;Lab2-programa.c: 185:     TRISC = 0;
+"182
+[; ;Lab2-programa.c: 182:     TRISC = 0;
 [e = _TRISC -> -> 0 `i `uc ]
-"186
-[; ;Lab2-programa.c: 186:     TRISD = 0;
+"183
+[; ;Lab2-programa.c: 183:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
+"184
+[; ;Lab2-programa.c: 184:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
-"187
-[; ;Lab2-programa.c: 187:     PORTD = 0;
+"185
+[; ;Lab2-programa.c: 185:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"188
-[; ;Lab2-programa.c: 188:     TRISE = 0;
+"186
+[; ;Lab2-programa.c: 186:     TRISE = 0;
 [e = _TRISE -> -> 0 `i `uc ]
-"189
-[; ;Lab2-programa.c: 189:     PORTE = 0;
+"187
+[; ;Lab2-programa.c: 187:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"190
-[; ;Lab2-programa.c: 190: }
+"188
+[; ;Lab2-programa.c: 188: }
 [e :UE 166 ]
 }
-"194
-[; ;Lab2-programa.c: 194: void Config_INTERRUPT(void) {
+"192
+[; ;Lab2-programa.c: 192: void Config_INTERRUPT(void) {
 [v _Config_INTERRUPT `(v ~T0 @X0 1 ef ]
 {
 [e :U _Config_INTERRUPT ]
 [f ]
-"195
-[; ;Lab2-programa.c: 195:     TMR0 = 6;
-[e = _TMR0 -> -> 6 `i `uc ]
-"196
-[; ;Lab2-programa.c: 196:     OPTION_REG = 0b10001000;
+"193
+[; ;Lab2-programa.c: 193:     TMR0 = 4;
+[e = _TMR0 -> -> 4 `i `uc ]
+"194
+[; ;Lab2-programa.c: 194:     OPTION_REG = 0b10001000;
 [e = _OPTION_REG -> -> 136 `i `uc ]
-"197
-[; ;Lab2-programa.c: 197:     INTCON = 0b10101001;
+"195
+[; ;Lab2-programa.c: 195:     INTCON = 0b10101001;
 [e = _INTCON -> -> 169 `i `uc ]
-"198
-[; ;Lab2-programa.c: 198:     IOCB = 0b00000011;
+"196
+[; ;Lab2-programa.c: 196:     IOCB = 0b00000011;
 [e = _IOCB -> -> 3 `i `uc ]
-"199
-[; ;Lab2-programa.c: 199:     PIE1bits.ADIE = 1;
+"197
+[; ;Lab2-programa.c: 197:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"200
-[; ;Lab2-programa.c: 200:     PIR1bits.ADIF = 1;
+"198
+[; ;Lab2-programa.c: 198:     PIR1bits.ADIF = 1;
 [e = . . _PIR1bits 0 6 -> -> 1 `i `uc ]
-"201
-[; ;Lab2-programa.c: 201:     ADCON1 = 0b00000000;
+"199
+[; ;Lab2-programa.c: 199:     ADCON1 = 0b00000000;
 [e = _ADCON1 -> -> 0 `i `uc ]
-"202
-[; ;Lab2-programa.c: 202:     ADCON0 = 0b01000001;
+"200
+[; ;Lab2-programa.c: 200:     ADCON0 = 0b01000001;
 [e = _ADCON0 -> -> 65 `i `uc ]
-"204
-[; ;Lab2-programa.c: 204: }
+"202
+[; ;Lab2-programa.c: 202: }
 [e :UE 167 ]
 }

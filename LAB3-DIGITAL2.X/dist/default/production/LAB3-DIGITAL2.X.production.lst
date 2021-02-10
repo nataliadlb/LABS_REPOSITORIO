@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Mon Feb 08 13:28:47 2021
+                                                                                               Wed Feb 10 08:17:04 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -1689,7 +1689,8 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1674                           
   1675                           ;Config register CONFIG1 @ 0x2007
   1676                           ;	Oscillator Selection bits
-  1677                           ;	FOSC = XT, XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN
+  1677                           ;	FOSC = HS, HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1
+      +                          /CLKIN
   1678                           ;	Watchdog Timer Enable bit
   1679                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
   1680                           ;	Power-up Timer Enable bit
@@ -1711,7 +1712,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1696                           ;	In-Circuit Debugger Mode bit
   1697                           ;	DEBUG = 0x1, unprogrammed default
   1698  2007                     	org	8199
-  1699  2007  20D1               	dw	8401
+  1699  2007  20D2               	dw	8402
   1700                           
   1701                           ;Config register CONFIG2 @ 0x2008
   1702                           ;	Brown-out Reset Selection bit
@@ -1867,7 +1868,7 @@ DATA                 0      0      19      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Mon Feb 08 13:28:47 2021
+Symbol Table                                                                                   Wed Feb 10 08:17:04 2021
 
                         _a 007C                          _x 0028                          pc 0002  
                        l63 06B6                         l80 07BA                         l72 0790  

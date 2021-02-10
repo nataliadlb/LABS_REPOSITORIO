@@ -314,7 +314,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "25 pseudocodigo_lab3.c
-[p x FOSC  =  XT ]
+[p x FOSC  =  HS ]
 "26
 [p x WDTE  =  OFF        ]
 "27

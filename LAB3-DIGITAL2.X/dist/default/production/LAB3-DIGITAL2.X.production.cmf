@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\cnata\AppData\Local\Temp\smns.o
+$C:\Users\cnata\AppData\Local\Temp\sh7c.o
 end_init CODE 0 0 0 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -77,29 +77,29 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\LAB3-DIGITAL2.X.production.o
-7EA cinit CODE >990:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EA cinit CODE >993:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EA cinit CODE >1031:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EB cinit CODE >1032:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EC cinit CODE >1033:C:\Users\cnata\AppData\Local\Temp\smns.s
-7ED cinit CODE >1034:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EE cinit CODE >1037:C:\Users\cnata\AppData\Local\Temp\smns.s
-7EF cinit CODE >1038:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F0 cinit CODE >1039:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F1 cinit CODE >1040:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F2 cinit CODE >1041:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F3 cinit CODE >1042:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F4 cinit CODE >1043:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F5 cinit CODE >1044:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F6 cinit CODE >1045:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F7 cinit CODE >1046:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F8 cinit CODE >1047:C:\Users\cnata\AppData\Local\Temp\smns.s
-7F9 cinit CODE >1048:C:\Users\cnata\AppData\Local\Temp\smns.s
-7FA cinit CODE >1049:C:\Users\cnata\AppData\Local\Temp\smns.s
-7FB cinit CODE >1050:C:\Users\cnata\AppData\Local\Temp\smns.s
-7FC cinit CODE >1056:C:\Users\cnata\AppData\Local\Temp\smns.s
-7FC cinit CODE >1058:C:\Users\cnata\AppData\Local\Temp\smns.s
-7FD cinit CODE >1059:C:\Users\cnata\AppData\Local\Temp\smns.s
+7EA cinit CODE >990:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EA cinit CODE >993:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EA cinit CODE >1031:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EB cinit CODE >1032:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EC cinit CODE >1033:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7ED cinit CODE >1034:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EE cinit CODE >1037:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7EF cinit CODE >1038:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F0 cinit CODE >1039:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F1 cinit CODE >1040:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F2 cinit CODE >1041:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F3 cinit CODE >1042:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F4 cinit CODE >1043:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F5 cinit CODE >1044:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F6 cinit CODE >1045:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F7 cinit CODE >1046:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F8 cinit CODE >1047:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7F9 cinit CODE >1048:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7FA cinit CODE >1049:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7FB cinit CODE >1050:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7FC cinit CODE >1056:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7FC cinit CODE >1058:C:\Users\cnata\AppData\Local\Temp\sh7c.s
+7FD cinit CODE >1059:C:\Users\cnata\AppData\Local\Temp\sh7c.s
 659 text9 CODE >29:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 65A text9 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 65E text9 CODE >71:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
@@ -246,21 +246,21 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __end_of_Lcd_Init F1C 0 CODE 0 text6 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_Lcd_Port CBE 0 CODE 0 text9 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\smns.o
+___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\sh7c.o
 _main E00 0 CODE 0 maintext dist/default/production\LAB3-DIGITAL2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 _Lcd_Write_Char CD8 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
-start 0 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\smns.o
+start 0 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\sh7c.o
 __size_of_main 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Port@a 70 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smns.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sh7c.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -275,15 +275,15 @@ _ANSELH 189 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_initOsc 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 _INTCON B 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\smns.o
-___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\smns.o
+___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\sh7c.o
+___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\sh7c.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Set_Cursor@temp 77 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 start_initialization FD4 0 CODE 0 cinit dist/default/production\LAB3-DIGITAL2.X.production.o
 _Lcd_Write_String DB6 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_Lcd_Cmd 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_initOsc FD4 0 CODE 0 text2 dist/default/production\LAB3-DIGITAL2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\smns.o
+___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\sh7c.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -330,7 +330,7 @@ __size_of_Lcd_Write_String 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.p
 __stringtab 6 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Write_String@a 75 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Write_String@i 73 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\smns.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\sh7c.o
 __size_of_Lcd_Clear 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 initOsc@IRCF 72 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_Lcd_Cmd D38 0 CODE 0 text8 dist/default/production\LAB3-DIGITAL2.X.production.o

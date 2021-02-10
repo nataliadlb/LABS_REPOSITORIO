@@ -2689,7 +2689,7 @@ void ADC_Config (uint8_t AN_num);
 
 
 
-#pragma config FOSC = XT
+#pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF

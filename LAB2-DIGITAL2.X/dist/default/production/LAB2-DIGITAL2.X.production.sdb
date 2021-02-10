@@ -23,19 +23,19 @@
 [v _display display `(uc  1 e 1 0 ]
 "69 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Lab2-programa.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"119
+"117
 [v _main main `(v  1 e 1 0 ]
-"137
+"136
 [v _TOGGLE_1 TOGGLE_1 `(v  1 e 1 0 ]
-"145
+"144
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
-"156
+"155
 [v _CONVERSION_ADC CONVERSION_ADC `(v  1 e 1 0 ]
-"164
+"163
 [v _Revision Revision `(v  1 e 1 0 ]
-"176
+"174
 [v _setup setup `(v  1 e 1 0 ]
-"194
+"192
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -63,14 +63,14 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S218 . 1 `uc 1 RE0 1 0 :1:0 
+[s S214 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S223 . 1 `S218 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES223  1 e 1 @9 ]
+[u S219 . 1 `S214 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES219  1 e 1 @9 ]
 "459
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
 [s S77 . 1 `uc 1 RBIF 1 0 :1:0 
@@ -201,15 +201,15 @@
 [v _ADC_VALOR ADC_VALOR `i  1 e 2 0 ]
 "54
 [v _ADC_SWAP ADC_SWAP `i  1 e 2 0 ]
-"119
+"117
 [v _main main `(v  1 e 1 0 ]
 {
-"131
+"130
 } 0
-"176
+"174
 [v _setup setup `(v  1 e 1 0 ]
 {
-"190
+"188
 } 0
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -219,15 +219,20 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 2 ]
 "53
 } 0
-"194 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Lab2-programa.c
+"163 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Lab2-programa.c
+[v _Revision Revision `(v  1 e 1 0 ]
+{
+"170
+} 0
+"192
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"204
+"202
 } 0
-"156
+"155
 [v _CONVERSION_ADC CONVERSION_ADC `(v  1 e 1 0 ]
 {
-"162
+"161
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Config_ADC.c
 [v _SWAP_ADC SWAP_ADC `(i  1 e 2 0 ]
@@ -256,22 +261,17 @@
 "69 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Lab2-programa.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"114
+"112
 } 0
-"137
+"136
 [v _TOGGLE_1 TOGGLE_1 `(v  1 e 1 0 ]
 {
-"143
+"142
 } 0
-"164
-[v _Revision Revision `(v  1 e 1 0 ]
-{
-"172
-} 0
-"145
+"144
 [v _DisplayADC DisplayADC `(v  1 e 1 0 ]
 {
-"154
+"153
 } 0
 "5 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB2-DIGITAL2.X\Display.c
 [v _display display `(uc  1 e 1 0 ]

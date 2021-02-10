@@ -47,11 +47,11 @@
 uint8_t contador = 0; //Variable de incremento para contador 
 uint8_t debouncing1 = 0; //Variable que controla debouncing de un push
 uint8_t debouncing2 = 0; //Variable que controla debouncing del otro push
-uint8_t toggle = 0; 
-int ADC_NIBBLE1; 
-int ADC_NIBBLE2; 
-int ADC_VALOR;
-int ADC_SWAP;
+uint8_t toggle = 0; //variable de toggl para cambiar transistor
+int ADC_NIBBLE1;  //nibble de conversion ADC
+int ADC_NIBBLE2; // El otro nibble
+int ADC_VALOR;  // valor completo del ADC
+int ADC_SWAP;  // swap de los nibbles del ADC, para mostrarlos en display
 
 //****************************************************************************//
 //PROTOTIPOs DE FUNCIONES                                                     //
@@ -99,16 +99,14 @@ void __interrupt() ISR(void) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
             ADC_VALOR = ADC(ADRESL, ADRESH);
-            Revision(); //revisar si el valor del ADC es mayor al contador
-            DisplayADC();
+            DisplayADC();// se muestra en el PORTD
         }
     }
 
     // ---- Interrupción del TMR0 ----
     if (INTCONbits.TMR0IF == 1) { 
         INTCONbits.TMR0IF  = 0;
-        TMR0 = 6; //valor que se le agrega para que ocurra cada 1000 ns
-        Revision();
+        TMR0 = 4; //valor que se le agrega para que ocurra cada 1000 ns
         TOGGLE_1(); //toggle de variables cada 1000 ns, para encender trasnsistores
     }
 }
@@ -117,7 +115,7 @@ void __interrupt() ISR(void) {
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 void main(void) {
-    PORTEbits.RE0 = 0;
+    PORTEbits.RE0 = 0; //apago alarma
     setup(); //Configuracion de puertos de entrada y salida
     Config_INTERRUPT(); //Configuracion de la interrupcion del puerto B
 
@@ -126,6 +124,7 @@ void main(void) {
     //************************************************************************//
     while (1) {
         CONVERSION_ADC(); //Separacion de Nibbles
+        Revision();
     }
     return;
 }
@@ -164,7 +163,6 @@ void CONVERSION_ADC(void) {
 void Revision(void){
     if (ADC_VALOR > contador) {
             PORTEbits.RE0 = 1;
-
         }
     else if (ADC_VALOR < contador){
             PORTEbits.RE0 = 0;
@@ -181,8 +179,8 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTA = 0; 
     TRISB = 0b00000011; // pussh, como entradas
     PORTB = 0;
+    TRISC = 0;
     PORTC = 0;
-    TRISC = 0; 
     TRISD = 0; 
     PORTD = 0;
     TRISE = 0;
@@ -192,7 +190,7 @@ void setup(void) { //Configuración de puertos de entrada y salida
 //**************** **** CONFIGURACION INTERRUPCIONES *************************//
 
 void Config_INTERRUPT(void) {
-    TMR0 = 6; // Valor que se le agrega al TMR0 para que ocurra cada 1000ns
+    TMR0 = 4; // Valor que se le agrega al TMR0 para que ocurra cada 1000ns
     OPTION_REG = 0b10001000;
     INTCON = 0b10101001;
     IOCB = 0b00000011;

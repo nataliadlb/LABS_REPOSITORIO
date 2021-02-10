@@ -2748,7 +2748,6 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) {
             ADC_VALOR = ADC(ADRESL, ADRESH);
-            Revision();
             DisplayADC();
         }
     }
@@ -2756,8 +2755,7 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
     if (INTCONbits.TMR0IF == 1) {
         INTCONbits.TMR0IF = 0;
-        TMR0 = 6;
-        Revision();
+        TMR0 = 4;
         TOGGLE_1();
     }
 }
@@ -2775,6 +2773,7 @@ void main(void) {
 
     while (1) {
         CONVERSION_ADC();
+        Revision();
     }
     return;
 }
@@ -2813,7 +2812,6 @@ void CONVERSION_ADC(void) {
 void Revision(void){
     if (ADC_VALOR > contador) {
             PORTEbits.RE0 = 1;
-
         }
     else if (ADC_VALOR < contador){
             PORTEbits.RE0 = 0;
@@ -2830,8 +2828,8 @@ void setup(void) {
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    PORTC = 0;
     TRISC = 0;
+    PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     TRISE = 0;
@@ -2841,7 +2839,7 @@ void setup(void) {
 
 
 void Config_INTERRUPT(void) {
-    TMR0 = 6;
+    TMR0 = 4;
     OPTION_REG = 0b10001000;
     INTCON = 0b10101001;
     IOCB = 0b00000011;
