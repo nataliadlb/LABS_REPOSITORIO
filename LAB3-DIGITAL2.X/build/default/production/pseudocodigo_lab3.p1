@@ -6,15 +6,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "71 ./LCD.h
 [; ;./LCD.h: 71: void Lcd_Init(void);
 [v _Lcd_Init `(v ~T0 @X0 0 ef ]
-"79
-[; ;./LCD.h: 79: void Lcd_Clear(void);
-[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
 "74
 [; ;./LCD.h: 74: void Lcd_Set_Cursor(char a, char b);
 [v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
 "76
 [; ;./LCD.h: 76: void Lcd_Write_String(char *a);
 [v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
 "22 ./Oscilador.h
 [; ;./Oscilador.h: 22: void initOsc(uint8_t IRCF);
 [v _initOsc `(v ~T0 @X0 0 ef1`uc ]
@@ -369,9 +370,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;pseudocodigo_lab3.c: 119:     while (1) {
 [e :U 140 ]
 {
-"123
-[; ;pseudocodigo_lab3.c: 123:         Lcd_Clear();
-[e ( _Lcd_Clear ..  ]
 "124
 [; ;pseudocodigo_lab3.c: 124:         Lcd_Set_Cursor(1,2);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
@@ -390,85 +388,88 @@ Version 4.0 HI-TECH Software Intermediate Code
 "129
 [; ;pseudocodigo_lab3.c: 129:         Lcd_Write_String("S3:");
 [e ( _Lcd_Write_String (1 :s 3C ]
-"139
-[; ;pseudocodigo_lab3.c: 139:     }
+"130
+[; ;pseudocodigo_lab3.c: 130:          _delay((unsigned long)((2000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"140
+[; ;pseudocodigo_lab3.c: 140:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"140
-[; ;pseudocodigo_lab3.c: 140:     return ;
-[e $UE 138  ]
 "141
-[; ;pseudocodigo_lab3.c: 141: }
+[; ;pseudocodigo_lab3.c: 141:     return ;
+[e $UE 138  ]
+"142
+[; ;pseudocodigo_lab3.c: 142: }
 [e :UE 138 ]
 }
-"161
-[; ;pseudocodigo_lab3.c: 161: void setup(void) {
+"162
+[; ;pseudocodigo_lab3.c: 162: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"162
-[; ;pseudocodigo_lab3.c: 162:     initOsc(0b00000111);
-[e ( _initOsc (1 -> -> 7 `i `uc ]
 "163
-[; ;pseudocodigo_lab3.c: 163:     ANSEL = 0b00000011;
-[e = _ANSEL -> -> 3 `i `uc ]
+[; ;pseudocodigo_lab3.c: 163:     initOsc(0b00000111);
+[e ( _initOsc (1 -> -> 7 `i `uc ]
 "164
-[; ;pseudocodigo_lab3.c: 164:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 164:     ANSEL = 0b00000011;
+[e = _ANSEL -> -> 3 `i `uc ]
 "165
-[; ;pseudocodigo_lab3.c: 165:     TRISA = 0b00000011;
-[e = _TRISA -> -> 3 `i `uc ]
+[; ;pseudocodigo_lab3.c: 165:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "166
-[; ;pseudocodigo_lab3.c: 166:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 166:     TRISA = 0b00000011;
+[e = _TRISA -> -> 3 `i `uc ]
 "167
-[; ;pseudocodigo_lab3.c: 167:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 167:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "168
-[; ;pseudocodigo_lab3.c: 168:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 168:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
 "169
-[; ;pseudocodigo_lab3.c: 169:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 169:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "170
-[; ;pseudocodigo_lab3.c: 170:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 170:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "171
-[; ;pseudocodigo_lab3.c: 171:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 171:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "172
-[; ;pseudocodigo_lab3.c: 172:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 172:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "173
-[; ;pseudocodigo_lab3.c: 173:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;pseudocodigo_lab3.c: 173:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "174
-[; ;pseudocodigo_lab3.c: 174:     PORTE = 0;
+[; ;pseudocodigo_lab3.c: 174:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"175
+[; ;pseudocodigo_lab3.c: 175:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"177
-[; ;pseudocodigo_lab3.c: 177: }
+"178
+[; ;pseudocodigo_lab3.c: 178: }
 [e :UE 142 ]
 }
-"181
-[; ;pseudocodigo_lab3.c: 181: void Config_INTERRUPT(void) {
+"182
+[; ;pseudocodigo_lab3.c: 182: void Config_INTERRUPT(void) {
 [v _Config_INTERRUPT `(v ~T0 @X0 1 ef ]
 {
 [e :U _Config_INTERRUPT ]
 [f ]
-"182
-[; ;pseudocodigo_lab3.c: 182:     INTCON = 0b11000000;
-[e = _INTCON -> -> 192 `i `uc ]
 "183
-[; ;pseudocodigo_lab3.c: 183:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;pseudocodigo_lab3.c: 183:     INTCON = 0b11000000;
+[e = _INTCON -> -> 192 `i `uc ]
 "184
-[; ;pseudocodigo_lab3.c: 184:     PIR1bits.ADIF = 1;
-[e = . . _PIR1bits 0 6 -> -> 1 `i `uc ]
+[; ;pseudocodigo_lab3.c: 184:     PIE1bits.ADIE = 1;
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
 "185
-[; ;pseudocodigo_lab3.c: 185: }
+[; ;pseudocodigo_lab3.c: 185:     PIR1bits.ADIF = 1;
+[e = . . _PIR1bits 0 6 -> -> 1 `i `uc ]
+"186
+[; ;pseudocodigo_lab3.c: 186: }
 [e :UE 143 ]
 }
 [a 3C 83 51 58 0 ]

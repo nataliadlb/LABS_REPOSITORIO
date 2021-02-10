@@ -21,7 +21,7 @@ void Lcd_Init(){
   Lcd_Cmd(0x030);
   Lcd_Cmd(0x038); //numero de lineas
   Lcd_Cmd(0x00C); //apagado
-  //Lcd_Cmd(0x001);
+  Lcd_Cmd(0x001);
   Lcd_Cmd(0x006);
 }
 

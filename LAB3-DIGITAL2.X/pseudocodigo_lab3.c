@@ -120,7 +120,7 @@ void main(void) {
         //S1_val = bin_to_float(ADC_VALOR_1);
         //xS2_val = bin_to_float(ADC_VALOR_2);
         //nombres S1, S2 y S3
-        Lcd_Clear();
+        //Lcd_Clear();
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("S1:");
         Lcd_Set_Cursor(1,8);
@@ -128,8 +128,8 @@ void main(void) {
         Lcd_Set_Cursor(1,13);
         Lcd_Write_String("S3:");
         //Valores de S1 y S2
-//        Lcd_Set_Cursor(2,1);
-//        Lcd_Write_Char(S1_val);
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(S1_val);
 //        Lcd_Set_Cursor(2,7);
 //        Lcd_Write_Char(S2_val);
 //        Lcd_Set_Cursor(2,13);

@@ -2738,18 +2738,19 @@ void main(void) {
 
 
 
-        Lcd_Clear();
+
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("S1:");
         Lcd_Set_Cursor(1,8);
         Lcd_Write_String("S2:");
         Lcd_Set_Cursor(1,13);
         Lcd_Write_String("S3:");
-# 139 "pseudocodigo_lab3.c"
+         _delay((unsigned long)((2000)*(8000000/4000.0)));
+# 140 "pseudocodigo_lab3.c"
     }
     return ;
 }
-# 161 "pseudocodigo_lab3.c"
+# 162 "pseudocodigo_lab3.c"
 void setup(void) {
     initOsc(0b00000111);
     ANSEL = 0b00000011;
