@@ -12,6 +12,8 @@
 //****************************************************************************//
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <pic16f887.h>
 #include "Oscilador.h"
 #include "LCD.h"
@@ -66,6 +68,7 @@ uint8_t S3_cont;
 unsigned int x;
 int ADC_flag1;
 int ADC_flag2;
+char data[16];
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
@@ -130,7 +133,7 @@ void main(void) {
         mapeo();
         //Valores de S1 y S2
         Lcd_Set_Cursor(2,1);
-        Lcd_Write_Char(S2_val);
+        Lcd_Write_String(data); 
 //        Lcd_Set_Cursor(2,7);
 //        Lcd_Write_Char(S2_val);
 //        Lcd_Set_Cursor(2,13);
@@ -174,7 +177,7 @@ void titulos_LCD(void){
 }
 
 void mapeo(void){
-    S2_val = (ADC_VALOR_2*5)/255;
+    sprintf(data, "%1.2f  " "%1.2f", ADC_VALOR_1, ADC_VALOR_2);
     
 }
 

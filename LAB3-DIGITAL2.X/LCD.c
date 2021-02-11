@@ -89,34 +89,21 @@ void Lcd_Set_Cursor(char a, char b){
 	char temp;
 	if(a == 1){
         temp = 0x80 + b - 1;
-//		z = temp>>4;
-//		y = temp & 0x0F;
-//		Lcd_Cmd(z);
         Lcd_Cmd(temp);
 	}
 	else if(a == 2){
 		temp = 0xC0 + b - 1;
-//		z = temp>>4;
-//		y = temp & 0x0F;
-//		Lcd_Cmd(z);
 		Lcd_Cmd(temp);
 	}
 }
 
 //------ Función para mandar los caracteres al puerto ------//
 void Lcd_Write_Char(char a){
-//   char temp;
-//   temp = a & 0x0F;
-//   y = a & 0xF0;
    RS = 1;             // => RS = 1
    Lcd_Port(a);             //Data transfer
    EN = 1;
    __delay_us(40);
    EN = 0;
-//   Lcd_Port(temp);
-//   EN = 1;
-//   __delay_us(40);
-//   EN = 0;
 }
 
 //------ Función para mandar strings al puerto ------//

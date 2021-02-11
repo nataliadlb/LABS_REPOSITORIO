@@ -2686,34 +2686,21 @@ void Lcd_Set_Cursor(char a, char b){
  char temp;
  if(a == 1){
         temp = 0x80 + b - 1;
-
-
-
         Lcd_Cmd(temp);
  }
  else if(a == 2){
   temp = 0xC0 + b - 1;
-
-
-
   Lcd_Cmd(temp);
  }
 }
 
 
 void Lcd_Write_Char(char a){
-
-
-
    PORTEbits.RE0 = 1;
    Lcd_Port(a);
    PORTEbits.RE2 = 1;
    _delay((unsigned long)((40)*(8000000/4000000.0)));
    PORTEbits.RE2 = 0;
-
-
-
-
 }
 
 
