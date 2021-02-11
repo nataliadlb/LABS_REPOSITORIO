@@ -18,6 +18,7 @@
 #include "Oscilador.h"
 #include "LCD.h"
 #include "Config_ADC.h"
+#include "USART.h"
 
 
 //****************************************************************************//
@@ -70,10 +71,6 @@ char data2[8];
 //****************************************************************************//
 void setup(void); 
 void Config_INTERRUPT(void);
- //funcion para convertir el valor de la 
-                                     //conversion ADC en decimales
-//void USART_Init_transmission(void); // Config Trasmision //char y const long int
-//void USART_Init_reception(void);// Config recepcion de datos
 //void Trasmission(void);// funcion para constantemente mandar los valores ADC
 //void Receive(void); //funcion para constantemente recibir datos de la compu
 //void CONVERSION_ADC(void);
@@ -189,12 +186,7 @@ void setup(void) { //Configuración de puertos de entrada y salida
 }
 
 //********************* CONFIGURACION COM SERIAL *****************************//
-//void USART_Init_transmission(void){
-//    BRGH = 1;
-//    TXEN = 1;
-//    SYNC = 0;
-//    SPEN = 1;
-//}
+
 //
 //void USART_Init_reception(void){
 //    SPEN =1;

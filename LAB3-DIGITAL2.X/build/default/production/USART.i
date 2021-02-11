@@ -1,4 +1,4 @@
-# 1 "pseudocodigo_lab3.c"
+# 1 "USART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "pseudocodigo_lab3.c" 2
-# 13 "pseudocodigo_lab3.c"
+# 1 "USART.c" 2
+# 1 "./USART.h" 1
+# 13 "./USART.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2489,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 13 "pseudocodigo_lab3.c" 2
+# 13 "./USART.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,253 +2624,6 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 14 "pseudocodigo_lab3.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
-
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
-{
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
-
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
-
-
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 15 "pseudocodigo_lab3.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
-
-
-
-
-
-
-typedef unsigned short wchar_t;
-
-
-
-
-
-
-
-typedef struct {
- int rem;
- int quot;
-} div_t;
-typedef struct {
- unsigned rem;
- unsigned quot;
-} udiv_t;
-typedef struct {
- long quot;
- long rem;
-} ldiv_t;
-typedef struct {
- unsigned long quot;
- unsigned long rem;
-} uldiv_t;
-# 65 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 3
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-
-
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-
-
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-# 104 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 3
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-# 16 "pseudocodigo_lab3.c" 2
-
-
-# 1 "./Oscilador.h" 1
-# 14 "./Oscilador.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 14 "./Oscilador.h" 2
-
-
-
-
-
-
-
-
-void initOsc(uint8_t IRCF);
-# 18 "pseudocodigo_lab3.c" 2
-
-# 1 "./LCD.h" 1
-# 63 "./LCD.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 63 "./LCD.h" 2
-
-
-
-
-
-
-
-
-void Lcd_Init(void);
-void Lcd_Port(char a);
-void Lcd_Cmd(char a);
-void Lcd_Set_Cursor(char a, char b);
-void Lcd_Write_Char(char a);
-void Lcd_Write_String(char *a);
-void Lcd_Shift_Right();
-void Lcd_Shift_Left();
-void Lcd_Clear(void);
-# 19 "pseudocodigo_lab3.c" 2
-
-# 1 "./Config_ADC.h" 1
-# 14 "./Config_ADC.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 14 "./Config_ADC.h" 2
-
-
-
-
-
-
-
-
-int ADC(uint8_t ADRESL_, uint8_t ADRESH_);
-int SWAP_ADC(uint8_t VAL_ADC);
-int NIBBLE1_ADC(uint8_t VAL_ADC);
-int NIBBLE2_ADC(uint8_t VAL_SWAP);
-void ADC_Config (uint8_t AN_num);
-# 20 "pseudocodigo_lab3.c" 2
-
-# 1 "./USART.h" 1
-# 14 "./USART.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 14 "./USART.h" 2
 
 
@@ -2878,131 +2632,23 @@ void ADC_Config (uint8_t AN_num);
 
 void USART_Init(void);
 void USART_Init_BaudRate(void);
-# 21 "pseudocodigo_lab3.c" 2
+# 1 "USART.c" 2
 
 
+void USART_Init(void){
 
+    RCSTAbits.SPEN = 1;
+    TXSTAbits.SYNC = 0;
 
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.TX9 = 0;
+    TXSTAbits.BRGH = 0;
+    TXSTAbits.TRMT = 0;
 
-
-
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = ON
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 64 "pseudocodigo_lab3.c"
-float S1_val;
-float S2_val;
-uint8_t S3_cont;
-char data1[8];
-char data2[8];
-
-
-
-void setup(void);
-void Config_INTERRUPT(void);
-
-
-
-void titulos_LCD(void);
-void float_to_string(void);
-void ADC_channel1(void);
-void ADC_channel2(void);
-# 90 "pseudocodigo_lab3.c"
-void main(void) {
-    setup();
-    Lcd_Init();
-    titulos_LCD();
-
-
-
-
-
-
-    while (1) {
-        ADC_channel1();
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        ADC_channel2();
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-
-        float_to_string();
-
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_String(data1);
-        Lcd_Set_Cursor(2,7);
-        Lcd_Write_String(data2);
-
-
-
-
-    }
-    return ;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
 }
 
-
-
-
-
-
-void titulos_LCD(void){
-
-        Lcd_Set_Cursor(1,2);
-        Lcd_Write_String("S1:");
-        Lcd_Set_Cursor(1,8);
-        Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1,14);
-        Lcd_Write_String("S3:");
-        Lcd_Set_Cursor(2,5);
-        Lcd_Write_String("v");
-        Lcd_Set_Cursor(2,12);
-        Lcd_Write_String("v");
-}
-
-void ADC_channel1(void){
-    ADC_Config (0);
-    _delay((unsigned long)((1)*(8000000/4000.0)));
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO != 0) {
-        S1_val = ((ADRESH * 5.0) / 255);
-    }
-}
-
-void ADC_channel2(void){
-    ADC_Config (1);
-    _delay((unsigned long)((1)*(8000000/4000.0)));
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO != 0) {
-        S2_val = ((ADRESH * 5.0) / 255);
-    }
-}
-
-void float_to_string(void){
-    sprintf(data2, "%1.2f ",S1_val);
-    sprintf(data1, "%1.2f", S2_val);
-}
-# 172 "pseudocodigo_lab3.c"
-void setup(void) {
-    initOsc(0b00000110);
-    ANSEL = 0b00000011;
-    ANSELH = 0;
-    TRISA = 0b00000011;
-    TRISB = 0;
-    TRISC = 0;
-    TRISD = 0;
-    TRISE = 0;
-    PORTA = 0;
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-    PORTE = 0;
+void USART_Init_BaudRate(void){
+    SPBRGH = 12;
 }

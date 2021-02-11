@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\LAB3-DIGITAL2.X.production.sym \
   --cmf=dist/default/production\LAB3-DIGITAL2.X.production.cmf -z -Q16F887 \
-  -oC:\Users\cnata\AppData\Local\Temp\sc0.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\cnata\AppData\Local\Temp\sjfc.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/LAB3-DIGITAL2.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\cnata\AppData\Local\Temp\sc0.o \
+  -pfunctab=ENTRY -k C:\Users\cnata\AppData\Local\Temp\sjfc.o \
   dist/default/production\LAB3-DIGITAL2.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\cnata\AppData\Local\Temp\sc0.o
+C:\Users\cnata\AppData\Local\Temp\sjfc.o
                 end_init                              0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -302,13 +302,16 @@ _PORTC                     (abs)        0007
 _PORTD                     (abs)        0008
 _PORTE                     (abs)        0009
 _PORTEbits                 (abs)        0009
+_RCSTAbits                 (abs)        0018
 _S1_val                    bssBANK1     00CB
 _S2_val                    bssBANK1     00C7
+_SPBRGH                    (abs)        009A
 _TRISA                     (abs)        0085
 _TRISB                     (abs)        0086
 _TRISC                     (abs)        0087
 _TRISD                     (abs)        0088
 _TRISE                     (abs)        0089
+_TXSTAbits                 (abs)        0098
 _VAL                       bssBANK1     00D5
 _VAL_NIBBLE1               bssBANK1     00D1
 _VAL_NIBBLE2               bssBANK1     00CF
@@ -621,17 +624,17 @@ _data2                     bssBANK1     00D7
 _dpowers                   strings      1878
 _float_to_string           text7        1A0D
 _fround                    text13       136D
-_fround$1000               cstackBANK0  004D
-_fround$1001               cstackBANK0  0049
+_fround$1106               cstackBANK0  004D
+_fround$1107               cstackBANK0  0049
 _initOsc                   text6        1C40
 _isdigit                   text12       1932
-_isdigit$811               cstackCOMMON 0070
+_isdigit$911               cstackCOMMON 0070
 _main                      maintext     1C9C
 _scale                     text9        0940
-_scale$1002                cstackBANK0  004C
+_scale$1108                cstackBANK0  004C
 _setup                     text5        195E
 _sprintf                   text8        0075
-_sprintf$1003              cstackBANK1  00AA
+_sprintf$1109              cstackBANK1  00AA
 _titulos_LCD               text1        1CF8
 btemp                      (abs)        007E
 clear_ram0                 clrtext      0004
@@ -667,7 +670,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 93 in file "pseudocodigo_lab3.c"
+		line 90 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -703,7 +706,7 @@ Total ram usage:        2 bytes
 
  *************** function _titulos_LCD *****************
  Defined at:
-		line 128 in file "pseudocodigo_lab3.c"
+		line 125 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -830,7 +833,7 @@ Total ram usage:        4 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 175 in file "pseudocodigo_lab3.c"
+		line 172 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -889,7 +892,7 @@ Total ram usage:        3 bytes
 
  *************** function _float_to_string *****************
  Defined at:
-		line 160 in file "pseudocodigo_lab3.c"
+		line 157 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1635,7 +1638,7 @@ Total ram usage:        1 bytes
 
  *************** function _ADC_channel2 *****************
  Defined at:
-		line 151 in file "pseudocodigo_lab3.c"
+		line 148 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1668,7 +1671,7 @@ Total ram usage:        4 bytes
 
  *************** function _ADC_channel1 *****************
  Defined at:
-		line 142 in file "pseudocodigo_lab3.c"
+		line 139 in file "pseudocodigo_lab3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
