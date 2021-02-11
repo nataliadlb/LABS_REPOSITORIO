@@ -2689,13 +2689,13 @@ void ADC_Config (uint8_t AN_num);
 
 
 
-#pragma config FOSC = XT
+#pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
 #pragma config CP = OFF
 #pragma config CPD = OFF
-#pragma config BOREN = OFF
+#pragma config BOREN = ON
 #pragma config IESO = OFF
 #pragma config FCMEN = OFF
 #pragma config LVP = OFF
@@ -2706,111 +2706,137 @@ void ADC_Config (uint8_t AN_num);
 # 60 "pseudocodigo_lab3.c"
 int ADC_VALOR_1;
 int ADC_VALOR_2;
-unsigned int a;
-float S1_val;
-float S2_val;
+uint8_t a;
+int S1_val;
+int S2_val;
 uint8_t S3_cont;
 unsigned int x;
+int ADC_flag1;
+int ADC_flag2;
 
 
 
 
 void setup(void);
 void Config_INTERRUPT(void);
-float bin_to_float(uint8_t ADC_VAL);
 
-void USART_Init_transmission(void);
-void USART_Init_reception(void);
-void Trasmission(void);
-void Receive(void);
-# 109 "pseudocodigo_lab3.c"
+
+
+
+
+
+void CONVERSION_ADC(void);
+void titulos_LCD(void);
+void mapeo(void);
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void) {
+
+
+    if (PIR1bits.ADIF) {
+
+        ADC_Config (0);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
+            ADC_flag1 = 1;
+        }
+
+
+        ADC_Config (1);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_2 = ADC(ADRESL, ADRESH);
+            ADC_flag2 = 1;
+        }
+        PIR1bits.ADIF = 0;
+
+    }
+
+}
+
+
+
+
 void main(void) {
     setup();
-
+    Config_INTERRUPT();
     Lcd_Init();
-    USART_Init_transmission();
-    USART_Init_reception();
+    titulos_LCD();
+
+
 
 
 
 
     while (1) {
-        S1_val = bin_to_float(ADC_VALOR_1);
-        S2_val = bin_to_float(ADC_VALOR_2);
+        CONVERSION_ADC();
+# 141 "pseudocodigo_lab3.c"
+    }
+    return ;
+}
 
-        Lcd_Clear();
+
+
+
+
+void CONVERSION_ADC(void) {
+    if (ADC_flag1 == 1){
+
+        ADC_flag1 = 0;
+        PORTB = ADC_VALOR_1;
+        PIR1bits.ADIF = 1;
+    }
+    else if (ADC_flag2 == 1){
+
+        ADC_flag2 = 0;
+        PORTC = ADC_VALOR_2;
+        PIR1bits.ADIF = 1;
+    }
+}
+
+void titulos_LCD(void){
+
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("S1:");
         Lcd_Set_Cursor(1,8);
         Lcd_Write_String("S2:");
         Lcd_Set_Cursor(1,13);
         Lcd_Write_String("S3:");
-
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_Char(S1_val);
-        Lcd_Set_Cursor(2,7);
-        Lcd_Write_Char(S2_val);
-        Lcd_Set_Cursor(2,13);
-        Lcd_Write_Char(S3_cont);
-        _delay((unsigned long)((2000)*(8000000/4000.0)));
-
-    }
-    return;
 }
 
-
-
-
-float bin_to_float(uint8_t ADC_VAL){
+void mapeo(void){
 
 
 }
-
-void Trasmission(void){
-
-}
-
-void Receive(void){
-
-}
-
-
-
+# 193 "pseudocodigo_lab3.c"
 void setup(void) {
-    initOsc(0b00000111);
+    initOsc(0b00000110);
     ANSEL = 0b00000011;
     ANSELH = 0;
     TRISA = 0b00000011;
-    PORTA = 0;
-    PORTB = 0;
-    PORTC = 0;
     TRISB = 0;
     TRISC = 0;
     TRISD = 0;
-    PORTD = 0;
     TRISE = 0;
+    PORTA = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
     PORTE = 0;
 }
 
 
 
 void Config_INTERRUPT(void) {
-    INTCON = 0b11000000;
+    INTCON = 0b11000001;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 1;
-}
 
 
-void USART_Init_transmission(void){
-    BRGH = 1;
-    TXEN = 1;
-    SYNC = 0;
-    SPEN = 1;
-}
 
-void USART_Init_reception(void){
-    SPEN =1;
-    CREN =1;
-    SREN = 1;
 
 }

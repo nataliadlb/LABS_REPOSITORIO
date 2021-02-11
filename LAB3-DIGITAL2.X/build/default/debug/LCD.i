@@ -2655,8 +2655,8 @@ void Lcd_Init(){
   Lcd_Cmd(0x030);
     _delay((unsigned long)((11)*(8000000/4000.0)));
   Lcd_Cmd(0x030);
-  Lcd_Cmd(0x032);
-  Lcd_Cmd(0x008);
+  Lcd_Cmd(0x038);
+  Lcd_Cmd(0x00C);
   Lcd_Cmd(0x001);
   Lcd_Cmd(0x006);
 }
@@ -2664,7 +2664,7 @@ void Lcd_Init(){
 
 void Lcd_Port(char a){
     PORTD = a;
-
+# 71 "LCD.c"
 }
 
 void Lcd_Cmd(char a){
@@ -2683,27 +2683,37 @@ void Lcd_Clear(void){
 
 
 void Lcd_Set_Cursor(char a, char b){
- char temp,z,y;
+ char temp;
  if(a == 1){
-   temp = 0x80 + b - 1;
-  z = temp>>4;
-  y = temp & 0x0F;
-  Lcd_Cmd(z);
-  Lcd_Cmd(y);
+        temp = 0x80 + b - 1;
+
+
+
+        Lcd_Cmd(temp);
  }
  else if(a == 2){
   temp = 0xC0 + b - 1;
-  z = temp>>4;
-  y = temp & 0x0F;
-  Lcd_Cmd(z);
-  Lcd_Cmd(y);
+
+
+
+  Lcd_Cmd(temp);
  }
 }
 
 
 void Lcd_Write_Char(char a){
+
+
+
+   PORTEbits.RE0 = 1;
    Lcd_Port(a);
-# 84 "LCD.c"
+   PORTEbits.RE2 = 1;
+   _delay((unsigned long)((40)*(8000000/4000000.0)));
+   PORTEbits.RE2 = 0;
+
+
+
+
 }
 
 

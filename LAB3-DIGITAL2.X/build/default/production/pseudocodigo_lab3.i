@@ -2707,10 +2707,12 @@ void ADC_Config (uint8_t AN_num);
 int ADC_VALOR_1;
 int ADC_VALOR_2;
 uint8_t a;
-
-
+int S1_val;
+int S2_val;
 uint8_t S3_cont;
 unsigned int x;
+int ADC_flag1;
+int ADC_flag2;
 
 
 
@@ -2719,15 +2721,51 @@ void setup(void);
 void Config_INTERRUPT(void);
 
 
-void USART_Init_transmission(void);
-void USART_Init_reception(void);
-void Trasmission(void);
-void Receive(void);
-# 109 "pseudocodigo_lab3.c"
+
+
+
+
+void CONVERSION_ADC(void);
+void titulos_LCD(void);
+void mapeo(void);
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void) {
+
+
+    if (PIR1bits.ADIF) {
+
+        ADC_Config (0);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
+            ADC_flag1 = 1;
+        }
+
+
+        ADC_Config (1);
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+            ADC_VALOR_2 = ADC(ADRESL, ADRESH);
+            ADC_flag2 = 1;
+        }
+        PIR1bits.ADIF = 0;
+
+    }
+
+}
+
+
+
+
 void main(void) {
     setup();
-
+    Config_INTERRUPT();
     Lcd_Init();
+    titulos_LCD();
 
 
 
@@ -2735,9 +2773,44 @@ void main(void) {
 
 
     while (1) {
+        CONVERSION_ADC();
+        mapeo();
+
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(S2_val);
 
 
 
+
+
+
+
+    }
+    return ;
+}
+
+
+
+
+
+void CONVERSION_ADC(void) {
+    if (ADC_flag1 == 1 || ADC_flag2 == 1){
+
+        ADC_flag1 = 0;
+        ADC_flag2 = 0;
+        PORTB = ADC_VALOR_1;
+        PORTC = ADC_VALOR_2;
+        PIR1bits.ADIF = 1;
+    }
+
+
+
+
+
+    }
+
+
+void titulos_LCD(void){
 
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("S1:");
@@ -2745,14 +2818,15 @@ void main(void) {
         Lcd_Write_String("S2:");
         Lcd_Set_Cursor(1,13);
         Lcd_Write_String("S3:");
-         _delay((unsigned long)((2000)*(8000000/4000.0)));
-# 140 "pseudocodigo_lab3.c"
-    }
-    return ;
 }
-# 162 "pseudocodigo_lab3.c"
+
+void mapeo(void){
+    S2_val = (ADC_VALOR_2*5)/255;
+
+}
+# 191 "pseudocodigo_lab3.c"
 void setup(void) {
-    initOsc(0b00000111);
+    initOsc(0b00000110);
     ANSEL = 0b00000011;
     ANSELH = 0;
     TRISA = 0b00000011;
@@ -2765,14 +2839,16 @@ void setup(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-
-
 }
 
 
 
 void Config_INTERRUPT(void) {
-    INTCON = 0b11000000;
+    INTCON = 0b11000001;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 1;
+
+
+
+
 }

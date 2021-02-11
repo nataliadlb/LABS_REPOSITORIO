@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
  <FRAME activewindow="0">
-  <PLACEMENT>2c00000002000000030000000083ffff0083ffffffffffffffffffff0000000000000000960700004e040000</PLACEMENT>
+  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffff0000000000000000960700004e040000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
+  <WINDOW type="device" module="LIBMAN"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
@@ -74,7 +75,7 @@
    <POPUP w="162" x="246" flags="00000008" y="376" h="184" pid="7" iid="2">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="266" flags="80000002" y="396" h="8" pid="8" iid="2">
+   <POPUP w="8" x="266" flags="00000002" y="396" h="8" pid="8" iid="2">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
