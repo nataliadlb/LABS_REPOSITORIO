@@ -2664,7 +2664,6 @@ void Lcd_Init(){
 
 void Lcd_Port(char a){
     PORTD = a;
-# 71 "LCD.c"
 }
 
 void Lcd_Cmd(char a){

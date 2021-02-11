@@ -63,8 +63,8 @@
 float S1_val;
 float S2_val;
 uint8_t S3_cont;
-char data[16];
-
+char data1[8];
+char data2[8];
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -109,7 +109,9 @@ void main(void) {
         float_to_string();
         //Valores de S1 y S2
         Lcd_Set_Cursor(2,1);
-        Lcd_Write_String(data); 
+        Lcd_Write_String(data1);
+        Lcd_Set_Cursor(2,7);
+        Lcd_Write_String(data2);
 //        Lcd_Set_Cursor(2,13);
 //        Lcd_Write_Char(S3_cont);
 //        __delay_ms(2000);
@@ -129,15 +131,19 @@ void titulos_LCD(void){
         Lcd_Write_String("S1:");
         Lcd_Set_Cursor(1,8);
         Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1,13);
+        Lcd_Set_Cursor(1,14);
         Lcd_Write_String("S3:");
+        Lcd_Set_Cursor(2,5);
+        Lcd_Write_String("v");
+        Lcd_Set_Cursor(2,12);   
+        Lcd_Write_String("v");
 }
 
 void ADC_channel1(void){
     ADC_Config (0);
     __delay_ms(1); //Inicio de conversion ADC
     ADCON0bits.GO = 1;
-    while (ADCON0bits.GO == 1) { //Mientras no se haya termindo una convers.
+    while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
         S1_val = ((ADRESH * 5.0) / 255);
     }
 }
@@ -146,14 +152,14 @@ void ADC_channel2(void){
     ADC_Config (1);
     __delay_ms(1); //Inicio de conversion ADC
     ADCON0bits.GO = 1;
-    while (ADCON0bits.GO == 1) { //Mientras no se haya termindo una convers.
+    while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
         S2_val = ((ADRESH * 5.0) / 255);
     }
 }
 
 void float_to_string(void){
-    sprintf(data, "%1.2f  " "%1.2f", S2_val, S1_val);
-    
+    sprintf(data2, "%1.2f ",S1_val);
+    sprintf(data1, "%1.2f", S2_val);
 }
 
 //void Trasmission(void){

@@ -694,8 +694,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Config_ADC.c: 137:     ADCON1 = 0b00000000;
 [e = _ADCON1 -> -> 0 `i `uc ]
 "138
-[; ;Config_ADC.c: 138:     ADCON0bits.ADCS1 = 0;
-[e = . . _ADCON0bits 1 7 -> -> 0 `i `uc ]
+[; ;Config_ADC.c: 138:     ADCON0bits.ADCS1 = 1;
+[e = . . _ADCON0bits 1 7 -> -> 1 `i `uc ]
 "139
 [; ;Config_ADC.c: 139:     ADCON0bits.ADCS0 = 0;
 [e = . . _ADCON0bits 1 6 -> -> 0 `i `uc ]
