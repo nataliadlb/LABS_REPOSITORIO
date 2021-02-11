@@ -59,15 +59,10 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-int ADC_VALOR_1;
-int ADC_VALOR_2;
-uint8_t a;
-int S1_val;
-int S2_val;
+
+float S1_val;
+float S2_val;
 uint8_t S3_cont;
-unsigned int x;
-int ADC_flag1;
-int ADC_flag2;
 char data[16];
 
 //****************************************************************************//
@@ -81,45 +76,22 @@ void Config_INTERRUPT(void);
 //void USART_Init_reception(void);// Config recepcion de datos
 //void Trasmission(void);// funcion para constantemente mandar los valores ADC
 //void Receive(void); //funcion para constantemente recibir datos de la compu
-void CONVERSION_ADC(void);
+//void CONVERSION_ADC(void);
 void titulos_LCD(void);
-void mapeo(void);
+void float_to_string(void);
+void ADC_channel1(void);
+void ADC_channel2(void);
+
 //****************************************************************************//
 //INTERRUPCIONES                                                              //
 //****************************************************************************//
-void __interrupt() ISR(void) {
-    
-    // ---- Interrupción del ADC ----
-    if (PIR1bits.ADIF) {
-        
-        ADC_Config (0);
-        __delay_ms(2); //Inicio de conversion ADC
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            ADC_VALOR_1 = ADC(ADRESL, ADRESH);
-            ADC_flag1 = 1;  
-        }
-        
 
-        ADC_Config (1);
-        __delay_ms(2); //Inicio de conversion ADC
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            ADC_VALOR_2 = ADC(ADRESL, ADRESH);
-            ADC_flag2 = 1;  
-        }
-        PIR1bits.ADIF = 0;
-        
-    }
-    
-}
 
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 void main(void) {
     setup(); //Configuracion de puertos de entrada y salida
-    Config_INTERRUPT(); //Configuracion de la interrupcion del puerto B
     Lcd_Init();
     titulos_LCD();
 //    USART_Init_transmission();
@@ -129,17 +101,18 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        CONVERSION_ADC();
-        mapeo();
+        ADC_channel1();
+        __delay_ms(1);
+        ADC_channel2();
+        __delay_ms(1);
+        
+        float_to_string();
         //Valores de S1 y S2
         Lcd_Set_Cursor(2,1);
         Lcd_Write_String(data); 
-//        Lcd_Set_Cursor(2,7);
-//        Lcd_Write_Char(S2_val);
 //        Lcd_Set_Cursor(2,13);
 //        Lcd_Write_Char(S3_cont);
 //        __delay_ms(2000);
-        //CONVERSION_ADC(); 
 
     }
     return ;
@@ -149,22 +122,6 @@ void main(void) {
 //FUNCIONES                                                                   //
 //****************************************************************************//
 
-void CONVERSION_ADC(void) {
-    if (ADC_flag1 == 1 ||  ADC_flag2 == 1){
-//        ADC_VALOR_1 = ADC(ADRESL, ADRESH);
-        ADC_flag1 = 0;
-        ADC_flag2 = 0;
-        PORTB = ADC_VALOR_1;
-        PORTC = ADC_VALOR_2;
-        PIR1bits.ADIF = 1; 
-    }
-//    else if (ADC_flag2 == 1){
-////        ADC_VALOR_2 = ADC(ADRESL, ADRESH);
-//        
-//        
-//        PIR1bits.ADIF = 1; 
-    } 
- 
 
 void titulos_LCD(void){
     //nombres S1, S2 y S3
@@ -176,8 +133,26 @@ void titulos_LCD(void){
         Lcd_Write_String("S3:");
 }
 
-void mapeo(void){
-    sprintf(data, "%1.2f  " "%1.2f", ADC_VALOR_1, ADC_VALOR_2);
+void ADC_channel1(void){
+    ADC_Config (0);
+    __delay_ms(1); //Inicio de conversion ADC
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO == 1) { //Mientras no se haya termindo una convers.
+        S1_val = ((ADRESH * 5.0) / 255);
+    }
+}
+
+void ADC_channel2(void){
+    ADC_Config (1);
+    __delay_ms(1); //Inicio de conversion ADC
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO == 1) { //Mientras no se haya termindo una convers.
+        S2_val = ((ADRESH * 5.0) / 255);
+    }
+}
+
+void float_to_string(void){
+    sprintf(data, "%1.2f  " "%1.2f", S2_val, S1_val);
     
 }
 
@@ -205,18 +180,6 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-}
-
-//**************** **** CONFIGURACION INTERRUPCIONES *************************//
-
-void Config_INTERRUPT(void) {
-    INTCON = 0b11000001;
-    PIE1bits.ADIE = 1; // enables ADC interrupt
-    PIR1bits.ADIF = 1; 
-//    ADCON1 = 0b00000000;
-//    ADCON0bits.ADON = 1;
-//    ADCON0bits.ADCS1 = 0;
-//    ADCON0bits.ADCS0 = 1;
 }
 
 //********************* CONFIGURACION COM SERIAL *****************************//

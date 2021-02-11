@@ -135,7 +135,7 @@ void ADC_Config(uint8_t AN_num){
             break; 
     }
     ADCON1 = 0b00000000;
-    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADCS1 = 1;
     ADCON0bits.ADCS0 = 0;
     ADCON0bits.ADON = 1;  
     
