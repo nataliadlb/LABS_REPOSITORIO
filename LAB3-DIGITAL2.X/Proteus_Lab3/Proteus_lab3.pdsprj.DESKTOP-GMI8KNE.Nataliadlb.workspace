@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
- <FRAME activewindow="0">
+ <FRAME activewindow="1">
   <PLACEMENT>2c0000000200000003000000fffffffffffffffffffffffffffffffff5fffffff5ffffff8b07000043040000</PLACEMENT>
-  <WINDOW type="default" module="ISIS"/>
   <WINDOW type="device" module="LIBMAN"/>
+  <WINDOW type="default" module="ISIS"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
@@ -91,9 +91,9 @@
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="106" flags="00000022" y="236" h="250" pid="0" iid="5">
+   <POPUP w="450" x="106" flags="00000023" y="236" h="250" pid="0" iid="5">
     <PROPERTIES>
-     <ITEM name="AutoEcho">0</ITEM>
+     <ITEM name="AutoEcho">1</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>

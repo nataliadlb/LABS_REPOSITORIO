@@ -2909,9 +2909,9 @@ void USART_INTERRUPT(void);
 # 67 "pseudocodigo_lab3.c"
 uint8_t S1_val;
 uint8_t S2_val;
-uint8_t S3_cont;
 char* data1[8];
 char* data2[8];
+char* S3_cont[3];
 uint8_t eusart_toggle = 0;
 uint8_t ADC_toggle = 0;
 uint8_t cont_usart;
@@ -2930,19 +2930,38 @@ void ADC_channel1(void);
 void ADC_channel2(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-# 121 "pseudocodigo_lab3.c"
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void){
+    if (PIR1bits.RCIF == 1){
+            data_recive = RCREG;
+            cont++;
+            if (data_recive == '+'){
+                PORTB = 0xFF;
+            }
+            else {
+                PORTB = cont;
+            }
+            data_recive = 0;
+        }
+
+}
+# 130 "pseudocodigo_lab3.c"
 void main(void) {
     setup();
-    USART_Init();
     USART_Init_BaudRate();
-
+    USART_Init();
+    USART_INTERRUPT();
     Lcd_Init();
     titulos_LCD();
+    cont = -1;
 
 
 
 
     while (1) {
+
         ADC_channel1();
         _delay((unsigned long)((1)*(8000000/4000.0)));
         ADC_channel2();
@@ -2951,15 +2970,11 @@ void main(void) {
         Show_val_LCD();
         Trasmission();
 
-        PORTB = cont;
-        if (data_recive == '+'){
-            cont++;
+
+
+
         }
-        if(data_recive == '-'){
-            cont--;
-        }
-       data_recive = 0;
-    }
+# 174 "pseudocodigo_lab3.c"
 }
 
 
@@ -2994,6 +3009,7 @@ void ADC_channel2(void){
 void ADC_to_string(void){
     sprintf(data2, "%.3iV", S1_val<<1);
     sprintf(data1, "%.3iV", S2_val<<1);
+    sprintf(S3_cont, "%.3i", cont);
 
 
 }
@@ -3018,8 +3034,11 @@ void Show_val_LCD(void){
         Lcd_Write_Char(data1[3]);
         Lcd_Write_Char(' ');
 
-
-
+        Lcd_Set_Cursor(2,13);
+        Lcd_Write_Char(S3_cont[0]);
+        Lcd_Write_Char(S3_cont[1]);
+        Lcd_Write_Char(S3_cont[2]);
+        Lcd_Write_Char(' ');
 }
 void Trasmission(void){
     if (PIR1bits.TXIF ){
@@ -3031,12 +3050,12 @@ void Trasmission(void){
                 TXREG = data1;
                 eusart_toggle = 1;
             }
-            cont_usart++;
 
-            if (cont_usart == 4){
 
-                cont_usart = 0;
-            }
+
+
+
+
 
         }
 

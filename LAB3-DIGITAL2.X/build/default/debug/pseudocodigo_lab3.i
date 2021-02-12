@@ -2930,42 +2930,37 @@ void ADC_channel1(void);
 void ADC_channel2(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-
-
-
-void __attribute__((picinterrupt(("")))) ISR(void){
-    if (PIR1bits.RCIF == 0){
-            data_recive = RCREG;
-        }
-    return;
-}
 # 121 "pseudocodigo_lab3.c"
 void main(void) {
     setup();
-    USART_Init();
     USART_Init_BaudRate();
+    USART_Init();
     USART_INTERRUPT();
     Lcd_Init();
     titulos_LCD();
+    cont = 8;
 
 
 
 
     while (1) {
-        ADC_channel1();
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-        ADC_channel2();
-
-        ADC_to_string();
-        Show_val_LCD();
-        Trasmission();
-
         PORTB = cont;
+# 143 "pseudocodigo_lab3.c"
+        if (PIR1bits.RCIF == 0){
+            data_recive = RCREG;
+        }
+
+
         if (data_recive == '+'){
             cont++;
+            PORTB = 15;
         }
         if(data_recive == '-'){
             cont--;
+            PORTB = 3;
+        }
+        else {
+            cont = cont;
         }
        data_recive = 0;
     }

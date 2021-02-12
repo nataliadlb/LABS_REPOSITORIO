@@ -378,9 +378,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;USART.c: 28:     PIE1bits.RCIE = 1;
 [e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-"29
-[; ;USART.c: 29:     PIE1bits.TXIE = 1;
-[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
 "31
 [; ;USART.c: 31: }
 [e :UE 145 ]

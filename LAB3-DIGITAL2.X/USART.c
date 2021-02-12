@@ -26,8 +26,8 @@ void USART_INTERRUPT(void){
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     PIE1bits.RCIE = 1;
-    PIE1bits.TXIE = 1;
-    //PIE1bits.RCIE = 1;
+    //PIE1bits.TXIE = 1;
+
 }
 
 //void Trasmission_1(char val_1_mapeado){

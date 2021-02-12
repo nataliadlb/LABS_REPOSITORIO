@@ -66,9 +66,9 @@
 //float S2_val;
 uint8_t S1_val;
 uint8_t S2_val;
-uint8_t S3_cont;
 char* data1[8];
 char* data2[8];
+char* S3_cont[3];
 uint8_t eusart_toggle  = 0;
 uint8_t ADC_toggle  = 0;
 uint8_t cont_usart;
@@ -90,11 +90,20 @@ void Show_val_LCD(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                              //
 //****************************************************************************//
-//void __interrupt() ISR(void){
-//    if (PIR1bits.RCIF == 0){
-//            data_recive = RCREG;
-//        }
-//    return;
+void __interrupt() ISR(void){
+    if (PIR1bits.RCIF == 1){
+            data_recive = RCREG;
+            cont++;
+            if (data_recive == '+'){
+                PORTB = 0xFF;
+            }
+            else {
+                PORTB = cont;
+            }
+            data_recive = 0;
+        }
+    //return;
+}
 //}
 //    if (PIE1bits.TXIE && PIR1bits.TXIF){ //PIE1bits.TXIE && 
 //        if (eusart_toggle)
@@ -120,16 +129,18 @@ void Show_val_LCD(void);
 //****************************************************************************//
 void main(void) {
     setup(); //Configuracion de puertos de entrada y salida
-    USART_Init();
     USART_Init_BaudRate();
-   // USART_INTERRUPT();
+    USART_Init();
+    USART_INTERRUPT();
     Lcd_Init();
     titulos_LCD();
+    cont = -1;
     
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        //PORTB = data_recive;
         ADC_channel1();
         __delay_ms(1);
         ADC_channel2();
@@ -138,15 +149,28 @@ void main(void) {
         Show_val_LCD();
         Trasmission();
         
-        PORTB = cont;
-        if (data_recive == '+'){
-            cont++;
+//        if (PIR1bits.RCIF != 0){
+//            data_recive = RCREG;
+//            PORTB = 0xFF;
         }
-        if(data_recive == '-'){
-            cont--;
-        }
-       data_recive = 0;
-    }
+//            if(data_recive == '-'){
+//            cont--;
+//            PORTB = 3;
+//        }
+//            else {
+//                cont = cont;
+//            }
+//           data_recive = 0;
+//        }
+        
+        
+        //PORTB = cont;
+//        if (data_recive == '+'){
+//            cont++;
+//            PORTB = 15;
+//        }
+        
+    
 }
 //****************************************************************************//
 //FUNCIONES                                                                   //
@@ -181,6 +205,7 @@ void ADC_channel2(void){
 void ADC_to_string(void){
     sprintf(data2, "%.3iV", S1_val<<1); //poner las conversiones en numeros, 
     sprintf(data1, "%.3iV", S2_val<<1); // segun el voltaje
+    sprintf(S3_cont, "%.3i", cont);
 //    sprintf(data2, "%1.2f", S1_val);
 //    sprintf(data1, "%1.2f", S2_val);
 }
@@ -205,8 +230,11 @@ void Show_val_LCD(void){
         Lcd_Write_Char(data1[3]);
         Lcd_Write_Char(' ');
         
-//        Lcd_Write_Char(S3_cont);
-//        __delay_ms(2000);
+        Lcd_Set_Cursor(2,13);
+        Lcd_Write_Char(S3_cont[0]);
+        Lcd_Write_Char(S3_cont[1]);
+        Lcd_Write_Char(S3_cont[2]);
+        Lcd_Write_Char(' ');
 }
 void Trasmission(void){
     if (PIR1bits.TXIF ){ //PIE1bits.TXIE && 
@@ -218,12 +246,12 @@ void Trasmission(void){
                 TXREG = data1;
                 eusart_toggle = 1;
             }
-            cont_usart++;
+            //cont_usart++;
 
-            if (cont_usart == 4){
-                //eusart_toggle = !eusart_toggle;
-                cont_usart = 0;
-            }
+//            if (cont_usart == 4){
+//                //eusart_toggle = !eusart_toggle;
+//                cont_usart = 0;
+//            }
 
         }
     //trasmitir los valores de la conversion ADC a la computadora
