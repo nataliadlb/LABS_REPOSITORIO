@@ -18,8 +18,8 @@ void USART_Init(void){
 }
 
 void USART_Init_BaudRate(void){
-    SPBRG = 12;
-    //SPBRG = 12; //Para tener un Baud rate de 9600 x = ((FOSC/Baud rate)/64) - 1
+    SPBRGH = 0;
+    SPBRG = 12; //Para tener un Baud rate de 9600 x = ((FOSC/Baud rate)/64) - 1
 }
 
 void USART_INTERRUPT(void){
@@ -27,6 +27,7 @@ void USART_INTERRUPT(void){
     INTCONbits.PEIE = 1;
     PIE1bits.RCIE = 1;
     PIE1bits.TXIE = 1;
+    //PIE1bits.RCIE = 1;
 }
 
 //void Trasmission_1(char val_1_mapeado){

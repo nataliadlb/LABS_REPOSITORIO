@@ -2892,7 +2892,7 @@ void USART_INTERRUPT(void);
 
 
 
-#pragma config FOSC = HS
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2906,36 +2906,38 @@ void USART_INTERRUPT(void);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 65 "pseudocodigo_lab3.c"
-float S1_val;
-float S2_val;
+# 67 "pseudocodigo_lab3.c"
+uint8_t S1_val;
+uint8_t S2_val;
 uint8_t S3_cont;
 char* data1[8];
 char* data2[8];
-_Bool eusart_flag = 0;
+uint8_t eusart_toggle = 0;
+uint8_t ADC_toggle = 0;
 uint8_t cont_usart;
+uint8_t cont;
+uint8_t data_recive;
 
 
 
 void setup(void);
 void Config_INTERRUPT(void);
-
-
+void ADC_INTERRUPT(void);
+void Trasmission(void);
 
 void titulos_LCD(void);
-void float_to_string(void);
 void ADC_channel1(void);
 void ADC_channel2(void);
-# 111 "pseudocodigo_lab3.c"
+void ADC_to_string(void);
+void Show_val_LCD(void);
+# 121 "pseudocodigo_lab3.c"
 void main(void) {
     setup();
     USART_Init();
-
     USART_Init_BaudRate();
+
     Lcd_Init();
     titulos_LCD();
-
-
 
 
 
@@ -2944,37 +2946,29 @@ void main(void) {
         ADC_channel1();
         _delay((unsigned long)((1)*(8000000/4000.0)));
         ADC_channel2();
-        _delay((unsigned long)((1)*(8000000/4000.0)));
 
-        float_to_string();
+        ADC_to_string();
+        Show_val_LCD();
+        Trasmission();
 
-
-
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_String(data1);
-        Lcd_Set_Cursor(2,7);
-        Lcd_Write_String(data2);
-
-
-
-
+        PORTB = cont;
+        if (data_recive == '+'){
+            cont++;
+        }
+        if(data_recive == '-'){
+            cont--;
+        }
+       data_recive = 0;
     }
-    return ;
 }
 
 
 
 
 
-
 void titulos_LCD(void){
-
         Lcd_Set_Cursor(1,2);
         Lcd_Write_String("S1:   S2:  S3:");
-
-
-
-
 }
 
 void ADC_channel1(void){
@@ -2982,7 +2976,8 @@ void ADC_channel1(void){
     _delay((unsigned long)((1)*(8000000/4000.0)));
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO != 0) {
-        S1_val = ((ADRESH * 5.0) / 255);
+        S1_val = ADRESH;
+
     }
 }
 
@@ -2991,15 +2986,68 @@ void ADC_channel2(void){
     _delay((unsigned long)((1)*(8000000/4000.0)));
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO != 0) {
-        S2_val = ((ADRESH * 5.0) / 255);
+        S2_val = ADRESH;
+
     }
 }
 
-void float_to_string(void){
-    sprintf(data2, "%.3i", S1_val);
+void ADC_to_string(void){
+    sprintf(data2, "%.3iV", S1_val<<1);
+    sprintf(data1, "%.3iV", S2_val<<1);
+
 
 }
-# 194 "pseudocodigo_lab3.c"
+
+void Show_val_LCD(void){
+
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(data2[0]);
+        Lcd_Write_Char('.');
+        Lcd_Write_Char(data2[1]);
+        Lcd_Write_Char(data2[2]);
+        Lcd_Write_Char(data2[3]);
+        Lcd_Write_Char(' ');
+
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+
+        Lcd_Set_Cursor(2,7);
+        Lcd_Write_Char(data1[0]);
+        Lcd_Write_Char('.');
+        Lcd_Write_Char(data1[1]);
+        Lcd_Write_Char(data1[2]);
+        Lcd_Write_Char(data1[3]);
+        Lcd_Write_Char(' ');
+
+
+
+}
+void Trasmission(void){
+    if (PIR1bits.TXIF ){
+            if (eusart_toggle){
+                TXREG = data2;
+                eusart_toggle = 0;
+            }
+            else{
+                TXREG = data1;
+                eusart_toggle = 1;
+            }
+            cont_usart++;
+
+            if (cont_usart == 4){
+
+                cont_usart = 0;
+            }
+
+        }
+
+}
+
+
+
+
+
+
+
 void setup(void) {
     initOsc(0b00000110);
     ANSEL = 0b00000011;

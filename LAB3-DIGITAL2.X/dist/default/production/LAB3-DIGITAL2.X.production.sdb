@@ -13,16 +13,10 @@
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcdiv.c
-[v ___fldiv __fldiv `(d  1 e 4 0 ]
-"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
-[v ___flmul __flmul `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
-[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 "6 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
@@ -43,17 +37,21 @@
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
-"111 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+"121 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 [v _main main `(v  1 e 1 0 ]
-"151
+"156
 [v _titulos_LCD titulos_LCD `(v  1 e 1 0 ]
 "161
 [v _ADC_channel1 ADC_channel1 `(v  1 e 1 0 ]
-"170
+"171
 [v _ADC_channel2 ADC_channel2 `(v  1 e 1 0 ]
-"179
-[v _float_to_string float_to_string `(v  1 e 1 0 ]
-"194
+"181
+[v _ADC_to_string ADC_to_string `(v  1 e 1 0 ]
+"188
+[v _Show_val_LCD Show_val_LCD `(v  1 e 1 0 ]
+"211
+[v _Trasmission Trasmission `(v  1 e 1 0 ]
+"238
 [v _setup setup `(v  1 e 1 0 ]
 "5 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 [v _USART_Init USART_Init `(v  1 e 1 0 ]
@@ -69,15 +67,15 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S251 . 1 `uc 1 RE0 1 0 :1:0 
+[s S297 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S256 . 1 `S251 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES256  1 e 1 @9 ]
-[s S417 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S302 . 1 `S297 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES302  1 e 1 @9 ]
+[s S463 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -87,14 +85,25 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S426 . 1 `uc 1 . 1 0 :2:0 
+[s S472 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S431 . 1 `S417 1 . 1 0 `S426 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES431  1 e 1 @11 ]
-[s S334 . 1 `uc 1 RX9D 1 0 :1:0 
+[u S477 . 1 `S463 1 . 1 0 `S472 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES477  1 e 1 @11 ]
+[s S143 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S151 . 1 `S143 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES151  1 e 1 @12 ]
+[s S379 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -104,29 +113,31 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S343 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S388 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S347 . 1 `uc 1 . 1 0 :6:0 
+[s S392 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S350 . 1 `uc 1 . 1 0 :6:0 
+[s S395 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S353 . 1 `S334 1 . 1 0 `S343 1 . 1 0 `S347 1 . 1 0 `S350 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES353  1 e 1 @24 ]
+[u S398 . 1 `S379 1 . 1 0 `S388 1 . 1 0 `S392 1 . 1 0 `S395 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES398  1 e 1 @24 ]
+"1133
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
 [v _RCREG RCREG `VEuc  1 e 1 @26 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S76 . 1 `uc 1 ADON 1 0 :1:0 
+[s S85 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S81 . 1 `uc 1 . 1 0 :1:0 
+[s S90 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -135,19 +146,19 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S90 . 1 `uc 1 . 1 0 :1:0 
+[s S99 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S93 . 1 `uc 1 . 1 0 :1:0 
+[s S102 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S96 . 1 `S76 1 . 1 0 `S81 1 . 1 0 `S90 1 . 1 0 `S93 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES96  1 e 1 @31 ]
+[u S105 . 1 `S85 1 . 1 0 `S90 1 . 1 0 `S99 1 . 1 0 `S102 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES105  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S138 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S172 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -157,13 +168,13 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S147 . 1 `S138 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES147  1 e 1 @135 ]
+[u S181 . 1 `S172 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES181  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S449 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S495 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -172,23 +183,23 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S457 . 1 `S449 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES457  1 e 1 @140 ]
-[s S201 . 1 `uc 1 SCS 1 0 :1:0 
+[u S503 . 1 `S495 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES503  1 e 1 @140 ]
+[s S247 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S207 . 1 `uc 1 . 1 0 :4:0 
+[s S253 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S212 . 1 `S201 1 . 1 0 `S207 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES212  1 e 1 @143 ]
-[s S378 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S258 . 1 `S247 1 . 1 0 `S253 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES258  1 e 1 @143 ]
+[s S423 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -198,17 +209,19 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S387 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S432 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S391 . 1 `uc 1 . 1 0 :6:0 
+[s S436 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S394 . 1 `S378 1 . 1 0 `S387 1 . 1 0 `S391 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES394  1 e 1 @152 ]
+[u S439 . 1 `S423 1 . 1 0 `S432 1 . 1 0 `S436 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES439  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2704
+[v _SPBRGH SPBRGH `VEuc  1 e 1 @154 ]
 "2970
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
 "2977
@@ -227,20 +240,28 @@
 [v _VAL_NIBBLE1 VAL_NIBBLE1 `i  1 e 2 0 ]
 "8
 [v _VAL_NIBBLE2 VAL_NIBBLE2 `i  1 e 2 0 ]
-"65 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-[v _S1_val S1_val `f  1 e 4 0 ]
-"66
-[v _S2_val S2_val `f  1 e 4 0 ]
+"67 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+[v _S1_val S1_val `uc  1 e 1 0 ]
 "68
+[v _S2_val S2_val `uc  1 e 1 0 ]
+"70
 [v _data1 data1 `[8]*.4uc  1 e 8 0 ]
-"69
+"71
 [v _data2 data2 `[8]*.4uc  1 e 8 0 ]
-"111
+"72
+[v _eusart_toggle eusart_toggle `uc  1 e 1 0 ]
+"74
+[v _cont_usart cont_usart `uc  1 e 1 0 ]
+"75
+[v _cont cont `uc  1 e 1 0 ]
+"76
+[v _data_recive data_recive `uc  1 e 1 0 ]
+"121
 [v _main main `(v  1 e 1 0 ]
 {
-"144
+"150
 } 0
-"151
+"156
 [v _titulos_LCD titulos_LCD `(v  1 e 1 0 ]
 {
 "159
@@ -248,13 +269,49 @@
 "70 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
 {
+[v Lcd_Write_String@a a `*.24uc  1 a 1 wreg ]
 "71
-[v Lcd_Write_String@i i `i  1 a 2 8 ]
+[v Lcd_Write_String@i i `i  1 a 2 3 ]
 "70
-[v Lcd_Write_String@a a `*.26uc  1 p 2 3 ]
+[v Lcd_Write_String@a a `*.24uc  1 a 1 wreg ]
+"72
+[v Lcd_Write_String@a a `*.24uc  1 a 1 5 ]
 "74
 } 0
-"61
+"238 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+[v _setup setup `(v  1 e 1 0 ]
+{
+"253
+} 0
+"3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
+[v _initOsc initOsc `(v  1 e 1 0 ]
+{
+[v initOsc@IRCF IRCF `uc  1 a 1 wreg ]
+[v initOsc@IRCF IRCF `uc  1 a 1 wreg ]
+[v initOsc@IRCF IRCF `uc  1 a 1 2 ]
+"53
+} 0
+"20 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+[v _USART_Init_BaudRate USART_Init_BaudRate `(v  1 e 1 0 ]
+{
+"23
+} 0
+"5
+[v _USART_Init USART_Init `(v  1 e 1 0 ]
+{
+"18
+} 0
+"211 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+[v _Trasmission Trasmission `(v  1 e 1 0 ]
+{
+"230
+} 0
+"188
+[v _Show_val_LCD Show_val_LCD `(v  1 e 1 0 ]
+{
+"210
+} 0
+"61 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 [v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
 {
 [v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
@@ -275,38 +332,46 @@
 [v Lcd_Set_Cursor@a a `uc  1 a 1 6 ]
 "58
 } 0
-"194 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-[v _setup setup `(v  1 e 1 0 ]
+"14
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
 {
-"209
+"26
 } 0
-"3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
-[v _initOsc initOsc `(v  1 e 1 0 ]
+"33
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
 {
-[v initOsc@IRCF IRCF `uc  1 a 1 wreg ]
-[v initOsc@IRCF IRCF `uc  1 a 1 wreg ]
-[v initOsc@IRCF IRCF `uc  1 a 1 2 ]
-"53
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 3 ]
+"39
 } 0
-"179 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-[v _float_to_string float_to_string `(v  1 e 1 0 ]
+"29
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
 {
-"182
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 0 ]
+"31
+} 0
+"181 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+[v _ADC_to_string ADC_to_string `(v  1 e 1 0 ]
+{
+"186
 } 0
 "505 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
 "545
-[v sprintf@val val `ui  1 a 2 11 ]
+[v sprintf@val val `ui  1 a 2 8 ]
 "512
-[v sprintf@c c `uc  1 a 1 14 ]
+[v sprintf@c c `uc  1 a 1 12 ]
 "521
-[v sprintf@prec prec `c  1 a 1 13 ]
+[v sprintf@prec prec `c  1 a 1 11 ]
 "525
-[v sprintf@flag flag `uc  1 a 1 9 ]
+[v sprintf@flag flag `uc  1 a 1 7 ]
 "507
-[v sprintf@ap ap `[1]*.4v  1 a 1 8 ]
+[v sprintf@ap ap `[1]*.4v  1 a 1 6 ]
 "505
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
 [v sprintf@f f `*.24DCuc  1 p 1 0 ]
@@ -358,120 +423,15 @@
 [v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
 "51
 } 0
-"20 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-[v _USART_Init_BaudRate USART_Init_BaudRate `(v  1 e 1 0 ]
-{
-"23
-} 0
-"5
-[v _USART_Init USART_Init `(v  1 e 1 0 ]
-{
-"18
-} 0
-"14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
-{
-"26
-} 0
-"33
-[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
-{
-[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
-[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
-[v Lcd_Cmd@a a `uc  1 a 1 3 ]
-"39
-} 0
-"29
-[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
-{
-[v Lcd_Port@a a `uc  1 a 1 wreg ]
-[v Lcd_Port@a a `uc  1 a 1 wreg ]
-[v Lcd_Port@a a `uc  1 a 1 0 ]
-"31
-} 0
-"170 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+"171 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 [v _ADC_channel2 ADC_channel2 `(v  1 e 1 0 ]
 {
-"177
+"179
 } 0
 "161
 [v _ADC_channel1 ADC_channel1 `(v  1 e 1 0 ]
 {
-"168
-} 0
-"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
-[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-{
-[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
-"13
-[v ___xxtofl@arg arg `ul  1 a 4 10 ]
-"12
-[v ___xxtofl@exp exp `uc  1 a 1 9 ]
-"10
-[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
-[v ___xxtofl@val val `l  1 p 4 0 ]
-"15
-[v ___xxtofl@sign sign `uc  1 a 1 8 ]
-"44
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
-[v ___flmul __flmul `(d  1 e 4 0 ]
-{
-[s S805 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-"13
-[s S810 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S813 . 4 `l 1 i 4 0 `d 1 f 4 0 `S805 1 fAsBytes 4 0 `S810 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S813  1 a 4 20 ]
-"12
-[v ___flmul@grs grs `ul  1 a 4 14 ]
-[s S882 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-"14
-[u S885 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S882 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S885  1 a 2 24 ]
-"10
-[v ___flmul@bexp bexp `uc  1 a 1 19 ]
-"11
-[v ___flmul@aexp aexp `uc  1 a 1 18 ]
-"9
-[v ___flmul@sign sign `uc  1 a 1 13 ]
-"8
-[v ___flmul@b b `d  1 p 4 0 ]
-[v ___flmul@a a `d  1 p 4 4 ]
-"205
-} 0
-"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
-[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-{
-[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
-"6
-[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 6 ]
-"5
-[v __Umul8_16@product product `ui  1 a 2 4 ]
-"4
-[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
-[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 0 ]
-[v __Umul8_16@multiplier multiplier `uc  1 a 1 8 ]
-"60
-} 0
-"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcdiv.c
-[v ___fldiv __fldiv `(d  1 e 4 0 ]
-{
-"21
-[v ___fldiv@grs grs `ul  1 a 4 46 ]
-"22
-[v ___fldiv@rem rem `ul  1 a 4 39 ]
-"20
-[v ___fldiv@new_exp new_exp `i  1 a 2 44 ]
-"19
-[v ___fldiv@aexp aexp `uc  1 a 1 51 ]
-"18
-[v ___fldiv@bexp bexp `uc  1 a 1 50 ]
-"16
-[v ___fldiv@sign sign `uc  1 a 1 43 ]
-"8
-[v ___fldiv@a a `d  1 p 4 26 ]
-[v ___fldiv@b b `d  1 p 4 30 ]
-"185
+"169
 } 0
 "31 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Config_ADC.c
 [v _ADC_Config ADC_Config `(v  1 e 1 0 ]

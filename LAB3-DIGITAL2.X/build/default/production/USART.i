@@ -2838,8 +2838,8 @@ void USART_Init(void){
 }
 
 void USART_Init_BaudRate(void){
+    SPBRGH = 0;
     SPBRG = 12;
-
 }
 
 void USART_INTERRUPT(void){
@@ -2847,4 +2847,5 @@ void USART_INTERRUPT(void){
     INTCONbits.PEIE = 1;
     PIE1bits.RCIE = 1;
     PIE1bits.TXIE = 1;
+
 }

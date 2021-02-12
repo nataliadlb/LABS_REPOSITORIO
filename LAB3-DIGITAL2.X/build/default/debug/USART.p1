@@ -44,6 +44,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1140
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
 [v _RCREG `Vuc ~T0 @X0 0 e@26 ]
+"2704
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2704: extern volatile unsigned char SPBRGH __attribute__((address(0x09A)));
+[v _SPBRGH `Vuc ~T0 @X0 0 e@154 ]
 "2642
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2642: extern volatile unsigned char SPBRG __attribute__((address(0x099)));
 [v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
@@ -351,7 +354,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _USART_Init_BaudRate ]
 [f ]
 "21
-[; ;USART.c: 21:     SPBRG = 12;
+[; ;USART.c: 21:     SPBRGH = 0;
+[e = _SPBRGH -> -> 0 `i `uc ]
+"22
+[; ;USART.c: 22:     SPBRG = 12;
 [e = _SPBRG -> -> 12 `i `uc ]
 "23
 [; ;USART.c: 23: }
@@ -375,7 +381,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29
 [; ;USART.c: 29:     PIE1bits.TXIE = 1;
 [e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
-"30
-[; ;USART.c: 30: }
+"31
+[; ;USART.c: 31: }
 [e :UE 145 ]
 }
