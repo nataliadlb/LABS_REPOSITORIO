@@ -2650,15 +2650,15 @@ void Lcd_Clear(void);
 void Lcd_Init(){
   Lcd_Port(0x00);
    _delay((unsigned long)((20)*(8000000/4000.0)));
-  Lcd_Cmd(0x030);
+  Lcd_Cmd(0x30);
     _delay((unsigned long)((5)*(8000000/4000.0)));
-  Lcd_Cmd(0x030);
+  Lcd_Cmd(0x30);
     _delay((unsigned long)((11)*(8000000/4000.0)));
-  Lcd_Cmd(0x030);
-  Lcd_Cmd(0x038);
-  Lcd_Cmd(0x00C);
-  Lcd_Cmd(0x001);
-  Lcd_Cmd(0x006);
+  Lcd_Cmd(0x30);
+  Lcd_Cmd(0x38);
+  Lcd_Cmd(0x0C);
+  Lcd_Cmd(0x01);
+  Lcd_Cmd(0x06);
 }
 
 

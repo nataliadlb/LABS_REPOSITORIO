@@ -14,6 +14,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <pic16f887.h>
 #include "Oscilador.h"
 #include "LCD.h"
@@ -64,8 +65,10 @@
 float S1_val;
 float S2_val;
 uint8_t S3_cont;
-char data1[8];
-char data2[8];
+char* data1[8];
+char* data2[8];
+bool eusart_flag  = false;
+uint8_t cont_usart;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -82,13 +85,34 @@ void ADC_channel2(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                              //
 //****************************************************************************//
-
-
+//void __interrupt() ISR(void){
+//
+//    if (PIE1bits.TXIE && PIR1bits.TXIF){
+//        if (eusart_flag)
+//        {
+//            TXREG = 0b00001111;
+//        }
+//        else
+//        {
+//            TXREG = 0b11110000;
+//        }
+//        cont_usart++;
+//
+//        if (cont_usart == 5)
+//        {
+//            eusart_flag = !eusart_flag;
+//            cont_usart = 0;
+//        }
+//    }
+//}
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 void main(void) {
     setup(); //Configuracion de puertos de entrada y salida
+    USART_Init();
+    //USART_INTERRUPT();
+    USART_Init_BaudRate();
     Lcd_Init();
     titulos_LCD();
 //    USART_Init_transmission();
@@ -104,6 +128,8 @@ void main(void) {
         __delay_ms(1);
         
         float_to_string();
+        //sprintf("El valor es %1.2f.\n", data2);
+        //Trasmission_1(data2);
         //Valores de S1 y S2
         Lcd_Set_Cursor(2,1);
         Lcd_Write_String(data1);
@@ -125,15 +151,11 @@ void main(void) {
 void titulos_LCD(void){
     //nombres S1, S2 y S3
         Lcd_Set_Cursor(1,2);
-        Lcd_Write_String("S1:");
-        Lcd_Set_Cursor(1,8);
-        Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1,14);
-        Lcd_Write_String("S3:");
-        Lcd_Set_Cursor(2,5);
-        Lcd_Write_String("v");
-        Lcd_Set_Cursor(2,12);   
-        Lcd_Write_String("v");
+        Lcd_Write_String("S1:   S2:  S3:");
+//        Lcd_Set_Cursor(2,5);
+//        Lcd_Write_String("v");
+//        Lcd_Set_Cursor(2,11);   
+//        Lcd_Write_String("v");
 }
 
 void ADC_channel1(void){
@@ -155,7 +177,7 @@ void ADC_channel2(void){
 }
 
 void float_to_string(void){
-    sprintf(data2, "%1.2f ",S1_val);
+    sprintf(data2, "%1.2f", S1_val);
     sprintf(data1, "%1.2f", S2_val);
 }
 
@@ -175,7 +197,8 @@ void setup(void) { //Configuración de puertos de entrada y salida
     ANSELH = 0; 
     TRISA = 0b00000011; //potenciometros, como entrada
     TRISB = 0;
-    TRISC = 0; 
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
     TRISD = 0; 
     TRISE = 0;
     PORTA = 0; 
@@ -187,10 +210,4 @@ void setup(void) { //Configuración de puertos de entrada y salida
 
 //********************* CONFIGURACION COM SERIAL *****************************//
 
-//
-//void USART_Init_reception(void){
-//    SPEN =1;
-//    CREN =1;
-//    SREN = 1;
-//    
-//}
+

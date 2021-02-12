@@ -2809,6 +2809,9 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 # 16 "pseudocodigo_lab3.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdbool.h" 1 3
+# 17 "pseudocodigo_lab3.c" 2
+
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2823,7 +2826,7 @@ extern char * ftoa(float f, int * status);
 
 
 void initOsc(uint8_t IRCF);
-# 18 "pseudocodigo_lab3.c" 2
+# 19 "pseudocodigo_lab3.c" 2
 
 # 1 "./LCD.h" 1
 # 63 "./LCD.h"
@@ -2846,7 +2849,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right();
 void Lcd_Shift_Left();
 void Lcd_Clear(void);
-# 19 "pseudocodigo_lab3.c" 2
+# 20 "pseudocodigo_lab3.c" 2
 
 # 1 "./Config_ADC.h" 1
 # 14 "./Config_ADC.h"
@@ -2865,7 +2868,23 @@ int SWAP_ADC(uint8_t VAL_ADC);
 int NIBBLE1_ADC(uint8_t VAL_ADC);
 int NIBBLE2_ADC(uint8_t VAL_SWAP);
 void ADC_Config (uint8_t AN_num);
-# 20 "pseudocodigo_lab3.c" 2
+# 21 "pseudocodigo_lab3.c" 2
+
+# 1 "./USART.h" 1
+# 14 "./USART.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./USART.h" 2
+
+
+
+
+
+void USART_Init(void);
+void USART_Init_BaudRate(void);
+void Trasmission_1(char val_1_mapeado);
+void Trasmission_2(char val_2_mapeado);
+void USART_INTERRUPT(void);
+# 22 "pseudocodigo_lab3.c" 2
 
 
 
@@ -2887,12 +2906,14 @@ void ADC_Config (uint8_t AN_num);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 63 "pseudocodigo_lab3.c"
+# 65 "pseudocodigo_lab3.c"
 float S1_val;
 float S2_val;
 uint8_t S3_cont;
-char data1[8];
-char data2[8];
+char* data1[8];
+char* data2[8];
+_Bool eusart_flag = 0;
+uint8_t cont_usart;
 
 
 
@@ -2901,17 +2922,42 @@ void Config_INTERRUPT(void);
 
 
 
-
-
-
-
 void titulos_LCD(void);
 void float_to_string(void);
 void ADC_channel1(void);
 void ADC_channel2(void);
-# 93 "pseudocodigo_lab3.c"
+
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void){
+
+    if (PIE1bits.TXIE && PIR1bits.TXIF){
+        if (eusart_flag)
+        {
+            TXREG = 0b00001111;
+        }
+        else
+        {
+            TXREG = 0b11110000;
+        }
+        cont_usart++;
+
+        if (cont_usart == 5)
+        {
+            eusart_flag = !eusart_flag;
+            cont_usart = 0;
+        }
+    }
+}
+
+
+
 void main(void) {
     setup();
+    USART_Init();
+
+    USART_Init_BaudRate();
     Lcd_Init();
     titulos_LCD();
 
@@ -2927,7 +2973,17 @@ void main(void) {
         _delay((unsigned long)((1)*(8000000/4000.0)));
 
         float_to_string();
-# 119 "pseudocodigo_lab3.c"
+
+
+
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_String(data1);
+        Lcd_Set_Cursor(2,7);
+        Lcd_Write_String(data2);
+
+
+
+
     }
     return ;
 }
@@ -2943,19 +2999,19 @@ void titulos_LCD(void){
         Lcd_Write_String("S1:");
         Lcd_Set_Cursor(1,8);
         Lcd_Write_String("S2:");
-        Lcd_Set_Cursor(1,13);
+        Lcd_Set_Cursor(1,14);
         Lcd_Write_String("S3:");
         Lcd_Set_Cursor(2,5);
-        Lcd_Write_String("V");
-        Lcd_Set_Cursor(2,11);
-        Lcd_Write_String("V");
+        Lcd_Write_String("v");
+        Lcd_Set_Cursor(2,12);
+        Lcd_Write_String("v");
 }
 
 void ADC_channel1(void){
     ADC_Config (0);
     _delay((unsigned long)((1)*(8000000/4000.0)));
     ADCON0bits.GO = 1;
-    while (ADCON0bits.GO == 1) {
+    while (ADCON0bits.GO != 0) {
         S1_val = ((ADRESH * 5.0) / 255);
     }
 }
@@ -2964,23 +3020,24 @@ void ADC_channel2(void){
     ADC_Config (1);
     _delay((unsigned long)((1)*(8000000/4000.0)));
     ADCON0bits.GO = 1;
-    while (ADCON0bits.GO == 1) {
+    while (ADCON0bits.GO != 0) {
         S2_val = ((ADRESH * 5.0) / 255);
     }
 }
 
 void float_to_string(void){
-    sprintf(data1, "%1.2f ",S1_val);
-    sprintf(data2, "%1.2f", S2_val);
+    sprintf(data2, "%1.2f",S1_val);
+    sprintf(data1, "%1.2f", S2_val);
 }
-# 175 "pseudocodigo_lab3.c"
+# 198 "pseudocodigo_lab3.c"
 void setup(void) {
     initOsc(0b00000110);
     ANSEL = 0b00000011;
     ANSELH = 0;
     TRISA = 0b00000011;
     TRISB = 0;
-    TRISC = 0;
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
     TRISD = 0;
     TRISE = 0;
     PORTA = 0;

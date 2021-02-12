@@ -14,15 +14,15 @@
 void Lcd_Init(){
   Lcd_Port(0x00);
    __delay_ms(20);
-  Lcd_Cmd(0x030);
+  Lcd_Cmd(0x30);
     __delay_ms(5);
-  Lcd_Cmd(0x030);
+  Lcd_Cmd(0x30);
     __delay_ms(11);
-  Lcd_Cmd(0x030);
-  Lcd_Cmd(0x038); //numero de lineas
-  Lcd_Cmd(0x00C); //apagado
-  Lcd_Cmd(0x001);
-  Lcd_Cmd(0x006);
+  Lcd_Cmd(0x30);
+  Lcd_Cmd(0x38); //numero de lineas
+  Lcd_Cmd(0x0C); //apagado
+  Lcd_Cmd(0x01);
+  Lcd_Cmd(0x06);
 }
 
 //------ Función para escoger el puerto ------//
