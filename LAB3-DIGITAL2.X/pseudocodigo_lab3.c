@@ -1,10 +1,11 @@
 /*
- * File:   main.c
- * Author: katha
+ * Pseudocodigo -- Laboratorio # 3
+ * Author: Natalia de León Bercián
+ * carné: 18193
+ * Digital 2
  *
- * Created on 7 de febrero de 2021, 02:03 PM
+ * Created on 7 de febrero de 2021
  */
-
 //******************************************************************************
 //Librerias
 //******************************************************************************
@@ -78,14 +79,14 @@ void Show_val_LCD(void);
 
 void __interrupt() ISR(void) {
     if(PIR1bits.RCIF == 1){
-        data_recive = RCREG;
-        //data_recive = Read_USART();
-        if (data_recive == '+'){
+        data_recive = RCREG; //Recibe los datos que manda la terminal
+        if (data_recive == '+'){ //auementa
             cont++;
             PORTB = cont;
         }
-        else if (data_recive == '-'){
+        else if (data_recive == '-'){ //decrementa
             cont--;
+            PORTB = cont;
         }
         data_recive = 0;
         }
@@ -99,15 +100,14 @@ void main(void) {
     setup();
     TRISD = 0x00;
     Lcd_Init();
-
     Lcd_Clear();
 
     
     while (1) {
-        ADC_channel1();
+        ADC_channel1(); //conversion ADC de un pot
         __delay_ms(1);
-        ADC_channel2();
-        
+        ADC_channel2(); //conversion ADC del otro pot
+         
         Write_USART_String("S1   S2   S3 \n"); //enviar los datos del pic a la compu
         ADC_to_string();
         //sprintf(data_total, "%1.2fV  %1.1fV    %d", S2_val, S1_val, cont); //convertir los valores de voltaje y el contador a un string para que los lea bien la compu
@@ -140,13 +140,9 @@ void Show_val_LCD(void){
 
 void ADC_channel1(void) {
     ADC_Config (0); //channel 0
-    //Cinfiguracion bits ADCON0
-//    ADCON0bits.ADCS0 = 1; //Clock ADC conversion
-//    ADCON0bits.ADCS1 = 0; //Fosc
-//    ADCON0bits.ADON = 1; //Se habilita el ADC
-    __delay_us(40); //Para conversion
+    __delay_us(40); 
     ADCON0bits.GO = 1; //Inicia la conversión
-    while (ADCON0bits.GO != 0) { //Waiting for conversion to complete
+    while (ADCON0bits.GO != 0) { //Mientras no se termine la conversion
         S1_val = ((ADRESH * 5.0) / 255);
 
     }
@@ -154,12 +150,9 @@ void ADC_channel1(void) {
 
 void ADC_channel2(void) {
     ADC_Config (1); //channel 1
-//    ADCON0bits.ADCS0 = 1; //Clock ADC conversion
-//    ADCON0bits.ADCS1 = 0; //Fosc
-//    ADCON0bits.ADON = 1; //Se habilita el ADC
     __delay_us(40); //Para conversion
-    ADCON0bits.GO = 1; //Inicia la conversión
-    while (ADCON0bits.GO != 0) { //Waiting for conversion to complete
+    ADCON0bits.GO = 1; //Inicia la conversión ADC
+    while (ADCON0bits.GO != 0) { //Mientras no se termine la conversion
         S2_val = ((ADRESH * 5.0) / 255);
 
     }
@@ -183,6 +176,5 @@ void setup(void) {
     USART_Init_BaudRate();
     USART_Init();
     USART_INTERRUPT();
-
 
 }

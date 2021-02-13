@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "pseudocodigo_lab3.c" 2
-# 11 "pseudocodigo_lab3.c"
+# 12 "pseudocodigo_lab3.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 11 "pseudocodigo_lab3.c" 2
+# 12 "pseudocodigo_lab3.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 12 "pseudocodigo_lab3.c" 2
+# 13 "pseudocodigo_lab3.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 13 "pseudocodigo_lab3.c" 2
+# 14 "pseudocodigo_lab3.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2807,7 +2807,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 14 "pseudocodigo_lab3.c" 2
+# 15 "pseudocodigo_lab3.c" 2
 
 
 # 1 "./LCD.h" 1
@@ -2831,7 +2831,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right();
 void Lcd_Shift_Left();
 void Lcd_Clear(void);
-# 16 "pseudocodigo_lab3.c" 2
+# 17 "pseudocodigo_lab3.c" 2
 
 # 1 "./Config_ADC.h" 1
 # 14 "./Config_ADC.h"
@@ -2850,7 +2850,7 @@ int SWAP_ADC(uint8_t VAL_ADC);
 int NIBBLE1_ADC(uint8_t VAL_ADC);
 int NIBBLE2_ADC(uint8_t VAL_SWAP);
 void ADC_Config (uint8_t AN_num);
-# 17 "pseudocodigo_lab3.c" 2
+# 18 "pseudocodigo_lab3.c" 2
 
 # 1 "./USART.h" 1
 # 14 "./USART.h"
@@ -2869,7 +2869,7 @@ void USART_INTERRUPT(void);
 void Write_USART(uint8_t a);
 void Write_USART_String(char *a);
 uint8_t Read_USART();
-# 18 "pseudocodigo_lab3.c" 2
+# 19 "pseudocodigo_lab3.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2884,7 +2884,7 @@ uint8_t Read_USART();
 
 
 void initOsc(uint8_t IRCF);
-# 19 "pseudocodigo_lab3.c" 2
+# 20 "pseudocodigo_lab3.c" 2
 
 
 
@@ -2902,7 +2902,7 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 58 "pseudocodigo_lab3.c"
+# 59 "pseudocodigo_lab3.c"
 float S1_val = 0.0;
 float S2_val = 0.0;
 char data_total[20];
@@ -2927,13 +2927,13 @@ void Show_val_LCD(void);
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
         data_recive = RCREG;
-
         if (data_recive == '+'){
             cont++;
             PORTB = cont;
         }
         else if (data_recive == '-'){
             cont--;
+            PORTB = cont;
         }
         data_recive = 0;
         }
@@ -2947,7 +2947,6 @@ void main(void) {
     setup();
     TRISD = 0x00;
     Lcd_Init();
-
     Lcd_Clear();
 
 
@@ -2988,10 +2987,6 @@ void Show_val_LCD(void){
 
 void ADC_channel1(void) {
     ADC_Config (0);
-
-
-
-
     _delay((unsigned long)((40)*(8000000/4000000.0)));
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO != 0) {
@@ -3002,9 +2997,6 @@ void ADC_channel1(void) {
 
 void ADC_channel2(void) {
     ADC_Config (1);
-
-
-
     _delay((unsigned long)((40)*(8000000/4000000.0)));
     ADCON0bits.GO = 1;
     while (ADCON0bits.GO != 0) {
@@ -3031,6 +3023,5 @@ void setup(void) {
     USART_Init_BaudRate();
     USART_Init();
     USART_INTERRUPT();
-
 
 }

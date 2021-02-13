@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\cnata\AppData\Local\Temp\s808.o
+$C:\Users\cnata\AppData\Local\Temp\shcs.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -19,29 +19,29 @@ $dist/default/production\LAB3-DIGITAL2.X.production.o
 cinit CODE 0 F F 13 2
 text1 CODE 0 1DEC 1DEC 2B 2
 text2 CODE 0 123A 123A 5C 2
-text3 CODE 0 1C7F 1C7F 6 2
-text4 CODE 0 1CA3 1CA3 C 2
-text5 CODE 0 1C79 1C79 6 2
+text3 CODE 0 1C7E 1C7E 6 2
+text4 CODE 0 1CA2 1CA2 C 2
+text5 CODE 0 1C78 1C78 6 2
 text6 CODE 0 1DC1 1DC1 2B 2
-text7 CODE 0 1C97 1C97 C 2
+text7 CODE 0 1C96 1C96 C 2
 text8 CODE 0 1E17 1E17 2C 2
 text9 CODE 0 1F6A 1F6A 46 2
-text10 CODE 0 1CCE 1CCE 16 2
-text11 CODE 0 1D20 1D20 26 2
-text12 CODE 0 1CAF 1CAF D 2
+text10 CODE 0 1CCD 1CCD 16 2
+text11 CODE 0 1D1F 1D1F 26 2
+text12 CODE 0 1CAE 1CAE D 2
 text13 CODE 0 1FB0 1FB0 50 2
 text14 CODE 0 10B9 10B9 1A 2
-text15 CODE 0 1C73 1C73 6 2
+text15 CODE 0 1C72 1C72 6 2
 text16 CODE 0 1E76 1E76 38 2
 text17 CODE 0 D28 D28 2D8 2
 text18 CODE 0 A6D A6D 2BB 2
 text19 CODE 0 11DF 11DF 5B 2
 text20 CODE 0 12FE 12FE 69 2
-text21 CODE 0 1CBC 1CBC 12 2
+text21 CODE 0 1CBB 1CBB 12 2
 text22 CODE 0 8C4 8C4 1A9 2
 text23 CODE 0 1EE8 1EE8 3C 2
 text24 CODE 0 1F24 1F24 46 2
-text25 CODE 0 1CE4 1CE4 17 2
+text25 CODE 0 1CE3 1CE3 17 2
 text26 CODE 0 1531 1531 BD 2
 text27 CODE 0 16D3 16D3 12D 2
 text28 CODE 0 1D96 1D96 2B 2
@@ -49,9 +49,9 @@ text29 CODE 0 1E43 1E43 33 2
 text30 CODE 0 10D3 10D3 56 2
 text31 CODE 0 1296 1296 68 2
 text32 CODE 0 13E9 13E9 8C 2
-text33 CODE 0 1CFB 1CFB 25 2
+text33 CODE 0 1CFA 1CFA 25 2
 text34 CODE 0 667 667 136 2
-text35 CODE 0 1C8D 1C8D A 2
+text35 CODE 0 1C8C 1C8C A 2
 text36 CODE 0 1EAE 1EAE 3A 2
 text37 CODE 0 1184 1184 5B 2
 text38 CODE 0 1129 1129 5B 2
@@ -60,7 +60,7 @@ text40 CODE 0 802 802 C2 2
 text41 CODE 0 1D6D 1D6D 29 2
 text42 CODE 0 1367 1367 82 2
 text43 CODE 0 1475 1475 BC 2
-text44 CODE 0 1D46 1D46 27 2
+text44 CODE 0 1D45 1D45 28 2
 maintext CODE 0 79D 79D 60 2
 cstackCOMMON COMMON 1 70 70 8 1
 cstackBANK0 BANK0 1 20 20 4E 1
@@ -70,7 +70,7 @@ bssBANK0 BANK0 1 6E 6E 1 1
 bssBANK1 BANK1 1 C2 C2 20 1
 strings STRING 0 1000 1000 B7 2
 text17_split_1 CODE 0 22 22 645 2
-clrtext CODE 0 1C85 1C85 8 2
+clrtext CODE 0 1C84 1C84 8 2
 bssCOMMON COMMON 1 78 78 3 1
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -90,17 +90,17 @@ BANK3 190-1EF 1
 CONST 3-3 2
 CONST 7FD-801 2
 CONST 10B7-10B8 2
-CONST 1800-1C72 2
+CONST 1800-1C71 2
 ENTRY 3-3 2
 ENTRY 7FD-801 2
 ENTRY 10B7-10B8 2
-ENTRY 1800-1C72 2
+ENTRY 1800-1C71 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
 CODE 7FD-801 2
 CODE 10B7-10B8 2
-CODE 1800-1C72 2
+CODE 1800-1C71 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -110,11 +110,11 @@ EEDATA 2100-21FF 2
 STRCODE 3-3 2
 STRCODE 7FD-801 2
 STRCODE 10B7-10B8 2
-STRCODE 1800-1C72 2
+STRCODE 1800-1C71 2
 STRING 3-3 2
 STRING 7FD-801 2
 STRING 10B7-10B8 2
-STRING 1800-1C72 2
+STRING 1800-1C71 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -129,23 +129,23 @@ STRING 1800-1C72 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\LAB3-DIGITAL2.X.production.o
-F cinit CODE >1444:C:\Users\cnata\AppData\Local\Temp\s808.s
-F cinit CODE >1447:C:\Users\cnata\AppData\Local\Temp\s808.s
-F cinit CODE >1503:C:\Users\cnata\AppData\Local\Temp\s808.s
-10 cinit CODE >1504:C:\Users\cnata\AppData\Local\Temp\s808.s
-11 cinit CODE >1505:C:\Users\cnata\AppData\Local\Temp\s808.s
-12 cinit CODE >1508:C:\Users\cnata\AppData\Local\Temp\s808.s
-13 cinit CODE >1509:C:\Users\cnata\AppData\Local\Temp\s808.s
-14 cinit CODE >1510:C:\Users\cnata\AppData\Local\Temp\s808.s
-15 cinit CODE >1513:C:\Users\cnata\AppData\Local\Temp\s808.s
-16 cinit CODE >1514:C:\Users\cnata\AppData\Local\Temp\s808.s
-17 cinit CODE >1515:C:\Users\cnata\AppData\Local\Temp\s808.s
-18 cinit CODE >1516:C:\Users\cnata\AppData\Local\Temp\s808.s
-19 cinit CODE >1517:C:\Users\cnata\AppData\Local\Temp\s808.s
-1E cinit CODE >1523:C:\Users\cnata\AppData\Local\Temp\s808.s
-1E cinit CODE >1525:C:\Users\cnata\AppData\Local\Temp\s808.s
-1F cinit CODE >1526:C:\Users\cnata\AppData\Local\Temp\s808.s
-4 intentry CODE >79:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+F cinit CODE >1444:C:\Users\cnata\AppData\Local\Temp\shcs.s
+F cinit CODE >1447:C:\Users\cnata\AppData\Local\Temp\shcs.s
+F cinit CODE >1503:C:\Users\cnata\AppData\Local\Temp\shcs.s
+10 cinit CODE >1504:C:\Users\cnata\AppData\Local\Temp\shcs.s
+11 cinit CODE >1505:C:\Users\cnata\AppData\Local\Temp\shcs.s
+12 cinit CODE >1508:C:\Users\cnata\AppData\Local\Temp\shcs.s
+13 cinit CODE >1509:C:\Users\cnata\AppData\Local\Temp\shcs.s
+14 cinit CODE >1510:C:\Users\cnata\AppData\Local\Temp\shcs.s
+15 cinit CODE >1513:C:\Users\cnata\AppData\Local\Temp\shcs.s
+16 cinit CODE >1514:C:\Users\cnata\AppData\Local\Temp\shcs.s
+17 cinit CODE >1515:C:\Users\cnata\AppData\Local\Temp\shcs.s
+18 cinit CODE >1516:C:\Users\cnata\AppData\Local\Temp\shcs.s
+19 cinit CODE >1517:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1E cinit CODE >1523:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1E cinit CODE >1525:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1F cinit CODE >1526:C:\Users\cnata\AppData\Local\Temp\shcs.s
+4 intentry CODE >80:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 22 text17_split_1 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 59 text17_split_1 CODE >1146:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 7A text17_split_1 CODE >1147:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
@@ -226,17 +226,17 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 64A text17_split_1 CODE >553:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 662 text17_split_1 CODE >1564:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 666 text17_split_1 CODE >1567:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
-1D46 text44 CODE >79:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D46 text44 CODE >80:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D4C text44 CODE >81:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D50 text44 CODE >83:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D56 text44 CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D5A text44 CODE >85:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D5C text44 CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D5D text44 CODE >87:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D63 text44 CODE >88:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D65 text44 CODE >90:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1D66 text44 CODE >92:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D45 text44 CODE >80:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D45 text44 CODE >81:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D4B text44 CODE >82:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D4F text44 CODE >83:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D55 text44 CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D59 text44 CODE >85:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D5B text44 CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D5C text44 CODE >87:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D62 text44 CODE >88:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D65 text44 CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1D66 text44 CODE >93:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1475 text43 CODE >31:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Config_ADC.c
 1476 text43 CODE >33:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Config_ADC.c
 1477 text43 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Config_ADC.c
@@ -427,20 +427,20 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 16D2 text39 CODE >157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftmul.c
 1129 text38 CODE >141:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1129 text38 CODE >142:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-112F text38 CODE >147:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1136 text38 CODE >148:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1139 text38 CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-113A text38 CODE >150:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-117E text38 CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1183 text38 CODE >153:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1184 text37 CODE >155:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1184 text37 CODE >156:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-118A text37 CODE >160:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1191 text37 CODE >161:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1194 text37 CODE >162:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1195 text37 CODE >163:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-11D9 text37 CODE >162:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-11DE text37 CODE >166:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+112F text38 CODE >143:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1136 text38 CODE >144:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1139 text38 CODE >145:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+113A text38 CODE >146:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+117E text38 CODE >145:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1183 text38 CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1184 text37 CODE >151:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1184 text37 CODE >152:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+118A text37 CODE >153:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1191 text37 CODE >154:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1194 text37 CODE >155:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1195 text37 CODE >156:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+11D9 text37 CODE >155:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+11DE text37 CODE >159:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1EAE text36 CODE >4:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 1EAE text36 CODE >6:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 1EB4 text36 CODE >7:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
@@ -450,11 +450,11 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 1ED4 text36 CODE >11:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 1ED6 text36 CODE >12:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 1EE7 text36 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
-1C8D text35 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
-1C8D text35 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
-1C94 text35 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
-1C96 text35 CODE >19:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
-1C96 text35 CODE >20:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
+1C8C text35 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
+1C8C text35 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
+1C93 text35 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
+1C95 text35 CODE >19:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
+1C95 text35 CODE >20:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
 667 text34 CODE >86:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 667 text34 CODE >90:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 675 text34 CODE >91:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
@@ -499,11 +499,11 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 77F text34 CODE >144:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 781 text34 CODE >146:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 79C text34 CODE >148:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
-1CFB text33 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
-1CFB text33 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
-1D04 text33 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
-1D06 text33 CODE >25:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
-1D1F text33 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
+1CFA text33 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
+1CFA text33 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
+1D03 text33 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
+1D05 text33 CODE >25:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
+1D1E text33 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
 13E9 text32 CODE >44:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\fttol.c
 13E9 text32 CODE >49:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\fttol.c
 13FC text32 CODE >50:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\fttol.c
@@ -631,15 +631,15 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 15E0 text26 CODE >98:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftdivl.c
 15E5 text26 CODE >100:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftdivl.c
 15ED text26 CODE >101:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftdivl.c
-1CE4 text25 CODE >4:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CE7 text25 CODE >6:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CE8 text25 CODE >43:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CEC text25 CODE >44:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CF0 text25 CODE >45:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CF2 text25 CODE >46:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CF4 text25 CODE >47:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CF9 text25 CODE >50:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-1CFA text25 CODE >51:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CE3 text25 CODE >4:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CE6 text25 CODE >6:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CE7 text25 CODE >43:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CEB text25 CODE >44:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CEF text25 CODE >45:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CF1 text25 CODE >46:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CF3 text25 CODE >47:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CF8 text25 CODE >50:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+1CF9 text25 CODE >51:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
 1F24 text24 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
 1F24 text24 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
 1F28 text24 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
@@ -676,9 +676,9 @@ E9 text17_split_1 CODE >1157:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c9
 9B0 text22 CODE >424:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 A39 text22 CODE >425:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 A6C text22 CODE >426:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
-1CBC text21 CODE >8:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
-1CBD text21 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
-1CCD text21 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
+1CBB text21 CODE >8:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
+1CBC text21 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
+1CCC text21 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
 12FE text20 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 12FE text20 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 1301 text20 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
@@ -793,9 +793,9 @@ FEA text17 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\commo
 1E76 text16 CODE >128:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1E76 text16 CODE >129:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1EAD text16 CODE >130:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1C73 text15 CODE >29:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1C74 text15 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1C78 text15 CODE >31:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1C72 text15 CODE >29:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1C73 text15 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1C77 text15 CODE >31:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 10B9 text14 CODE >33:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 10BA text14 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 10BD text14 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
@@ -816,26 +816,26 @@ FEA text17 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\commo
 1FF3 text13 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 1FF9 text13 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 1FFF text13 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CAF text12 CODE >42:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CAF text12 CODE >43:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CB5 text12 CODE >44:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CBB text12 CODE >45:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D20 text11 CODE >48:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D23 text11 CODE >50:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D28 text11 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D2D text11 CODE >52:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D33 text11 CODE >53:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D34 text11 CODE >54:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D3A text11 CODE >55:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D3F text11 CODE >56:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1D45 text11 CODE >58:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CCE text10 CODE >61:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CCF text10 CODE >62:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CD2 text10 CODE >63:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CD8 text10 CODE >64:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CDB text10 CODE >65:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CE0 text10 CODE >66:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
-1CE3 text10 CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CAE text12 CODE >42:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CAE text12 CODE >43:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CB4 text12 CODE >44:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CBA text12 CODE >45:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D1F text11 CODE >48:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D22 text11 CODE >50:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D27 text11 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D2C text11 CODE >52:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D32 text11 CODE >53:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D33 text11 CODE >54:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D39 text11 CODE >55:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D3E text11 CODE >56:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1D44 text11 CODE >58:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CCD text10 CODE >61:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CCE text10 CODE >62:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CD1 text10 CODE >63:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CD7 text10 CODE >64:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CDA text10 CODE >65:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CDF text10 CODE >66:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
+1CE2 text10 CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 1F6A text9 CODE >70:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 1F6A text9 CODE >72:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
 1F6F text9 CODE >73:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\LCD.c
@@ -847,31 +847,31 @@ FEA text17 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\commo
 1E31 text8 CODE >137:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1E39 text8 CODE >138:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 1E42 text8 CODE >139:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1C97 text7 CODE >33:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C98 text7 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C9E text7 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CA2 text7 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C96 text7 CODE >33:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C97 text7 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C9D text7 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA1 text7 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 1DC1 text6 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 1DC1 text6 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 1DC3 text6 CODE >40:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 1DD4 text6 CODE >41:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 1DEB text6 CODE >42:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C79 text5 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C79 text5 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C7A text5 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C7B text5 CODE >27:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C7E text5 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CA3 text4 CODE >8:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CA3 text4 CODE >10:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CA6 text4 CODE >11:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CA9 text4 CODE >13:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CAA text4 CODE >15:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CAD text4 CODE >16:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1CAE text4 CODE >17:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C7F text3 CODE >19:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C7F text3 CODE >20:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C82 text3 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
-1C84 text3 CODE >22:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C78 text5 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C78 text5 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C79 text5 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C7A text5 CODE >27:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C7D text5 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA2 text4 CODE >8:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA2 text4 CODE >10:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA5 text4 CODE >11:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA8 text4 CODE >13:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CA9 text4 CODE >15:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CAC text4 CODE >16:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1CAD text4 CODE >17:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C7E text3 CODE >19:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C7E text3 CODE >20:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C81 text3 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
+1C83 text3 CODE >22:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\USART.c
 123A text2 CODE >3:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 123B text2 CODE >5:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 123C text2 CODE >6:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
@@ -922,29 +922,29 @@ FEA text17 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\commo
 1272 text2 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 1294 text2 CODE >52:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
 1295 text2 CODE >53:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\Oscilador.c
-1DEC text1 CODE >168:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DEC text1 CODE >169:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DF2 text1 CODE >170:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DF6 text1 CODE >171:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DF7 text1 CODE >172:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DFB text1 CODE >173:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DFC text1 CODE >174:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DFD text1 CODE >175:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DFE text1 CODE >176:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1DFF text1 CODE >177:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E00 text1 CODE >178:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E03 text1 CODE >179:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E04 text1 CODE >180:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E05 text1 CODE >181:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E06 text1 CODE >182:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E07 text1 CODE >183:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E0C text1 CODE >184:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E11 text1 CODE >185:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1E16 text1 CODE >188:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-79D maintext CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DEC text1 CODE >161:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DEC text1 CODE >162:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DF2 text1 CODE >163:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DF6 text1 CODE >164:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DF7 text1 CODE >165:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DFB text1 CODE >166:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DFC text1 CODE >167:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DFD text1 CODE >168:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DFE text1 CODE >169:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1DFF text1 CODE >170:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E00 text1 CODE >171:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E03 text1 CODE >172:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E04 text1 CODE >173:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E05 text1 CODE >174:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E06 text1 CODE >175:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E07 text1 CODE >176:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E0C text1 CODE >177:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E11 text1 CODE >178:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+1E16 text1 CODE >180:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 79D maintext CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-7A2 maintext CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-7A5 maintext CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+79D maintext CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+7A2 maintext CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
+7A5 maintext CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 7AA maintext CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 7AF maintext CODE >107:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 7B4 maintext CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
@@ -956,16 +956,16 @@ FEA text17 CODE >1142:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\commo
 7E0 maintext CODE >116:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 7E6 maintext CODE >118:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
 7EB maintext CODE >119:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\LAB3-DIGITAL2.X\pseudocodigo_lab3.c
-1C85 clrtext CODE >1490:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C85 clrtext CODE >1491:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C86 clrtext CODE >1492:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C86 clrtext CODE >1493:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C87 clrtext CODE >1494:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C88 clrtext CODE >1495:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C89 clrtext CODE >1496:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C8A clrtext CODE >1497:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C8B clrtext CODE >1498:C:\Users\cnata\AppData\Local\Temp\s808.s
-1C8C clrtext CODE >1499:C:\Users\cnata\AppData\Local\Temp\s808.s
+1C84 clrtext CODE >1490:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C84 clrtext CODE >1491:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C85 clrtext CODE >1492:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C85 clrtext CODE >1493:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C86 clrtext CODE >1494:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C87 clrtext CODE >1495:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C88 clrtext CODE >1496:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C89 clrtext CODE >1497:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C8A clrtext CODE >1498:C:\Users\cnata\AppData\Local\Temp\shcs.s
+1C8B clrtext CODE >1499:C:\Users\cnata\AppData\Local\Temp\shcs.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -988,7 +988,7 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __end_of__tdiv_to_l_ 2BDC 0 CODE 0 text26 dist/default/production\LAB3-DIGITAL2.X.production.o
 _Lcd_Init 3F60 0 CODE 0 text13 dist/default/production\LAB3-DIGITAL2.X.production.o
-_Lcd_Port 38E6 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
+_Lcd_Port 38E4 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv@exp 4D 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_Write_USART_String 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 ___awtoft@sign 28 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -996,19 +996,19 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 Write_USART_String@a 74 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 Write_USART_String@i 77 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_Lcd_Init 4000 0 CODE 0 text13 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_Lcd_Port 38F2 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_Lcd_Port 38F0 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _RCIF 65 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 _TRMT 4C1 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\s808.o
+___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\shcs.o
 _cont 6E 0 BANK0 1 bssBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 _main F3A 0 CODE 0 maintext dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_Show_val_LCD 3C86 0 CODE 0 text8 dist/default/production\LAB3-DIGITAL2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-_Lcd_Write_Char 399C 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
+_Lcd_Write_Char 399A 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftadd@f1 4F 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftadd@f2 52 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
-start 18 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\s808.o
+start 18 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\shcs.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of___awmod 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of___ftadd 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1027,7 +1027,7 @@ _data_recive 7A 0 COMMON 1 bssCOMMON dist/default/production\LAB3-DIGITAL2.X.pro
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 ?___wmul 73 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_USART_INTERRUPT 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_USART_Init 395E 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_USART_Init 395C 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv@f1 42 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv@f2 3F 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv@f3 4A 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1036,14 +1036,14 @@ ___awmod@sign 21 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.p
 ___ftge@ff1 20 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftge@ff2 23 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of__npowers_ 20BC 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_Write_USART 3946 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_Write_USART 3944 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
 _sprintf$1188 A6 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\s808.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\shcs.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __size_of__div_to_l_ 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 ___bmul@multiplicand 2B 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1059,7 +1059,7 @@ __Hclrtext 0 0 ABS 0 clrtext -
 __npowers_ 206E 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftmul@f1 2F 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftmul@f2 32 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_Lcd_Write_Char 39C8 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_Lcd_Write_Char 39C6 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftneg@f1 73 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 ___wmul@multiplicand 75 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 _ADCON1 9F 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1070,7 +1070,7 @@ _scale$1187 44 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.pro
 ___awdiv@dividend 24 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of___awtoft 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_initOsc 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of___bmul 39F6 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of___bmul 39F4 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___ftge 3DD0 0 CODE 0 text36 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___wmul 3B82 0 CODE 0 text28 dist/default/production\LAB3-DIGITAL2.X.production.o
 ?__tdiv_to_l_ 20 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1089,16 +1089,16 @@ __end_of___awmod 2474 0 CODE 0 text19 dist/default/production\LAB3-DIGITAL2.X.pr
 __end_of___ftadd F3A 0 CODE 0 text34 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___ftdiv 1188 0 CODE 0 text40 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___ftmul 2DA6 0 CODE 0 text39 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of___ftneg 392E 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of___ftsub 3A40 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of___ftneg 392C 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of___ftsub 3A3E 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___fttol 28EA 0 CODE 0 text32 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___lldiv 25FC 0 CODE 0 text31 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___llmod 2252 0 CODE 0 text30 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___lwdiv 3ED4 0 CODE 0 text24 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___lwmod 3E48 0 CODE 0 text23 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_isdigit 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\s808.o
-___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\s808.o
+___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\shcs.o
+___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\shcs.o
 _dpowers 20BC 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of__tdiv_to_l_ 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_fround 14DA 0 CODE 0 text22 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1119,7 +1119,7 @@ _S1_val C5 0 BANK1 1 bssBANK1 dist/default/production\LAB3-DIGITAL2.X.production
 _S2_val C2 0 BANK1 1 bssBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 _Lcd_Write_String 3ED4 0 CODE 0 text9 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of___awtoft 3B2C 0 CODE 0 text41 dist/default/production\LAB3-DIGITAL2.X.production.o
-clear_ram0 390A 0 CODE 0 clrtext dist/default/production\LAB3-DIGITAL2.X.production.o
+clear_ram0 3908 0 CODE 0 clrtext dist/default/production\LAB3-DIGITAL2.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1136,7 +1136,7 @@ _isdigit$978 73 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.
 __size_of_Write_USART 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_USART_Init 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_initOsc 252C 0 CODE 0 text2 dist/default/production\LAB3-DIGITAL2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\s808.o
+___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\shcs.o
 __end_of___ftpack 27D2 0 CODE 0 text42 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
@@ -1156,7 +1156,7 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__end_of_isdigit 399C 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_isdigit 399A 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lcinit 1E 0 CODE 0 cinit -
 ___ftadd@exp1 5B 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftadd@exp2 5A 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1182,14 +1182,14 @@ __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
-___bmul 39C8 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
+___bmul 39C6 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftge 3D5C 0 CODE 0 text36 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___wmul 3B2C 0 CODE 0 text28 dist/default/production\LAB3-DIGITAL2.X.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __LcstackBANK1 0 0 ABS 0 cstackBANK1 -
 psplit$0 1C003A 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_ISR 3A8C 0 CODE 0 text44 dist/default/production\LAB3-DIGITAL2.X.production.o
+_ISR 3A8A 0 CODE 0 text44 dist/default/production\LAB3-DIGITAL2.X.production.o
 _VAL 78 0 COMMON 1 bssCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 __S0 2000 0 ABS 0 - -
 __S1 E2 0 ABS 0 - -
@@ -1202,14 +1202,14 @@ __end_of_Lcd_Write_String 3F60 0 CODE 0 text9 dist/default/production\LAB3-DIGIT
 _fround 1188 0 CODE 0 text22 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_ISR 3ADA 0 CODE 0 text44 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of_ADC_Config 2A62 0 CODE 0 text43 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_Lcd_Clear 3978 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_Lcd_Clear 3976 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 ___lldiv@divisor 20 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_Lcd_Write_String 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __stringtab 2000 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Write_String@a 76 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Write_String@i 23 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\s808.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\shcs.o
 __size_of_Lcd_Clear 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __powers_ 2020 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
 _ADC_channel1 2252 0 CODE 0 text38 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1235,22 +1235,22 @@ sprintf@eexp B6 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.pr
 sprintf@flag AA 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 sprintf@fval B8 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 sprintf@prec BC 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext10 399C 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext11 3A40 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext12 395E 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext10 399A 0 CODE 0 text10 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext11 3A3E 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext12 395C 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext13 3F60 0 CODE 0 text13 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext14 2172 0 CODE 0 text14 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext15 38E6 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext15 38E4 0 CODE 0 text15 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext16 3CEC 0 CODE 0 text16 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext17 1A50 0 CODE 0 text17 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext18 14DA 0 CODE 0 text18 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext19 23BE 0 CODE 0 text19 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext20 25FC 0 CODE 0 text20 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext21 3978 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext21 3976 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext22 1188 0 CODE 0 text22 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext23 3DD0 0 CODE 0 text23 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext24 3E48 0 CODE 0 text24 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext25 39C8 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext25 39C6 0 CODE 0 text25 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext26 2A62 0 CODE 0 text26 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext27 2DA6 0 CODE 0 text27 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext28 3B2C 0 CODE 0 text28 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1258,9 +1258,9 @@ __ptext29 3C86 0 CODE 0 text29 dist/default/production\LAB3-DIGITAL2.X.productio
 __ptext30 21A6 0 CODE 0 text30 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext31 252C 0 CODE 0 text31 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext32 27D2 0 CODE 0 text32 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext33 39F6 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext33 39F4 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext34 CCE 0 CODE 0 text34 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext35 391A 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext35 3918 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext36 3D5C 0 CODE 0 text36 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext37 2308 0 CODE 0 text37 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext38 2252 0 CODE 0 text38 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1269,17 +1269,17 @@ __ptext40 1004 0 CODE 0 text40 dist/default/production\LAB3-DIGITAL2.X.productio
 __ptext41 3ADA 0 CODE 0 text41 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext42 26CE 0 CODE 0 text42 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext43 28EA 0 CODE 0 text43 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext44 3A8C 0 CODE 0 text44 dist/default/production\LAB3-DIGITAL2.X.production.o
-_Lcd_Clear 395E 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext44 3A8A 0 CODE 0 text44 dist/default/production\LAB3-DIGITAL2.X.production.o
+_Lcd_Clear 395C 0 CODE 0 text12 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_Lcd_Write_Char 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 ___awdiv 25FC 0 CODE 0 text20 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___awmod 23BE 0 CODE 0 text19 dist/default/production\LAB3-DIGITAL2.X.production.o
-_Lcd_Set_Cursor 3A40 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
+_Lcd_Set_Cursor 3A3E 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftadd CCE 0 CODE 0 text34 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv 1004 0 CODE 0 text40 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftmul 2BDC 0 CODE 0 text39 dist/default/production\LAB3-DIGITAL2.X.production.o
-___ftneg 391A 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
-___ftsub 39F6 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
+___ftneg 3918 0 CODE 0 text35 dist/default/production\LAB3-DIGITAL2.X.production.o
+___ftsub 39F4 0 CODE 0 text33 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___fttol 27D2 0 CODE 0 text32 dist/default/production\LAB3-DIGITAL2.X.production.o
 __tdiv_to_l_ 2A62 0 CODE 0 text26 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___lldiv 252C 0 CODE 0 text31 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1297,7 +1297,7 @@ __size_of_ADC_to_string 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.prod
 __size_of_ADC_channel1 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_ADC_channel2 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 _Write_USART_String 3B82 0 CODE 0 text6 dist/default/production\LAB3-DIGITAL2.X.production.o
-_USART_Init_BaudRate 38FE 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
+_USART_Init_BaudRate 38FC 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
 ?___lltoft 23 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of__stringtab 2020 0 STRING 0 strings dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1316,7 +1316,7 @@ __HcstackBANK1 0 0 ABS 0 cstackBANK1 -
 _PIR1bits C 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lend_init 18 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_Write_USART 392E 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
+_Write_USART 392C 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
 __div_to_l_@f1 20 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __div_to_l_@f2 23 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 end_of_initialization 3C 0 CODE 0 cinit dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1324,7 +1324,7 @@ __end_of_ADC_channel1 2308 0 CODE 0 text38 dist/default/production\LAB3-DIGITAL2
 __end_of_ADC_channel2 23BE 0 CODE 0 text37 dist/default/production\LAB3-DIGITAL2.X.production.o
 _VAL_NIBBLE1 CA 0 BANK1 1 bssBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 _VAL_NIBBLE2 C8 0 BANK1 1 bssBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_Lcd_Set_Cursor 3A8C 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_Lcd_Set_Cursor 3A8A 0 CODE 0 text11 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Hintentry 18 0 CODE 0 intentry -
 Lcd_Set_Cursor@a 21 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 Lcd_Set_Cursor@b 77 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1353,14 +1353,14 @@ ___awmod@dividend 75 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITA
 ___lltoft@exp 28 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext1 3BD8 0 CODE 0 text1 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext2 2474 0 CODE 0 text2 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext3 38FE 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext4 3946 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext5 38F2 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext3 38FC 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext4 3944 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext5 38F0 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext6 3B82 0 CODE 0 text6 dist/default/production\LAB3-DIGITAL2.X.production.o
-__ptext7 392E 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
+__ptext7 392C 0 CODE 0 text7 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext8 3C2E 0 CODE 0 text8 dist/default/production\LAB3-DIGITAL2.X.production.o
 __ptext9 3ED4 0 CODE 0 text9 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_USART_INTERRUPT 38FE 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_USART_INTERRUPT 38FC 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
 _sprintf 1A50 0 CODE 0 text17 dist/default/production\LAB3-DIGITAL2.X.production.o
 pnum$text17_split_1 3A 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
@@ -1368,7 +1368,7 @@ __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 sprintf@ap A9 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 sprintf@sp BB 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 _VAL_SWAP CC 0 BANK1 1 bssBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
-_isdigit 3978 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
+_isdigit 3976 0 CODE 0 text21 dist/default/production\LAB3-DIGITAL2.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
 scale@scl 47 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __end_of__div_to_l_ 3000 0 CODE 0 text27 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1382,7 +1382,7 @@ __Lclrtext 0 0 ABS 0 clrtext -
 __size_of_ADC_Config 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftpack@sign 77 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 sprintf@tmpval AE 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
-__end_of_USART_Init_BaudRate 390A 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
+__end_of_USART_Init_BaudRate 3908 0 CODE 0 text3 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___lldiv@quotient 28 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 ___ftdiv@cntr 49 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1392,7 +1392,7 @@ __size_of_Lcd_Init 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.productio
 __size_of_Lcd_Port 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
 ___llmod@dividend 31 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
-_USART_INTERRUPT 38F2 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
+_USART_INTERRUPT 38F0 0 CODE 0 text5 dist/default/production\LAB3-DIGITAL2.X.production.o
 _Show_val_LCD 3C2E 0 CODE 0 text8 dist/default/production\LAB3-DIGITAL2.X.production.o
 ___llmod@counter 75 0 COMMON 1 cstackCOMMON dist/default/production\LAB3-DIGITAL2.X.production.o
 sprintf@c BE 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1428,7 +1428,7 @@ ___fttol@sign1 50 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.
 sprintf@width AC 0 BANK1 1 cstackBANK1 dist/default/production\LAB3-DIGITAL2.X.production.o
 _Lcd_Cmd 2172 0 CODE 0 text14 dist/default/production\LAB3-DIGITAL2.X.production.o
 __size_of_ISR 0 0 ABS 0 - dist/default/production\LAB3-DIGITAL2.X.production.o
-_USART_Init 3946 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
+_USART_Init 3944 0 CODE 0 text4 dist/default/production\LAB3-DIGITAL2.X.production.o
 __initialization 1E 0 CODE 0 cinit dist/default/production\LAB3-DIGITAL2.X.production.o
 ___bmul@product 2D 0 BANK0 1 cstackBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
 __pbssBANK0 6E 0 BANK0 1 bssBANK0 dist/default/production\LAB3-DIGITAL2.X.production.o
@@ -1469,29 +1469,29 @@ text17 text17_split_1
 %SEGMENTS
 text1 0 1DEC 3BD8 2B 2
 text2 0 123A 2474 5C 2
-text3 0 1C7F 38FE 6 2
-text4 0 1CA3 3946 C 2
-text5 0 1C79 38F2 6 2
+text3 0 1C7E 38FC 6 2
+text4 0 1CA2 3944 C 2
+text5 0 1C78 38F0 6 2
 text6 0 1DC1 3B82 2B 2
-text7 0 1C97 392E C 2
+text7 0 1C96 392C C 2
 text8 0 1E17 3C2E 2C 2
 text9 0 1F6A 3ED4 46 2
-text10 0 1CCE 399C 16 2
-text11 0 1D20 3A40 26 2
-text12 0 1CAF 395E D 2
+text10 0 1CCD 399A 16 2
+text11 0 1D1F 3A3E 26 2
+text12 0 1CAE 395C D 2
 text13 0 1FB0 3F60 50 2
 text14 0 10B9 2172 1A 2
-text15 0 1C73 38E6 6 2
+text15 0 1C72 38E4 6 2
 text16 0 1E76 3CEC 38 2
 text17 0 D28 1A50 2D8 2
 text18 0 A6D 14DA 2BB 2
 text19 0 11DF 23BE 5B 2
 text20 0 12FE 25FC 69 2
-text21 0 1CBC 3978 12 2
+text21 0 1CBB 3976 12 2
 text22 0 8C4 1188 1A9 2
 text23 0 1EE8 3DD0 3C 2
 text24 0 1F24 3E48 46 2
-text25 0 1CE4 39C8 17 2
+text25 0 1CE3 39C6 17 2
 text26 0 1531 2A62 BD 2
 text27 0 16D3 2DA6 12D 2
 text28 0 1D96 3B2C 2B 2
@@ -1499,8 +1499,8 @@ text29 0 1E43 3C86 33 2
 text30 0 10D3 21A6 56 2
 text31 0 1296 252C 68 2
 text32 0 13E9 27D2 8C 2
-text33 0 1CFB 39F6 25 2
-text35 0 1C8D 391A A 2
+text33 0 1CFA 39F4 25 2
+text35 0 1C8C 3918 A 2
 text36 0 1EAE 3D5C 3A 2
 text37 0 1184 2308 5B 2
 text38 0 1129 2252 5B 2
@@ -1509,14 +1509,14 @@ text40 0 802 1004 C2 2
 text41 0 1D6D 3ADA 29 2
 text42 0 1367 26CE 82 2
 text43 0 1475 28EA BC 2
-text44 0 1D46 3A8C 27 2
+text44 0 1D45 3A8A 28 2
 cstackCOMMON 1 70 70 B 1
 cstackBANK0 1 20 20 4F 1
 cstackBANK1 1 A0 A0 42 1
 intentry 0 4 8 7F9 2
 reset_vec 0 0 0 3 2
 strings 0 1000 2000 B7 2
-clrtext 0 1C85 390A 8 2
+clrtext 0 1C84 3908 8 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal
