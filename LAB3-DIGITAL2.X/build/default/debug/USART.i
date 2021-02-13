@@ -2635,6 +2635,9 @@ void USART_Init_BaudRate(void);
 void Trasmission_1(char val_1_mapeado);
 void Trasmission_2(char val_2_mapeado);
 void USART_INTERRUPT(void);
+void Write_USART(uint8_t a);
+void Write_USART_String(char *a);
+uint8_t Read_USART();
 # 1 "USART.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
@@ -2848,4 +2851,20 @@ void USART_INTERRUPT(void){
     PIE1bits.RCIE = 1;
 
 
+}
+
+
+void Write_USART(uint8_t a){
+    while(!TRMT);
+    TXREG=a;
+}
+void Write_USART_String(char *a){
+    uint8_t i;
+    for(i=0;a[i]!='\0';i++){
+        Write_USART(a[i]);
+    }
+}
+uint8_t Read_USART(){
+  while(!RCIF);
+  return RCREG;
 }

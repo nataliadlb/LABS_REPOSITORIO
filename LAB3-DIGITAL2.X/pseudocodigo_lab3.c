@@ -1,38 +1,31 @@
 /*
- * Pseudocodigo -- Laboratorio # 3
- * Author: Natalia de León Bercián
- * carné: 18193
- * Digital 2
+ * File:   main.c
+ * Author: katha
  *
- * Created on 7 de febrero de 2021
+ * Created on 7 de febrero de 2021, 02:03 PM
  */
 
-//****************************************************************************//
-//IMPORTAR LIBRERIAS                                                          //
-//****************************************************************************//
+//******************************************************************************
+//Librerias
+//******************************************************************************
 #include <xc.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <pic16f887.h>
-#include "Oscilador.h"
 #include "LCD.h"
 #include "Config_ADC.h"
 #include "USART.h"
+#include "Oscilador.h"
 
-
-//****************************************************************************//
-//CONFIGURACION BITS                                                          //
-//****************************************************************************//
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT // Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config FOSC = HS        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
+#pragma config MCLRE = OFF       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
 #pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = ON      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
@@ -41,9 +34,9 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-//****************************************************************************//
-//DEFINE                                                                      //
-//****************************************************************************//
+//******************************************************************************
+//Variables
+//******************************************************************************
 #define _XTAL_FREQ 8000000
 
 #define RS PORTEbits.RE0
@@ -62,209 +55,118 @@
 //VARIABLES                                                                   //
 //****************************************************************************//
 
-//float S1_val;
-//float S2_val;
-uint8_t S1_val;
-uint8_t S2_val;
-char* data1[8];
-char* data2[8];
-char* S3_cont[3];
-uint8_t eusart_toggle  = 0;
-uint8_t ADC_toggle  = 0;
-uint8_t cont_usart;
+float S1_val = 0.0;
+float S2_val = 0.0;
+char data_total[20];
 uint8_t cont;
-uint8_t data_recive;
-//****************************************************************************//
-//PROTOTIPOS DE FUNCIONES                                                     //
-//****************************************************************************//
+char data_recive;
+
+//******************************************************************************
+//Prototipos de funciones
+//******************************************************************************
+
 void setup(void); 
-void Config_INTERRUPT(void);
-void ADC_INTERRUPT(void);
-void Trasmission(void);// funcion para constantemente mandar los valores ADC
-//void Receive(void); //funcion para constantemente recibir datos de la compu
-void titulos_LCD(void);
 void ADC_channel1(void);
 void ADC_channel2(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-//****************************************************************************//
-//INTERRUPCIONES                                                              //
-//****************************************************************************//
-void __interrupt() ISR(void){
-    if (PIR1bits.RCIF == 1){
-            data_recive = RCREG;
+
+
+//******************************************************************************
+//Interrupciones
+//****************************************************************************** 
+
+void __interrupt() ISR(void) {
+    if(PIR1bits.RCIF == 1){
+        data_recive = RCREG;
+        //data_recive = Read_USART();
+        if (data_recive == '+'){
             cont++;
-            if (data_recive == '+'){
-                PORTB = 0xFF;
-            }
-            else {
-                PORTB = cont;
-            }
-            data_recive = 0;
+            PORTB = cont;
         }
-    //return;
+        else if (data_recive == '-'){
+            cont--;
+        }
+        data_recive = 0;
+        }
 }
-//}
-//    if (PIE1bits.TXIE && PIR1bits.TXIF){ //PIE1bits.TXIE && 
-//        if (eusart_toggle)
-//        {
-//            PORTB = cont_usart;
-//            TXREG = data2[cont_usart];
-//        }
-//        else
-//        {
-//            TXREG = data1[cont_usart];
-//        }
-//        cont_usart++;
-//
-//        if (cont_usart == 10)
-//        {
-//            eusart_toggle = !eusart_toggle;
-//            cont_usart = 0;
-//        }
-//    }
-//}
-//****************************************************************************//
-//PROGRAMACION PRINCIPAL                                                      //
-//****************************************************************************//
+
+//******************************************************************************
+//Ciclo Principal
+//******************************************************************************
+
 void main(void) {
-    setup(); //Configuracion de puertos de entrada y salida
-    USART_Init_BaudRate();
-    USART_Init();
-    USART_INTERRUPT();
+    setup();
+    TRISD = 0x00;
     Lcd_Init();
-    titulos_LCD();
-    cont = -1;
+
+    Lcd_Clear();
+
     
-    //************************************************************************//
-    //LOOP PRINCIPAL                                                          //
-    //************************************************************************//
     while (1) {
-        //PORTB = data_recive;
         ADC_channel1();
         __delay_ms(1);
         ADC_channel2();
-       
+        
+        Write_USART_String("S1   S2   S3 \n"); //enviar los datos del pic a la compu
         ADC_to_string();
+        //sprintf(data_total, "%1.2fV  %1.1fV    %d", S2_val, S1_val, cont); //convertir los valores de voltaje y el contador a un string para que los lea bien la compu
+        Write_USART_String(data_total); //enviar el string con los valores a la pc
+        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+        Write_USART(10);
+        
         Show_val_LCD();
-        Trasmission();
-        
-//        if (PIR1bits.RCIF != 0){
-//            data_recive = RCREG;
-//            PORTB = 0xFF;
-        }
-//            if(data_recive == '-'){
-//            cont--;
-//            PORTB = 3;
-//        }
-//            else {
-//                cont = cont;
-//            }
-//           data_recive = 0;
-//        }
-        
-        
-        //PORTB = cont;
-//        if (data_recive == '+'){
-//            cont++;
-//            PORTB = 15;
-//        }
-        
-    
-}
-//****************************************************************************//
-//FUNCIONES                                                                   //
-//****************************************************************************//
+        __delay_ms(500);
 
-
-void titulos_LCD(void){
-        Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
-        Lcd_Write_String("S1:   S2:  S3:");
-}
-
-void ADC_channel1(void){
-    ADC_Config (0);
-    __delay_ms(1); //Inicio de conversion ADC
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-        S1_val = ADRESH;
-        //S1_val = ((ADRESH * 5.0) / 255);
     }
+    //return;
 }
 
-void ADC_channel2(void){
-    ADC_Config (1);
-    __delay_ms(1); //Inicio de conversion ADC
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-        S2_val = ADRESH;
-        //S2_val = ((ADRESH * 5.0) / 255);
-    }
-}
-
+//******************************************************************************
+//Funciones
+//******************************************************************************
 void ADC_to_string(void){
-    sprintf(data2, "%.3iV", S1_val<<1); //poner las conversiones en numeros, 
-    sprintf(data1, "%.3iV", S2_val<<1); // segun el voltaje
-    sprintf(S3_cont, "%.3i", cont);
-//    sprintf(data2, "%1.2f", S1_val);
-//    sprintf(data1, "%1.2f", S2_val);
+    sprintf(data_total, "%1.2fV %1.2fV  %d", S2_val, S1_val, cont);
 }
 
 void Show_val_LCD(void){
     //Valores de S1 y S2
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_Char(data2[0]);
-        Lcd_Write_Char('.');
-        Lcd_Write_Char(data2[1]);
-        Lcd_Write_Char(data2[2]);
-        Lcd_Write_Char(data2[3]);
-        Lcd_Write_Char(' ');
-        
-        __delay_ms(1);
-        
-        Lcd_Set_Cursor(2,7);
-        Lcd_Write_Char(data1[0]);
-        Lcd_Write_Char('.');
-        Lcd_Write_Char(data1[1]);
-        Lcd_Write_Char(data1[2]);
-        Lcd_Write_Char(data1[3]);
-        Lcd_Write_Char(' ');
-        
-        Lcd_Set_Cursor(2,13);
-        Lcd_Write_Char(S3_cont[0]);
-        Lcd_Write_Char(S3_cont[1]);
-        Lcd_Write_Char(S3_cont[2]);
-        Lcd_Write_Char(' ');
+    Lcd_Clear();
+    Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
+    Lcd_Write_String("S1:   S2:   S3:");
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String(data_total);
 }
-void Trasmission(void){
-    if (PIR1bits.TXIF ){ //PIE1bits.TXIE && 
-            if (eusart_toggle){
-                TXREG = data2;
-                eusart_toggle = 0;
-            }
-            else{
-                TXREG = data1;
-                eusart_toggle = 1;
-            }
-            //cont_usart++;
 
-//            if (cont_usart == 4){
-//                //eusart_toggle = !eusart_toggle;
-//                cont_usart = 0;
-//            }
+void ADC_channel1(void) {
+    ADC_Config (0); //channel 0
+    //Cinfiguracion bits ADCON0
+//    ADCON0bits.ADCS0 = 1; //Clock ADC conversion
+//    ADCON0bits.ADCS1 = 0; //Fosc
+//    ADCON0bits.ADON = 1; //Se habilita el ADC
+    __delay_us(40); //Para conversion
+    ADCON0bits.GO = 1; //Inicia la conversión
+    while (ADCON0bits.GO != 0) { //Waiting for conversion to complete
+        S1_val = ((ADRESH * 5.0) / 255);
 
-        }
-    //trasmitir los valores de la conversion ADC a la computadora
+    }
 }
-//
-//void Receive(void){
-    //Recibir el valor del contador, cada vez que se presione + o -
-//}
 
-//********************* CONFIGURACION PRINCIPAL ******************************//
+void ADC_channel2(void) {
+    ADC_Config (1); //channel 1
+//    ADCON0bits.ADCS0 = 1; //Clock ADC conversion
+//    ADCON0bits.ADCS1 = 0; //Fosc
+//    ADCON0bits.ADON = 1; //Se habilita el ADC
+    __delay_us(40); //Para conversion
+    ADCON0bits.GO = 1; //Inicia la conversión
+    while (ADCON0bits.GO != 0) { //Waiting for conversion to complete
+        S2_val = ((ADRESH * 5.0) / 255);
 
-void setup(void) { //Configuración de puertos de entrada y salida
-    initOsc(0b00000110); //8MHz
+    }
+}
+
+void setup(void) {
+    initOsc(7); //8MHz
     ANSEL = 0b00000011; //RA0 y RA1 como analogico
     ANSELH = 0; 
     TRISA = 0b00000011; //potenciometros, como entrada
@@ -278,15 +180,9 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
+
+
 }
-
-//void ADC_INTERRUPT(void){
-//    INTCONbits.GIE = 1;
-//    INTCONbits.PEIE = 1;
-//    PIE1bits.ADIE = 1; // enables ADC interrupt
-//    PIR1bits.ADIF = 1; 
-//}
-
-//********************* CONFIGURACION COM SERIAL *****************************//
-
-

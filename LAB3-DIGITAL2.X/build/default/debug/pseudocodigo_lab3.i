@@ -2884,6 +2884,9 @@ void USART_Init_BaudRate(void);
 void Trasmission_1(char val_1_mapeado);
 void Trasmission_2(char val_2_mapeado);
 void USART_INTERRUPT(void);
+void Write_USART(uint8_t a);
+void Write_USART_String(char *a);
+uint8_t Read_USART();
 # 22 "pseudocodigo_lab3.c" 2
 
 
@@ -2909,14 +2912,14 @@ void USART_INTERRUPT(void);
 # 67 "pseudocodigo_lab3.c"
 uint8_t S1_val;
 uint8_t S2_val;
-uint8_t S3_cont;
 char* data1[8];
 char* data2[8];
+char* S3_cont[3];
 uint8_t eusart_toggle = 0;
 uint8_t ADC_toggle = 0;
 uint8_t cont_usart;
 uint8_t cont;
-uint8_t data_recive;
+char data_recive;
 
 
 
@@ -2930,7 +2933,21 @@ void ADC_channel1(void);
 void ADC_channel2(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-# 121 "pseudocodigo_lab3.c"
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void){
+    if (PIR1bits.RCIF == 1){
+
+
+
+
+        data_recive = RCREG;
+# 113 "pseudocodigo_lab3.c"
+        }
+
+}
+# 139 "pseudocodigo_lab3.c"
 void main(void) {
     setup();
     USART_Init_BaudRate();
@@ -2938,32 +2955,37 @@ void main(void) {
     USART_INTERRUPT();
     Lcd_Init();
     titulos_LCD();
-    cont = 8;
+    cont = -1;
 
 
 
 
     while (1) {
-        PORTB = cont;
-# 143 "pseudocodigo_lab3.c"
-        if (PIR1bits.RCIF == 0){
-            data_recive = RCREG;
-        }
 
+        ADC_channel1();
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        ADC_channel2();
 
+        ADC_to_string();
+        Show_val_LCD();
+        Trasmission();
         if (data_recive == '+'){
-            cont++;
-            PORTB = 15;
-        }
-        if(data_recive == '-'){
+                cont++;
+                PORTB = cont;
+            }
+        else if (data_recive == '-'){
             cont--;
-            PORTB = 3;
         }
         else {
-            cont = cont;
+            PORTB = 0xFF;
         }
-       data_recive = 0;
-    }
+        data_recive = 0;
+
+
+
+
+        }
+# 194 "pseudocodigo_lab3.c"
 }
 
 
@@ -2998,6 +3020,7 @@ void ADC_channel2(void){
 void ADC_to_string(void){
     sprintf(data2, "%.3iV", S1_val<<1);
     sprintf(data1, "%.3iV", S2_val<<1);
+    sprintf(S3_cont, "%.3i", cont);
 
 
 }
@@ -3022,8 +3045,11 @@ void Show_val_LCD(void){
         Lcd_Write_Char(data1[3]);
         Lcd_Write_Char(' ');
 
-
-
+        Lcd_Set_Cursor(2,13);
+        Lcd_Write_Char(S3_cont[0]);
+        Lcd_Write_Char(S3_cont[1]);
+        Lcd_Write_Char(S3_cont[2]);
+        Lcd_Write_Char(' ');
 }
 void Trasmission(void){
     if (PIR1bits.TXIF ){
@@ -3035,12 +3061,12 @@ void Trasmission(void){
                 TXREG = data1;
                 eusart_toggle = 1;
             }
-            cont_usart++;
 
-            if (cont_usart == 4){
 
-                cont_usart = 0;
-            }
+
+
+
+
 
         }
 

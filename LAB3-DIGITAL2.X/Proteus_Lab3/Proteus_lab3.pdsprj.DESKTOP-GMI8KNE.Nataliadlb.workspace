@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
- <FRAME activewindow="1">
-  <PLACEMENT>2c0000000200000003000000fffffffffffffffffffffffffffffffff5fffffff5ffffff8b07000043040000</PLACEMENT>
-  <WINDOW type="device" module="LIBMAN"/>
+ <FRAME activewindow="0">
+  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffff0000000000000000960700004e040000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
@@ -33,13 +32,13 @@
      <ITEM name="nItems">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="154" flags="00000022" y="370" h="250" pid="0" iid="12">
+   <POPUP w="450" x="146" flags="00000022" y="276" h="250" pid="0" iid="5">
     <PROPERTIES>
-     <ITEM name="AutoEcho">0</ITEM>
+     <ITEM name="AutoEcho">1</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="542" x="166" flags="00000008" y="296" h="264" pid="3" iid="2">
+   <POPUP w="52" x="166" flags="00000008" y="296" h="13" pid="3" iid="2">
     <PROPERTIES/>
    </POPUP>
    <POPUP w="8" x="186" flags="0000000a" y="316" h="32" pid="4" iid="2">
@@ -72,10 +71,10 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="162" x="246" flags="00000008" y="376" h="184" pid="7" iid="2">
+   <POPUP w="14" x="246" flags="00000008" y="376" h="8" pid="7" iid="2">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="266" flags="00000002" y="396" h="8" pid="8" iid="2">
+   <POPUP w="8" x="266" flags="80000002" y="396" h="8" pid="8" iid="2">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -83,18 +82,6 @@
      <ITEM name="ShowChanges">Yes</ITEM>
      <ITEM name="ShowToolTips">Yes</ITEM>
      <ITEM name="TopLineAddress">00000000</ITEM>
-    </PROPERTIES>
-   </POPUP>
-   <POPUP w="450" x="106" flags="00000022" y="236" h="250" pid="0" iid="45">
-    <PROPERTIES>
-     <ITEM name="AutoEcho">0</ITEM>
-     <ITEM name="HexMode">0</ITEM>
-    </PROPERTIES>
-   </POPUP>
-   <POPUP w="450" x="106" flags="00000023" y="236" h="250" pid="0" iid="5">
-    <PROPERTIES>
-     <ITEM name="AutoEcho">1</ITEM>
-     <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
   </PWI>

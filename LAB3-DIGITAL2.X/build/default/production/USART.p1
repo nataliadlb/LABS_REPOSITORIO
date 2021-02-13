@@ -76,6 +76,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1718
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1718: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x08C)));
 [v _PIE1bits `VS62 ~T0 @X0 0 e@140 ]
+"4508
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4508: extern volatile __bit TRMT __attribute__((address(0x4C1)));
+[v _TRMT `Vb ~T0 @X0 0 e@1217 ]
+"1133
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
+[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
+"4175
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
+[v _RCIF `Vb ~T0 @X0 0 e@101 ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -310,75 +319,137 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"5 USART.c
-[; ;USART.c: 5: void USART_Init(void){
+"8 USART.c
+[; ;USART.c: 8: void USART_Init(void){
 [v _USART_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _USART_Init ]
 [f ]
-"7
-[; ;USART.c: 7:     RCSTAbits.SPEN = 1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"8
-[; ;USART.c: 8:     TXSTAbits.SYNC = 0;
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
 "10
-[; ;USART.c: 10:     TXSTAbits.TXEN = 1;
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;USART.c: 10:     RCSTAbits.SPEN = 1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
 "11
-[; ;USART.c: 11:     TXSTAbits.TX9 = 0;
-[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
-"12
-[; ;USART.c: 12:     TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;USART.c: 11:     TXSTAbits.SYNC = 0;
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
 "13
-[; ;USART.c: 13:     TXSTAbits.TRMT = 0;
-[e = . . _TXSTAbits 0 1 -> -> 0 `i `uc ]
+[; ;USART.c: 13:     TXSTAbits.TXEN = 1;
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
 "15
-[; ;USART.c: 15:     RCSTAbits.RX9 = 0;
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-"16
-[; ;USART.c: 16:     RCSTAbits.CREN = 1;
+[; ;USART.c: 15:     RCSTAbits.CREN = 1;
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"17
-[; ;USART.c: 17:     RCREG = 0;
+"16
+[; ;USART.c: 16:     RCREG = 0;
 [e = _RCREG -> -> 0 `i `uc ]
-"18
-[; ;USART.c: 18: }
-[e :UE 143 ]
+"17
+[; ;USART.c: 17: }
+[e :UE 139 ]
 }
-"20
-[; ;USART.c: 20: void USART_Init_BaudRate(void){
+"19
+[; ;USART.c: 19: void USART_Init_BaudRate(void){
 [v _USART_Init_BaudRate `(v ~T0 @X0 1 ef ]
 {
 [e :U _USART_Init_BaudRate ]
 [f ]
-"21
-[; ;USART.c: 21:     SPBRGH = 0;
+"20
+[; ;USART.c: 20:     SPBRGH = 0;
 [e = _SPBRGH -> -> 0 `i `uc ]
-"22
-[; ;USART.c: 22:     SPBRG = 12;
+"21
+[; ;USART.c: 21:     SPBRG = 12;
 [e = _SPBRG -> -> 12 `i `uc ]
-"23
-[; ;USART.c: 23: }
-[e :UE 144 ]
+"22
+[; ;USART.c: 22: }
+[e :UE 140 ]
 }
-"25
-[; ;USART.c: 25: void USART_INTERRUPT(void){
+"24
+[; ;USART.c: 24: void USART_INTERRUPT(void){
 [v _USART_INTERRUPT `(v ~T0 @X0 1 ef ]
 {
 [e :U _USART_INTERRUPT ]
 [f ]
-"26
-[; ;USART.c: 26:     INTCONbits.GIE = 1;
+"25
+[; ;USART.c: 25:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"27
-[; ;USART.c: 27:     INTCONbits.PEIE = 1;
+"26
+[; ;USART.c: 26:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"28
-[; ;USART.c: 28:     PIE1bits.RCIE = 1;
+"27
+[; ;USART.c: 27:     PIE1bits.RCIE = 1;
 [e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-"31
-[; ;USART.c: 31: }
-[e :UE 145 ]
+"30
+[; ;USART.c: 30: }
+[e :UE 141 ]
+}
+"33
+[; ;USART.c: 33: void Write_USART(uint8_t a){
+[v _Write_USART `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _Write_USART ]
+[v _a `uc ~T0 @X0 1 r1 ]
+[f ]
+"34
+[; ;USART.c: 34:     while(!TRMT);
+[e $U 143  ]
+[e :U 144 ]
+[e :U 143 ]
+[e $ ! _TRMT 144  ]
+[e :U 145 ]
+"35
+[; ;USART.c: 35:     TXREG=a;
+[e = _TXREG _a ]
+"36
+[; ;USART.c: 36: }
+[e :UE 142 ]
+}
+"37
+[; ;USART.c: 37: void Write_USART_String(char *a){
+[v _Write_USART_String `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _Write_USART_String ]
+[v _a `*uc ~T0 @X0 1 r1 ]
+[f ]
+"38
+[; ;USART.c: 38:     uint8_t i;
+[v _i `uc ~T0 @X0 1 a ]
+"39
+[; ;USART.c: 39:     for(i=0;a[i]!='\0';i++){
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 150  ]
+[e :U 147 ]
+{
+"40
+[; ;USART.c: 40:         Write_USART(a[i]);
+[e ( _Write_USART (1 -> *U + _a * -> _i `ux -> -> # *U _a `ui `ux `uc ]
+"41
+[; ;USART.c: 41:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 150 ]
+[e $ != -> *U + _a * -> _i `ux -> -> # *U _a `ui `ux `ui -> 0 `ui 147  ]
+[e :U 148 ]
+}
+"42
+[; ;USART.c: 42: }
+[e :UE 146 ]
+}
+"43
+[; ;USART.c: 43: uint8_t Read_USART(){
+[v _Read_USART `(uc ~T0 @X0 1 ef ]
+{
+[e :U _Read_USART ]
+[f ]
+"44
+[; ;USART.c: 44:   while(!RCIF);
+[e $U 152  ]
+[e :U 153 ]
+[e :U 152 ]
+[e $ ! _RCIF 153  ]
+[e :U 154 ]
+"45
+[; ;USART.c: 45:   return RCREG;
+[e ) _RCREG ]
+[e $UE 151  ]
+"46
+[; ;USART.c: 46: }
+[e :UE 151 ]
 }
