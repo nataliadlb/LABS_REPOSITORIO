@@ -2966,7 +2966,6 @@ void main(void) {
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
     }
-
 }
 
 

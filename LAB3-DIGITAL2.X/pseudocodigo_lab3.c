@@ -1,5 +1,5 @@
 /*
- * Pseudocodigo -- Laboratorio # 3
+ * Código -- Laboratorio # 3
  * Author: Natalia de León Bercián
  * carné: 18193
  * Digital 2
@@ -119,7 +119,6 @@ void main(void) {
         __delay_ms(500);
 
     }
-    //return;
 }
 
 //******************************************************************************

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Fri Feb 12 22:19:56 2021
+                                                                                               Fri Feb 12 22:27:50 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -1686,7 +1686,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1672  1DEC                     __ptext1:	
   1673 ;; *************** function _setup *****************
   1674 ;; Defined at:
-  1675 ;;		line 161 in file "pseudocodigo_lab3.c"
+  1675 ;;		line 160 in file "pseudocodigo_lab3.c"
   1676 ;; Parameters:    Size  Location     Type
   1677 ;;		None
   1678 ;; Auto vars:     Size  Location     Type
@@ -1725,80 +1725,80 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1711                           ; Regs used in _setup: [wreg-fsr0h+status,2+status,0+pclath+cstack]
   1712                           
   1713                           
-  1714                           ;pseudocodigo_lab3.c: 162:     initOsc(7);
+  1714                           ;pseudocodigo_lab3.c: 161:     initOsc(7);
   1715  1DEC  3007               	movlw	7
   1716  1DED  160A  118A  223A  160A  158A  	fcall	_initOsc
   1717  1DF2                     l3309:
   1718                           
-  1719                           ;pseudocodigo_lab3.c: 163:     ANSEL = 0b00000011;
+  1719                           ;pseudocodigo_lab3.c: 162:     ANSEL = 0b00000011;
   1720  1DF2  3003               	movlw	3
   1721  1DF3  1683               	bsf	3,5	;RP0=1, select bank3
   1722  1DF4  1703               	bsf	3,6	;RP1=1, select bank3
   1723  1DF5  0088               	movwf	8	;volatile
   1724  1DF6                     l3311:
   1725                           
-  1726                           ;pseudocodigo_lab3.c: 164:     ANSELH = 0;
+  1726                           ;pseudocodigo_lab3.c: 163:     ANSELH = 0;
   1727  1DF6  0189               	clrf	9	;volatile
   1728  1DF7                     l3313:
   1729                           
-  1730                           ;pseudocodigo_lab3.c: 165:     TRISA = 0b00000011;
+  1730                           ;pseudocodigo_lab3.c: 164:     TRISA = 0b00000011;
   1731  1DF7  3003               	movlw	3
   1732  1DF8  1683               	bsf	3,5	;RP0=1, select bank1
   1733  1DF9  1303               	bcf	3,6	;RP1=0, select bank1
   1734  1DFA  0085               	movwf	5	;volatile
   1735  1DFB                     l3315:
   1736                           
-  1737                           ;pseudocodigo_lab3.c: 166:     TRISB = 0;
+  1737                           ;pseudocodigo_lab3.c: 165:     TRISB = 0;
   1738  1DFB  0186               	clrf	6	;volatile
   1739  1DFC                     l3317:
   1740                           
-  1741                           ;pseudocodigo_lab3.c: 167:     TRISCbits.TRISC6 = 0;
+  1741                           ;pseudocodigo_lab3.c: 166:     TRISCbits.TRISC6 = 0;
   1742  1DFC  1307               	bcf	7,6	;volatile
   1743  1DFD                     l3319:
   1744                           
-  1745                           ;pseudocodigo_lab3.c: 168:     TRISCbits.TRISC7 = 1;
+  1745                           ;pseudocodigo_lab3.c: 167:     TRISCbits.TRISC7 = 1;
   1746  1DFD  1787               	bsf	7,7	;volatile
   1747  1DFE                     l3321:
   1748                           
-  1749                           ;pseudocodigo_lab3.c: 169:     TRISD = 0;
+  1749                           ;pseudocodigo_lab3.c: 168:     TRISD = 0;
   1750  1DFE  0188               	clrf	8	;volatile
   1751  1DFF                     l3323:
   1752                           
-  1753                           ;pseudocodigo_lab3.c: 170:     TRISE = 0;
+  1753                           ;pseudocodigo_lab3.c: 169:     TRISE = 0;
   1754  1DFF  0189               	clrf	9	;volatile
   1755  1E00                     l3325:
   1756                           
-  1757                           ;pseudocodigo_lab3.c: 171:     PORTA = 0;
+  1757                           ;pseudocodigo_lab3.c: 170:     PORTA = 0;
   1758  1E00  1283               	bcf	3,5	;RP0=0, select bank0
   1759  1E01  1303               	bcf	3,6	;RP1=0, select bank0
   1760  1E02  0185               	clrf	5	;volatile
   1761  1E03                     l3327:
   1762                           
-  1763                           ;pseudocodigo_lab3.c: 172:     PORTB = 0;
+  1763                           ;pseudocodigo_lab3.c: 171:     PORTB = 0;
   1764  1E03  0186               	clrf	6	;volatile
   1765  1E04                     l3329:
   1766                           
-  1767                           ;pseudocodigo_lab3.c: 173:     PORTC = 0;
+  1767                           ;pseudocodigo_lab3.c: 172:     PORTC = 0;
   1768  1E04  0187               	clrf	7	;volatile
   1769  1E05                     l3331:
   1770                           
-  1771                           ;pseudocodigo_lab3.c: 174:     PORTD = 0;
+  1771                           ;pseudocodigo_lab3.c: 173:     PORTD = 0;
   1772  1E05  0188               	clrf	8	;volatile
   1773  1E06                     l3333:
   1774                           
-  1775                           ;pseudocodigo_lab3.c: 175:     PORTE = 0;
+  1775                           ;pseudocodigo_lab3.c: 174:     PORTE = 0;
   1776  1E06  0189               	clrf	9	;volatile
   1777  1E07                     l3335:
   1778                           
-  1779                           ;pseudocodigo_lab3.c: 176:     USART_Init_BaudRate();
+  1779                           ;pseudocodigo_lab3.c: 175:     USART_Init_BaudRate();
   1780  1E07  160A  158A  247E  160A  158A  	fcall	_USART_Init_BaudRate
   1781  1E0C                     l3337:
   1782                           
-  1783                           ;pseudocodigo_lab3.c: 177:     USART_Init();
+  1783                           ;pseudocodigo_lab3.c: 176:     USART_Init();
   1784  1E0C  160A  158A  24A2  160A  158A  	fcall	_USART_Init
   1785  1E11                     l3339:
   1786                           
-  1787                           ;pseudocodigo_lab3.c: 178:     USART_INTERRUPT();
+  1787                           ;pseudocodigo_lab3.c: 177:     USART_INTERRUPT();
   1788  1E11  160A  158A  2478  160A  158A  	fcall	_USART_INTERRUPT
   1789  1E16                     l116:
   1790  1E16  0008               	return
@@ -2390,7 +2390,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2375  1E17                     __ptext8:	
   2376 ;; *************** function _Show_val_LCD *****************
   2377 ;; Defined at:
-  2378 ;;		line 132 in file "pseudocodigo_lab3.c"
+  2378 ;;		line 131 in file "pseudocodigo_lab3.c"
   2379 ;; Parameters:    Size  Location     Type
   2380 ;;		None
   2381 ;; Auto vars:     Size  Location     Type
@@ -2428,10 +2428,10 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2413                           ; Regs used in _Show_val_LCD: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
   2414                           
   2415                           
-  2416                           ;pseudocodigo_lab3.c: 134:     Lcd_Clear();
+  2416                           ;pseudocodigo_lab3.c: 133:     Lcd_Clear();
   2417  1E17  160A  158A  24AE  160A  158A  	fcall	_Lcd_Clear
   2418                           
-  2419                           ;pseudocodigo_lab3.c: 135:     Lcd_Set_Cursor(1,2);
+  2419                           ;pseudocodigo_lab3.c: 134:     Lcd_Set_Cursor(1,2);
   2420  1E1C  3002               	movlw	2
   2421  1E1D  1283               	bcf	3,5	;RP0=0, select bank0
   2422  1E1E  1303               	bcf	3,6	;RP1=0, select bank0
@@ -2442,7 +2442,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2427  1E23  160A  158A  251F  160A  158A  	fcall	_Lcd_Set_Cursor
   2428  1E28                     l4491:
   2429                           
-  2430                           ;pseudocodigo_lab3.c: 136:     Lcd_Write_String("S1:   S2:   S3:");
+  2430                           ;pseudocodigo_lab3.c: 135:     Lcd_Write_String("S1:   S2:   S3:");
   2431  1E28  3089               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
   2432  1E29  00F6               	movwf	Lcd_Write_String@a
   2433  1E2A  3080               	movlw	128
@@ -2450,13 +2450,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2435  1E2C  160A  158A  276A  160A  158A  	fcall	_Lcd_Write_String
   2436  1E31                     l4493:
   2437                           
-  2438                           ;pseudocodigo_lab3.c: 137:     Lcd_Set_Cursor(2,1);
+  2438                           ;pseudocodigo_lab3.c: 136:     Lcd_Set_Cursor(2,1);
   2439  1E31  01F7               	clrf	Lcd_Set_Cursor@b
   2440  1E32  0AF7               	incf	Lcd_Set_Cursor@b,f
   2441  1E33  3002               	movlw	2
   2442  1E34  160A  158A  251F  160A  158A  	fcall	_Lcd_Set_Cursor
   2443                           
-  2444                           ;pseudocodigo_lab3.c: 138:     Lcd_Write_String(data_total);
+  2444                           ;pseudocodigo_lab3.c: 137:     Lcd_Write_String(data_total);
   2445  1E39  30CE               	movlw	(low (_data_total| 0))& (0+255)
   2446  1E3A  00F6               	movwf	Lcd_Write_String@a
   2447  1E3B  3000               	movlw	0
@@ -3063,7 +3063,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3048  1E76                     __ptext16:	
   3049 ;; *************** function _ADC_to_string *****************
   3050 ;; Defined at:
-  3051 ;;		line 128 in file "pseudocodigo_lab3.c"
+  3051 ;;		line 127 in file "pseudocodigo_lab3.c"
   3052 ;; Parameters:    Size  Location     Type
   3053 ;;		None
   3054 ;; Auto vars:     Size  Location     Type
@@ -3099,7 +3099,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3084                           ; Regs used in _ADC_to_string: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
   3085                           
   3086                           
-  3087                           ;pseudocodigo_lab3.c: 129:     sprintf(data_total, "%1.2fV %1.2fV  %d", S2_val, S1_val, 
+  3087                           ;pseudocodigo_lab3.c: 128:     sprintf(data_total, "%1.2fV %1.2fV  %d", S2_val, S1_val, 
       +                          cont);
   3088  1E76  3077               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
   3089  1E77  1283               	bcf	3,5	;RP0=0, select bank0
@@ -7847,7 +7847,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7762  1184                     __ptext37:	
   7763 ;; *************** function _ADC_channel2 *****************
   7764 ;; Defined at:
-  7765 ;;		line 151 in file "pseudocodigo_lab3.c"
+  7765 ;;		line 150 in file "pseudocodigo_lab3.c"
   7766 ;; Parameters:    Size  Location     Type
   7767 ;;		None
   7768 ;; Auto vars:     Size  Location     Type
@@ -7886,12 +7886,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7801                           ; Regs used in _ADC_channel2: [wreg-fsr0h+status,2+status,0+pclath+cstack]
   7802                           
   7803                           
-  7804                           ;pseudocodigo_lab3.c: 152:     ADC_Config (1);
+  7804                           ;pseudocodigo_lab3.c: 151:     ADC_Config (1);
   7805  1184  3001               	movlw	1
   7806  1185  160A  118A  2475  160A  118A  	fcall	_ADC_Config
   7807  118A                     l4479:
   7808                           
-  7809                           ;pseudocodigo_lab3.c: 153:     _delay((unsigned long)((40)*(8000000/4000000.0)));
+  7809                           ;pseudocodigo_lab3.c: 152:     _delay((unsigned long)((40)*(8000000/4000000.0)));
   7810  118A  3019               	movlw	25
   7811  118B  1283               	bcf	3,5	;RP0=0, select bank0
   7812  118C  1303               	bcf	3,6	;RP1=0, select bank0
@@ -7902,16 +7902,16 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7817  1190  2991               	nop2
   7818  1191                     l4481:
   7819                           
-  7820                           ;pseudocodigo_lab3.c: 154:     ADCON0bits.GO = 1;
+  7820                           ;pseudocodigo_lab3.c: 153:     ADCON0bits.GO = 1;
   7821  1191  1283               	bcf	3,5	;RP0=0, select bank0
   7822  1192  1303               	bcf	3,6	;RP1=0, select bank0
   7823  1193  149F               	bsf	31,1	;volatile
   7824                           
-  7825                           ;pseudocodigo_lab3.c: 155:     while (ADCON0bits.GO != 0) {
+  7825                           ;pseudocodigo_lab3.c: 154:     while (ADCON0bits.GO != 0) {
   7826  1194  29D9               	goto	l4485
   7827  1195                     l4483:
   7828                           
-  7829                           ;pseudocodigo_lab3.c: 156:         S2_val = ((ADRESH * 5.0) / 255);
+  7829                           ;pseudocodigo_lab3.c: 155:         S2_val = ((ADRESH * 5.0) / 255);
   7830  1195  3000               	movlw	0
   7831  1196  00BF               	movwf	___ftdiv@f2
   7832  1197  307F               	movlw	127
@@ -7970,7 +7970,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7885  11D8  00C4               	movwf	(_S2_val+2)^(0+128)
   7886  11D9                     l4485:
   7887                           
-  7888                           ;pseudocodigo_lab3.c: 155:     while (ADCON0bits.GO != 0) {
+  7888                           ;pseudocodigo_lab3.c: 154:     while (ADCON0bits.GO != 0) {
   7889  11D9  1283               	bcf	3,5	;RP0=0, select bank0
   7890  11DA  189F               	btfsc	31,1	;volatile
   7891  11DB  29DD               	goto	u6641
@@ -7986,7 +7986,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7901  1129                     __ptext38:	
   7902 ;; *************** function _ADC_channel1 *****************
   7903 ;; Defined at:
-  7904 ;;		line 141 in file "pseudocodigo_lab3.c"
+  7904 ;;		line 140 in file "pseudocodigo_lab3.c"
   7905 ;; Parameters:    Size  Location     Type
   7906 ;;		None
   7907 ;; Auto vars:     Size  Location     Type
@@ -8025,12 +8025,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7940                           ; Regs used in _ADC_channel1: [wreg-fsr0h+status,2+status,0+pclath+cstack]
   7941                           
   7942                           
-  7943                           ;pseudocodigo_lab3.c: 142:     ADC_Config (0);
+  7943                           ;pseudocodigo_lab3.c: 141:     ADC_Config (0);
   7944  1129  3000               	movlw	0
   7945  112A  160A  118A  2475  160A  118A  	fcall	_ADC_Config
   7946  112F                     l4469:
   7947                           
-  7948                           ;pseudocodigo_lab3.c: 143:     _delay((unsigned long)((40)*(8000000/4000000.0)));
+  7948                           ;pseudocodigo_lab3.c: 142:     _delay((unsigned long)((40)*(8000000/4000000.0)));
   7949  112F  3019               	movlw	25
   7950  1130  1283               	bcf	3,5	;RP0=0, select bank0
   7951  1131  1303               	bcf	3,6	;RP1=0, select bank0
@@ -8041,16 +8041,16 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7956  1135  2936               	nop2
   7957  1136                     l4471:
   7958                           
-  7959                           ;pseudocodigo_lab3.c: 144:     ADCON0bits.GO = 1;
+  7959                           ;pseudocodigo_lab3.c: 143:     ADCON0bits.GO = 1;
   7960  1136  1283               	bcf	3,5	;RP0=0, select bank0
   7961  1137  1303               	bcf	3,6	;RP1=0, select bank0
   7962  1138  149F               	bsf	31,1	;volatile
   7963                           
-  7964                           ;pseudocodigo_lab3.c: 145:     while (ADCON0bits.GO != 0) {
+  7964                           ;pseudocodigo_lab3.c: 144:     while (ADCON0bits.GO != 0) {
   7965  1139  297E               	goto	l4475
   7966  113A                     l4473:
   7967                           
-  7968                           ;pseudocodigo_lab3.c: 146:         S1_val = ((ADRESH * 5.0) / 255);
+  7968                           ;pseudocodigo_lab3.c: 145:         S1_val = ((ADRESH * 5.0) / 255);
   7969  113A  3000               	movlw	0
   7970  113B  00BF               	movwf	___ftdiv@f2
   7971  113C  307F               	movlw	127
@@ -8109,7 +8109,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8024  117D  00C7               	movwf	(_S1_val+2)^(0+128)
   8025  117E                     l4475:
   8026                           
-  8027                           ;pseudocodigo_lab3.c: 145:     while (ADCON0bits.GO != 0) {
+  8027                           ;pseudocodigo_lab3.c: 144:     while (ADCON0bits.GO != 0) {
   8028  117E  1283               	bcf	3,5	;RP0=0, select bank0
   8029  117F  189F               	btfsc	31,1	;volatile
   8030  1180  2982               	goto	u6631
@@ -12187,7 +12187,7 @@ DATA                 0      0      9C      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Fri Feb 12 22:19:56 2021
+Symbol Table                                                                                   Fri Feb 12 22:27:50 2021
 
                            pc 0002                ___bmul@product 002D                            l98 1EAD  
                 ___awdiv@sign 0028                            fsr 0004           ___wmul@multiplicand 0075  
