@@ -2886,7 +2886,7 @@ uint8_t Read_USART();
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 63 "main_maestro.c"
+# 62 "main_maestro.c"
 char data_total[20];
 
 
@@ -2906,13 +2906,13 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 
 
+
 void main(void) {
     setup();
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String("S1:   S2:   S3:");
+
 
 
 
@@ -2925,7 +2925,7 @@ void main(void) {
 
 
 
-
+        Show_val_LCD();
         _delay((unsigned long)((500)*(8000000/4000.0)));
     }
 
@@ -2955,10 +2955,10 @@ void setup(void) {
     USART_INTERRUPT();
 
 }
-# 140 "main_maestro.c"
+# 139 "main_maestro.c"
 void Show_val_LCD(void){
 
-
+    Lcd_Clear();
     Lcd_Set_Cursor(1,2);
     Lcd_Write_String("S1:   S2:   S3:");
 

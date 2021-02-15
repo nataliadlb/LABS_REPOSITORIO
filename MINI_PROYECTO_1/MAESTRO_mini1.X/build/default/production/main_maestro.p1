@@ -2,8 +2,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 [p mainexit ]
-"68 main_maestro.c
-[; ;main_maestro.c: 68: void setup(void);
+"67 main_maestro.c
+[; ;main_maestro.c: 67: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
 "1602 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
@@ -14,15 +14,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "79
 [; ;./LCD.h: 79: void Lcd_Clear(void);
 [v _Lcd_Clear `(v ~T0 @X0 0 ef ]
-"74
-[; ;./LCD.h: 74: void Lcd_Set_Cursor(char a, char b);
-[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
-"76
-[; ;./LCD.h: 76: void Lcd_Write_String(char *a);
-[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "25 ./USART.h
 [; ;./USART.h: 25: void Write_USART_String(char *a);
 [v _Write_USART_String `(v ~T0 @X0 0 ef1`*uc ]
+"69 main_maestro.c
+[; ;main_maestro.c: 69: void Show_val_LCD(void);
+[v _Show_val_LCD `(v ~T0 @X0 0 ef ]
 [v F1256 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
@@ -80,6 +77,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23
 [; ;./USART.h: 23: void USART_INTERRUPT(void);
 [v _USART_INTERRUPT `(v ~T0 @X0 0 ef ]
+"74 ./LCD.h
+[; ;./LCD.h: 74: void Lcd_Set_Cursor(char a, char b);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"76
+[; ;./LCD.h: 76: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "54 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -338,18 +341,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V  =  BOR40V    ]
 "41
 [p x WRT  =  OFF         ]
-"63
-[; ;main_maestro.c: 63: char data_total[20];
+"62
+[; ;main_maestro.c: 62: char data_total[20];
 [v _data_total `uc ~T0 @X0 -> 20 `i e ]
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-"76
-[; ;main_maestro.c: 76: void __attribute__((picinterrupt(("")))) ISR(void) {
+"75
+[; ;main_maestro.c: 75: void __attribute__((picinterrupt(("")))) ISR(void) {
 [v _ISR `(v ~T1 @X0 1 ef ]
 {
 [e :U _ISR ]
 [f ]
-"77
-[; ;main_maestro.c: 77: }
+"76
+[; ;main_maestro.c: 76: }
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -371,109 +374,108 @@ Version 4.0 HI-TECH Software Intermediate Code
 "86
 [; ;main_maestro.c: 86:     Lcd_Clear();
 [e ( _Lcd_Clear ..  ]
-"87
-[; ;main_maestro.c: 87:     Lcd_Set_Cursor(1,2);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
-"88
-[; ;main_maestro.c: 88:     Lcd_Write_String("S1:   S2:   S3:");
-[e ( _Lcd_Write_String (1 :s 1C ]
-"93
-[; ;main_maestro.c: 93:     while (1) {
+"92
+[; ;main_maestro.c: 92:     while (1) {
 [e :U 146 ]
 {
-"94
-[; ;main_maestro.c: 94:          Write_USART_String("S1   S2   S3 \n");
-[e ( _Write_USART_String (1 :s 2C ]
-"102
-[; ;main_maestro.c: 102:         _delay((unsigned long)((500)*(8000000/4000.0)));
+"93
+[; ;main_maestro.c: 93:          Write_USART_String("S1   S2   S3 \n");
+[e ( _Write_USART_String (1 :s 1C ]
+"100
+[; ;main_maestro.c: 100:         Show_val_LCD();
+[e ( _Show_val_LCD ..  ]
+"101
+[; ;main_maestro.c: 101:         _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"103
-[; ;main_maestro.c: 103:     }
+"102
+[; ;main_maestro.c: 102:     }
 }
 [e :U 145 ]
 [e $U 146  ]
 [e :U 147 ]
-"105
-[; ;main_maestro.c: 105: }
+"104
+[; ;main_maestro.c: 104: }
 [e :UE 144 ]
 }
-"111
-[; ;main_maestro.c: 111: void setup(void) {
+"110
+[; ;main_maestro.c: 110: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"112
-[; ;main_maestro.c: 112:     initOsc(7);
+"111
+[; ;main_maestro.c: 111:     initOsc(7);
 [e ( _initOsc (1 -> -> 7 `i `uc ]
-"113
-[; ;main_maestro.c: 113:     ANSEL = 0;
+"112
+[; ;main_maestro.c: 112:     ANSEL = 0;
 [e = _ANSEL -> -> 0 `i `uc ]
-"114
-[; ;main_maestro.c: 114:     ANSELH = 0;
+"113
+[; ;main_maestro.c: 113:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"115
-[; ;main_maestro.c: 115:     TRISA = 0;
+"114
+[; ;main_maestro.c: 114:     TRISA = 0;
 [e = _TRISA -> -> 0 `i `uc ]
-"116
-[; ;main_maestro.c: 116:     TRISB = 0;
+"115
+[; ;main_maestro.c: 115:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
-"117
-[; ;main_maestro.c: 117:     TRISCbits.TRISC6 = 0;
+"116
+[; ;main_maestro.c: 116:     TRISCbits.TRISC6 = 0;
 [e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-"118
-[; ;main_maestro.c: 118:     TRISCbits.TRISC7 = 1;
+"117
+[; ;main_maestro.c: 117:     TRISCbits.TRISC7 = 1;
 [e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-"119
-[; ;main_maestro.c: 119:     TRISD = 0;
+"118
+[; ;main_maestro.c: 118:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
-"120
-[; ;main_maestro.c: 120:     TRISE = 0;
+"119
+[; ;main_maestro.c: 119:     TRISE = 0;
 [e = _TRISE -> -> 0 `i `uc ]
-"121
-[; ;main_maestro.c: 121:     PORTA = 0;
+"120
+[; ;main_maestro.c: 120:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"122
-[; ;main_maestro.c: 122:     PORTB = 0;
+"121
+[; ;main_maestro.c: 121:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"123
-[; ;main_maestro.c: 123:     PORTC = 0;
+"122
+[; ;main_maestro.c: 122:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"124
-[; ;main_maestro.c: 124:     PORTD = 0;
+"123
+[; ;main_maestro.c: 123:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"125
-[; ;main_maestro.c: 125:     PORTE = 0;
+"124
+[; ;main_maestro.c: 124:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"126
-[; ;main_maestro.c: 126:     USART_Init_BaudRate();
+"125
+[; ;main_maestro.c: 125:     USART_Init_BaudRate();
 [e ( _USART_Init_BaudRate ..  ]
-"127
-[; ;main_maestro.c: 127:     USART_Init();
+"126
+[; ;main_maestro.c: 126:     USART_Init();
 [e ( _USART_Init ..  ]
-"128
-[; ;main_maestro.c: 128:     USART_INTERRUPT();
+"127
+[; ;main_maestro.c: 127:     USART_INTERRUPT();
 [e ( _USART_INTERRUPT ..  ]
-"130
-[; ;main_maestro.c: 130: }
+"129
+[; ;main_maestro.c: 129: }
 [e :UE 148 ]
 }
-"140
-[; ;main_maestro.c: 140: void Show_val_LCD(void){
+"139
+[; ;main_maestro.c: 139: void Show_val_LCD(void){
 [v _Show_val_LCD `(v ~T0 @X0 1 ef ]
 {
 [e :U _Show_val_LCD ]
 [f ]
-"143
-[; ;main_maestro.c: 143:     Lcd_Set_Cursor(1,2);
+"141
+[; ;main_maestro.c: 141:     Lcd_Clear();
+[e ( _Lcd_Clear ..  ]
+"142
+[; ;main_maestro.c: 142:     Lcd_Set_Cursor(1,2);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
-"144
-[; ;main_maestro.c: 144:     Lcd_Write_String("S1:   S2:   S3:");
-[e ( _Lcd_Write_String (1 :s 3C ]
-"147
-[; ;main_maestro.c: 147: }
+"143
+[; ;main_maestro.c: 143:     Lcd_Write_String("S1:   S2:   S3:");
+[e ( _Lcd_Write_String (1 :s 2C ]
+"146
+[; ;main_maestro.c: 146: }
 [e :UE 149 ]
 }
-[a 1C 83 49 58 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
-[a 3C 83 49 58 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
-[a 2C 83 49 32 32 32 83 50 32 32 32 83 51 32 10 0 ]
+[a 2C 83 49 58 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
+[a 1C 83 49 32 32 32 83 50 32 32 32 83 51 32 10 0 ]

@@ -1,5 +1,4 @@
 /*
-/*
  * Título: Maestro mini proyecto
  * Autor: Natalia de Leon Bercian
  * Carne: 18193
@@ -8,6 +7,7 @@
  * 
  * Created on 15 de febrero de 2021
  */
+
 
 //****************************************************************************//
 //IMPORTAR LIBRERIAS                                                          //
@@ -44,7 +44,6 @@
 //DEFINE                                                                      //
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
-
 #define RS PORTEbits.RE0
 #define RW PORTEbits.RE1
 #define EN PORTEbits.RE2
@@ -56,7 +55,7 @@
 #define D5 PORTDbits.RD5
 #define D6 PORTDbits.RD6
 #define D7 PORTDbits.RD7
-
+    
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
@@ -75,6 +74,7 @@ void Show_val_LCD(void);
 
 void __interrupt() ISR(void) {
 }
+
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
@@ -84,8 +84,7 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-    Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
-    Lcd_Write_String("S1:   S2:   S3:");
+
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
@@ -98,7 +97,7 @@ void main(void) {
 //        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
 //        Write_USART(10);
         
-        //Show_val_LCD();
+        Show_val_LCD();
         __delay_ms(500);
     }
 
@@ -139,7 +138,7 @@ void setup(void) {
 
 void Show_val_LCD(void){
     //Valores de S1 y S2
-    //Lcd_Clear();
+    Lcd_Clear();
     Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
     Lcd_Write_String("S1:   S2:   S3:");
     //Lcd_Set_Cursor(2,1);

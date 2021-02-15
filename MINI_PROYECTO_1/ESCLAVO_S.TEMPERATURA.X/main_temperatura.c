@@ -39,48 +39,50 @@
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
 
-
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-float mv_temp_val = 0.0;
-float temp = 0.0;
+int mv_temp_val;
+int temp;
+int temp_val;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-void Config_INTERRUPT(void); 
+//void Config_INTERRUPT(void); 
 void semaforo(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
 
-void __interrupt() ISR(void) {
+void __interrupt() ISR(void) {}
     
-    if (PIR1bits.ADIF) {
-        PIR1bits.ADIF = 0;
-        __delay_ms(2); //Inicio de conversion ADC
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            mv_temp_val = ((ADRESH * 5000.0) / 1024.0);
-            temp = (mv_temp_val - 500)/10;
-        }
-    }
-}
+
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 
 void main(void) {
     setup();
-    Config_INTERRUPT() ;
+    //Config_INTERRUPT() ;
     
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        semaforo();
+        ADCON0bits.GO = 1; //Inicio de conversion ADC
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+            temp_val = ADRESH;
+        }
+//        mv_temp_val = ((temp_val * 5000) / 1024); //mv
+//        temp = (mv_temp_val)/10; //grados
+            
+            mv_temp_val = ((temp_val * 150) / 1024);
+            temp = (mv_temp_val)/1000;
+            semaforo();
+        
+        
     }
 
 }
@@ -104,19 +106,20 @@ void setup(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    ADCON1 = 0b00000000;
+    ADCON0 = 0b01000001;
 }
 
 //----- interrupciones -----//
 
-void Config_INTERRUPT(void) {
-    INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1; // enables ADC interrupt
-    PIR1bits.ADIF = 1;
-    ADCON1 = 0b00000000;
-    ADCON0 = 0b01000001;
-    
-}
+//void Config_INTERRUPT(void) {
+//    INTCONbits.GIE = 1;
+//    INTCONbits.PEIE = 1;
+//    PIE1bits.ADIE = 1; // enables ADC interrupt
+//    PIR1bits.ADIF = 1;
+//    
+//    
+//}
 
 //****************************************************************************//
 //FUNCIONES                                                                   //

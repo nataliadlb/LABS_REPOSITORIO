@@ -2646,7 +2646,7 @@ void initOsc(uint8_t IRCF);
 
 
 
-#pragma config FOSC = XT
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2660,7 +2660,12 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 53 "main_ADC.c"
+# 48 "main_ADC.c"
+int ADC_val;
+
+
+
+
 void setup(void);
 void Config_INTERRUPT(void);
 
@@ -2670,14 +2675,6 @@ void Config_INTERRUPT(void);
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
 
-    if (PIR1bits.ADIF) {
-        PIR1bits.ADIF = 0;
-        _delay((unsigned long)((2)*(8000000/4000.0)));
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) {
-            return;
-        }
-    }
 }
 
 
@@ -2691,6 +2688,11 @@ void main(void) {
 
 
     while (1) {
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) {
+        ADC_val = ADRESH;
+        PORTC = ADC_val;
+        }
     }
 
 }
@@ -2705,24 +2707,24 @@ void setup(void) {
     ANSEL = 0b00000001;
     ANSELH = 0;
     TRISA = 0b00000001;
-    PORTA = 0;
     TRISB = 0;
-    PORTB = 0;
     TRISC = 0;
-    PORTC = 0;
     TRISD = 0;
-    PORTD = 0;
     TRISE = 0;
+    PORTA = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
     PORTE = 0;
 }
 
 
 
 void Config_INTERRUPT(void) {
-    INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 1;
+
+
+
+
     ADCON1 = 0b00000000;
     ADCON0 = 0b01000001;
 

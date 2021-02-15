@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_maestro.c" 2
-# 15 "main_maestro.c"
+# 27 "main_maestro.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "main_maestro.c" 2
+# 27 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 16 "main_maestro.c" 2
+# 28 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 17 "main_maestro.c" 2
+# 29 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2807,7 +2807,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 18 "main_maestro.c" 2
+# 30 "main_maestro.c" 2
 
 
 # 1 "./LCD.h" 1
@@ -2831,7 +2831,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right();
 void Lcd_Shift_Left();
 void Lcd_Clear(void);
-# 20 "main_maestro.c" 2
+# 32 "main_maestro.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2846,7 +2846,7 @@ void Lcd_Clear(void);
 
 
 void initOsc(uint8_t IRCF);
-# 21 "main_maestro.c" 2
+# 33 "main_maestro.c" 2
 
 # 1 "./USART.h" 1
 # 14 "./USART.h"
@@ -2865,7 +2865,7 @@ void USART_INTERRUPT(void);
 void Write_USART(uint8_t a);
 void Write_USART_String(char *a);
 uint8_t Read_USART();
-# 22 "main_maestro.c" 2
+# 34 "main_maestro.c" 2
 
 
 
@@ -2911,8 +2911,7 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String("S1:   S2:   S3:");
+
 
 
 
@@ -2925,7 +2924,7 @@ void main(void) {
 
 
 
-
+        Show_val_LCD();
         _delay((unsigned long)((500)*(8000000/4000.0)));
     }
 
@@ -2955,10 +2954,10 @@ void setup(void) {
     USART_INTERRUPT();
 
 }
-# 140 "main_maestro.c"
+# 139 "main_maestro.c"
 void Show_val_LCD(void){
 
-
+    Lcd_Clear();
     Lcd_Set_Cursor(1,2);
     Lcd_Write_String("S1:   S2:   S3:");
 

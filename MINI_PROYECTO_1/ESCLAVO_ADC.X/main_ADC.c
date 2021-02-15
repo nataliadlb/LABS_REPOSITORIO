@@ -21,7 +21,7 @@
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -45,7 +45,7 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-float ADC_val = 0.0;
+int ADC_val;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
@@ -59,14 +59,6 @@ void Config_INTERRUPT(void);
 
 void __interrupt() ISR(void) {
     
-    if (PIR1bits.ADIF) {
-        PIR1bits.ADIF = 0;
-        __delay_ms(2); //Inicio de conversion ADC
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            ADC_val = ((ADRESH * 5.0) / 255);
-        }
-    }
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -80,6 +72,12 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+//         __delay_ms(2); 
+        ADCON0bits.GO = 1; //Inicio de conversion ADC
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+        ADC_val = ADRESH;
+        PORTC = ADC_val;
+        }  
     }
 
 }
@@ -108,10 +106,10 @@ void setup(void) {
 //----- interrupciones -----//
 
 void Config_INTERRUPT(void) {
-    INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1; // enables ADC interrupt
-    PIR1bits.ADIF = 1;
+//    INTCONbits.GIE = 1;
+//    INTCONbits.PEIE = 1;
+//    PIE1bits.ADIE = 1; // enables ADC interrupt
+//    PIR1bits.ADIF = 1;
     ADCON1 = 0b00000000;
     ADCON0 = 0b01000001;
     

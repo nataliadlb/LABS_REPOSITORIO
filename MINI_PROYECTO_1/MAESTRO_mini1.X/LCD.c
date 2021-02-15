@@ -11,13 +11,13 @@
 #include "LCD.h"
 
 //------ Función de inicio ------// 
-void Lcd_Init(){
+void Lcd_Init(void){
   Lcd_Port(0x00);
-   __delay_ms(20);
+  __delay_ms(20);
   Lcd_Cmd(0x30);
-    __delay_ms(5);
+  __delay_ms(5);
   Lcd_Cmd(0x30);
-    __delay_ms(11);
+  __delay_ms(11);
   Lcd_Cmd(0x30);
   Lcd_Cmd(0x38); //numero de lineas
   Lcd_Cmd(0x0C); //apagado
