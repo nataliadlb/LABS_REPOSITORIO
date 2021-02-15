@@ -12,8 +12,8 @@ void USART_Init(void){
     //trasmission
     TXSTAbits.TXEN = 1; // enable
     //reception
-    RCSTAbits.CREN = 1;
-    RCREG = 0;
+//    RCSTAbits.CREN = 1;
+//    RCREG = 0;
 }
 
 void USART_Init_BaudRate(void){
