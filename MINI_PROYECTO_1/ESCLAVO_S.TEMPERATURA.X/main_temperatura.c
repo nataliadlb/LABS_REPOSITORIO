@@ -1,5 +1,4 @@
 /*
-/*
  * Título: Esclavo sensor de temperatura
  * Autor: Natalia de Leon Bercian
  * Carne: 18193
@@ -13,6 +12,8 @@
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include <stdint.h>
+#include "Oscilador.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
@@ -42,18 +43,30 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-
+float mv_temp_val = 0.0;
+float temp = 0.0;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-
+void Config_INTERRUPT(void); 
+void semaforo(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        __delay_ms(2); //Inicio de conversion ADC
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+            mv_temp_val = ((ADRESH * 5000.0) / 1024.0);
+            temp = (mv_temp_val - 500)/10;
+        }
+    }
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -61,11 +74,12 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
-
+    Config_INTERRUPT() ;
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        semaforo();
     }
 
 }
@@ -74,8 +88,32 @@ void main(void) {
 //CONFIGURACION  (puertos, bits...)                                           //
 //****************************************************************************//
 
+//----- puertos -----//
 void setup(void) {
-    
+    initOsc(0b00000111);
+    ANSEL = 0b00000001; //RA0 como analogico
+    ANSELH = 0; 
+    TRISA = 0b00000001; //potenciometro, como entrada
+    TRISB = 0; 
+    TRISC = 0;
+    TRISD = 0;
+    TRISE = 0; // semaforo como output
+    PORTA = 0; 
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    PORTE = 0;
+}
+
+//----- interrupciones -----//
+
+void Config_INTERRUPT(void) {
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIE1bits.ADIE = 1; // enables ADC interrupt
+    PIR1bits.ADIF = 1;
+    ADCON1 = 0b00000000;
+    ADCON0 = 0b01000001;
     
 }
 
@@ -83,3 +121,20 @@ void setup(void) {
 //FUNCIONES                                                                   //
 //****************************************************************************//
 
+void semaforo(void){
+    if (temp <= 25){
+        RE0 = 0; 
+        RE1 = 0;
+        RE2 = 1;
+    }
+    else if (25 < temp <= 36){
+        RE0 = 0; 
+        RE1 = 1;
+        RE2 = 0;
+    }
+    else {
+        RE0 = 1; 
+        RE1 = 0;
+        RE2 = 0;
+    }
+}

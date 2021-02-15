@@ -1,4 +1,7 @@
 #include "Oscilador.h"
+#include <xc.h>
+#include <stdint.h>
+
 
 void initOsc(uint8_t IRCF){
     

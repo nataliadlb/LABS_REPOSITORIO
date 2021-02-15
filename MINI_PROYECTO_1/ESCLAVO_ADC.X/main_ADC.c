@@ -13,6 +13,9 @@
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include <stdint.h>
+#include "Oscilador.h"
+
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
@@ -42,18 +45,28 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-
+float ADC_val = 0.0;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
+void Config_INTERRUPT(void);
 
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        __delay_ms(2); //Inicio de conversion ADC
+        ADCON0bits.GO = 1;
+        while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
+            ADC_val = ((ADRESH * 5.0) / 255);
+        }
+    }
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -61,6 +74,7 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
+    Config_INTERRUPT();
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
@@ -74,11 +88,34 @@ void main(void) {
 //CONFIGURACION  (puertos, bits...)                                           //
 //****************************************************************************//
 
+//----- puertos -----//
 void setup(void) {
+    initOsc(0b00000111);
+    ANSEL = 0b00000001; //RA0 como analogico
+    ANSELH = 0; 
+    TRISA = 0b00000001; //potenciometro, como entrada
+    TRISB = 0; 
+    TRISC = 0;
+    TRISD = 0;
+    TRISE = 0;
+    PORTA = 0; 
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    PORTE = 0;
+}
     
+//----- interrupciones -----//
+
+void Config_INTERRUPT(void) {
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIE1bits.ADIE = 1; // enables ADC interrupt
+    PIR1bits.ADIF = 1;
+    ADCON1 = 0b00000000;
+    ADCON0 = 0b01000001;
     
 }
-
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//

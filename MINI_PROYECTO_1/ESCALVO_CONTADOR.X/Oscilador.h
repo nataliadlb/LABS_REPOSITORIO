@@ -5,8 +5,6 @@
  * Revision history: 
  */
 
-
-
 #ifndef OSCILADOR_H
 #define	OSCILADOR_H
 
