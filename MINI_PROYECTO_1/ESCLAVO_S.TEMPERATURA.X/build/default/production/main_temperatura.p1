@@ -73,9 +73,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "414
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 414: extern volatile unsigned char PORTE __attribute__((address(0x009)));
 [v _PORTE `Vuc ~T0 @X0 0 e@9 ]
-"2977
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2977: extern volatile unsigned char ADCON1 __attribute__((address(0x09F)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@159 ]
+"2983
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2983:     struct {
+[s S116 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S116 . . VCFG0 VCFG1 . ADFM ]
+"2982
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2982: typedef union {
+[u S115 `S116 1 ]
+[n S115 . . ]
+"2991
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2991: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09F)));
+[v _ADCON1bits `VS115 ~T0 @X0 0 e@159 ]
 "1245
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1245: extern volatile unsigned char ADCON0 __attribute__((address(0x01F)));
 [v _ADCON0 `Vuc ~T0 @X0 0 e@31 ]
@@ -386,151 +394,147 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 143  ]
 [e :U 144 ]
 {
-"76
-[; ;main_temperatura.c: 76:             temp_val = ADRESH;
-[e = _temp_val -> _ADRESH `i ]
-"77
-[; ;main_temperatura.c: 77:         }
+"78
+[; ;main_temperatura.c: 78:             mv_temp_val = ((ADRESH * 150) / 255);
+[e = _mv_temp_val / * -> _ADRESH `i -> 150 `i -> 255 `i ]
+"79
+[; ;main_temperatura.c: 79:         }
 }
 [e :U 143 ]
 "75
 [; ;main_temperatura.c: 75:         while (ADCON0bits.GO != 0) {
 [e $ != -> . . _ADCON0bits 1 1 `i -> 0 `i 144  ]
 [e :U 145 ]
-"81
-[; ;main_temperatura.c: 81:             mv_temp_val = ((temp_val * 150) / 1024);
-[e = _mv_temp_val / * _temp_val -> 150 `i -> 1024 `i ]
-"82
-[; ;main_temperatura.c: 82:             temp = (mv_temp_val)/1000;
-[e = _temp / _mv_temp_val -> 1000 `i ]
-"83
-[; ;main_temperatura.c: 83:             semaforo();
-[e ( _semaforo ..  ]
 "86
-[; ;main_temperatura.c: 86:     }
+[; ;main_temperatura.c: 86:             semaforo();
+[e ( _semaforo ..  ]
+"90
+[; ;main_temperatura.c: 90:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"88
-[; ;main_temperatura.c: 88: }
+"92
+[; ;main_temperatura.c: 92: }
 [e :UE 139 ]
 }
-"95
-[; ;main_temperatura.c: 95: void setup(void) {
+"99
+[; ;main_temperatura.c: 99: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"96
-[; ;main_temperatura.c: 96:     initOsc(0b00000111);
-[e ( _initOsc (1 -> -> 7 `i `uc ]
-"97
-[; ;main_temperatura.c: 97:     ANSEL = 0b00000001;
-[e = _ANSEL -> -> 1 `i `uc ]
-"98
-[; ;main_temperatura.c: 98:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"99
-[; ;main_temperatura.c: 99:     TRISA = 0b00000001;
-[e = _TRISA -> -> 1 `i `uc ]
 "100
-[; ;main_temperatura.c: 100:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 100:     initOsc(0b00000111);
+[e ( _initOsc (1 -> -> 7 `i `uc ]
 "101
-[; ;main_temperatura.c: 101:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 101:     ANSEL = 0b00000001;
+[e = _ANSEL -> -> 1 `i `uc ]
 "102
-[; ;main_temperatura.c: 102:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 102:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "103
-[; ;main_temperatura.c: 103:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 103:     TRISA = 0b00000001;
+[e = _TRISA -> -> 1 `i `uc ]
 "104
-[; ;main_temperatura.c: 104:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 104:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "105
-[; ;main_temperatura.c: 105:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 105:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
 "106
-[; ;main_temperatura.c: 106:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 106:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "107
-[; ;main_temperatura.c: 107:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 107:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "108
-[; ;main_temperatura.c: 108:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 108:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "109
-[; ;main_temperatura.c: 109:     ADCON1 = 0b00000000;
-[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;main_temperatura.c: 109:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "110
-[; ;main_temperatura.c: 110:     ADCON0 = 0b01000001;
-[e = _ADCON0 -> -> 65 `i `uc ]
+[; ;main_temperatura.c: 110:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "111
-[; ;main_temperatura.c: 111: }
+[; ;main_temperatura.c: 111:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"112
+[; ;main_temperatura.c: 112:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
+"114
+[; ;main_temperatura.c: 114:     ADCON1bits.VCFG0 = 1;
+[e = . . _ADCON1bits 0 1 -> -> 1 `i `uc ]
+"115
+[; ;main_temperatura.c: 115:     ADCON0 = 0b01000001;
+[e = _ADCON0 -> -> 65 `i `uc ]
+"116
+[; ;main_temperatura.c: 116: }
 [e :UE 146 ]
 }
-"128
-[; ;main_temperatura.c: 128: void semaforo(void){
+"133
+[; ;main_temperatura.c: 133: void semaforo(void){
 [v _semaforo `(v ~T0 @X0 1 ef ]
 {
 [e :U _semaforo ]
 [f ]
-"129
-[; ;main_temperatura.c: 129:     if (temp <= 25){
-[e $ ! <= _temp -> 25 `i 148  ]
-{
-"130
-[; ;main_temperatura.c: 130:         RE0 = 0;
-[e = _RE0 -> -> 0 `i `b ]
-"131
-[; ;main_temperatura.c: 131:         RE1 = 0;
-[e = _RE1 -> -> 0 `i `b ]
-"132
-[; ;main_temperatura.c: 132:         RE2 = 1;
-[e = _RE2 -> -> 1 `i `b ]
-"133
-[; ;main_temperatura.c: 133:     }
-}
-[e $U 149  ]
 "134
-[; ;main_temperatura.c: 134:     else if (25 < temp <= 36){
-[e :U 148 ]
-[e $ ! <= -> < -> 25 `i _temp `i -> 36 `i 150  ]
+[; ;main_temperatura.c: 134:     if (mv_temp_val <= 25){
+[e $ ! <= _mv_temp_val -> 25 `i 148  ]
 {
 "135
 [; ;main_temperatura.c: 135:         RE0 = 0;
 [e = _RE0 -> -> 0 `i `b ]
 "136
-[; ;main_temperatura.c: 136:         RE1 = 1;
-[e = _RE1 -> -> 1 `i `b ]
+[; ;main_temperatura.c: 136:         RE1 = 0;
+[e = _RE1 -> -> 0 `i `b ]
 "137
-[; ;main_temperatura.c: 137:         RE2 = 0;
-[e = _RE2 -> -> 0 `i `b ]
+[; ;main_temperatura.c: 137:         RE2 = 1;
+[e = _RE2 -> -> 1 `i `b ]
 "138
 [; ;main_temperatura.c: 138:     }
 }
-[e $U 151  ]
+[e $U 149  ]
 "139
-[; ;main_temperatura.c: 139:     else {
-[e :U 150 ]
+[; ;main_temperatura.c: 139:     else if (25 < mv_temp_val && mv_temp_val <= 36){
+[e :U 148 ]
+[e $ ! && < -> 25 `i _mv_temp_val <= _mv_temp_val -> 36 `i 150  ]
 {
 "140
-[; ;main_temperatura.c: 140:         RE0 = 1;
-[e = _RE0 -> -> 1 `i `b ]
+[; ;main_temperatura.c: 140:         RE0 = 0;
+[e = _RE0 -> -> 0 `i `b ]
 "141
-[; ;main_temperatura.c: 141:         RE1 = 0;
-[e = _RE1 -> -> 0 `i `b ]
+[; ;main_temperatura.c: 141:         RE1 = 1;
+[e = _RE1 -> -> 1 `i `b ]
 "142
 [; ;main_temperatura.c: 142:         RE2 = 0;
 [e = _RE2 -> -> 0 `i `b ]
 "143
 [; ;main_temperatura.c: 143:     }
 }
+[e $U 151  ]
+"144
+[; ;main_temperatura.c: 144:     else if (mv_temp_val > 36){
+[e :U 150 ]
+[e $ ! > _mv_temp_val -> 36 `i 152  ]
+{
+"145
+[; ;main_temperatura.c: 145:         RE0 = 1;
+[e = _RE0 -> -> 1 `i `b ]
+"146
+[; ;main_temperatura.c: 146:         RE1 = 0;
+[e = _RE1 -> -> 0 `i `b ]
+"147
+[; ;main_temperatura.c: 147:         RE2 = 0;
+[e = _RE2 -> -> 0 `i `b ]
+"148
+[; ;main_temperatura.c: 148:     }
+}
+[e :U 152 ]
 [e :U 151 ]
 [e :U 149 ]
-"144
-[; ;main_temperatura.c: 144: }
+"149
+[; ;main_temperatura.c: 149: }
 [e :UE 147 ]
 }

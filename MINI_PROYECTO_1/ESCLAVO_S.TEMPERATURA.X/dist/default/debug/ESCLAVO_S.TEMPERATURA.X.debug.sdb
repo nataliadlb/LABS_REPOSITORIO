@@ -19,9 +19,9 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "66
 [v _main main `(v  1 e 1 0 ]
-"95
+"99
 [v _setup setup `(v  1 e 1 0 ]
-"128
+"133
 [v _semaforo semaforo `(v  1 e 1 0 ]
 "6 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -100,19 +100,17 @@
 [v _RE2 RE2 `VEb  1 e 0 @74 ]
 "45 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
 [v _mv_temp_val mv_temp_val `i  1 e 2 0 ]
-"46
-[v _temp temp `i  1 e 2 0 ]
 "47
 [v _temp_val temp_val `i  1 e 2 0 ]
 "66
 [v _main main `(v  1 e 1 0 ]
 {
-"88
+"92
 } 0
-"95
+"99
 [v _setup setup `(v  1 e 1 0 ]
 {
-"111
+"116
 } 0
 "6 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -122,10 +120,10 @@
 [v initOsc@IRCF IRCF `uc  1 a 1 4 ]
 "56
 } 0
-"128 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
+"133 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
 [v _semaforo semaforo `(v  1 e 1 0 ]
 {
-"144
+"149
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
