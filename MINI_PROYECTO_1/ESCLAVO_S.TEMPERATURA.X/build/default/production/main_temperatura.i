@@ -2691,17 +2691,11 @@ void main(void) {
     while (1) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) {
+            temp_val = ADRESH;
 
-
-            mv_temp_val = ((ADRESH * 150) / 255);
         }
-
-
-
-
-
-
-            semaforo();
+        mv_temp_val = ((ADRESH * 150) / 255);
+        semaforo();
 
 
 
@@ -2732,7 +2726,7 @@ void setup(void) {
     ADCON1bits.VCFG0 = 1;
     ADCON0 = 0b01000001;
 }
-# 133 "main_temperatura.c"
+# 119 "main_temperatura.c"
 void semaforo(void){
     if (mv_temp_val <= 25){
         RE0 = 0;

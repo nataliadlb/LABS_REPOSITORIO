@@ -73,17 +73,11 @@ void main(void) {
     while (1) {
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            //mv_temp_val = ADRESH;
-            //temp_val = ADRESH;
-            mv_temp_val = ((ADRESH * 150) / 255);
-        }
-        //mv_temp_val = ((temp_val * 500) / 255); //mv
-        //mv_temp_val = ((temp_val * 150) / 255); //v per guardando dos decimales
-//        temp = (mv_temp_val)/10; //grados
+            temp_val = ADRESH;
             
-            //para tener 2 decimales y guradarlo como int
-            //temp = (mv_temp_val)/1000;
-            semaforo();
+        }
+        mv_temp_val = ((ADRESH * 150) / 255);   
+        semaforo();
         
 
         
@@ -117,14 +111,6 @@ void setup(void) {
 
 //----- interrupciones -----//
 
-//void Config_INTERRUPT(void) {
-//    INTCONbits.GIE = 1;
-//    INTCONbits.PEIE = 1;
-//    PIE1bits.ADIE = 1; // enables ADC interrupt
-//    PIR1bits.ADIF = 1;
-//    
-//    
-//}
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
