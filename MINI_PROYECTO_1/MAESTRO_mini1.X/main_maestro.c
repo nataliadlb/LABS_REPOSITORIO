@@ -20,12 +20,13 @@
 #include "LCD.h"
 #include "Oscilador.h"
 #include "USART.h"
+#include "SPI.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = HS        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = EXTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -119,6 +120,7 @@ void setup(void) {
     TRISCbits.TRISC7 = 1; // RX
     TRISCbits.TRISC5 = 0; //SDO
     TRISCbits.TRISC3 = 0; //SCK master mode
+    TRISCbits.TRISC2 = 0;
     TRISD = 0; 
     TRISE = 0;
     PORTA = 0; 
@@ -130,15 +132,15 @@ void setup(void) {
     USART_Init();
     USART_INTERRUPT();
     
+    //----- SPI -----//
+    PORTCbits.RC2 = 1;
+    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    
 }
 
-//----- SPI -----//
-void config_SPI(void){
-    SSPSTATbits.SMP = 1;
-    SSPSTATbits.CKE = 1;
-    SSPCONbits.SSPEN = 1;
-    SSPCONbits.SSPM = 0b0000; //Master mode, clock = Fosc/4
-}
+
+
+
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
