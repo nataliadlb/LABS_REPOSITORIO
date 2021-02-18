@@ -2641,12 +2641,49 @@ void initOsc(uint8_t IRCF);
 # 17 "main_contador.c" 2
 
 
+# 1 "./SPI.h" 1
+# 19 "./SPI.h"
+typedef enum
+{
+    SPI_MASTER_OSC_DIV4 = 0b00100000,
+    SPI_MASTER_OSC_DIV16 = 0b00100001,
+    SPI_MASTER_OSC_DIV64 = 0b00100010,
+    SPI_MASTER_TMR2 = 0b00100011,
+    SPI_SLAVE_SS_EN = 0b00100100,
+    SPI_SLAVE_SS_DIS = 0b00100101
+}Spi_Type;
+
+typedef enum
+{
+    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
+    SPI_DATA_SAMPLE_END = 0b10000000
+}Spi_Data_Sample;
+
+typedef enum
+{
+    SPI_CLOCK_IDLE_HIGH = 0b00010000,
+    SPI_CLOCK_IDLE_LOW = 0b00000000
+}Spi_Clock_Idle;
+
+typedef enum
+{
+    SPI_IDLE_2_ACTIVE = 0b00000000,
+    SPI_ACTIVE_2_IDLE = 0b01000000
+}Spi_Transmit_Edge;
+
+
+void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
+void spiWrite(char);
+unsigned spiDataReady();
+char spiRead();
+# 19 "main_contador.c" 2
 
 
 
 
 
-#pragma config FOSC = INTRC_NOCLKOUT
+
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2660,7 +2697,7 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 48 "main_contador.c"
+# 49 "main_contador.c"
 uint8_t contador = 0;
 uint8_t debouncing1 = 0;
 uint8_t debouncing2 = 0;
@@ -2699,14 +2736,21 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
             }
             INTCONbits.RBIF = 0;
         }
+
+    if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
 }
+
 
 
 
 
 void main(void) {
     setup();
-    Config_INTERRUPT();
+
 
 
 
@@ -2726,15 +2770,17 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
-    PORTA = 0;
     TRISB = 0b00000011;
-    PORTB = 0;
     TRISC = 0;
-    PORTC = 0;
     TRISD = 0;
-    PORTD = 0;
     TRISE = 0;
+    PORTA = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
     PORTE = 0;
+    Config_INTERRUPT();
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
 
 
@@ -2743,4 +2789,7 @@ void Config_INTERRUPT(void) {
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     IOCB = 0b00000011;
+    INTCONbits.PEIE = 1;
+    PIR1bits.SSPIF = 0;
+    PIE1bits.SSPIE = 1;
 }

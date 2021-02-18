@@ -15,13 +15,14 @@
 #include <xc.h>
 #include <stdint.h>
 #include "Oscilador.h"
+#include "SPI.h"
 
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = EXTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -58,6 +59,11 @@ void Config_INTERRUPT(void);
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
     
 }
 //****************************************************************************//
@@ -66,7 +72,7 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
-    Config_INTERRUPT();
+    
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
@@ -101,17 +107,19 @@ void setup(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    ADCON1 = 0b00000000;
+    ADCON0 = 0b01000001;
+    Config_INTERRUPT();
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
     
 //----- interrupciones -----//
 
 void Config_INTERRUPT(void) {
-//    INTCONbits.GIE = 1;
-//    INTCONbits.PEIE = 1;
-//    PIE1bits.ADIE = 1; // enables ADC interrupt
-//    PIR1bits.ADIF = 1;
-    ADCON1 = 0b00000000;
-    ADCON0 = 0b01000001;
+    INTCONbits.GIE = 1;         // Habilitamos interrupciones
+    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
+    PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
+    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
     
 }
 //****************************************************************************//

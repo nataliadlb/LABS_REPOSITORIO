@@ -16,12 +16,13 @@
 #include <stdint.h>
 #include "Oscilador.h"
 #include <xc.h>
+#include "SPI.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = EXTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -83,14 +84,21 @@ void __interrupt() ISR(void) {
             }
             INTCONbits.RBIF = 0; //limpiar bandera
         }
+    
+    if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
 }
+
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 
 void main(void) {
     setup();
-    Config_INTERRUPT();
+    
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
@@ -119,6 +127,8 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    Config_INTERRUPT();
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
 
 //----- interrupciones -----//
@@ -127,6 +137,9 @@ void Config_INTERRUPT(void) {
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     IOCB = 0b00000011;  
+    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
+    PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
+    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
 }
 
 //****************************************************************************//

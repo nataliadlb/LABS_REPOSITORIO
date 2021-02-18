@@ -14,12 +14,13 @@
 #include <xc.h>
 #include <stdint.h>
 #include "Oscilador.h"
+#include "SPI.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = EXTRC_NOCLKOUT       // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -50,13 +51,19 @@ int temp_val;
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-//void Config_INTERRUPT(void); 
+void Config_INTERRUPT(void); 
 void semaforo(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
 
-void __interrupt() ISR(void) {}
+void __interrupt() ISR(void) {
+    if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
+}
     
 
 //****************************************************************************//
@@ -65,7 +72,6 @@ void __interrupt() ISR(void) {}
 
 void main(void) {
     setup();
-    //Config_INTERRUPT() ;
     
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
@@ -73,14 +79,10 @@ void main(void) {
     while (1) {
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            temp_val = ADRESH;
-            
+            temp_val = ADRESH;   
         }
         mv_temp_val = ((ADRESH * 150) / 255);   
         semaforo();
-        
-
-        
     }
 
 }
@@ -94,7 +96,7 @@ void setup(void) {
     initOsc(0b00000111);
     ANSEL = 0b00000001; //RA0 como analogico
     ANSELH = 0; 
-    TRISA = 0b00000001; //potenciometro, como entrada
+    TRISA = 0b00000001; //sensor, como entrada
     TRISB = 0; 
     TRISC = 0;
     TRISD = 0;
@@ -107,10 +109,18 @@ void setup(void) {
     //  ADCON1 = 0;
     ADCON1bits.VCFG0 = 1;
     ADCON0 = 0b01000001;
+    Config_INTERRUPT() ;
+    TRISAbits.TRISA5 = 1; // slave select 
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
 
 //----- interrupciones -----//
-
+void Config_INTERRUPT(void){
+    INTCONbits.GIE = 1;         // Habilitamos interrupciones
+    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
+    PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
+    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
+}
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
@@ -122,7 +132,7 @@ void semaforo(void){
         RE1 = 0;
         RE2 = 1;
     }
-    else if (25 < mv_temp_val  && mv_temp_val <= 36){
+    else if (25 < mv_temp_val && mv_temp_val <= 36){ 
         RE0 = 0; 
         RE1 = 1;
         RE2 = 0;

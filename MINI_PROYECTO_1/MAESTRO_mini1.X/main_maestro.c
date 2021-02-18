@@ -104,17 +104,21 @@ void main(void) {
 }
 
 //****************************************************************************//
-//CONFIGURACION  (puertos, bits...)                                           //
+//CONFIGURACION                                            //
 //****************************************************************************//
 
+//----- puertos -----//
 void setup(void) {
     initOsc(7); //8MHz
-    ANSEL = 0; //RA0 y RA1 como analogico
+    ANSEL = 0; 
     ANSELH = 0; 
-    TRISA = 0; //potenciometros, como entrada
+    TRISA = 0;
+    TRISAbits.TRISA5 = 1; //SS
     TRISB = 0;
     TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC7 = 1; // RX
+    TRISCbits.TRISC5 = 0; //SDO
+    TRISCbits.TRISC3 = 0; //SCK master mode
     TRISD = 0; 
     TRISE = 0;
     PORTA = 0; 
@@ -128,6 +132,13 @@ void setup(void) {
     
 }
 
+//----- SPI -----//
+void config_SPI(void){
+    SSPSTATbits.SMP = 1;
+    SSPSTATbits.CKE = 1;
+    SSPCONbits.SSPEN = 1;
+    SSPCONbits.SSPM = 0b0000; //Master mode, clock = Fosc/4
+}
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//

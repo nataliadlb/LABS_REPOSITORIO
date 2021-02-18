@@ -2640,12 +2640,49 @@ typedef uint16_t uintptr_t;
 void initOsc(uint8_t IRCF);
 # 16 "main_temperatura.c" 2
 
+# 1 "./SPI.h" 1
+# 19 "./SPI.h"
+typedef enum
+{
+    SPI_MASTER_OSC_DIV4 = 0b00100000,
+    SPI_MASTER_OSC_DIV16 = 0b00100001,
+    SPI_MASTER_OSC_DIV64 = 0b00100010,
+    SPI_MASTER_TMR2 = 0b00100011,
+    SPI_SLAVE_SS_EN = 0b00100100,
+    SPI_SLAVE_SS_DIS = 0b00100101
+}Spi_Type;
+
+typedef enum
+{
+    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
+    SPI_DATA_SAMPLE_END = 0b10000000
+}Spi_Data_Sample;
+
+typedef enum
+{
+    SPI_CLOCK_IDLE_HIGH = 0b00010000,
+    SPI_CLOCK_IDLE_LOW = 0b00000000
+}Spi_Clock_Idle;
+
+typedef enum
+{
+    SPI_IDLE_2_ACTIVE = 0b00000000,
+    SPI_ACTIVE_2_IDLE = 0b01000000
+}Spi_Transmit_Edge;
+
+
+void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
+void spiWrite(char);
+unsigned spiDataReady();
+char spiRead();
+# 17 "main_temperatura.c" 2
 
 
 
 
 
-#pragma config FOSC = XT
+
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2659,7 +2696,7 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 45 "main_temperatura.c"
+# 46 "main_temperatura.c"
 int mv_temp_val;
 int temp;
 int temp_val;
@@ -2668,13 +2705,19 @@ int temp_val;
 
 
 void setup(void);
-
+void Config_INTERRUPT(void);
 void semaforo(void);
 
 
 
 
-void __attribute__((picinterrupt(("")))) ISR(void) {}
+void __attribute__((picinterrupt(("")))) ISR(void) {
+    if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
+}
 
 
 
@@ -2687,18 +2730,13 @@ void main(void) {
 
 
 
-
     while (1) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) {
             temp_val = ADRESH;
-
         }
         mv_temp_val = ((ADRESH * 150) / 255);
         semaforo();
-
-
-
     }
 
 }
@@ -2725,8 +2763,23 @@ void setup(void) {
 
     ADCON1bits.VCFG0 = 1;
     ADCON0 = 0b01000001;
+    Config_INTERRUPT() ;
+    TRISAbits.TRISA5 = 1;
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
-# 119 "main_temperatura.c"
+
+
+void Config_INTERRUPT(void){
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIR1bits.SSPIF = 0;
+    PIE1bits.SSPIE = 1;
+}
+
+
+
+
+
 void semaforo(void){
     if (mv_temp_val <= 25){
         RE0 = 0;
