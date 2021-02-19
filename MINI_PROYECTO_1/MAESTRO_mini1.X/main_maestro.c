@@ -91,6 +91,19 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        PORTCbits.RC1 = 0;       //Slave Select
+       __delay_ms(1);
+       
+       //spiWrite(PORTD);
+       PORTB = spiRead();
+       
+       __delay_ms(1);
+       PORTCbits.RC1 = 1;       //Slave Deselect 
+       
+       __delay_ms(250);
+       //PORTD++;
+    
+    
          Write_USART_String("S1   S2   S3 \n"); 
 //         ADC_to_string();
          
@@ -101,7 +114,7 @@ void main(void) {
         Show_val_LCD();
         __delay_ms(500);
     }
-
+return;
 }
 
 //****************************************************************************//
@@ -133,7 +146,9 @@ void setup(void) {
     USART_INTERRUPT();
     
     //----- SPI -----//
-    PORTCbits.RC2 = 1;
+    //PORTCbits.RC2 = 1;
+    PORTCbits.RC1 = 0;
+    //PORTCbits.RC0 = 1;
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     
 }

@@ -2867,12 +2867,49 @@ void Write_USART_String(char *a);
 uint8_t Read_USART();
 # 22 "main_maestro.c" 2
 
+# 1 "./SPI.h" 1
+# 19 "./SPI.h"
+typedef enum
+{
+    SPI_MASTER_OSC_DIV4 = 0b00100000,
+    SPI_MASTER_OSC_DIV16 = 0b00100001,
+    SPI_MASTER_OSC_DIV64 = 0b00100010,
+    SPI_MASTER_TMR2 = 0b00100011,
+    SPI_SLAVE_SS_EN = 0b00100100,
+    SPI_SLAVE_SS_DIS = 0b00100101
+}Spi_Type;
+
+typedef enum
+{
+    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
+    SPI_DATA_SAMPLE_END = 0b10000000
+}Spi_Data_Sample;
+
+typedef enum
+{
+    SPI_CLOCK_IDLE_HIGH = 0b00010000,
+    SPI_CLOCK_IDLE_LOW = 0b00000000
+}Spi_Clock_Idle;
+
+typedef enum
+{
+    SPI_IDLE_2_ACTIVE = 0b00000000,
+    SPI_ACTIVE_2_IDLE = 0b01000000
+}Spi_Transmit_Edge;
+
+
+void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
+void spiWrite(char);
+unsigned spiDataReady();
+char spiRead();
+# 23 "main_maestro.c" 2
 
 
 
 
 
-#pragma config FOSC = HS
+
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2886,7 +2923,7 @@ uint8_t Read_USART();
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 62 "main_maestro.c"
+# 63 "main_maestro.c"
 char data_total[20];
 
 
@@ -2918,6 +2955,19 @@ void main(void) {
 
 
     while (1) {
+        PORTCbits.RC1 = 0;
+       _delay((unsigned long)((1)*(8000000/4000.0)));
+
+
+       PORTB = spiRead();
+
+       _delay((unsigned long)((1)*(8000000/4000.0)));
+       PORTCbits.RC1 = 1;
+
+       _delay((unsigned long)((250)*(8000000/4000.0)));
+
+
+
          Write_USART_String("S1   S2   S3 \n");
 
 
@@ -2928,8 +2978,9 @@ void main(void) {
         Show_val_LCD();
         _delay((unsigned long)((500)*(8000000/4000.0)));
     }
-
+return;
 }
+
 
 
 
@@ -2940,9 +2991,13 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
+    TRISAbits.TRISA5 = 1;
     TRISB = 0;
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC5 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC2 = 0;
     TRISD = 0;
     TRISE = 0;
     PORTA = 0;
@@ -2954,8 +3009,14 @@ void setup(void) {
     USART_Init();
     USART_INTERRUPT();
 
+
+
+    PORTCbits.RC1 = 0;
+
+    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+
 }
-# 139 "main_maestro.c"
+# 167 "main_maestro.c"
 void Show_val_LCD(void){
 
     Lcd_Clear();

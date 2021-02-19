@@ -2698,7 +2698,7 @@ char spiRead();
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
 # 49 "main_contador.c"
-uint8_t contador = 0;
+uint8_t contador;
 uint8_t debouncing1 = 0;
 uint8_t debouncing2 = 0;
 
@@ -2726,12 +2726,12 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
             }
             if(PORTBbits.RB0 == 0 && debouncing1 == 1){
                 contador++;
-                PORTC = contador;
+                PORTD = contador;
                 debouncing1 = 0;
             }
             if(PORTBbits.RB1 == 0 && debouncing2 == 1){
                 contador--;
-                PORTC = contador;
+                PORTD = contador;
                 debouncing2 = 0;
             }
             INTCONbits.RBIF = 0;
@@ -2739,7 +2739,7 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
     if(SSPIF == 1){
         PORTD = spiRead();
-        spiWrite(PORTB);
+        spiWrite(contador);
         SSPIF = 0;
     }
 }
@@ -2749,6 +2749,7 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 
 void main(void) {
+    contador = 0;
     setup();
 
 
@@ -2756,6 +2757,7 @@ void main(void) {
 
 
     while (1) {
+
     }
 
 }
@@ -2780,6 +2782,7 @@ void setup(void) {
     PORTD = 0;
     PORTE = 0;
     Config_INTERRUPT();
+    TRISAbits.TRISA5 = 1;
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
 
