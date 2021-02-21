@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_maestro.c" 2
-# 27 "main_maestro.c"
+# 15 "main_maestro.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 27 "main_maestro.c" 2
+# 15 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 28 "main_maestro.c" 2
+# 16 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 29 "main_maestro.c" 2
+# 17 "main_maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2807,7 +2807,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 30 "main_maestro.c" 2
+# 18 "main_maestro.c" 2
 
 
 # 1 "./LCD.h" 1
@@ -2831,7 +2831,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right();
 void Lcd_Shift_Left();
 void Lcd_Clear(void);
-# 32 "main_maestro.c" 2
+# 20 "main_maestro.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2846,7 +2846,7 @@ void Lcd_Clear(void);
 
 
 void initOsc(uint8_t IRCF);
-# 33 "main_maestro.c" 2
+# 21 "main_maestro.c" 2
 
 # 1 "./USART.h" 1
 # 14 "./USART.h"
@@ -2865,14 +2865,51 @@ void USART_INTERRUPT(void);
 void Write_USART(uint8_t a);
 void Write_USART_String(char *a);
 uint8_t Read_USART();
-# 34 "main_maestro.c" 2
+# 22 "main_maestro.c" 2
+
+# 1 "./SPI.h" 1
+# 19 "./SPI.h"
+typedef enum
+{
+    SPI_MASTER_OSC_DIV4 = 0b00100000,
+    SPI_MASTER_OSC_DIV16 = 0b00100001,
+    SPI_MASTER_OSC_DIV64 = 0b00100010,
+    SPI_MASTER_TMR2 = 0b00100011,
+    SPI_SLAVE_SS_EN = 0b00100100,
+    SPI_SLAVE_SS_DIS = 0b00100101
+}Spi_Type;
+
+typedef enum
+{
+    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
+    SPI_DATA_SAMPLE_END = 0b10000000
+}Spi_Data_Sample;
+
+typedef enum
+{
+    SPI_CLOCK_IDLE_HIGH = 0b00010000,
+    SPI_CLOCK_IDLE_LOW = 0b00000000
+}Spi_Clock_Idle;
+
+typedef enum
+{
+    SPI_IDLE_2_ACTIVE = 0b00000000,
+    SPI_ACTIVE_2_IDLE = 0b01000000
+}Spi_Transmit_Edge;
+
+
+void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
+void spiWrite(char);
+unsigned spiDataReady();
+char spiRead();
+# 23 "main_maestro.c" 2
 
 
 
 
 
 
-#pragma config FOSC = HS
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2888,7 +2925,7 @@ uint8_t Read_USART();
 #pragma config WRT = OFF
 # 63 "main_maestro.c"
 char data_total[20];
-
+uint8_t hola_esclavo;
 
 
 
@@ -2906,29 +2943,25 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 
 
+
 void main(void) {
     setup();
-    TRISD = 0x00;
-    Lcd_Init();
-    Lcd_Clear();
-
-
-
-
-
+# 93 "main_maestro.c"
     while (1) {
-         Write_USART_String("S1   S2   S3 \n");
+        PORTCbits.RC1 = 0;
+       _delay((unsigned long)((1)*(8000000/4000.0)));
 
+       spiWrite(PORTD);
+       PORTB = spiRead();
 
+       _delay((unsigned long)((1)*(8000000/4000.0)));
+       PORTCbits.RC1 = 1;
 
-
-
-
-        Show_val_LCD();
-        _delay((unsigned long)((500)*(8000000/4000.0)));
+       _delay((unsigned long)((100)*(8000000/4000.0)));
+# 114 "main_maestro.c"
     }
-
 }
+
 
 
 
@@ -2938,23 +2971,35 @@ void setup(void) {
     initOsc(7);
     ANSEL = 0;
     ANSELH = 0;
+
     TRISA = 0;
     TRISB = 0;
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
+    TRISC1 = 0;
     TRISD = 0;
     TRISE = 0;
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-    USART_Init_BaudRate();
-    USART_Init();
-    USART_INTERRUPT();
+
+
+
+    PORTCbits.RC1 = 1;
+
+
+
+
+
+
+
+    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
-# 139 "main_maestro.c"
+# 166 "main_maestro.c"
 void Show_val_LCD(void){
 
     Lcd_Clear();

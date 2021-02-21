@@ -61,7 +61,7 @@
 //VARIABLES                                                                   //
 //****************************************************************************//
 char data_total[20];
-
+uint8_t hola_esclavo;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -82,39 +82,38 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
-    TRISD = 0x00;
-    Lcd_Init();
-    Lcd_Clear();
+    PORTB = 0;
+    //TRISD = 0x00;
+    //Lcd_Init();
+    //Lcd_Clear();
 
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        PORTCbits.RC1 = 0;       //Slave Select
+        PORTB = 0;
+        RC2 = 0;       //Slave Select
        __delay_ms(1);
        
-       //spiWrite(PORTD);
+       spiWrite(hola_esclavo);
        PORTB = spiRead();
        
        __delay_ms(1);
-       PORTCbits.RC1 = 1;       //Slave Deselect 
+       RC2 = 1;       //Slave Deselect 
        
-       __delay_ms(250);
-       //PORTD++;
-    
-    
-         Write_USART_String("S1   S2   S3 \n"); 
+       __delay_ms(100);
+
+        //Write_USART_String("S1   S2   S3 \n"); 
 //         ADC_to_string();
          
 //        Write_USART_String(data_total); //enviar el string con los valores a la pc
 //        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
 //        Write_USART(10);
         
-        Show_val_LCD();
-        __delay_ms(500);
+        //Show_val_LCD();
+        //__delay_ms(500);
     }
-return;
 }
 
 //****************************************************************************//
@@ -126,29 +125,32 @@ void setup(void) {
     initOsc(7); //8MHz
     ANSEL = 0; 
     ANSELH = 0; 
+    
     TRISA = 0;
-    TRISAbits.TRISA5 = 1; //SS
     TRISB = 0;
-    TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1; // RX
-    TRISCbits.TRISC5 = 0; //SDO
-    TRISCbits.TRISC3 = 0; //SCK master mode
-    TRISCbits.TRISC2 = 0;
+    //TRISCbits.TRISC6 = 0;
+    //TRISCbits.TRISC7 = 1; // RX
+    
     TRISD = 0; 
     TRISE = 0;
+    
     PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-    USART_Init_BaudRate();
-    USART_Init();
-    USART_INTERRUPT();
     
     //----- SPI -----//
     //PORTCbits.RC2 = 1;
-    PORTCbits.RC1 = 0;
+    TRISC2 = 0;
+    PORTCbits.RC2 = 1;
     //PORTCbits.RC0 = 1;
+    
+    //----- USART -----//
+    //USART_Init_BaudRate();
+    //USART_Init();
+    //USART_INTERRUPT();
+    
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     
 }
