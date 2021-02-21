@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"134 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
+"138 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [e E1294 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -57,9 +57,9 @@ SPI_ACTIVE_2_IDLE 64
 [v _ISR ISR `II(v  1 e 1 0 ]
 "99
 [v _main main `(v  1 e 1 0 ]
-"118
+"119
 [v _setup setup `(v  1 e 1 0 ]
-"138
+"142
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -69,8 +69,6 @@ SPI_ACTIVE_2_IDLE 64
 [v _spiReceiveWait spiReceiveWait `(v  1 s 1 spiReceiveWait ]
 "36
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
-"49
-[v _spiRead spiRead `(uc  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
@@ -110,7 +108,7 @@ SPI_ACTIVE_2_IDLE 64
 ]
 [u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-[s S156 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S159 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -119,15 +117,15 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S164 . 1 `S156 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES164  1 e 1 @12 ]
+[u S167 . 1 `S159 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES167  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S110 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S113 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -137,8 +135,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1433
-[u S119 . 1 `S110 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES119  1 e 1 @133 ]
+[u S122 . 1 `S113 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES122  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1540
@@ -147,7 +145,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S175 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S178 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -156,25 +154,25 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S183 . 1 `S175 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES183  1 e 1 @140 ]
-[s S247 . 1 `uc 1 SCS 1 0 :1:0 
+[u S186 . 1 `S178 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES186  1 e 1 @140 ]
+[s S251 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S253 . 1 `uc 1 . 1 0 :4:0 
+[s S257 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S258 . 1 `S247 1 . 1 0 `S253 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES258  1 e 1 @143 ]
+[u S262 . 1 `S251 1 . 1 0 `S257 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES262  1 e 1 @143 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S304 . 1 `uc 1 BF 1 0 :1:0 
+[s S308 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -184,41 +182,43 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 SMP 1 0 :1:7 
 ]
 "2231
-[s S313 . 1 `uc 1 . 1 0 :2:0 
+[s S317 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S318 . 1 `uc 1 . 1 0 :2:0 
+[s S322 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S324 . 1 `uc 1 . 1 0 :2:0 
+[s S328 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S329 . 1 `uc 1 . 1 0 :2:0 
+[s S333 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S334 . 1 `uc 1 . 1 0 :2:0 
+[s S338 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S339 . 1 `uc 1 . 1 0 :2:0 
+[s S343 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S344 . 1 `S304 1 . 1 0 `S313 1 . 1 0 `S318 1 . 1 0 `S324 1 . 1 0 `S329 1 . 1 0 `S334 1 . 1 0 `S339 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES344  1 e 1 @148 ]
+[u S348 . 1 `S308 1 . 1 0 `S317 1 . 1 0 `S322 1 . 1 0 `S328 1 . 1 0 `S333 1 . 1 0 `S338 1 . 1 0 `S343 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES348  1 e 1 @148 ]
 "2416
 [v _IOCB IOCB `VEuc  1 e 1 @150 ]
+"2977
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -229,6 +229,8 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4463
 [v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
+"4664
+[v _nRBPU nRBPU `VEb  1 e 0 @1039 ]
 "49 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [v _contador contador `uc  1 e 1 0 ]
 "50
@@ -238,12 +240,12 @@ SPI_ACTIVE_2_IDLE 64
 "99
 [v _main main `(v  1 e 1 0 ]
 {
-"111
+"112
 } 0
-"118
+"119
 [v _setup setup `(v  1 e 1 0 ]
 {
-"135
+"139
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -265,10 +267,10 @@ SPI_ACTIVE_2_IDLE 64
 [v initOsc@IRCF IRCF `uc  1 a 1 6 ]
 "53
 } 0
-"138 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
+"142 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"146
+"151
 } 0
 "63
 [v _ISR ISR `II(v  1 e 1 0 ]
@@ -283,14 +285,4 @@ SPI_ACTIVE_2_IDLE 64
 "38
 [v spiWrite@dat dat `uc  1 a 1 0 ]
 "39
-} 0
-"49
-[v _spiRead spiRead `(uc  1 e 1 0 ]
-{
-"53
-} 0
-"31
-[v _spiReceiveWait spiReceiveWait `(v  1 s 1 spiReceiveWait ]
-{
-"34
 } 0

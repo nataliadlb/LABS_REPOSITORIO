@@ -86,7 +86,7 @@ void __interrupt() ISR(void) {
         }
     
     if(SSPIF == 1){
-        PORTD = spiRead();
+        //PORTD = spiRead();
         spiWrite(contador);
         SSPIF = 0;
     }
@@ -105,8 +105,9 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-
+        __delay_ms(5);
     }
+    return;
 
 }
 
@@ -117,13 +118,16 @@ void main(void) {
 //----- puertos -----//
 void setup(void) { //Configuración de puertos de entrada y salida
     initOsc(0b00000111);
+    nRBPU = 0;
     ANSEL = 0; 
     ANSELH = 0; 
+    
     TRISA = 0; 
     TRISB = 0b00000011; // push, como entradas
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
+    
     PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
@@ -143,6 +147,7 @@ void Config_INTERRUPT(void) {
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
+    ADCON1 = 0x07;
 }
 
 //****************************************************************************//

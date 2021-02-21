@@ -2738,7 +2738,7 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
         }
 
     if(SSPIF == 1){
-        PORTD = spiRead();
+
         spiWrite(contador);
         SSPIF = 0;
     }
@@ -2757,8 +2757,9 @@ void main(void) {
 
 
     while (1) {
-
+        _delay((unsigned long)((5)*(8000000/4000.0)));
     }
+    return;
 
 }
 
@@ -2769,13 +2770,16 @@ void main(void) {
 
 void setup(void) {
     initOsc(0b00000111);
+    nRBPU = 0;
     ANSEL = 0;
     ANSELH = 0;
+
     TRISA = 0;
     TRISB = 0b00000011;
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
@@ -2795,4 +2799,5 @@ void Config_INTERRUPT(void) {
     INTCONbits.PEIE = 1;
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
+    ADCON1 = 0x07;
 }
