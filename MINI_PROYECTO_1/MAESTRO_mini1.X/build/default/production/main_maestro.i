@@ -2953,8 +2953,8 @@ void main(void) {
 
     Lcd_Init();
     Lcd_Clear();
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String("S1:   S2:   S3:");
+    Lcd_Set_Cursor(1,1);
+    Lcd_Write_String("cont   S2:   S3:");
 
 
 
@@ -2972,7 +2972,7 @@ void main(void) {
 
        _delay((unsigned long)((100)*(8000000/4000.0)));
 
-        Write_USART_String("cont:  \n");
+       Write_USART_String("cont:  \n");
        PORTB = cont;
        ADC_to_string();
 
@@ -2997,8 +2997,8 @@ void setup(void) {
 
     TRISA = 0;
     TRISB = 0;
-
-
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
 
     TRISD = 0;
     TRISE = 0;
@@ -3033,7 +3033,7 @@ void ADC_to_string(void){
 void Show_val_LCD(void){
 
 
-    Lcd_Set_Cursor(2,2);
+    Lcd_Set_Cursor(2,1);
     Lcd_Write_String(data);
 # 190 "main_maestro.c"
 }

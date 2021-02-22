@@ -60,6 +60,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1478
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1478: extern volatile unsigned char TRISB __attribute__((address(0x086)));
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"1546
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1546:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1545
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1545: typedef union {
+[u S56 `S57 1 ]
+[n S56 . . ]
+"1557
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1557: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x087)));
+[v _TRISCbits `VS56 ~T0 @X0 0 e@135 ]
 "1602
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
@@ -420,10 +431,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_maestro.c: 91:     Lcd_Clear();
 [e ( _Lcd_Clear ..  ]
 "92
-[; ;main_maestro.c: 92:     Lcd_Set_Cursor(1,2);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
+[; ;main_maestro.c: 92:     Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "93
-[; ;main_maestro.c: 93:     Lcd_Write_String("S1:   S2:   S3:");
+[; ;main_maestro.c: 93:     Lcd_Write_String("cont   S2:   S3:");
 [e ( _Lcd_Write_String (1 :s 1C ]
 "99
 [; ;main_maestro.c: 99:     while (1) {
@@ -451,7 +462,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_maestro.c: 109:        _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "111
-[; ;main_maestro.c: 111:         Write_USART_String("cont:  \n");
+[; ;main_maestro.c: 111:        Write_USART_String("cont:  \n");
 [e ( _Write_USART_String (1 :s 2C ]
 "112
 [; ;main_maestro.c: 112:        PORTB = cont;
@@ -502,6 +513,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "135
 [; ;main_maestro.c: 135:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
+"136
+[; ;main_maestro.c: 136:     TRISCbits.TRISC6 = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+"137
+[; ;main_maestro.c: 137:     TRISCbits.TRISC7 = 1;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
 "139
 [; ;main_maestro.c: 139:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
@@ -565,8 +582,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _Show_val_LCD ]
 [f ]
 "179
-[; ;main_maestro.c: 179:     Lcd_Set_Cursor(2,2);
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
+[; ;main_maestro.c: 179:     Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
 "180
 [; ;main_maestro.c: 180:     Lcd_Write_String(data);
 [e ( _Lcd_Write_String (1 &U _data ]
@@ -576,5 +593,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [p f _sprintf 8454272 ]
 [a 3C 37 46 51 105 0 ]
-[a 1C 83 49 58 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
+[a 1C 99 111 110 116 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
 [a 2C 99 111 110 116 58 32 32 10 0 ]

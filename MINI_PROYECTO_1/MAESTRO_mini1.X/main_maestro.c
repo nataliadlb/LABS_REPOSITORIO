@@ -89,8 +89,8 @@ void main(void) {
     //TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-    Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
-    Lcd_Write_String("S1:   S2:   S3:");
+    Lcd_Set_Cursor(1,1); //nombres S1, S2 y S3
+    Lcd_Write_String("cont   S2:   S3:");
 
 
     //************************************************************************//
@@ -108,7 +108,7 @@ void main(void) {
        
        __delay_ms(100);
 
-        Write_USART_String("cont:  \n"); 
+       Write_USART_String("cont:  \n"); 
        PORTB = cont;
        ADC_to_string();
          
@@ -133,8 +133,8 @@ void setup(void) {
     
     TRISA = 0;
     TRISB = 0;
-    //TRISCbits.TRISC6 = 0;
-    //TRISCbits.TRISC7 = 1; // RX
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1; // RX
     
     TRISD = 0; 
     TRISE = 0;
@@ -167,16 +167,16 @@ void setup(void) {
 //FUNCIONES                                                                   //
 //****************************************************************************//
 
-void ADC_to_string(void){
+void ADC_to_string(void){ //Volver texto los valores para LCD y Terminal virtual 
    
     sprintf(data, "%.3i", cont);
     //sprintf(data, "%d", cont);
 }
 
-void Show_val_LCD(void){
+void Show_val_LCD(void){ //mostrar valores en la LCD, luego de SPI 
     //---- Valores de S1 y S2 ----//
     //Lcd_Clear();
-    Lcd_Set_Cursor(2,2);
+    Lcd_Set_Cursor(2,1);
     Lcd_Write_String(data);
 
     //    Lcd_Write_String(data_total);
