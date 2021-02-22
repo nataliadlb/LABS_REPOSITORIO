@@ -63,9 +63,9 @@
 char data_total[20];
 char data[8];
 uint8_t hola_esclavo; //para que el maestro hable con esclavos
-uint8_t cont;
-uint8_t val_ADC;
-uint8_t val_TEMP;
+uint8_t cont = 0;
+uint8_t val_ADC = 0;
+uint8_t val_TEMP = 0;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -103,17 +103,17 @@ void main(void) {
     while (1) {
         SPI_CONT(); //Activar y desactivar esclavos
         SPI_ADC();
-        SPI_TEMP();
+        //SPI_TEMP();
         
         Write_USART_String("cont:  \n"); 
-        PORTB = cont;
+        PORTB = val_ADC;
         ADC_to_string();
-         
+        Show_val_LCD(); 
         Write_USART_String(data); //enviar el string con los valores a la pc
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
         
-        Show_val_LCD();
+        
         //__delay_ms(500);
     }
 }
@@ -124,14 +124,14 @@ void main(void) {
 
 //----- puertos -----//
 void setup(void) {
-    initOsc(7); //8MHz
+    initOsc(0b00000111); //8MHz
     ANSEL = 0; 
     ANSELH = 0; 
     
     TRISA = 0;
     TRISB = 0;
-    TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1; // RX
+    //TRISCbits.TRISC6 = 0;
+    //TRISCbits.TRISC7 = 1; // RX
     
     TRISD = 0; 
     TRISE = 0;
@@ -153,7 +153,7 @@ void setup(void) {
     //----- USART -----//
     USART_Init_BaudRate();
     USART_Init();
-    USART_INTERRUPT();
+    //USART_INTERRUPT();
     
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     

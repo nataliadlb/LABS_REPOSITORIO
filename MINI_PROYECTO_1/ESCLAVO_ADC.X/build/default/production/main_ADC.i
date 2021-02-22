@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_ADC.c" 2
-# 15 "main_ADC.c"
+# 14 "main_ADC.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "main_ADC.c" 2
+# 14 "main_ADC.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 16 "main_ADC.c" 2
+# 15 "main_ADC.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2638,7 +2638,7 @@ typedef uint16_t uintptr_t;
 
 
 void initOsc(uint8_t IRCF);
-# 17 "main_ADC.c" 2
+# 16 "main_ADC.c" 2
 
 # 1 "./SPI.h" 1
 # 19 "./SPI.h"
@@ -2675,7 +2675,7 @@ void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
 void spiWrite(char);
 unsigned spiDataReady();
 char spiRead();
-# 18 "main_ADC.c" 2
+# 17 "main_ADC.c" 2
 
 
 
@@ -2697,7 +2697,7 @@ char spiRead();
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 49 "main_ADC.c"
+# 48 "main_ADC.c"
 uint8_t ADC_val;
 
 
@@ -2730,13 +2730,16 @@ void main(void) {
 
     while (1) {
 
+
+
+
+         _delay((unsigned long)((2)*(8000000/4000.0)));
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) {
         ADC_val = ADRESH;
         PORTD = ADC_val;
         }
-    }
-
+   }
 }
 
 
@@ -2764,9 +2767,10 @@ void setup(void) {
     PORTE = 0;
 
     ADCON0 = 0b01000001;
-
-
-
+    ADCON1 = 0x07;
+    Config_INTERRUPT();
+    TRISAbits.TRISA5 = 1;
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
 
 
@@ -2776,5 +2780,4 @@ void Config_INTERRUPT(void) {
     INTCONbits.PEIE = 1;
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
-    ADCON1 = 0x07;
 }

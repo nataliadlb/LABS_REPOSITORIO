@@ -2927,14 +2927,18 @@ char spiRead();
 char data_total[20];
 char data[8];
 uint8_t hola_esclavo;
-uint8_t cont;
+uint8_t cont = 0;
+uint8_t val_ADC = 0;
+uint8_t val_TEMP = 0;
 
 
 
 void setup(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-
+void SPI_CONT(void);
+void SPI_ADC(void);
+void SPI_TEMP(void);
 
 
 
@@ -2961,26 +2965,19 @@ void main(void) {
 
 
     while (1) {
-        RC2 = 0;
-       _delay((unsigned long)((1)*(8000000/4000.0)));
+        SPI_CONT();
+        SPI_ADC();
 
-       spiWrite(hola_esclavo);
-       cont = spiRead();
 
-       _delay((unsigned long)((1)*(8000000/4000.0)));
-       RC2 = 1;
-
-       _delay((unsigned long)((100)*(8000000/4000.0)));
-
-       Write_USART_String("cont:  \n");
-       PORTB = cont;
-       ADC_to_string();
-
+        Write_USART_String("cont:  \n");
+        PORTB = val_ADC;
+        ADC_to_string();
+        Show_val_LCD();
         Write_USART_String(data);
         Write_USART(13);
         Write_USART(10);
 
-        Show_val_LCD();
+
 
     }
 }
@@ -2991,14 +2988,14 @@ void main(void) {
 
 
 void setup(void) {
-    initOsc(7);
+    initOsc(0b00000111);
     ANSEL = 0;
     ANSELH = 0;
 
     TRISA = 0;
     TRISB = 0;
-    TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1;
+
+
 
     TRISD = 0;
     TRISE = 0;
@@ -3010,20 +3007,27 @@ void setup(void) {
     PORTE = 0;
 
 
-
+    TRISC0 = 0;
+    PORTCbits.RC0 = 1;
+    TRISC1 = 0;
+    PORTCbits.RC1 = 1;
     TRISC2 = 0;
     PORTCbits.RC2 = 1;
 
 
-
     USART_Init_BaudRate();
     USART_Init();
-    USART_INTERRUPT();
+
 
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
-# 170 "main_maestro.c"
+
+
+
+
+
+
 void ADC_to_string(void){
 
     sprintf(data, "%.3i", cont);
@@ -3035,5 +3039,44 @@ void Show_val_LCD(void){
 
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(data);
-# 190 "main_maestro.c"
+# 187 "main_maestro.c"
+}
+
+
+void SPI_CONT(void){
+    RC2 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   cont = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC2 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
+}
+
+void SPI_ADC(void){
+    RC0 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC0 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
+}
+void SPI_TEMP(void){
+    RC1 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC1 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
 }

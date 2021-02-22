@@ -1,5 +1,4 @@
 /*
-/*
  * Título: Esclavo ADC
  * Autor: Natalia de Leon Bercian
  * Carne: 18193
@@ -77,14 +76,17 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-//         __delay_ms(2); 
+//        ADC_val++;
+//        PORTD = ADC_val;
+//        __delay_ms(1000);
+        
+         __delay_ms(2); 
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
         ADC_val = ADRESH;
         PORTD = ADC_val;
         }  
-    }
-
+   }
 }
 
 //****************************************************************************//
@@ -112,9 +114,10 @@ void setup(void) {
     PORTE = 0;
     
     ADCON0 = 0b01000001;
-//    Config_INTERRUPT();
-//    TRISAbits.TRISA5 = 1;
-//    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    ADCON1 = 0x07;
+    Config_INTERRUPT();
+    TRISAbits.TRISA5 = 1;
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
     
 //----- interrupciones -----//
@@ -123,8 +126,7 @@ void Config_INTERRUPT(void) {
     INTCONbits.GIE = 1;         // Habilitamos interrupciones
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
-    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
-    ADCON1 = 0x07;
+    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP   
 }
 //****************************************************************************//
 //FUNCIONES                                                                   //
