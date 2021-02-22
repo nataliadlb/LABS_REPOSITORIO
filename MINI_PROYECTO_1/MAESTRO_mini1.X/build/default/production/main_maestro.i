@@ -2925,11 +2925,14 @@ char spiRead();
 #pragma config WRT = OFF
 # 63 "main_maestro.c"
 char data_total[20];
-char data[8];
+char data_cont[8];
+char data_ADC[8];
+char data_TEMP[8];
 uint8_t hola_esclavo;
 uint8_t cont = 0;
 uint8_t val_ADC = 0;
 uint8_t val_TEMP = 0;
+int mv_temp_val_M;
 
 
 
@@ -2969,15 +2972,23 @@ void main(void) {
         SPI_ADC();
         SPI_TEMP();
 
-        Write_USART_String("cont:  \n");
+
         PORTB = val_TEMP;
+        mv_temp_val_M = ((val_TEMP * 150) / 255);
         ADC_to_string();
-        Show_val_LCD();
-        Write_USART_String(data);
+        Write_USART_String("CONT:  \n");
+        Write_USART_String(data_cont);
+        Write_USART_String("  \n");
+        Write_USART_String("ADC:  \n");
+        Write_USART_String(data_ADC);
+        Write_USART_String("  \n");
+        Write_USART_String("TEMP:  \n");
+        Write_USART_String(data_TEMP);
+        Write_USART_String("°C  \n");
         Write_USART(13);
         Write_USART(10);
 
-
+        Show_val_LCD();
 
     }
 }
@@ -3030,7 +3041,9 @@ void setup(void) {
 
 void ADC_to_string(void){
 
-    sprintf(data, "%.3i", cont);
+    sprintf(data_cont, "%.3i", cont);
+    sprintf(data_ADC, "%.3i", val_ADC );
+    sprintf(data_TEMP, "%.2i", mv_temp_val_M );
 
 }
 
@@ -3038,8 +3051,8 @@ void Show_val_LCD(void){
 
 
     Lcd_Set_Cursor(2,1);
-    Lcd_Write_String(data);
-# 187 "main_maestro.c"
+    Lcd_Write_String(data_cont);
+# 200 "main_maestro.c"
 }
 
 
