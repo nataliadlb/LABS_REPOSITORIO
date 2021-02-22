@@ -132,6 +132,7 @@ void setup(void) { //Configuración de puertos de entrada y salida
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    
     Config_INTERRUPT();
     TRISAbits.TRISA5 = 1;
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);

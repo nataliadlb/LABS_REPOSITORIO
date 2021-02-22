@@ -2698,7 +2698,7 @@ char spiRead();
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
 # 49 "main_ADC.c"
-int ADC_val;
+uint8_t ADC_val;
 
 
 
@@ -2711,12 +2711,11 @@ void Config_INTERRUPT(void);
 
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
+
     if(SSPIF == 1){
-        PORTD = spiRead();
-        spiWrite(PORTB);
+        spiWrite(ADC_val);
         SSPIF = 0;
     }
-
 }
 
 
@@ -2734,7 +2733,7 @@ void main(void) {
         ADCON0bits.GO = 1;
         while (ADCON0bits.GO != 0) {
         ADC_val = ADRESH;
-        PORTC = ADC_val;
+        PORTD = ADC_val;
         }
     }
 
@@ -2747,22 +2746,27 @@ void main(void) {
 
 void setup(void) {
     initOsc(0b00000111);
+    nRBPU = 0;
+
     ANSEL = 0b00000001;
     ANSELH = 0;
+
     TRISA = 0b00000001;
     TRISB = 0;
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-    ADCON1 = 0b00000000;
+
     ADCON0 = 0b01000001;
-    Config_INTERRUPT();
-    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+
+
+
 }
 
 
@@ -2772,5 +2776,5 @@ void Config_INTERRUPT(void) {
     INTCONbits.PEIE = 1;
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
-
+    ADCON1 = 0x07;
 }

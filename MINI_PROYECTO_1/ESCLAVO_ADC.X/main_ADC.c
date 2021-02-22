@@ -46,7 +46,7 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-int ADC_val;
+uint8_t ADC_val;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
@@ -59,12 +59,11 @@ void Config_INTERRUPT(void);
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
-    if(SSPIF == 1){
-        PORTD = spiRead();
-        spiWrite(PORTB);
-        SSPIF = 0;
-    }
     
+    if(SSPIF == 1){
+        spiWrite(ADC_val);
+        SSPIF = 0;
+    }  
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -82,7 +81,7 @@ void main(void) {
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
         ADC_val = ADRESH;
-        PORTC = ADC_val;
+        PORTD = ADC_val;
         }  
     }
 
@@ -95,22 +94,27 @@ void main(void) {
 //----- puertos -----//
 void setup(void) {
     initOsc(0b00000111);
+    nRBPU = 0;
+    
     ANSEL = 0b00000001; //RA0 como analogico
     ANSELH = 0; 
+    
     TRISA = 0b00000001; //potenciometro, como entrada
     TRISB = 0; 
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
+    
     PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-    ADCON1 = 0b00000000;
+    
     ADCON0 = 0b01000001;
-    Config_INTERRUPT();
-    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+//    Config_INTERRUPT();
+//    TRISAbits.TRISA5 = 1;
+//    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
     
 //----- interrupciones -----//
@@ -120,7 +124,7 @@ void Config_INTERRUPT(void) {
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
-    
+    ADCON1 = 0x07;
 }
 //****************************************************************************//
 //FUNCIONES                                                                   //

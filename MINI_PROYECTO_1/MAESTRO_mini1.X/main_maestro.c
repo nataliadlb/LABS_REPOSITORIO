@@ -62,15 +62,19 @@
 //****************************************************************************//
 char data_total[20];
 char data[8];
-uint8_t hola_esclavo;
+uint8_t hola_esclavo; //para que el maestro hable con esclavos
 uint8_t cont;
+uint8_t val_ADC;
+uint8_t val_TEMP;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
-
+void SPI_CONT(void);
+void SPI_ADC(void);
+void SPI_TEMP(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
@@ -97,20 +101,13 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        RC2 = 0;       //Slave Select
-       __delay_ms(1);
-       
-       spiWrite(hola_esclavo);
-       cont = spiRead();
-       
-       __delay_ms(1);
-       RC2 = 1;       //Slave Deselect 
-       
-       __delay_ms(100);
-
-       Write_USART_String("cont:  \n"); 
-       PORTB = cont;
-       ADC_to_string();
+        SPI_CONT(); //Activar y desactivar esclavos
+        SPI_ADC();
+        SPI_TEMP();
+        
+        Write_USART_String("cont:  \n"); 
+        PORTB = cont;
+        ADC_to_string();
          
         Write_USART_String(data); //enviar el string con los valores a la pc
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
@@ -146,10 +143,12 @@ void setup(void) {
     PORTE = 0;
     
     //----- SPI -----//
-    //PORTCbits.RC2 = 1;
+    TRISC0 = 0;
+    PORTCbits.RC0 = 1;
+    TRISC1 = 0;
+    PORTCbits.RC1 = 1;
     TRISC2 = 0;
     PORTCbits.RC2 = 1;
-    //PORTCbits.RC0 = 1;
     
     //----- USART -----//
     USART_Init_BaudRate();
@@ -160,13 +159,11 @@ void setup(void) {
     
 }
 
-
-
-
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
 
+//------ FUNCIONES MAESTRO ------//
 void ADC_to_string(void){ //Volver texto los valores para LCD y Terminal virtual 
    
     sprintf(data, "%.3i", cont);
@@ -187,4 +184,43 @@ void Show_val_LCD(void){ //mostrar valores en la LCD, luego de SPI
 //    lcd_write_char(str_pot_a[3]);
 //    lcd_write_char(str_pot_a[4]);
 //    lcd_write_char(' ');
+}
+
+//------ FUNCIONES ACTIVACION ESCLAVOS ------//
+void SPI_CONT(void){ //CONTADOR, seleccionar y guardar valor
+    RC2 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   cont = spiRead();
+
+   __delay_ms(1);
+   RC2 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
+}
+
+void SPI_ADC(void){ // ADC, seleccionar y guardar valor
+    RC0 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   __delay_ms(1);
+   RC0 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
+}
+void SPI_TEMP(void){//TEMP, seleccionar y guardar valor
+    RC1 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   __delay_ms(1);
+   RC1 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
 }
