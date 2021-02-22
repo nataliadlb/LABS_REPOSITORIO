@@ -26,6 +26,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "76
 [; ;main_maestro.c: 76: void SPI_ADC(void);
 [v _SPI_ADC `(v ~T0 @X0 0 ef ]
+"77
+[; ;main_maestro.c: 77: void SPI_TEMP(void);
+[v _SPI_TEMP `(v ~T0 @X0 0 ef ]
 "25 ./USART.h
 [; ;./USART.h: 25: void Write_USART_String(char *a);
 [v _Write_USART_String `(v ~T0 @X0 0 ef1`*uc ]
@@ -465,12 +468,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "105
 [; ;main_maestro.c: 105:         SPI_ADC();
 [e ( _SPI_ADC ..  ]
+"106
+[; ;main_maestro.c: 106:         SPI_TEMP();
+[e ( _SPI_TEMP ..  ]
 "108
 [; ;main_maestro.c: 108:         Write_USART_String("cont:  \n");
 [e ( _Write_USART_String (1 :s 2C ]
 "109
-[; ;main_maestro.c: 109:         PORTB = val_ADC;
-[e = _PORTB _val_ADC ]
+[; ;main_maestro.c: 109:         PORTB = val_TEMP;
+[e = _PORTB _val_TEMP ]
 "110
 [; ;main_maestro.c: 110:         ADC_to_string();
 [e ( _ADC_to_string ..  ]
@@ -676,8 +682,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_maestro.c: 219:    spiWrite(hola_esclavo);
 [e ( _spiWrite (1 -> _hola_esclavo `uc ]
 "220
-[; ;main_maestro.c: 220:    val_ADC = spiRead();
-[e = _val_ADC -> ( _spiRead ..  `uc ]
+[; ;main_maestro.c: 220:    val_TEMP = spiRead();
+[e = _val_TEMP -> ( _spiRead ..  `uc ]
 "222
 [; ;main_maestro.c: 222:    _delay((unsigned long)((1)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]

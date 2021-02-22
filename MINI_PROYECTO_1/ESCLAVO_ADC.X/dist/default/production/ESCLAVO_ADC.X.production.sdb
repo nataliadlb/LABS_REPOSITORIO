@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"120 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\main_ADC.c
+"116 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\main_ADC.c
 [e E1294 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -57,9 +57,9 @@ SPI_ACTIVE_2_IDLE 64
 [v _ISR ISR `II(v  1 e 1 0 ]
 "71
 [v _main main `(v  1 e 1 0 ]
-"97
+"93
 [v _setup setup `(v  1 e 1 0 ]
-"125
+"121
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -249,12 +249,12 @@ SPI_ACTIVE_2_IDLE 64
 "71
 [v _main main `(v  1 e 1 0 ]
 {
-"90
+"86
 } 0
-"97
+"93
 [v _setup setup `(v  1 e 1 0 ]
 {
-"121
+"117
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -276,10 +276,10 @@ SPI_ACTIVE_2_IDLE 64
 [v initOsc@IRCF IRCF `uc  1 a 1 5 ]
 "53
 } 0
-"125 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\main_ADC.c
+"121 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_ADC.X\main_ADC.c
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"130
+"126
 } 0
 "60
 [v _ISR ISR `II(v  1 e 1 0 ]

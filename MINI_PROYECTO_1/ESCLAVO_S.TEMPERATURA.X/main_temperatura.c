@@ -44,8 +44,8 @@
 //VARIABLES                                                                   //
 //****************************************************************************//
 int mv_temp_val;
-int temp;
-int temp_val;
+//int temp;
+uint8_t temp_val;
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
@@ -58,11 +58,11 @@ void semaforo(void);
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    
     if(SSPIF == 1){
-        PORTD = spiRead();
-        spiWrite(PORTB);
+        spiWrite(temp_val);
         SSPIF = 0;
-    }
+    }  
 }
     
 
@@ -77,11 +77,13 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
+        __delay_ms(2);
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
-            temp_val = ADRESH;   
-        }
-        mv_temp_val = ((ADRESH * 150) / 255);   
+            temp_val = ADRESH; 
+            mv_temp_val = ((ADRESH * 150) / 255); 
+        } 
+        PORTD = temp_val;
         semaforo();
     }
 
@@ -94,21 +96,27 @@ void main(void) {
 //----- puertos -----//
 void setup(void) {
     initOsc(0b00000111);
+    nRBPU = 0;
+    
     ANSEL = 0b00000001; //RA0 como analogico
     ANSELH = 0; 
+    
     TRISA = 0b00000001; //sensor, como entrada
     TRISB = 0; 
     TRISC = 0;
     TRISD = 0;
     TRISE = 0; // semaforo como output
+    
     PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
     //  ADCON1 = 0;
-    ADCON1bits.VCFG0 = 1;
     ADCON0 = 0b01000001;
+    ADCON1bits.VCFG0 = 1;
+    //ADCON1 = 0x07;
+    
     Config_INTERRUPT() ;
     TRISAbits.TRISA5 = 1; // slave select 
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
@@ -132,7 +140,7 @@ void semaforo(void){
         RE1 = 0;
         RE2 = 1;
     }
-    else if (25 < mv_temp_val && mv_temp_val <= 36){ 
+    else if (mv_temp_val > 25 && mv_temp_val <= 36){ 
         RE0 = 0; 
         RE1 = 1;
         RE2 = 0;

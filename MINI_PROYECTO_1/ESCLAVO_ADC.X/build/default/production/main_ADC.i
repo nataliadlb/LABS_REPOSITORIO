@@ -2727,11 +2727,7 @@ void main(void) {
 
 
 
-
     while (1) {
-
-
-
 
          _delay((unsigned long)((2)*(8000000/4000.0)));
         ADCON0bits.GO = 1;

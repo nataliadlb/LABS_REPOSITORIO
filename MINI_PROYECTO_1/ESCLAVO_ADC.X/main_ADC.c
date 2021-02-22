@@ -71,14 +71,10 @@ void __interrupt() ISR(void) {
 void main(void) {
     setup();
     
-
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-//        ADC_val++;
-//        PORTD = ADC_val;
-//        __delay_ms(1000);
         
          __delay_ms(2); 
         ADCON0bits.GO = 1; //Inicio de conversion ADC

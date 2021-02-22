@@ -2967,10 +2967,10 @@ void main(void) {
     while (1) {
         SPI_CONT();
         SPI_ADC();
-
+        SPI_TEMP();
 
         Write_USART_String("cont:  \n");
-        PORTB = val_ADC;
+        PORTB = val_TEMP;
         ADC_to_string();
         Show_val_LCD();
         Write_USART_String(data);
@@ -3073,7 +3073,7 @@ void SPI_TEMP(void){
    _delay((unsigned long)((1)*(8000000/4000.0)));
 
    spiWrite(hola_esclavo);
-   val_ADC = spiRead();
+   val_TEMP = spiRead();
 
    _delay((unsigned long)((1)*(8000000/4000.0)));
    RC1 = 1;

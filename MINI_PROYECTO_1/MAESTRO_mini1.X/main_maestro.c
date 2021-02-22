@@ -103,10 +103,10 @@ void main(void) {
     while (1) {
         SPI_CONT(); //Activar y desactivar esclavos
         SPI_ADC();
-        //SPI_TEMP();
+        SPI_TEMP();
         
         Write_USART_String("cont:  \n"); 
-        PORTB = val_ADC;
+        PORTB = val_TEMP;
         ADC_to_string();
         Show_val_LCD(); 
         Write_USART_String(data); //enviar el string con los valores a la pc
@@ -217,7 +217,7 @@ void SPI_TEMP(void){//TEMP, seleccionar y guardar valor
    __delay_ms(1);
 
    spiWrite(hola_esclavo);
-   val_ADC = spiRead();
+   val_TEMP = spiRead();
 
    __delay_ms(1);
    RC1 = 1;       //Slave Deselect 
