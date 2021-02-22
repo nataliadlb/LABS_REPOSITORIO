@@ -108,13 +108,13 @@ void main(void) {
        
        __delay_ms(100);
 
-        //Write_USART_String("S1   S2   S3 \n"); 
+        Write_USART_String("cont:  \n"); 
        PORTB = cont;
        ADC_to_string();
          
-//        Write_USART_String(data_total); //enviar el string con los valores a la pc
-//        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
-//        Write_USART(10);
+        Write_USART_String(data); //enviar el string con los valores a la pc
+        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+        Write_USART(10);
         
         Show_val_LCD();
         //__delay_ms(500);
@@ -152,9 +152,9 @@ void setup(void) {
     //PORTCbits.RC0 = 1;
     
     //----- USART -----//
-    //USART_Init_BaudRate();
-    //USART_Init();
-    //USART_INTERRUPT();
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
     
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     
@@ -178,11 +178,7 @@ void Show_val_LCD(void){
     //Lcd_Clear();
     Lcd_Set_Cursor(2,2);
     Lcd_Write_String(data);
-//    Lcd_Write_Char(data[0]);
-//    Lcd_Write_Char(data[1]);
-//    Lcd_Write_Char(data[2]);
-//    Lcd_Write_Char(data[3]);
-    
+
     //    Lcd_Write_String(data_total);
     
 //    lcd_write_char(data[0]);

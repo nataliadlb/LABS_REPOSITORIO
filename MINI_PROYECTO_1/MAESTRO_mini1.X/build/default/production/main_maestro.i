@@ -2972,13 +2972,13 @@ void main(void) {
 
        _delay((unsigned long)((100)*(8000000/4000.0)));
 
-
+        Write_USART_String("cont:  \n");
        PORTB = cont;
        ADC_to_string();
 
-
-
-
+        Write_USART_String(data);
+        Write_USART(13);
+        Write_USART(10);
 
         Show_val_LCD();
 
@@ -3016,9 +3016,9 @@ void setup(void) {
 
 
 
-
-
-
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
 
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
@@ -3035,5 +3035,5 @@ void Show_val_LCD(void){
 
     Lcd_Set_Cursor(2,2);
     Lcd_Write_String(data);
-# 194 "main_maestro.c"
+# 190 "main_maestro.c"
 }
