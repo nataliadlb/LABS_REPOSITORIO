@@ -2738,7 +2738,6 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
         }
 
     if(SSPIF == 1){
-
         spiWrite(contador);
         SSPIF = 0;
     }
@@ -2757,7 +2756,7 @@ void main(void) {
 
 
     while (1) {
-        _delay((unsigned long)((5)*(8000000/4000.0)));
+        _delay((unsigned long)((1)*(8000000/4000.0)));
     }
     return;
 

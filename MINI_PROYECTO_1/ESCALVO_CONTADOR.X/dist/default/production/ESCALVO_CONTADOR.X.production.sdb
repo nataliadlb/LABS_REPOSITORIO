@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"138 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
+"137 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [e E1294 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -55,11 +55,11 @@ SPI_ACTIVE_2_IDLE 64
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "63 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"99
+"98
 [v _main main `(v  1 e 1 0 ]
-"119
+"118
 [v _setup setup `(v  1 e 1 0 ]
-"142
+"141
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
@@ -237,15 +237,15 @@ SPI_ACTIVE_2_IDLE 64
 [v _debouncing1 debouncing1 `uc  1 e 1 0 ]
 "51
 [v _debouncing2 debouncing2 `uc  1 e 1 0 ]
-"99
+"98
 [v _main main `(v  1 e 1 0 ]
 {
-"112
+"111
 } 0
-"119
+"118
 [v _setup setup `(v  1 e 1 0 ]
 {
-"139
+"138
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -267,15 +267,15 @@ SPI_ACTIVE_2_IDLE 64
 [v initOsc@IRCF IRCF `uc  1 a 1 6 ]
 "53
 } 0
-"142 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
+"141 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\main_contador.c
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"151
+"150
 } 0
 "63
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"93
+"92
 } 0
 "36 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCALVO_CONTADOR.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]

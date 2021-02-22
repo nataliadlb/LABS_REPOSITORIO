@@ -2925,7 +2925,9 @@ char spiRead();
 #pragma config WRT = OFF
 # 63 "main_maestro.c"
 char data_total[20];
+char data[8];
 uint8_t hola_esclavo;
+uint8_t cont;
 
 
 
@@ -2947,20 +2949,39 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 void main(void) {
     setup();
     PORTB = 0;
-# 94 "main_maestro.c"
+    cont = 0;
+
+    Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1,2);
+    Lcd_Write_String("S1:   S2:   S3:");
+
+
+
+
+
     while (1) {
-        PORTB = 0;
         RC2 = 0;
        _delay((unsigned long)((1)*(8000000/4000.0)));
 
        spiWrite(hola_esclavo);
-       PORTB = spiRead();
+       cont = spiRead();
 
        _delay((unsigned long)((1)*(8000000/4000.0)));
        RC2 = 1;
 
        _delay((unsigned long)((100)*(8000000/4000.0)));
-# 116 "main_maestro.c"
+
+
+       PORTB = cont;
+       ADC_to_string();
+
+
+
+
+
+        Show_val_LCD();
+
     }
 }
 
@@ -3002,12 +3023,17 @@ void setup(void) {
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
-# 169 "main_maestro.c"
+# 170 "main_maestro.c"
+void ADC_to_string(void){
+
+    sprintf(data, "%.3i", cont);
+
+}
+
 void Show_val_LCD(void){
 
-    Lcd_Clear();
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String("S1:   S2:   S3:");
 
-
+    Lcd_Set_Cursor(2,2);
+    Lcd_Write_String(data);
+# 194 "main_maestro.c"
 }

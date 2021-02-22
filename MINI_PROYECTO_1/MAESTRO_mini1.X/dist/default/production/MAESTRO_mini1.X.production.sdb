@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"154 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+"159 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
 [e E1502 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -45,15 +45,27 @@ SPI_CLOCK_IDLE_LOW 0
 SPI_IDLE_2_ACTIVE 0
 SPI_ACTIVE_2_IDLE 64
 ]
+"505 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
 "62 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
 "6 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"29 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\LCD.c
+"14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\LCD.c
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
+"29
 [v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
 "33
 [v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
@@ -65,12 +77,16 @@ SPI_ACTIVE_2_IDLE 64
 [v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
 "70
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
-"76 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+"78 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"83
+"85
 [v _main main `(v  1 e 1 0 ]
-"124
+"129
 [v _setup setup `(v  1 e 1 0 ]
+"170
+[v _ADC_to_string ADC_to_string `(v  1 e 1 0 ]
+"176
+[v _Show_val_LCD Show_val_LCD `(v  1 e 1 0 ]
 "3 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\SPI.c
@@ -89,7 +105,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "290
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
-[s S59 . 1 `uc 1 RC0 1 0 :1:0 
+[s S86 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -99,21 +115,21 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 RC7 1 0 :1:7 
 ]
 "307
-[u S68 . 1 `S59 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES68  1 e 1 @7 ]
+[u S95 . 1 `S86 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES95  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S192 . 1 `uc 1 RE0 1 0 :1:0 
+[s S214 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S197 . 1 `S192 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES197  1 e 1 @9 ]
-[s S310 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S219 . 1 `S214 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES219  1 e 1 @9 ]
+[s S332 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -123,18 +139,18 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S319 . 1 `uc 1 . 1 0 :2:0 
+[s S341 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S324 . 1 `S310 1 . 1 0 `S319 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES324  1 e 1 @11 ]
+[u S346 . 1 `S332 1 . 1 0 `S341 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES346  1 e 1 @11 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S227 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S249 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -144,18 +160,18 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S236 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S258 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S240 . 1 `uc 1 . 1 0 :6:0 
+[s S262 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S243 . 1 `uc 1 . 1 0 :6:0 
+[s S265 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S246 . 1 `S227 1 . 1 0 `S236 1 . 1 0 `S240 1 . 1 0 `S243 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES246  1 e 1 @24 ]
+[u S268 . 1 `S249 1 . 1 0 `S258 1 . 1 0 `S262 1 . 1 0 `S265 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES268  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
@@ -168,7 +184,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S342 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S364 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -177,25 +193,25 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S350 . 1 `S342 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES350  1 e 1 @140 ]
-[s S142 . 1 `uc 1 SCS 1 0 :1:0 
+[u S372 . 1 `S364 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES372  1 e 1 @140 ]
+[s S164 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S148 . 1 `uc 1 . 1 0 :4:0 
+[s S170 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S153 . 1 `S142 1 . 1 0 `S148 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES153  1 e 1 @143 ]
+[u S175 . 1 `S164 1 . 1 0 `S170 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES175  1 e 1 @143 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S426 . 1 `uc 1 BF 1 0 :1:0 
+[s S448 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -205,40 +221,40 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 SMP 1 0 :1:7 
 ]
 "2231
-[s S435 . 1 `uc 1 . 1 0 :2:0 
+[s S457 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S440 . 1 `uc 1 . 1 0 :2:0 
+[s S462 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S446 . 1 `uc 1 . 1 0 :2:0 
+[s S468 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S451 . 1 `uc 1 . 1 0 :2:0 
+[s S473 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S456 . 1 `uc 1 . 1 0 :2:0 
+[s S478 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S461 . 1 `uc 1 . 1 0 :2:0 
+[s S483 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S466 . 1 `S426 1 . 1 0 `S435 1 . 1 0 `S440 1 . 1 0 `S446 1 . 1 0 `S451 1 . 1 0 `S456 1 . 1 0 `S461 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES466  1 e 1 @148 ]
-[s S271 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S488 . 1 `S448 1 . 1 0 `S457 1 . 1 0 `S462 1 . 1 0 `S468 1 . 1 0 `S473 1 . 1 0 `S478 1 . 1 0 `S483 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES488  1 e 1 @148 ]
+[s S293 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -248,15 +264,15 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S280 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S302 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S284 . 1 `uc 1 . 1 0 :6:0 
+[s S306 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S287 . 1 `S271 1 . 1 0 `S280 1 . 1 0 `S284 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES287  1 e 1 @152 ]
+[u S309 . 1 `S293 1 . 1 0 `S302 1 . 1 0 `S306 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES309  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "2704
@@ -277,10 +293,16 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
 "4508
 [v _TRMT TRMT `VEb  1 e 0 @1217 ]
-"83 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+"358 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+[v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
+"64 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+[v _data data `[8]uc  1 e 8 0 ]
+"66
+[v _cont cont `uc  1 e 1 0 ]
+"85
 [v _main main `(v  1 e 1 0 ]
 {
-"117
+"122
 } 0
 "36 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
@@ -301,10 +323,10 @@ SPI_ACTIVE_2_IDLE 64
 {
 "34
 } 0
-"124 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+"129 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
 [v _setup setup `(v  1 e 1 0 ]
 {
-"156
+"161
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -326,8 +348,139 @@ SPI_ACTIVE_2_IDLE 64
 [v initOsc@IRCF IRCF `uc  1 a 1 4 ]
 "53
 } 0
-"76 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+"176 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+[v _Show_val_LCD Show_val_LCD `(v  1 e 1 0 ]
+{
+"194
+} 0
+"70 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\LCD.c
+[v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
+{
+"71
+[v Lcd_Write_String@i i `i  1 a 2 0 ]
+"70
+[v Lcd_Write_String@a a `*.26uc  1 p 2 5 ]
+"74
+} 0
+"61
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
+{
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+[v Lcd_Write_Char@a a `uc  1 a 1 4 ]
+"67
+} 0
+"48
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
+{
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+"49
+[v Lcd_Set_Cursor@temp temp `uc  1 a 1 9 ]
+"48
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+[v Lcd_Set_Cursor@b b `uc  1 p 1 6 ]
+"50
+[v Lcd_Set_Cursor@a a `uc  1 a 1 8 ]
+"58
+} 0
+"14
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
+{
+"26
+} 0
+"42
+[v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
+{
+"45
+} 0
+"33
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+{
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 5 ]
+"39
+} 0
+"29
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
+{
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 2 ]
+"31
+} 0
+"170 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
+[v _ADC_to_string ADC_to_string `(v  1 e 1 0 ]
+{
+"174
+} 0
+"505 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+"545
+[v sprintf@val val `ui  1 a 2 15 ]
+"512
+[v sprintf@c c `uc  1 a 1 18 ]
+"521
+[v sprintf@prec prec `c  1 a 1 17 ]
+"525
+[v sprintf@flag flag `uc  1 a 1 13 ]
+"507
+[v sprintf@ap ap `[1]*.4v  1 a 1 12 ]
+"505
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+[v sprintf@f f `*.24DCuc  1 p 1 6 ]
+"550
+[v sprintf@sp sp `*.4uc  1 a 1 14 ]
+"1567
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+{
+[v isdigit@c c `uc  1 a 1 wreg ]
+[v isdigit@c c `uc  1 a 1 wreg ]
+"14
+[v isdigit@c c `uc  1 a 1 3 ]
+"15
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 5 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 0 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 2 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 7 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 9 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 4 ]
+"30
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 4 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 2 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 5 ]
+"51
+} 0
+"78 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\MAESTRO_mini1.X\main_maestro.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"77
+"79
 } 0

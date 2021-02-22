@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Sat Feb 20 22:26:24 2021
+                                                                                               Mon Feb 22 07:48:34 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -511,7 +511,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    497 ;;
    498 ;; *************** function _main *****************
    499 ;; Defined at:
-   500 ;;		line 99 in file "main_contador.c"
+   500 ;;		line 98 in file "main_contador.c"
    501 ;; Parameters:    Size  Location     Type
    502 ;;		None
    503 ;; Auto vars:     Size  Location     Type
@@ -546,20 +546,20 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    532                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
    533                           
    534                           
-   535                           ;main_contador.c: 100:     contador = 0;
+   535                           ;main_contador.c: 99:     contador = 0;
    536  0105  01F9               	clrf	_contador
    537  0106                     l983:
    538                           
-   539                           ;main_contador.c: 101:     setup();
+   539                           ;main_contador.c: 100:     setup();
    540  0106  120A  118A  20B9  120A  118A  	fcall	_setup
    541  010B                     l985:
    542                           
-   543                           ;main_contador.c: 108:         _delay((unsigned long)((5)*(8000000/4000.0)));
-   544  010B  300D               	movlw	13
+   543                           ;main_contador.c: 107:         _delay((unsigned long)((1)*(8000000/4000.0)));
+   544  010B  3003               	movlw	3
    545  010C  1283               	bcf	3,5	;RP0=0, select bank0
    546  010D  1303               	bcf	3,6	;RP1=0, select bank0
    547  010E  00A2               	movwf	??_main+1
-   548  010F  30FB               	movlw	251
+   548  010F  3097               	movlw	151
    549  0110  00A1               	movwf	??_main
    550  0111                     u137:
    551  0111  0BA1               	decfsz	??_main,f
@@ -574,7 +574,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    560  00B9                     __ptext1:	
    561 ;; *************** function _setup *****************
    562 ;; Defined at:
-   563 ;;		line 119 in file "main_contador.c"
+   563 ;;		line 118 in file "main_contador.c"
    564 ;; Parameters:    Size  Location     Type
    565 ;;		None
    566 ;; Auto vars:     Size  Location     Type
@@ -612,83 +612,83 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    598                           ; Regs used in _setup: [wreg-fsr0h+status,2+status,0+pclath+cstack]
    599                           
    600                           
-   601                           ;main_contador.c: 120:     initOsc(0b00000111);
+   601                           ;main_contador.c: 119:     initOsc(0b00000111);
    602  00B9  3007               	movlw	7
    603  00BA  120A  118A  2016  120A  118A  	fcall	_initOsc
    604  00BF                     l949:
    605                           
-   606                           ;main_contador.c: 121:     nRBPU = 0;
+   606                           ;main_contador.c: 120:     nRBPU = 0;
    607  00BF  1683               	bsf	3,5	;RP0=1, select bank1
    608  00C0  1303               	bcf	3,6	;RP1=0, select bank1
    609  00C1  1381               	bcf	1,7	;volatile
    610  00C2                     l951:
    611                           
-   612                           ;main_contador.c: 122:     ANSEL = 0;
+   612                           ;main_contador.c: 121:     ANSEL = 0;
    613  00C2  1683               	bsf	3,5	;RP0=1, select bank3
    614  00C3  1703               	bsf	3,6	;RP1=1, select bank3
    615  00C4  0188               	clrf	8	;volatile
    616  00C5                     l953:
    617                           
-   618                           ;main_contador.c: 123:     ANSELH = 0;
+   618                           ;main_contador.c: 122:     ANSELH = 0;
    619  00C5  0189               	clrf	9	;volatile
    620  00C6                     l955:
    621                           
-   622                           ;main_contador.c: 125:     TRISA = 0;
+   622                           ;main_contador.c: 124:     TRISA = 0;
    623  00C6  1683               	bsf	3,5	;RP0=1, select bank1
    624  00C7  1303               	bcf	3,6	;RP1=0, select bank1
    625  00C8  0185               	clrf	5	;volatile
    626  00C9                     l957:
    627                           
-   628                           ;main_contador.c: 126:     TRISB = 0b00000011;
+   628                           ;main_contador.c: 125:     TRISB = 0b00000011;
    629  00C9  3003               	movlw	3
    630  00CA  0086               	movwf	6	;volatile
    631  00CB                     l959:
    632                           
-   633                           ;main_contador.c: 127:     TRISC = 0;
+   633                           ;main_contador.c: 126:     TRISC = 0;
    634  00CB  0187               	clrf	7	;volatile
    635  00CC                     l961:
    636                           
-   637                           ;main_contador.c: 128:     TRISD = 0;
+   637                           ;main_contador.c: 127:     TRISD = 0;
    638  00CC  0188               	clrf	8	;volatile
    639  00CD                     l963:
    640                           
-   641                           ;main_contador.c: 129:     TRISE = 0;
+   641                           ;main_contador.c: 128:     TRISE = 0;
    642  00CD  0189               	clrf	9	;volatile
    643  00CE                     l965:
    644                           
-   645                           ;main_contador.c: 131:     PORTA = 0;
+   645                           ;main_contador.c: 130:     PORTA = 0;
    646  00CE  1283               	bcf	3,5	;RP0=0, select bank0
    647  00CF  1303               	bcf	3,6	;RP1=0, select bank0
    648  00D0  0185               	clrf	5	;volatile
    649  00D1                     l967:
    650                           
-   651                           ;main_contador.c: 132:     PORTB = 0;
+   651                           ;main_contador.c: 131:     PORTB = 0;
    652  00D1  0186               	clrf	6	;volatile
    653  00D2                     l969:
    654                           
-   655                           ;main_contador.c: 133:     PORTC = 0;
+   655                           ;main_contador.c: 132:     PORTC = 0;
    656  00D2  0187               	clrf	7	;volatile
    657  00D3                     l971:
    658                           
-   659                           ;main_contador.c: 134:     PORTD = 0;
+   659                           ;main_contador.c: 133:     PORTD = 0;
    660  00D3  0188               	clrf	8	;volatile
    661  00D4                     l973:
    662                           
-   663                           ;main_contador.c: 135:     PORTE = 0;
+   663                           ;main_contador.c: 134:     PORTE = 0;
    664  00D4  0189               	clrf	9	;volatile
    665  00D5                     l975:
    666                           
-   667                           ;main_contador.c: 136:     Config_INTERRUPT();
+   667                           ;main_contador.c: 135:     Config_INTERRUPT();
    668  00D5  120A  118A  2119  120A  118A  	fcall	_Config_INTERRUPT
    669  00DA                     l977:
    670                           
-   671                           ;main_contador.c: 137:     TRISAbits.TRISA5 = 1;
+   671                           ;main_contador.c: 136:     TRISAbits.TRISA5 = 1;
    672  00DA  1683               	bsf	3,5	;RP0=1, select bank1
    673  00DB  1303               	bcf	3,6	;RP1=0, select bank1
    674  00DC  1685               	bsf	5,5	;volatile
    675  00DD                     l979:
    676                           
-   677                           ;main_contador.c: 138:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_ID
+   677                           ;main_contador.c: 137:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_ID
       +                          LE_LOW, SPI_IDLE_2_ACTIVE);
    678  00DD  01F4               	clrf	spiInit@sDataSample
    679  00DE  01F5               	clrf	spiInit@sClockIdle
@@ -1066,7 +1066,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1049  0119                     __ptext4:	
   1050 ;; *************** function _Config_INTERRUPT *****************
   1051 ;; Defined at:
-  1052 ;;		line 142 in file "main_contador.c"
+  1052 ;;		line 141 in file "main_contador.c"
   1053 ;; Parameters:    Size  Location     Type
   1054 ;;		None
   1055 ;; Auto vars:     Size  Location     Type
@@ -1102,39 +1102,39 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1085                           ; Regs used in _Config_INTERRUPT: [wreg]
   1086                           
   1087                           
-  1088                           ;main_contador.c: 143:     INTCONbits.GIE = 1;
+  1088                           ;main_contador.c: 142:     INTCONbits.GIE = 1;
   1089  0119  178B               	bsf	11,7	;volatile
   1090                           
-  1091                           ;main_contador.c: 144:     INTCONbits.RBIE = 1;
+  1091                           ;main_contador.c: 143:     INTCONbits.RBIE = 1;
   1092  011A  158B               	bsf	11,3	;volatile
   1093                           
-  1094                           ;main_contador.c: 145:     INTCONbits.RBIF = 0;
+  1094                           ;main_contador.c: 144:     INTCONbits.RBIF = 0;
   1095  011B  100B               	bcf	11,0	;volatile
   1096  011C                     l739:
   1097                           
-  1098                           ;main_contador.c: 146:     IOCB = 0b00000011;
+  1098                           ;main_contador.c: 145:     IOCB = 0b00000011;
   1099  011C  3003               	movlw	3
   1100  011D  1683               	bsf	3,5	;RP0=1, select bank1
   1101  011E  1303               	bcf	3,6	;RP1=0, select bank1
   1102  011F  0096               	movwf	22	;volatile
   1103  0120                     l741:
   1104                           
-  1105                           ;main_contador.c: 147:     INTCONbits.PEIE = 1;
+  1105                           ;main_contador.c: 146:     INTCONbits.PEIE = 1;
   1106  0120  170B               	bsf	11,6	;volatile
   1107  0121                     l743:
   1108                           
-  1109                           ;main_contador.c: 148:     PIR1bits.SSPIF = 0;
+  1109                           ;main_contador.c: 147:     PIR1bits.SSPIF = 0;
   1110  0121  1283               	bcf	3,5	;RP0=0, select bank0
   1111  0122  1303               	bcf	3,6	;RP1=0, select bank0
   1112  0123  118C               	bcf	12,3	;volatile
   1113  0124                     l745:
   1114                           
-  1115                           ;main_contador.c: 149:     PIE1bits.SSPIE = 1;
+  1115                           ;main_contador.c: 148:     PIE1bits.SSPIE = 1;
   1116  0124  1683               	bsf	3,5	;RP0=1, select bank1
   1117  0125  1303               	bcf	3,6	;RP1=0, select bank1
   1118  0126  158C               	bsf	12,3	;volatile
   1119                           
-  1120                           ;main_contador.c: 150:     ADCON1 = 0x07;
+  1120                           ;main_contador.c: 149:     ADCON1 = 0x07;
   1121  0127  3007               	movlw	7
   1122  0128  009F               	movwf	31	;volatile
   1123  0129                     l85:
@@ -1300,12 +1300,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1283  00A9                     u10_20:
   1284  00A9                     i1l825:
   1285                           
-  1286                           ;main_contador.c: 90:         spiWrite(contador);
+  1286                           ;main_contador.c: 89:         spiWrite(contador);
   1287  00A9  0879               	movf	_contador,w
   1288  00AA  120A  118A  212A  120A  118A  	fcall	_spiWrite
   1289  00AF                     i1l827:
   1290                           
-  1291                           ;main_contador.c: 91:         SSPIF = 0;
+  1291                           ;main_contador.c: 90:         SSPIF = 0;
   1292  00AF  1283               	bcf	3,5	;RP0=0, select bank0
   1293  00B0  1303               	bcf	3,6	;RP1=0, select bank0
   1294  00B1  118C               	bcf	12,3	;volatile
@@ -1560,7 +1560,7 @@ DATA                 0      0       D      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Sat Feb 20 22:26:24 2021
+Symbol Table                                                                                   Mon Feb 22 07:48:34 2021
 
               _SSPSTATbits 0094                         l82 00E6                         l91 0018  
                        l92 0070                         l85 0129                         l93 001E  

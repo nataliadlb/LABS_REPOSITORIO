@@ -61,7 +61,9 @@
 //VARIABLES                                                                   //
 //****************************************************************************//
 char data_total[20];
+char data[8];
 uint8_t hola_esclavo;
+uint8_t cont;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -83,21 +85,23 @@ void __interrupt() ISR(void) {
 void main(void) {
     setup();
     PORTB = 0;
+    cont = 0;
     //TRISD = 0x00;
-    //Lcd_Init();
-    //Lcd_Clear();
+    Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
+    Lcd_Write_String("S1:   S2:   S3:");
 
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        PORTB = 0;
         RC2 = 0;       //Slave Select
        __delay_ms(1);
        
        spiWrite(hola_esclavo);
-       PORTB = spiRead();
+       cont = spiRead();
        
        __delay_ms(1);
        RC2 = 1;       //Slave Deselect 
@@ -105,13 +109,14 @@ void main(void) {
        __delay_ms(100);
 
         //Write_USART_String("S1   S2   S3 \n"); 
-//         ADC_to_string();
+       PORTB = cont;
+       ADC_to_string();
          
 //        Write_USART_String(data_total); //enviar el string con los valores a la pc
 //        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
 //        Write_USART(10);
         
-        //Show_val_LCD();
+        Show_val_LCD();
         //__delay_ms(500);
     }
 }
@@ -162,15 +167,28 @@ void setup(void) {
 //FUNCIONES                                                                   //
 //****************************************************************************//
 
-//void ADC_to_string(void){
-//    sprintf(data_total, "%1.2fV %1.2fV  %d", S2_val, S1_val, cont);
-//}
+void ADC_to_string(void){
+   
+    sprintf(data, "%.3i", cont);
+    //sprintf(data, "%d", cont);
+}
 
 void Show_val_LCD(void){
-    //Valores de S1 y S2
-    Lcd_Clear();
-    Lcd_Set_Cursor(1,2); //nombres S1, S2 y S3
-    Lcd_Write_String("S1:   S2:   S3:");
-    //Lcd_Set_Cursor(2,1);
-//    Lcd_Write_String(data_total);
+    //---- Valores de S1 y S2 ----//
+    //Lcd_Clear();
+    Lcd_Set_Cursor(2,2);
+    Lcd_Write_String(data);
+//    Lcd_Write_Char(data[0]);
+//    Lcd_Write_Char(data[1]);
+//    Lcd_Write_Char(data[2]);
+//    Lcd_Write_Char(data[3]);
+    
+    //    Lcd_Write_String(data_total);
+    
+//    lcd_write_char(data[0]);
+//    lcd_write_char('.');
+//    lcd_write_char(str_pot_a[2]);
+//    lcd_write_char(str_pot_a[3]);
+//    lcd_write_char(str_pot_a[4]);
+//    lcd_write_char(' ');
 }

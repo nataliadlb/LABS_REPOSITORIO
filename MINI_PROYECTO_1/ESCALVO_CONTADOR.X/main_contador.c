@@ -86,7 +86,6 @@ void __interrupt() ISR(void) {
         }
     
     if(SSPIF == 1){
-        //PORTD = spiRead();
         spiWrite(contador);
         SSPIF = 0;
     }
@@ -105,7 +104,7 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        __delay_ms(5);
+        __delay_ms(1);
     }
     return;
 
