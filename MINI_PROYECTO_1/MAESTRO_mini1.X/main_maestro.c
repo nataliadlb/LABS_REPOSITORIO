@@ -69,12 +69,14 @@ uint8_t cont = 0;
 uint8_t val_ADC = 0;
 uint8_t val_TEMP = 0;
 int mv_temp_val_M;
+float ADC_val_M;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
+void Show_val_VT(void);
 void SPI_CONT(void);
 void SPI_ADC(void);
 void SPI_TEMP(void);
@@ -97,7 +99,7 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1); //nombres S1, S2 y S3
-    Lcd_Write_String("cont   S2:   S3:");
+    Lcd_Write_String("CONT  ADC   TEMP");
 
 
     //************************************************************************//
@@ -108,10 +110,13 @@ void main(void) {
         SPI_ADC();
         SPI_TEMP();
         
-        
-        PORTB = val_TEMP;
+        PORTB = val_ADC;
+        ADC_val_M = ((val_ADC * 5.0) / 255);
         mv_temp_val_M = ((val_TEMP * 150) / 255); 
+        
+        
         ADC_to_string();
+        Show_val_VT():
         Write_USART_String("CONT:  \n"); 
         Write_USART_String(data_cont); //enviar el string con los valores a la pc
         Write_USART_String("  \n");
@@ -164,7 +169,6 @@ void setup(void) {
     //----- USART -----//
     USART_Init_BaudRate();
     USART_Init();
-    //USART_INTERRUPT();
     
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     
@@ -178,8 +182,9 @@ void setup(void) {
 void ADC_to_string(void){ //Volver texto los valores para LCD y Terminal virtual 
    
     sprintf(data_cont, "%.3i", cont);
-    sprintf(data_ADC, "%.3i", val_ADC );
-    sprintf(data_TEMP, "%.2i", mv_temp_val_M );
+    sprintf(data_ADC, "%1.2fV", ADC_val_M);
+    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
+    //sprintf(str_pot_a, "A%.3iV", adc_data1<<1);
     //sprintf(data, "%d", cont);
 }
 
@@ -188,15 +193,12 @@ void Show_val_LCD(void){ //mostrar valores en la LCD, luego de SPI
     //Lcd_Clear();
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(data_cont);
-
-    //    Lcd_Write_String(data_total);
-    
-//    lcd_write_char(data[0]);
-//    lcd_write_char('.');
-//    lcd_write_char(str_pot_a[2]);
-//    lcd_write_char(str_pot_a[3]);
-//    lcd_write_char(str_pot_a[4]);
-//    lcd_write_char(' ');
+    Lcd_Set_Cursor(2,15);
+    Lcd_Write_String("C");
+    Lcd_Set_Cursor(2,13);
+    Lcd_Write_String(data_TEMP);
+    Lcd_Set_Cursor(2,6);
+    Lcd_Write_String(data_ADC);
 }
 
 //------ FUNCIONES ACTIVACION ESCLAVOS ------//

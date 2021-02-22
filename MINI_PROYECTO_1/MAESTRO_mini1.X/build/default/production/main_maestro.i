@@ -2933,6 +2933,7 @@ uint8_t cont = 0;
 uint8_t val_ADC = 0;
 uint8_t val_TEMP = 0;
 int mv_temp_val_M;
+float ADC_val_M;
 
 
 
@@ -2961,7 +2962,7 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("cont   S2:   S3:");
+    Lcd_Write_String("CONT  ADC   TEMP");
 
 
 
@@ -2972,9 +2973,11 @@ void main(void) {
         SPI_ADC();
         SPI_TEMP();
 
-
-        PORTB = val_TEMP;
+        PORTB = val_ADC;
+        ADC_val_M = ((val_ADC * 5.0) / 255);
         mv_temp_val_M = ((val_TEMP * 150) / 255);
+
+
         ADC_to_string();
         Write_USART_String("CONT:  \n");
         Write_USART_String(data_cont);
@@ -3029,7 +3032,6 @@ void setup(void) {
     USART_Init_BaudRate();
     USART_Init();
 
-
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
@@ -3042,8 +3044,9 @@ void setup(void) {
 void ADC_to_string(void){
 
     sprintf(data_cont, "%.3i", cont);
-    sprintf(data_ADC, "%.3i", val_ADC );
-    sprintf(data_TEMP, "%.2i", mv_temp_val_M );
+    sprintf(data_ADC, "%1.2fV", ADC_val_M);
+    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
+
 
 }
 
@@ -3052,7 +3055,12 @@ void Show_val_LCD(void){
 
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(data_cont);
-# 200 "main_maestro.c"
+    Lcd_Set_Cursor(2,15);
+    Lcd_Write_String("C");
+    Lcd_Set_Cursor(2,13);
+    Lcd_Write_String(data_TEMP);
+    Lcd_Set_Cursor(2,6);
+    Lcd_Write_String(data_ADC);
 }
 
 
