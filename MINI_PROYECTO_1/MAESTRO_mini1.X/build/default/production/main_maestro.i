@@ -2940,6 +2940,8 @@ float ADC_val_M;
 void setup(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
+void Show_val_VT(void);
+void Mapeo_M(void);
 void SPI_CONT(void);
 void SPI_ADC(void);
 void SPI_TEMP(void);
@@ -2962,7 +2964,7 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("CONT  ADC   TEMP");
+    Lcd_Write_String("CONT   ADC   TEMP");
 
 
 
@@ -2972,28 +2974,93 @@ void main(void) {
         SPI_CONT();
         SPI_ADC();
         SPI_TEMP();
-
-        PORTB = val_ADC;
-        ADC_val_M = ((val_ADC * 5.0) / 255);
-        mv_temp_val_M = ((val_TEMP * 150) / 255);
-
-
+        Mapeo_M();
         ADC_to_string();
-        Write_USART_String("CONT:  \n");
-        Write_USART_String(data_cont);
-        Write_USART_String("  \n");
-        Write_USART_String("ADC:  \n");
-        Write_USART_String(data_ADC);
-        Write_USART_String("  \n");
-        Write_USART_String("TEMP:  \n");
-        Write_USART_String(data_TEMP);
-        Write_USART_String("°C  \n");
-        Write_USART(13);
-        Write_USART(10);
-
+        Show_val_VT();
         Show_val_LCD();
-
     }
+}
+
+
+
+
+
+
+
+void ADC_to_string(void){
+    sprintf(data_cont, "%.3i", cont);
+    sprintf(data_ADC, "%1.2fV", ADC_val_M);
+    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
+}
+
+void Mapeo_M(void){
+    ADC_val_M = ((val_ADC * 5.0) / 255);
+    mv_temp_val_M = ((val_TEMP * 150) / 255);
+}
+
+void Show_val_LCD(void){
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String(data_cont);
+    Lcd_Set_Cursor(2,7);
+    Lcd_Write_String(data_ADC);
+    Lcd_Set_Cursor(2,16);
+    Lcd_Write_String("C");
+    Lcd_Set_Cursor(2,14);
+    Lcd_Write_String(data_TEMP);
+
+}
+void Show_val_VT(void){
+    Write_USART_String("CONT:  \n");
+    Write_USART_String(data_cont);
+    Write_USART_String("  \n");
+    Write_USART_String("ADC:  \n");
+    Write_USART_String(data_ADC);
+    Write_USART_String("  \n");
+    Write_USART_String("TEMP:  \n");
+    Write_USART_String(data_TEMP);
+    Write_USART_String("°C  \n");
+    Write_USART(13);
+    Write_USART(10);
+}
+
+
+
+void SPI_CONT(void){
+    RC2 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   cont = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC2 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
+}
+
+void SPI_ADC(void){
+    RC0 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC0 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
+}
+void SPI_TEMP(void){
+    RC1 = 0;
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+
+   spiWrite(hola_esclavo);
+   val_TEMP = spiRead();
+
+   _delay((unsigned long)((1)*(8000000/4000.0)));
+   RC1 = 1;
+
+   _delay((unsigned long)((100)*(8000000/4000.0)));
 }
 
 
@@ -3034,70 +3101,4 @@ void setup(void) {
 
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
-}
-
-
-
-
-
-
-void ADC_to_string(void){
-
-    sprintf(data_cont, "%.3i", cont);
-    sprintf(data_ADC, "%1.2fV", ADC_val_M);
-    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
-
-
-}
-
-void Show_val_LCD(void){
-
-
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String(data_cont);
-    Lcd_Set_Cursor(2,15);
-    Lcd_Write_String("C");
-    Lcd_Set_Cursor(2,13);
-    Lcd_Write_String(data_TEMP);
-    Lcd_Set_Cursor(2,6);
-    Lcd_Write_String(data_ADC);
-}
-
-
-void SPI_CONT(void){
-    RC2 = 0;
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-
-   spiWrite(hola_esclavo);
-   cont = spiRead();
-
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-   RC2 = 1;
-
-   _delay((unsigned long)((100)*(8000000/4000.0)));
-}
-
-void SPI_ADC(void){
-    RC0 = 0;
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-
-   spiWrite(hola_esclavo);
-   val_ADC = spiRead();
-
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-   RC0 = 1;
-
-   _delay((unsigned long)((100)*(8000000/4000.0)));
-}
-void SPI_TEMP(void){
-    RC1 = 0;
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-
-   spiWrite(hola_esclavo);
-   val_TEMP = spiRead();
-
-   _delay((unsigned long)((1)*(8000000/4000.0)));
-   RC1 = 1;
-
-   _delay((unsigned long)((100)*(8000000/4000.0)));
 }

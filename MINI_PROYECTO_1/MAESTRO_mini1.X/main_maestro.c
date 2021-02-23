@@ -77,6 +77,7 @@ void setup(void);
 void ADC_to_string(void);
 void Show_val_LCD(void);
 void Show_val_VT(void);
+void Mapeo_M(void);
 void SPI_CONT(void);
 void SPI_ADC(void);
 void SPI_TEMP(void);
@@ -99,39 +100,103 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1); //nombres S1, S2 y S3
-    Lcd_Write_String("CONT  ADC   TEMP");
+    Lcd_Write_String("CONT   ADC   TEMP");
 
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        SPI_CONT(); //Activar y desactivar esclavos
-        SPI_ADC();
-        SPI_TEMP();
-        
-        PORTB = val_ADC;
-        ADC_val_M = ((val_ADC * 5.0) / 255);
-        mv_temp_val_M = ((val_TEMP * 150) / 255); 
-        
-        
-        ADC_to_string();
-        Show_val_VT():
-        Write_USART_String("CONT:  \n"); 
-        Write_USART_String(data_cont); //enviar el string con los valores a la pc
-        Write_USART_String("  \n");
-        Write_USART_String("ADC:  \n"); 
-        Write_USART_String(data_ADC); //enviar el string con los valores a la pc
-        Write_USART_String("  \n");
-        Write_USART_String("TEMP:  \n"); 
-        Write_USART_String(data_TEMP); //enviar el string con los valores a la pc
-        Write_USART_String("°C  \n"); 
-        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
-        Write_USART(10);
-        
-        Show_val_LCD(); 
-        //__delay_ms(500);
+        SPI_CONT(); //Activar, guardar valor y desactivar esclavo cont
+        SPI_ADC();  //Activar, guardar valor y desactivar esclavo ADC
+        SPI_TEMP(); //Activar, guardar valor y desactivar esclavo temp
+        Mapeo_M();  //Mapear valores del ADC  de temp
+        ADC_to_string(); //convertir a strings los valores
+        Show_val_VT();   // mandar y mostrar los valores en la termianl virtual
+        Show_val_LCD();  // mandar y mostrar los valores en la LCD
     }
+}
+
+//****************************************************************************//
+//FUNCIONES                                                                   //
+//****************************************************************************//
+
+//------ FUNCIONES MAESTRO ------//
+
+void ADC_to_string(void){ //Volver texto los valores para LCD y Terminal virtual 
+    sprintf(data_cont, "%.3i", cont); 
+    sprintf(data_ADC, "%1.2fV", ADC_val_M);
+    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
+}
+
+void Mapeo_M(void){ //mapear valores del ADC y temp
+    ADC_val_M = ((val_ADC * 5.0) / 255); //mapear de 0-5 en floats
+    mv_temp_val_M = ((val_TEMP * 150) / 255); //mapear de 0-1.5 en int
+}
+
+void Show_val_LCD(void){ //mostrar valores en la LCD, luego de SPI 
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String(data_cont); //valor cont
+    Lcd_Set_Cursor(2,7);
+    Lcd_Write_String(data_ADC);  //valor ADC
+    Lcd_Set_Cursor(2,16);
+    Lcd_Write_String("C");
+    Lcd_Set_Cursor(2,14);
+    Lcd_Write_String(data_TEMP); //valor temp
+    
+}
+void Show_val_VT(void){
+    Write_USART_String("CONT:  \n"); 
+    Write_USART_String(data_cont); //enviar el string del valor de cont a VT
+    Write_USART_String("  \n");
+    Write_USART_String("ADC:  \n"); 
+    Write_USART_String(data_ADC); //enviar el string del valor de ADC a VT
+    Write_USART_String("  \n");
+    Write_USART_String("TEMP:  \n"); 
+    Write_USART_String(data_TEMP); //enviar el string del valor de temp a VT
+    Write_USART_String("°C  \n"); 
+    Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+    Write_USART(10);
+}
+
+//------ FUNCIONES ACTIVACION ESCLAVOS ------//
+
+void SPI_CONT(void){ //CONTADOR, seleccionar y guardar valor
+    RC2 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   cont = spiRead();
+
+   __delay_ms(1);
+   RC2 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
+}
+
+void SPI_ADC(void){ // ADC, seleccionar y guardar valor
+    RC0 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   val_ADC = spiRead();
+
+   __delay_ms(1);
+   RC0 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
+}
+void SPI_TEMP(void){//TEMP, seleccionar y guardar valor
+    RC1 = 0;       //Slave Select
+   __delay_ms(1);
+
+   spiWrite(hola_esclavo);
+   val_TEMP = spiRead();
+
+   __delay_ms(1);
+   RC1 = 1;       //Slave Deselect 
+
+   __delay_ms(100);
 }
 
 //****************************************************************************//
@@ -172,70 +237,4 @@ void setup(void) {
     
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
     
-}
-
-//****************************************************************************//
-//FUNCIONES                                                                   //
-//****************************************************************************//
-
-//------ FUNCIONES MAESTRO ------//
-void ADC_to_string(void){ //Volver texto los valores para LCD y Terminal virtual 
-   
-    sprintf(data_cont, "%.3i", cont);
-    sprintf(data_ADC, "%1.2fV", ADC_val_M);
-    sprintf(data_TEMP, "%.2i", mv_temp_val_M);
-    //sprintf(str_pot_a, "A%.3iV", adc_data1<<1);
-    //sprintf(data, "%d", cont);
-}
-
-void Show_val_LCD(void){ //mostrar valores en la LCD, luego de SPI 
-    //---- Valores de S1 y S2 ----//
-    //Lcd_Clear();
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String(data_cont);
-    Lcd_Set_Cursor(2,15);
-    Lcd_Write_String("C");
-    Lcd_Set_Cursor(2,13);
-    Lcd_Write_String(data_TEMP);
-    Lcd_Set_Cursor(2,6);
-    Lcd_Write_String(data_ADC);
-}
-
-//------ FUNCIONES ACTIVACION ESCLAVOS ------//
-void SPI_CONT(void){ //CONTADOR, seleccionar y guardar valor
-    RC2 = 0;       //Slave Select
-   __delay_ms(1);
-
-   spiWrite(hola_esclavo);
-   cont = spiRead();
-
-   __delay_ms(1);
-   RC2 = 1;       //Slave Deselect 
-
-   __delay_ms(100);
-}
-
-void SPI_ADC(void){ // ADC, seleccionar y guardar valor
-    RC0 = 0;       //Slave Select
-   __delay_ms(1);
-
-   spiWrite(hola_esclavo);
-   val_ADC = spiRead();
-
-   __delay_ms(1);
-   RC0 = 1;       //Slave Deselect 
-
-   __delay_ms(100);
-}
-void SPI_TEMP(void){//TEMP, seleccionar y guardar valor
-    RC1 = 0;       //Slave Select
-   __delay_ms(1);
-
-   spiWrite(hola_esclavo);
-   val_TEMP = spiRead();
-
-   __delay_ms(1);
-   RC1 = 1;       //Slave Deselect 
-
-   __delay_ms(100);
 }
