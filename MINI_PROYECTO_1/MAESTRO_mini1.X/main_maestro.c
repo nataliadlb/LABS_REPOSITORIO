@@ -60,7 +60,6 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-char data_total[20];
 char data_cont[8];
 char data_ADC[8];
 char data_TEMP[8];
@@ -70,6 +69,7 @@ uint8_t val_ADC = 0;
 uint8_t val_TEMP = 0;
 int mv_temp_val_M;
 float ADC_val_M;
+
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -94,13 +94,11 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
-    PORTB = 0;
     cont = 0;
-    //TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1); //nombres S1, S2 y S3
-    Lcd_Write_String("CONT   ADC   TEMP");
+    Lcd_Write_String("CONT   ADC  TEMP");
 
 
     //************************************************************************//

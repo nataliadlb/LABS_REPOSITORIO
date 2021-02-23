@@ -84,7 +84,7 @@ void __interrupt() ISR(void) {
             }
             INTCONbits.RBIF = 0; //limpiar bandera
         }
-    
+    //---- interrupcion SPI ----//
     if(SSPIF == 1){
         spiWrite(contador);
         SSPIF = 0;
@@ -98,8 +98,7 @@ void __interrupt() ISR(void) {
 void main(void) {
     contador = 0;
     setup();
-    
-
+   
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
@@ -107,7 +106,6 @@ void main(void) {
         __delay_ms(1);
     }
     return;
-
 }
 
 //****************************************************************************//
@@ -142,7 +140,7 @@ void setup(void) { //Configuración de puertos de entrada y salida
 void Config_INTERRUPT(void) {
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
+    INTCONbits.RBIF = 0;        //on change interrupcion
     IOCB = 0b00000011;  
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP

@@ -2924,7 +2924,6 @@ char spiRead();
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
 # 63 "main_maestro.c"
-char data_total[20];
 char data_cont[8];
 char data_ADC[8];
 char data_TEMP[8];
@@ -2958,13 +2957,11 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 void main(void) {
     setup();
-    PORTB = 0;
     cont = 0;
-
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("CONT   ADC   TEMP");
+    Lcd_Write_String("CONT   ADC  TEMP");
 
 
 

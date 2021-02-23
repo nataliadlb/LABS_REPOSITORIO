@@ -41,7 +41,6 @@
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
 
-
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
@@ -59,7 +58,8 @@ void Config_INTERRUPT(void);
 
 void __interrupt() ISR(void) {
     
-    if(SSPIF == 1){
+    //---- interrupcion SPI ----//
+    if(SSPIF == 1){ 
         spiWrite(ADC_val);
         SSPIF = 0;
     }  
@@ -75,7 +75,6 @@ void main(void) {
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while (1) {
-        
          __delay_ms(2); 
         ADCON0bits.GO = 1; //Inicio de conversion ADC
         while (ADCON0bits.GO != 0) { //Mientras no se haya termindo una convers.
