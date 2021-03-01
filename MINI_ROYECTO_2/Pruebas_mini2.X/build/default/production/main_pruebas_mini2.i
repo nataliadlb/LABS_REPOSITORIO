@@ -1,4 +1,4 @@
-# 1 "main_temperatura.c"
+# 1 "main_pruebas_mini2.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main_temperatura.c" 2
-# 14 "main_temperatura.c"
+# 1 "main_pruebas_mini2.c" 2
+# 14 "main_pruebas_mini2.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 14 "main_temperatura.c" 2
+# 14 "main_pruebas_mini2.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 15 "main_temperatura.c" 2
+# 15 "main_pruebas_mini2.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2638,51 +2638,14 @@ typedef uint16_t uintptr_t;
 
 
 void initOsc(uint8_t IRCF);
-# 16 "main_temperatura.c" 2
-
-# 1 "./SPI.h" 1
-# 19 "./SPI.h"
-typedef enum
-{
-    SPI_MASTER_OSC_DIV4 = 0b00100000,
-    SPI_MASTER_OSC_DIV16 = 0b00100001,
-    SPI_MASTER_OSC_DIV64 = 0b00100010,
-    SPI_MASTER_TMR2 = 0b00100011,
-    SPI_SLAVE_SS_EN = 0b00100100,
-    SPI_SLAVE_SS_DIS = 0b00100101
-}Spi_Type;
-
-typedef enum
-{
-    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
-    SPI_DATA_SAMPLE_END = 0b10000000
-}Spi_Data_Sample;
-
-typedef enum
-{
-    SPI_CLOCK_IDLE_HIGH = 0b00010000,
-    SPI_CLOCK_IDLE_LOW = 0b00000000
-}Spi_Clock_Idle;
-
-typedef enum
-{
-    SPI_IDLE_2_ACTIVE = 0b00000000,
-    SPI_ACTIVE_2_IDLE = 0b01000000
-}Spi_Transmit_Edge;
-
-
-void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
-void spiWrite(char);
-unsigned spiDataReady();
-char spiRead();
-# 17 "main_temperatura.c" 2
+# 16 "main_pruebas_mini2.c" 2
 
 
 
 
 
 
-#pragma config FOSC = EXTRC_NOCLKOUT
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2696,90 +2659,73 @@ char spiRead();
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 46 "main_temperatura.c"
-int mv_temp_val;
+# 46 "main_pruebas_mini2.c"
+uint8_t contador;
+uint8_t debouncing1 = 0;
+uint8_t debouncing2 = 0;
 
-uint8_t temp_val;
 
 
 
 
 void setup(void);
 void Config_INTERRUPT(void);
-void semaforo(void);
+
 
 
 
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
+    if (INTCONbits.RBIF == 1){
 
-
-    if(SSPIF == 1){
-        spiWrite(temp_val);
-        SSPIF = 0;
-    }
+            if (PORTBbits.RB0 == 1){
+                debouncing1 = 1;
+                contador = contador;
+            }
+            if (PORTBbits.RB1 == 1){
+                debouncing2 = 1;
+                contador = contador;
+            }
+            if(PORTBbits.RB0 == 0 && debouncing1 == 1){
+                contador++;
+                PORTD = contador;
+                debouncing1 = 0;
+            }
+            if(PORTBbits.RB1 == 0 && debouncing2 == 1){
+                contador--;
+                PORTD = contador;
+                debouncing2 = 0;
+            }
+            INTCONbits.RBIF = 0;
+        }
 }
 
 
 
 
-
 void main(void) {
+    contador = 0;
     setup();
 
 
 
 
     while (1) {
-
-        _delay((unsigned long)((2)*(8000000/4000.0)));
-        ADCON0bits.GO = 1;
-        while (ADCON0bits.GO != 0) {
-            temp_val = ADRESH;
-            mv_temp_val = ((ADRESH * 150) / 255);
-        }
-        semaforo();
     }
 
 }
-
-
-
-
-
-void semaforo(void){
-
-    if (mv_temp_val <= 25){
-        RE0 = 0;
-        RE1 = 0;
-        RE2 = 1;
-    }
-    else if (mv_temp_val > 25 && mv_temp_val <= 36){
-        RE0 = 0;
-        RE1 = 1;
-        RE2 = 0;
-    }
-    else if (mv_temp_val > 36){
-        RE0 = 1;
-        RE1 = 0;
-        RE2 = 0;
-    }
-}
-
 
 
 
 
 
 void setup(void) {
-    initOsc(0b00000111);
-    nRBPU = 0;
 
-    ANSEL = 0b00000001;
+    ANSEL = 0;
     ANSELH = 0;
 
-    TRISA = 0b00000001;
-    TRISB = 0;
+    TRISA = 0;
+    TRISB = 0b00000011;
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
@@ -2790,19 +2736,15 @@ void setup(void) {
     PORTD = 0;
     PORTE = 0;
 
-    ADCON0 = 0b01000001;
-    ADCON1bits.VCFG0 = 1;
-
-
-    Config_INTERRUPT() ;
-    TRISAbits.TRISA5 = 1;
-    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    Config_INTERRUPT();
 }
 
 
-void Config_INTERRUPT(void){
+
+
+void Config_INTERRUPT(void) {
     INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-    PIR1bits.SSPIF = 0;
-    PIE1bits.SSPIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    IOCB = 0b00000011;
 }

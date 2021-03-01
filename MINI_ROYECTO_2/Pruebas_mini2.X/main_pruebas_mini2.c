@@ -12,12 +12,14 @@
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include <stdint.h>
+#include "Oscilador.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -41,24 +43,51 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
+uint8_t contador; //Variable de incremento para contador 
+uint8_t debouncing1 = 0; //Variable que controla debouncing de un push
+uint8_t debouncing2 = 0;
 
 
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
+void Config_INTERRUPT(void);
 
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    if (INTCONbits.RBIF == 1){ // Interrupcion on change
+            
+            if (PORTBbits.RB0 == 1){ //debouncing
+                debouncing1 = 1;
+                contador = contador;
+            }
+            if (PORTBbits.RB1 == 1){ //debouncing
+                debouncing2 = 1;
+                contador = contador;
+            }
+            if(PORTBbits.RB0 == 0 && debouncing1 == 1){//hasta revisar bandera...
+                contador++;                 // de deboucing y que el boton no...
+                PORTD = contador;           //este presionado, se aumenta o... 
+                debouncing1 = 0;            //decrementa.
+            }
+            if(PORTBbits.RB1 == 0 && debouncing2 == 1){
+                contador--;
+                PORTD = contador;
+                debouncing2 = 0;
+            }
+            INTCONbits.RBIF = 0; //limpiar bandera
+        }
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
 //****************************************************************************//
 
 void main(void) {
+    contador = 0;
     setup();
 
     //************************************************************************//
@@ -74,11 +103,31 @@ void main(void) {
 //****************************************************************************//
 
 void setup(void) {
+    //initOsc(0b00000111);
+    ANSEL = 0; 
+    ANSELH = 0; 
     
+    TRISA = 0; 
+    TRISB = 0b00000011; // push, como entradas
+    TRISC = 0;
+    TRISD = 0;
+    TRISE = 0;
     
+    PORTA = 0; 
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    PORTE = 0;
+    
+    Config_INTERRUPT();
 }
 
 //****************************************************************************//
 //FUNCIONES                                                                   //
 //****************************************************************************//
-
+void Config_INTERRUPT(void) {
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;        //on change interrupcion
+    IOCB = 0b00000011;  
+}

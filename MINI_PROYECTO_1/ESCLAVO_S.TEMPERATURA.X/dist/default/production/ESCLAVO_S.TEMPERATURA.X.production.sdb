@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"122 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
+"145 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
 [e E1294 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -61,12 +61,12 @@ SPI_ACTIVE_2_IDLE 64
 [v _ISR ISR `II(v  1 e 1 0 ]
 "73
 [v _main main `(v  1 e 1 0 ]
-"97
-[v _setup setup `(v  1 e 1 0 ]
-"126
-[v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
-"137
+"96
 [v _semaforo semaforo `(v  1 e 1 0 ]
+"120
+[v _setup setup `(v  1 e 1 0 ]
+"149
+[v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 "6 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\Oscilador.c
 [v _initOsc initOsc `(v  1 e 1 0 ]
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\SPI.c
@@ -85,7 +85,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S205 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S208 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -95,14 +95,14 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S214 . 1 `uc 1 . 1 0 :2:0 
+[s S217 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S219 . 1 `S205 1 . 1 0 `S214 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES219  1 e 1 @11 ]
-[s S237 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S222 . 1 `S208 1 . 1 0 `S217 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES222  1 e 1 @11 ]
+[s S240 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -111,8 +111,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S245 . 1 `S237 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES245  1 e 1 @12 ]
+[u S248 . 1 `S240 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES248  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
@@ -146,7 +146,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _ADCON0bits ADCON0bits `VES95  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S160 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S163 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -156,8 +156,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1433
-[u S169 . 1 `S160 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES169  1 e 1 @133 ]
+[u S172 . 1 `S163 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES172  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1540
@@ -166,7 +166,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S256 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S259 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -175,8 +175,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S264 . 1 `S256 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES264  1 e 1 @140 ]
+[u S267 . 1 `S259 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES267  1 e 1 @140 ]
 [s S22 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
@@ -236,15 +236,15 @@ SPI_ACTIVE_2_IDLE 64
 ]
 [u S397 . 1 `S357 1 . 1 0 `S366 1 . 1 0 `S371 1 . 1 0 `S377 1 . 1 0 `S382 1 . 1 0 `S387 1 . 1 0 `S392 1 . 1 0 ]
 [v _SSPSTATbits SSPSTATbits `VES397  1 e 1 @148 ]
-[s S141 . 1 `uc 1 . 1 0 :4:0 
+[s S144 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S147 . 1 `S141 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES147  1 e 1 @159 ]
+[u S150 . 1 `S144 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES150  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -272,10 +272,10 @@ SPI_ACTIVE_2_IDLE 64
 {
 "90
 } 0
-"97
+"120
 [v _setup setup `(v  1 e 1 0 ]
 {
-"123
+"146
 } 0
 "14 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -297,15 +297,15 @@ SPI_ACTIVE_2_IDLE 64
 [v initOsc@IRCF IRCF `uc  1 a 1 5 ]
 "56
 } 0
-"126 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
+"149 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
 [v _Config_INTERRUPT Config_INTERRUPT `(v  1 e 1 0 ]
 {
-"131
+"154
 } 0
-"137
+"96
 [v _semaforo semaforo `(v  1 e 1 0 ]
 {
-"153
+"113
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -333,7 +333,7 @@ SPI_ACTIVE_2_IDLE 64
 "60 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\main_temperatura.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"66
+"67
 } 0
 "36 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_PROYECTO_1\ESCLAVO_S.TEMPERATURA.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
