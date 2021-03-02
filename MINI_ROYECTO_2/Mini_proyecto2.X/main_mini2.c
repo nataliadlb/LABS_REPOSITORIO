@@ -12,12 +12,15 @@
 //IMPORTAR LIBRERIAS                                                          //
 //****************************************************************************//
 #include <xc.h>
+#include <stdint.h>
+#include <pic16f887.h>
+#include "I2C.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = EXTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -64,9 +67,21 @@ void main(void) {
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
-    while (1) {
+    while(1){
+        I2C_Master_Start();
+        I2C_Master_Write(0x50);
+        I2C_Master_Write(PORTB);
+        I2C_Master_Stop();
+        __delay_ms(200);
+       
+        I2C_Master_Start();
+        I2C_Master_Write(0x51);
+        PORTD = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        __delay_ms(200);
+        PORTB++;   
     }
-
+    return;
 }
 
 //****************************************************************************//
@@ -74,8 +89,13 @@ void main(void) {
 //****************************************************************************//
 
 void setup(void) {
-    
-    
+    ANSEL = 0;
+    ANSELH = 0;
+    TRISB = 0;
+    TRISD = 0;
+    PORTB = 0;
+    PORTD = 0;
+    I2C_Master_Init(100000);        // Inicializar Comuncación I2C
 }
 
 //****************************************************************************//

@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main_esclavo_mini2.c
+SOURCEFILES_QUOTED_IF_SPACED=main_esclavo_mini2.c Oscilador.c I2C.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_esclavo_mini2.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main_esclavo_mini2.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_esclavo_mini2.p1 ${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/I2C.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main_esclavo_mini2.p1.d ${OBJECTDIR}/Oscilador.p1.d ${OBJECTDIR}/I2C.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main_esclavo_mini2.p1
+OBJECTFILES=${OBJECTDIR}/main_esclavo_mini2.p1 ${OBJECTDIR}/Oscilador.p1 ${OBJECTDIR}/I2C.p1
 
 # Source Files
-SOURCEFILES=main_esclavo_mini2.c
+SOURCEFILES=main_esclavo_mini2.c Oscilador.c I2C.c
 
 
 
@@ -102,6 +102,22 @@ ${OBJECTDIR}/main_esclavo_mini2.p1: main_esclavo_mini2.c  nbproject/Makefile-${C
 	@-${MV} ${OBJECTDIR}/main_esclavo_mini2.d ${OBJECTDIR}/main_esclavo_mini2.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main_esclavo_mini2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/Oscilador.p1: Oscilador.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Oscilador.p1.d 
+	@${RM} ${OBJECTDIR}/Oscilador.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Oscilador.p1 Oscilador.c 
+	@-${MV} ${OBJECTDIR}/Oscilador.d ${OBJECTDIR}/Oscilador.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/Oscilador.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/I2C.p1.d 
+	@${RM} ${OBJECTDIR}/I2C.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/I2C.p1 I2C.c 
+	@-${MV} ${OBJECTDIR}/I2C.d ${OBJECTDIR}/I2C.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main_esclavo_mini2.p1: main_esclavo_mini2.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -110,6 +126,22 @@ ${OBJECTDIR}/main_esclavo_mini2.p1: main_esclavo_mini2.c  nbproject/Makefile-${C
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/main_esclavo_mini2.p1 main_esclavo_mini2.c 
 	@-${MV} ${OBJECTDIR}/main_esclavo_mini2.d ${OBJECTDIR}/main_esclavo_mini2.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main_esclavo_mini2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/Oscilador.p1: Oscilador.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Oscilador.p1.d 
+	@${RM} ${OBJECTDIR}/Oscilador.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Oscilador.p1 Oscilador.c 
+	@-${MV} ${OBJECTDIR}/Oscilador.d ${OBJECTDIR}/Oscilador.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/Oscilador.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/I2C.p1.d 
+	@${RM} ${OBJECTDIR}/I2C.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/I2C.p1 I2C.c 
+	@-${MV} ${OBJECTDIR}/I2C.d ${OBJECTDIR}/I2C.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
