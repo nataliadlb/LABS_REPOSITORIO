@@ -19,13 +19,24 @@
 //*****************************************************************************
 void I2C_Master_Init(const unsigned long c)
 {
-    SSPCON = 0b00101000;
-    SSPCON2 = 0;
+    SSPCON = 0b00101000; //I2C MASTER MODE, clk = Fosc/(4*(SSPADD+1)) | 
+                         //CKP realese control: holds clock low | 
+                         //SSPEN: enable SDA & SCL | // SSPOV : No overflow | 
+                         //WCOL: No collision
+    
+    SSPCON2 = 0;         //SEN: clock streching disabled | RSEN: repeated start cond
+                         //PEN (SCK release control): Stop condition Idle | 
+                         //RCEN: Receive idle | 
+                         //ACKEN: (master receive mode): acknowledge sequence idle
+                         //ACKDT (master receive mode): yes acknowledge
+                         //ACKSTAT (master trasmit mode): acknowledge was receive from slave
+                         //GCEN: General call adress disabled
     SSPADD = (_XTAL_FREQ/(4*c))-1;
     SSPSTAT = 0;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+    TRISCbits.TRISC3 = 1; //SCl
+    TRISCbits.TRISC4 = 1; //SDA
 }
+
 //*****************************************************************************
 // Función de espera: mientras se esté iniciada una comunicación,
 // esté habilitado una recepción, esté habilitado una parada
@@ -37,6 +48,7 @@ void I2C_Master_Wait()
 {
     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
+
 //*****************************************************************************
 // Función de inicio de la comunicación I2C PIC
 //*****************************************************************************
@@ -45,6 +57,7 @@ void I2C_Master_Start()
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     SSPCON2bits.SEN = 1;    //inicia la comunicación i2c
 }
+
 //*****************************************************************************
 // Función de reinicio de la comunicación I2C PIC
 //*****************************************************************************
@@ -53,6 +66,7 @@ void I2C_Master_RepeatedStart()
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     SSPCON2bits.RSEN = 1;   //reinicia la comunicación i2c
 }
+
 //*****************************************************************************
 // Función de parada de la comunicación I2C PIC
 //*****************************************************************************
@@ -61,6 +75,7 @@ void I2C_Master_Stop()
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     SSPCON2bits.PEN = 1;    //detener la comunicación i2c
 }
+
 //*****************************************************************************
 //Función de transmisión de datos del maestro al esclavo
 //esta función devolverá un 0 si el esclavo a recibido
@@ -71,6 +86,7 @@ void I2C_Master_Write(unsigned d)
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     SSPBUF = d;             
 }
+
 //*****************************************************************************
 //Función de recepción de datos enviados por el esclavo al maestro
 //esta función es para leer los datos que están en el esclavo
@@ -91,17 +107,18 @@ unsigned short I2C_Master_Read(unsigned short a)
     SSPCON2bits.ACKEN = 1;          // Iniciar sequencia de Acknowledge
     return temp;                    // Regresar valor del dato leído
 }
+
 //*****************************************************************************
 // Función para inicializar I2C Esclavo
 //*****************************************************************************
 void I2C_Slave_Init(uint8_t address)
 { 
     SSPADD = address;
-    SSPCON = 0x36;      // 0b00110110
-    SSPSTAT = 0x80;     // 0b10000000
-    SSPCON2 = 0x01;     // 0b00000001
-    TRISC3 = 1;
-    TRISC4 = 1;
+    SSPCON = 0x36;      // 0b00110110 I2C slave mode, enable clock, enabl SDA & SCL, no overflow, no collision
+    SSPSTAT = 0x80;     // 0b10000000 //slew rate control enable for standar speed mode
+    SSPCON2 = 0x01;     // 0b00000001 //clk streching enabled
+    TRISC3 = 1;         //SCL
+    TRISC4 = 1;         //SDA
     GIE = 1;
     PEIE = 1;
     SSPIF = 0;
