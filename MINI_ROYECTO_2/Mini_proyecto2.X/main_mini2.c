@@ -15,12 +15,13 @@
 #include <stdint.h>
 #include <pic16f887.h>
 #include "I2C.h"
+#include "USART.h"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
 //****************************************************************************//
 // CONFIG1
-#pragma config FOSC = EXTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -39,6 +40,8 @@
 //DEFINE                                                                      //
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
+
+// --- SENSOR --- //
 #define SMPLRT_DIV 0x19
 #define PWR_MGMT_1 0x6B
 #define CONFIG 0x1A
@@ -50,8 +53,9 @@
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-
-
+char data_recive;
+uint8_t cont;
+char prueba;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -62,6 +66,26 @@ void MPU6050_Init(void);
 //****************************************************************************//
 
 void __interrupt() ISR(void) {
+    if(PIR1bits.RCIF == 1){
+        data_recive = RCREG; //Recibe los datos que manda la terminal
+        if (data_recive == 'P11'){ //auementa
+            cont++;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P10'){ //decrementa
+            cont--;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P21'){ //decrementa
+            cont--;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P20'){ //decrementa
+            cont--;
+            PORTB = cont;
+        }
+        data_recive = 0;
+        }
 }
 //****************************************************************************//
 //PROGRAMACION PRINCIPAL                                                      //
@@ -69,26 +93,33 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
+    prueba = "Hola";
     //MPU6050_Init();
 
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
     while(1){
-        I2C_Master_Start();
-        I2C_Master_Write(0x50);
-        I2C_Master_Write(PORTB);
-        I2C_Master_Stop();
-        __delay_ms(200);
-       
-        I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        PORTD = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        __delay_ms(200);
-        PORTB++;   
+        // ----* SENSOR *---- //
+//        I2C_Master_Start();
+//        I2C_Master_Write(0x50);
+//        I2C_Master_Write(PORTB);
+//        I2C_Master_Stop();
+//        __delay_ms(200);
+//       
+//        I2C_Master_Start();
+//        I2C_Master_Write(0x51);
+//        PORTD = I2C_Master_Read(0);
+//        I2C_Master_Stop();
+//        __delay_ms(200);
+//        PORTB++;  
+        
+        // ----* USART *---- //
+        Write_USART_String(prueba); 
+        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+        Write_USART(10);
     }
-    return;
+    //return;
 }
 
 //****************************************************************************//
@@ -98,10 +129,19 @@ void main(void) {
 void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
+    TRISA = 0;
     TRISB = 0;
+    TRISC = 0;
     TRISD = 0;
+    TRISE = 0;
+    PORTA = 0;
     PORTB = 0;
+    PORTC = 0;
     PORTD = 0;
+    PORTE = 0;
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
     I2C_Master_Init(100000);        // Inicializar Comuncación I2C
 }
 

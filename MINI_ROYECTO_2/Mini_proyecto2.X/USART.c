@@ -18,7 +18,7 @@ void USART_Init(void){
 
 void USART_Init_BaudRate(void){
     SPBRGH = 0;
-    SPBRG = 12; //Para tener un Baud rate de 9600 x = ((FOSC/Baud rate)/64) - 1
+    SPBRG = 12; //Para tener un Baud rate de 9600,115200 x = ((FOSC/Baud rate)/64) - 1
 }
 
 void USART_INTERRUPT(void){

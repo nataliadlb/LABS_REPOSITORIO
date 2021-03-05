@@ -20,16 +20,17 @@
 
 /************************ Example Starts Here *******************************/
 
-// digital pin 5
-#define LED_PIN 5
+String piloto  = "";
+//String piloto2  = "';
+int cont = 0;
 
 // set up the 'digital' feed
 //AdafruitIO_Feed *digital = io.feed("digital");
-AdafruitIO_Feed *LedPruebaFeed = io.feed("LedPrueba"); //DIGITAL
+AdafruitIO_Feed *LedPiloto1Feed = io.feed("LedPiloto1"); //DIGITAL
+AdafruitIO_Feed *LedPiloto2Feed = io.feed("LedPiloto2"); //DIGITAL
+AdafruitIO_Feed *ContadorFeed = io.feed("contador");
 
 void setup() {
-  
-  pinMode(LED_PIN, OUTPUT);
   
   // start the serial connection
   Serial.begin(115200);
@@ -45,8 +46,10 @@ void setup() {
   // the handleMessage function (defined below)
   // will be called whenever a message is
   // received from adafruit io.
-  LedPruebaFeed->onMessage(handleMessage);
-
+  LedPiloto1Feed->onMessage(handleMessage1);
+  LedPiloto2Feed->onMessage(handleMessage2);
+  //ContadorFeed->onMessage(sendValue);
+  
   // wait for a connection
   while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -56,7 +59,8 @@ void setup() {
   // we are connected
   Serial.println();
   Serial.println(io.statusText());
-  LedPruebaFeed->get();
+  LedPiloto1Feed->get();
+  LedPiloto2Feed->get();
 
 }
 
@@ -68,21 +72,64 @@ void loop() {
   // io.adafruit.com, and processes any incoming data.
   io.run();
 
+  // save count to the 'counter' feed on Adafruit IO
+  Serial.print("sending -> ");
+  Serial.println(cont);
+  ContadorFeed->save(cont);
+
+
+
+  // increment the count by 1
+  cont++;
+
+  // Adafruit IO is rate limited for publishing, so a delay is required in
+  // between feed->save events. In this example, we will wait three seconds
+  // (1000 milliseconds == 1 second) during each loop.
+  delay(3000);
 }
 
+  
 // this function is called whenever an 'digital' feed message
 // is received from Adafruit IO. it was attached to
 // the 'digital' feed in the setup() function above.
-void handleMessage(AdafruitIO_Data *data) {
-
+void handleMessage1(AdafruitIO_Data *data) {
+  Serial.println("--------");
+  Serial.println("Piloto 1");
   Serial.print("received <- ");
   //Serial.println(data->value());
   
-  if(data->toPinLevel() == HIGH)
+  if(data->toString() == "ON"){
     Serial.println("HIGH");
-  else
-    Serial.println("LOW");
-//
-//
-//  digitalWrite(LED_PIN, data->toPinLevel());
+    piloto = "P11";
+  }
+  else{
+    Serial.println("OFF");
+    piloto = "P10";
+  }
+  Serial.println(" ");
+  Serial.print("valor: ");
+  Serial.println(piloto);
+  Serial.println(" ");
+}
+
+void handleMessage2(AdafruitIO_Data *data) {
+   Serial.println("--------");
+  Serial.println("Piloto 2");
+  Serial.print("received <- ");
+  //Serial.println(data->value());
+  
+  if(data->toString() == "ON"){
+    Serial.println("HIGH");
+    piloto = "P21";
+
+  }
+  else{
+    Serial.println("OFF");
+    piloto = "P20";
+    
+  }
+  Serial.println(" ");
+  Serial.print("valor: ");
+  Serial.println(piloto);
+  Serial.println(" ");
 }
