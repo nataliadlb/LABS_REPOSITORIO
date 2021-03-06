@@ -1,133 +1,139 @@
-/*
- * Título:  Pruebas mini 2 en físico
- * Autor: Natalia de Leon Bercian
- * Carne: 18193
- * Seccion: 20
- * 
- * 
- * Created on 1 de marzo de 2021
- */
-
-//****************************************************************************//
-//IMPORTAR LIBRERIAS                                                          //
-//****************************************************************************//
-#include <xc.h>
-#include <stdint.h>
-#include "Oscilador.h"
-
-//****************************************************************************//
-//CONFIGURACION BITS                                                          //
-//****************************************************************************//
-// CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
-#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
-#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
-#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
-#pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
-#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
-#pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
-
-// CONFIG2
-#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
-#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
-
-//****************************************************************************//
-//DEFINE                                                                      //
-//****************************************************************************//
-#define _XTAL_FREQ 8000000
-
-
-//****************************************************************************//
-//VARIABLES                                                                   //
-//****************************************************************************//
-uint8_t contador; //Variable de incremento para contador 
-uint8_t debouncing1 = 0; //Variable que controla debouncing de un push
-uint8_t debouncing2 = 0;
-
-
-//****************************************************************************//
-//PROTOTIPOS DE FUNCIONES                                                     //
-//****************************************************************************//
-void setup(void);
-void Config_INTERRUPT(void);
-
-//****************************************************************************//
-//INTERRUPCIONES                                                    //
-//****************************************************************************//
-
-void __interrupt() ISR(void) {
-    if (INTCONbits.RBIF == 1){ // Interrupcion on change
-            
-            if (PORTBbits.RB0 == 1){ //debouncing
-                debouncing1 = 1;
-                contador = contador;
-            }
-            if (PORTBbits.RB1 == 1){ //debouncing
-                debouncing2 = 1;
-                contador = contador;
-            }
-            if(PORTBbits.RB0 == 0 && debouncing1 == 1){//hasta revisar bandera...
-                contador++;                 // de deboucing y que el boton no...
-                PORTD = contador;           //este presionado, se aumenta o... 
-                debouncing1 = 0;            //decrementa.
-            }
-            if(PORTBbits.RB1 == 0 && debouncing2 == 1){
-                contador--;
-                PORTD = contador;
-                debouncing2 = 0;
-            }
-            INTCONbits.RBIF = 0; //limpiar bandera
-        }
+/* Real time clock using PIC16F887 & DS3231 (DS3232) CCS C code
+   Read DS3231 RTC datasheet to understand the code!
+   Internal oscillator used @ 8MHz
+*/
+ 
+//LCD module connections
+#define LCD_RS_PIN PIN_D0
+#define LCD_RW_PIN PIN_D1
+#define LCD_ENABLE_PIN PIN_D2
+#define LCD_DATA4 PIN_D3
+#define LCD_DATA5 PIN_D4
+#define LCD_DATA6 PIN_D5
+#define LCD_DATA7 PIN_D6
+//End LCD module connections
+ 
+#include <16F887.h>
+#fuses NOMCLR NOBROWNOUT NOLVP INTRC_IO
+#use delay(clock = 8MHz)
+#include <lcd.c>
+#use fast_io(B)
+#use I2C(master, I2C1, FAST = 100000)
+ 
+char time[] = "TIME:  :  :  ";
+char calendar[] = "DATE:  /  /20  ";
+unsigned int8  i, second, minute, hour, date, month, year;
+void DS3231_display(){
+  // Convert BCD to decimal
+  second = (second >> 4) * 10 + (second & 0x0F);
+  minute = (minute >> 4) * 10 + (minute & 0x0F);
+  hour = (hour >> 4) * 10 + (hour & 0x0F);
+  date = (date >> 4) * 10 + (date & 0x0F);
+  month = (month >> 4) * 10 + (month & 0x0F);
+  year = (year >> 4) * 10 + (year & 0x0F);
+  // End conversion
+  time[12]     = second % 10  + 48;
+  time[11]     = second / 10  + 48;
+  time[9]      = minute % 10  + 48;
+  time[8]      = minute / 10  + 48;
+  time[6]      = hour % 10  + 48;
+  time[5]      = hour / 10  + 48;
+  calendar[14] = year % 10 + 48;
+  calendar[13] = year / 10  + 48;
+  calendar[9]  = month % 10 + 48;
+  calendar[8]  = month / 10 + 48;
+  calendar[6]  = date % 10 + 48;
+  calendar[5]  = date / 10 + 48;
+  lcd_gotoxy(1, 1);                              // Go to column 1 row 1
+  printf(lcd_putc, time);                        // Display time
+  lcd_gotoxy(1, 2);                              // Go to column 1 row 2
+  printf(lcd_putc, calendar);                    // Display calendar
 }
-//****************************************************************************//
-//PROGRAMACION PRINCIPAL                                                      //
-//****************************************************************************//
-
-void main(void) {
-    contador = 0;
-    setup();
-
-    //************************************************************************//
-    //LOOP PRINCIPAL                                                          //
-    //************************************************************************//
-    while (1) {
+void blink(){
+  int8 j = 0;
+  while(j < 10 && input(PIN_B0) && input(PIN_B1)){
+    j++;
+    delay_ms(25);
+  }
+}
+unsigned int8 edit(parameter, xx, yy){
+  while(!input(PIN_B0));                         // Wait until button RB0 is released
+  while(TRUE){
+    while(!input(PIN_B1)){                       // If button RB1 is pressed
+      parameter++;
+      if(i == 0 && parameter > 23)               // If hours > 23 ==> hours = 0
+        parameter = 0;
+      if(i == 1 && parameter > 59)               // If minutes > 59 ==> minutes = 0
+        parameter = 0;
+      if(i == 2 && parameter > 31)               // If date > 31 ==> date = 1
+        parameter = 1;
+      if(i == 3 && parameter > 12)               // If month > 12 ==> month = 1
+        parameter = 1;
+      if(i == 4 && parameter > 99)               // If year > 99 ==> year = 0
+        parameter = 0;
+      lcd_gotoxy(xx, yy);
+      printf(lcd_putc,"%02u", parameter);        // Display parameter
+      delay_ms(200);                             // Wait 200ms
     }
-
+    lcd_gotoxy(xx, yy);
+    lcd_putc("  ");
+    blink();
+    lcd_gotoxy(xx, yy);                          // Display two spaces
+    printf(lcd_putc,"%02u", parameter);          // Display parameter
+    blink();
+    if(!input(PIN_B0)){                          // If button RB0 is pressed
+      i++;                                       // Increament 'i' for the next parameter
+      return parameter;                          // Return parameter value and exit
+    }
+  }
 }
-
-//****************************************************************************//
-//CONFIGURACION  (puertos, bits...)                                           //
-//****************************************************************************//
-
-void setup(void) {
-    //initOsc(0b00000111);
-    ANSEL = 0; 
-    ANSELH = 0; 
-    
-    TRISA = 0; 
-    TRISB = 0b00000011; // push, como entradas
-    TRISC = 0;
-    TRISD = 0;
-    TRISE = 0;
-    
-    PORTA = 0; 
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-    PORTE = 0;
-    
-    Config_INTERRUPT();
-}
-
-//****************************************************************************//
-//FUNCIONES                                                                   //
-//****************************************************************************//
-void Config_INTERRUPT(void) {
-    INTCONbits.GIE = 1;
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;        //on change interrupcion
-    IOCB = 0b00000011;  
+void main(){
+  setup_oscillator(OSC_8MHZ);                    // Set internal oscillator to 8MHz
+  port_b_pullups(3);                             // Enable internal pull-ups for RB0 & RB1
+  lcd_init();                                    // Initialize LCD module
+  lcd_putc('\f');                                // LCD clear
+  while(TRUE){
+    if(!input(PIN_B0)){                          // If RB0 button is pressed
+      i = 0;
+      hour = edit(hour, 6, 1);
+      minute = edit(minute, 9, 1);
+      date = edit(date, 6, 2);
+      month = edit(month, 9, 2);
+      year = edit(year, 14, 2);
+      // Convert decimal to BCD
+      minute = ((minute / 10) << 4) + (minute % 10);
+      hour = ((hour / 10) << 4) + (hour % 10);
+      date = ((date / 10) << 4) + (date % 10);
+      month = ((month / 10) << 4) + (month % 10);
+      year = ((year / 10) << 4) + (year % 10);
+      // End conversion
+      // Write data to DS3231 RTC
+      i2c_start();                               // Start I2C protocol
+      i2c_write(0xD0);                           // DS3231 address
+      i2c_write(0);
+      i2c_write(0);                              // Reset sesonds and start oscillator
+      i2c_write(minute);                         // Write minute value to DS3231
+      i2c_write(hour);                           // Write hour value to DS3231
+      i2c_write(1);                              // Write day value (not used)
+      i2c_write(date);                           // Write date value to DS3231
+      i2c_write(month);                          // Write month value to DS3231
+      i2c_write(year);                           // Write year value to DS3231
+      delay_ms(200);                             // Wait 200ms
+    }
+    i2c_start();                                  // Start I2C protocol
+    i2c_write(0xD0);                              // DS3231 address
+    i2c_write(0);                                 // Send register address
+    i2c_start();                                  // Restart I2C
+    i2c_write(0xD1);                              // Initialize data read
+    second = i2c_read(1);                         // Read seconds from register 0
+    minute = i2c_read(1);                         // Read minuts from register 1
+    hour   = i2c_read(1);                         // Read hour from register 2
+    i2c_read(1);                                  // Read day from register 3 (not used)
+    date   = i2c_read(1);                         // Read date from register 4
+    month  = i2c_read(1);                         // Read month from register 5
+    year   = i2c_read(0);                         // Read year from register 6
+    i2c_stop();                                   // Stop I2C protocol
+    DS3231_display();                             // Display time & calendar
+    delay_ms(50);
+  }
 }

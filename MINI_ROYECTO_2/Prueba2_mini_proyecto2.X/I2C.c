@@ -9,12 +9,11 @@
  * Modificada por: Pablo Mazariegos con la ayuda del auxiliar Gustavo Ordoñez 
  * Basado en Link: http://microcontroladores-mrelberni.com/i2c-pic-comunicacion-serial/
  * 
- * Para este mini proyecto, esta librería fue tomada del repositorio de Pablo 
+ *  * Para este mini proyecto, esta librería fue tomada del repositorio de Pablo 
  * Mazariegos: https://github.com/pdmazariegos-uvg/ie3027.git 
  * 
  */
 #include "I2C.h"
-#include <stdint.h>
 //*****************************************************************************
 // Función para inicializar I2C Maestro
 //*****************************************************************************
@@ -96,7 +95,7 @@ unsigned short I2C_Master_Read(unsigned short a)
 {
     unsigned short temp;
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
-    SSPCON2bits.RCEN = 1;
+    SSPCON2bits.RCEN = 1;   // Enable recieve mode
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     temp = SSPBUF;
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
@@ -126,70 +125,4 @@ void I2C_Slave_Init(uint8_t address)
     SSPIE = 1;
 }
 
-
 //*****************************************************************************
-uint8_t  i, second, minute, hour, m_day, month, year;
-
-uint8_t bcd_to_decimal(uint8_t number) {
-  return((number >> 4) * 10 + (number & 0x0F));
-}
- 
-// convert decimal to BCD function
-uint8_t decimal_to_bcd(uint8_t number) {
-  return(((number / 10) << 4) + (number % 10));
-}
- 
-// display time and date function
-void RTC_display()
-{
-  static char Time[] = "TIME: 00:00:00";
-  static char Date[] = "DATE: 00/00/2000";
- 
-  // convert data from BCD format to decimal format
-  second = bcd_to_decimal(second);
-  minute = bcd_to_decimal(minute);
-  hour   = bcd_to_decimal(hour);
-  m_day  = bcd_to_decimal(m_day);
-  month  = bcd_to_decimal(month);
-  year   = bcd_to_decimal(year);
-  // end conversion
- 
-  // update time
-  Time[6]  = hour   / 10 + '0';
-  Time[7]  = hour   % 10 + '0';
-  Time[9]  = minute / 10 + '0';
-  Time[10] = minute % 10 + '0';
-  Time[12] = second / 10 + '0';
-  Time[13] = second % 10 + '0';
-  // update date
-  Date[6]  = m_day  / 10 + '0';
-  Date[7]  = m_day  % 10 + '0';
-  Date[9]  = month  / 10 + '0';
-  Date[10] = month  % 10 + '0';
-  Date[14] = year   / 10 + '0';
-  Date[15] = year   % 10 + '0';
- 
-  LCD_Goto(1, 1);    // go to column 1, row 1
-  LCD_Print(Time);   // print time
-  LCD_Goto(1, 2);    // go to column 1, row 2
-  LCD_Print(Date);   // print date
-}
-
-// read current time and date from the RTC chip
-    I2C_Start();           // start I2C
-    I2C_Write(0xD0);       // RTC chip address
-    I2C_Write(0);          // send register address
-    I2C_Repeated_Start();  // restart I2C
-    I2C_Write(0xD1);       // initialize data read
-    second = I2C_Read(1);  // read seconds from register 0
-    minute = I2C_Read(1);  // read minutes from register 1
-    hour   = I2C_Read(1);  // read hour from register 2
-    I2C_Read(1);           // read day from register 3 (not used)
-    m_day  = I2C_Read(1);  // read date from register 4
-    month  = I2C_Read(1);  // read month from register 5
-    year   = I2C_Read(0);  // read year from register 6
-    I2C_Stop();            // stop I2C
- 
-    RTC_display();    // print time & date
- 
-    __delay_ms(50);   // wait 50 ms

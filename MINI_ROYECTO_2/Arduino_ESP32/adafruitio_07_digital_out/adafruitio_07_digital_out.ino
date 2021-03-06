@@ -69,9 +69,7 @@ void loop() {
   io.run();
 
   // save count to the 'counter' feed on Adafruit IO
-  Serial.print("sending -> ");
-  Serial.println(cont);
-  ContadorFeed->save(cont);
+  
 
   // increment the count by 1
   //cont++;
@@ -81,9 +79,12 @@ void loop() {
   // (1000 milliseconds == 1 second) during each loop.
   delay(3000);
 
-  if(Serial2.available()>0){
+  if(Serial2.available()){
       cont = (int)Serial2.read();
-     Serial.println(cont);
+      Serial.print("sending -> ");
+      Serial.println(cont);
+      ContadorFeed->save(cont);
+      //Serial.println(cont);
      //Serial2.println(hola);
      //Serial2.write(Serial.read());  
    }
@@ -115,7 +116,7 @@ void handleMessage1(AdafruitIO_Data *data) {
 }
 
 void handleMessage2(AdafruitIO_Data *data) {
-   Serial.println("--------");
+  Serial.println("--------");
   Serial.println("Piloto 2");
   Serial.print("received <- ");
   //Serial.println(data->value());

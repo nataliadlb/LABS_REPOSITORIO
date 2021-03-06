@@ -2725,20 +2725,16 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
         data_recive = RCREG;
         if (data_recive == 'P11'){
-            cont++;
-            PORTB = cont;
+            PORTAbits.RA6 = 1;
         }
         else if (data_recive == 'P10'){
-            cont--;
-            PORTB = cont;
+            PORTAbits.RA6 = 0;
         }
         else if (data_recive == 'P21'){
-            cont--;
-            PORTB = cont;
+            PORTAbits.RA7 = 1;
         }
         else if (data_recive == 'P20'){
-            cont--;
-            PORTB = cont;
+            PORTAbits.RA7 = 0;
         }
         data_recive = 0;
         }
@@ -2756,10 +2752,19 @@ void main(void) {
 
 
     while(1){
-# 119 "main_mini2.c"
+# 115 "main_mini2.c"
+        PORTAbits.RA7 = 1;
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
+        PORTAbits.RA6 = 1;
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
+        PORTAbits.RA7 = 0;
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
+        PORTAbits.RA6 = 0;
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
         Write_USART(holiwis);
         Write_USART(13);
         Write_USART(10);
+        PORTD = holiwis;
         holiwis++;
     }
 
