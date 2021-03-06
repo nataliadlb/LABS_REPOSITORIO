@@ -128,8 +128,6 @@ void I2C_Slave_Init(uint8_t address)
 
 
 //*****************************************************************************
-uint8_t  i, second, minute, hour, m_day, month, year;
-
 uint8_t bcd_to_decimal(uint8_t number) {
   return((number >> 4) * 10 + (number & 0x0F));
 }
@@ -174,22 +172,3 @@ void RTC_display()
   LCD_Goto(1, 2);    // go to column 1, row 2
   LCD_Print(Date);   // print date
 }
-
-// read current time and date from the RTC chip
-    I2C_Start();           // start I2C
-    I2C_Write(0xD0);       // RTC chip address
-    I2C_Write(0);          // send register address
-    I2C_Repeated_Start();  // restart I2C
-    I2C_Write(0xD1);       // initialize data read
-    second = I2C_Read(1);  // read seconds from register 0
-    minute = I2C_Read(1);  // read minutes from register 1
-    hour   = I2C_Read(1);  // read hour from register 2
-    I2C_Read(1);           // read day from register 3 (not used)
-    m_day  = I2C_Read(1);  // read date from register 4
-    month  = I2C_Read(1);  // read month from register 5
-    year   = I2C_Read(0);  // read year from register 6
-    I2C_Stop();            // stop I2C
- 
-    RTC_display();    // print time & date
- 
-    __delay_ms(50);   // wait 50 ms

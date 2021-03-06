@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>Oscilador.h</itemPath>
       <itemPath>RTC.h</itemPath>
+      <itemPath>LCD.h</itemPath>
+      <itemPath>I2C.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -14,9 +16,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>main_pruebas_mini2.c</itemPath>
       <itemPath>Oscilador.c</itemPath>
       <itemPath>Librerias y pruebas.c</itemPath>
+      <itemPath>RTC.c</itemPath>
+      <itemPath>LCD.c</itemPath>
+      <itemPath>I2C.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -24,6 +28,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../../../../../../Downloads</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
