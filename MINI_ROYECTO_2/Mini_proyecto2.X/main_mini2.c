@@ -56,6 +56,7 @@
 char data_recive;
 uint8_t cont;
 char prueba;
+int holiwis;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
@@ -115,9 +116,10 @@ void main(void) {
 //        PORTB++;  
         
         // ----* USART *---- //
-        Write_USART_String(prueba); 
+        Write_USART(holiwis); 
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
+        holiwis++;
     }
     //return;
 }

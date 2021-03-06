@@ -2669,12 +2669,31 @@ unsigned short I2C_Master_Read(unsigned short a);
 void I2C_Slave_Init(uint8_t address);
 # 17 "main_mini2.c" 2
 
+# 1 "./USART.h" 1
+# 14 "./USART.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./USART.h" 2
 
 
 
 
 
-#pragma config FOSC = EXTRC_NOCLKOUT
+void USART_Init(void);
+void USART_Init_BaudRate(void);
+void Trasmission_1(char val_1_mapeado);
+void Trasmission_2(char val_2_mapeado);
+void USART_INTERRUPT(void);
+void Write_USART(uint8_t a);
+void Write_USART_String(char *a);
+uint8_t Read_USART();
+# 18 "main_mini2.c" 2
+
+
+
+
+
+
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2688,7 +2707,14 @@ void I2C_Slave_Init(uint8_t address);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 58 "main_mini2.c"
+# 56 "main_mini2.c"
+char data_recive;
+uint8_t cont;
+char prueba;
+int holiwis;
+
+
+
 void setup(void);
 void MPU6050_Init(void);
 
@@ -2696,6 +2722,26 @@ void MPU6050_Init(void);
 
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
+    if(PIR1bits.RCIF == 1){
+        data_recive = RCREG;
+        if (data_recive == 'P11'){
+            cont++;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P10'){
+            cont--;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P21'){
+            cont--;
+            PORTB = cont;
+        }
+        else if (data_recive == 'P20'){
+            cont--;
+            PORTB = cont;
+        }
+        data_recive = 0;
+        }
 }
 
 
@@ -2703,26 +2749,20 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 void main(void) {
     setup();
+    prueba = "Hola";
 
 
 
 
 
     while(1){
-        I2C_Master_Start();
-        I2C_Master_Write(0x50);
-        I2C_Master_Write(PORTB);
-        I2C_Master_Stop();
-        _delay((unsigned long)((200)*(8000000/4000.0)));
-
-        I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        PORTD = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((200)*(8000000/4000.0)));
-        PORTB++;
+# 119 "main_mini2.c"
+        Write_USART(holiwis);
+        Write_USART(13);
+        Write_USART(10);
+        holiwis++;
     }
-    return;
+
 }
 
 
@@ -2732,10 +2772,19 @@ void main(void) {
 void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
+    TRISA = 0;
     TRISB = 0;
+    TRISC = 0;
     TRISD = 0;
+    TRISE = 0;
+    PORTA = 0;
     PORTB = 0;
+    PORTC = 0;
     PORTD = 0;
+    PORTE = 0;
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
     I2C_Master_Init(100000);
 }
 

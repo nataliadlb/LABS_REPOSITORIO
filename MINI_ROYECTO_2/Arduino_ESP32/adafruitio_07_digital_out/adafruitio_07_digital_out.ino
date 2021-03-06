@@ -1,10 +1,6 @@
 // Adafruit IO Digital Output Example
 // Tutorial Link: https://learn.adafruit.com/adafruit-io-basics-digital-output
 //
-// Adafruit invests time and resources providing this open source code.
-// Please support Adafruit and open source hardware by purchasing
-// products from Adafruit!
-//
 // Written by Todd Treece for Adafruit Industries
 // Copyright (c) 2016 Adafruit Industries
 // Licensed under the MIT license.
@@ -19,22 +15,23 @@
 #include "config.h"
 
 /************************ Example Starts Here *******************************/
+#define RXD2 16
+#define TXD2 17
 
-String piloto  = "";
-//String piloto2  = "';
+String piloto  = " ";
 int cont = 0;
+int hola = 0;
 
-// set up the 'digital' feed
-//AdafruitIO_Feed *digital = io.feed("digital");
 AdafruitIO_Feed *LedPiloto1Feed = io.feed("LedPiloto1"); //DIGITAL
 AdafruitIO_Feed *LedPiloto2Feed = io.feed("LedPiloto2"); //DIGITAL
 AdafruitIO_Feed *ContadorFeed = io.feed("contador");
 
 void setup() {
-  
-  // start the serial connection
-  Serial.begin(115200);
 
+  //Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
+  // start the serial connection
+  Serial.begin(9600);
+  Serial2.begin(9600);
   // wait for serial monitor to open
   while(! Serial);
 
@@ -48,7 +45,6 @@ void setup() {
   // received from adafruit io.
   LedPiloto1Feed->onMessage(handleMessage1);
   LedPiloto2Feed->onMessage(handleMessage2);
-  //ContadorFeed->onMessage(sendValue);
   
   // wait for a connection
   while(io.status() < AIO_CONNECTED) {
@@ -77,15 +73,21 @@ void loop() {
   Serial.println(cont);
   ContadorFeed->save(cont);
 
-
-
   // increment the count by 1
-  cont++;
+  //cont++;
 
   // Adafruit IO is rate limited for publishing, so a delay is required in
   // between feed->save events. In this example, we will wait three seconds
   // (1000 milliseconds == 1 second) during each loop.
   delay(3000);
+
+  if(Serial2.available()>0){
+      cont = (int)Serial2.read();
+     Serial.println(cont);
+     //Serial2.println(hola);
+     //Serial2.write(Serial.read());  
+   }
+
 }
 
   

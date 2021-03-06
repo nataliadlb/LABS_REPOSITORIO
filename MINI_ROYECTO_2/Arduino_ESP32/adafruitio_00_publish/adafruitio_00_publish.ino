@@ -22,17 +22,15 @@
 // this int will hold the current count for our sketch
 int cont = 0;
 
-// digital pin 5
-#define LED_PIN 5
+
 
 // set up the 'counter' feed
 //AdafruitIO_Feed *counter = io.feed("counter");
 AdafruitIO_Feed *LedPruebaFeed = io.feed("LedPrueba"); //DIGITAL
 AdafruitIO_Feed *ContadorFeed = io.feed("contador");
+
 void setup() {
   
-  pinMode(LED_PIN, OUTPUT);
-
   // start the serial connection
   Serial.begin(115200);
 
@@ -75,14 +73,7 @@ void loop() {
   Serial.println(cont);
   ContadorFeed->save(cont);
 
-  Serial.print("received <- ");
 
-  if(data->toPinLevel() == HIGH)
-    Serial.println("HIGH");
-  else
-    Serial.println("LOW");
-
-  digitalWrite(LED_PIN, data->toPinLevel());
 
   // increment the count by 1
   cont++;
