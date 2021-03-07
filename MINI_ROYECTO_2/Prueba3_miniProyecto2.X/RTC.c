@@ -2,12 +2,7 @@
 #include <xc.h>
 #include <stdint.h>
 #include "RTC.h"
-#include "LCD.h"
 
-#define button1      RB0   // button B1 is connected to RB0 pin
-#define button2      RB1   // button B2 is connected to RB1 pin
-
-uint8_t  i, second, minute, hour, m_day, month, year;
 
 uint8_t bcd_to_decimal(uint8_t number) {
   return((number >> 4) * 10 + (number & 0x0F));
@@ -20,19 +15,19 @@ uint8_t decimal_to_bcd(uint8_t number) {
  
 // display time and date function
 void RTC_display(){
-    static char Time[] = "TIME: 00:00:00";
-    static char Date[] = "DATE: 00/00/2000";
- 
-  // convert data from BCD format to decimal format
+    char Time[] = "TIME: 00:00:00";
+    char Date[] = "DATE: 00/00/2000";
+
+    // convert data from BCD format to decimal format
     second = bcd_to_decimal(second);
     minute = bcd_to_decimal(minute);
     hour   = bcd_to_decimal(hour);
     m_day  = bcd_to_decimal(m_day);
     month  = bcd_to_decimal(month);
     year   = bcd_to_decimal(year);
-  // end conversion
+    // end conversion
 
-  // update time
+    // update time
     Time[6]  = hour   / 10 + '0';
     Time[7]  = hour   % 10 + '0';
     Time[9]  = minute / 10 + '0';
@@ -46,11 +41,12 @@ void RTC_display(){
     Date[10] = month  % 10 + '0';
     Date[14] = year   / 10 + '0';
     Date[15] = year   % 10 + '0';
+    
  
-    Lcd_Set_Cursor(1,1);
-    Lcd_Write_String(Time);
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String(Date);
+//    Lcd_Set_Cursor(1,1);
+//    Lcd_Write_String(Time);
+//    Lcd_Set_Cursor(1,2);
+//    Lcd_Write_String(Date);
 //  LCD_Goto(1, 1);    // go to column 1, row 1
 //  LCD_Print(Time);   // print time
 //  LCD_Goto(1, 2);    // go to column 1, row 2

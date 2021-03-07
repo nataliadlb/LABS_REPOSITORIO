@@ -11,7 +11,6 @@
 #define	RTC_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include <pic16f887.h>
 #include <stdint.h>
 
 
