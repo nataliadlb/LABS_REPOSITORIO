@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Prueba3_miniProyecto2.X.production.sym \
   --cmf=dist/default/production\Prueba3_miniProyecto2.X.production.cmf -z \
-  -Q16F887 -oC:\Users\cnata\AppData\Local\Temp\s9lo.2 \
+  -Q16F887 -oC:\Users\cnata\AppData\Local\Temp\s5fo.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Prueba3_miniProyecto2.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
@@ -19,7 +19,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\cnata\AppData\Local\Temp\s9lo.o \
+  -pfunctab=ENTRY -k C:\Users\cnata\AppData\Local\Temp\s5fo.o \
   dist/default/production\Prueba3_miniProyecto2.X.production.o 
 
 Object code version is 3.11
@@ -29,7 +29,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\cnata\AppData\Local\Temp\s9lo.o
+C:\Users\cnata\AppData\Local\Temp\s5fo.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -218,6 +218,7 @@ _I2C_Master_Start                  text7        05D9
 _I2C_Master_Stop                   text6        05D0
 _I2C_Master_Wait                   text22       05B9
 _I2C_Master_Write                  text5        05C6
+_INTCONbits                        (abs)        000B
 _ISR                               text23       059A
 _Lcd_Clear                         text17       05AC
 _Lcd_Cmd                           text18       0542
@@ -226,7 +227,9 @@ _Lcd_Port                          text19       05F3
 _Lcd_Set_Cursor                    text15       0499
 _Lcd_Write_Char                    text14       055C
 _Lcd_Write_String                  text13       04BF
+_OSCCONbits                        (abs)        008F
 _PEIE                              (abs)        005E
+_PIE1bits                          (abs)        008C
 _PIR1bits                          (abs)        000C
 _PORTA                             (abs)        0005
 _PORTAbits                         (abs)        0005
@@ -236,8 +239,12 @@ _PORTD                             (abs)        0008
 _PORTDbits                         (abs)        0008
 _PORTE                             (abs)        0009
 _PORTEbits                         (abs)        0009
+_RCIF                              (abs)        0065
 _RCREG                             (abs)        001A
+_RCSTAbits                         (abs)        0018
 _RTC_display                       text8        002C
+_SPBRG                             (abs)        0099
+_SPBRGH                            (abs)        009A
 _SSPADD                            (abs)        0093
 _SSPBUF                            (abs)        0013
 _SSPCON                            (abs)        0014
@@ -253,6 +260,9 @@ _TRISC4                            (abs)        043C
 _TRISCbits                         (abs)        0087
 _TRISD                             (abs)        0088
 _TRISE                             (abs)        0089
+_TRMT                              (abs)        04C1
+_TXREG                             (abs)        0019
+_TXSTAbits                         (abs)        0098
 _Time                              dataBANK0    0031
 _Write_to_RTC                      text4        0385
 __Habs1                            abs1         0000
@@ -513,7 +523,7 @@ Total ram usage:        3 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 203 in file "main_prueba3_mini2.c"
+		line 207 in file "main_prueba3_mini2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -605,7 +615,7 @@ Total ram usage:       14 bytes
 
  *************** function _Write_to_RTC *****************
  Defined at:
-		line 189 in file "main_prueba3_mini2.c"
+		line 192 in file "main_prueba3_mini2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

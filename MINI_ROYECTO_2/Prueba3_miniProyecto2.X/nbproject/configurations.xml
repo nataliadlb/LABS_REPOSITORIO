@@ -7,7 +7,6 @@
       <itemPath>LCD.h</itemPath>
       <itemPath>I2C.h</itemPath>
       <itemPath>Oscilador.h</itemPath>
-      <itemPath>RTC.h</itemPath>
       <itemPath>USART.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -20,6 +19,8 @@
       <itemPath>main_prueba3_mini2.c</itemPath>
       <itemPath>I2C.c</itemPath>
       <itemPath>LCD.c</itemPath>
+      <itemPath>Oscilador.c</itemPath>
+      <itemPath>USART.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

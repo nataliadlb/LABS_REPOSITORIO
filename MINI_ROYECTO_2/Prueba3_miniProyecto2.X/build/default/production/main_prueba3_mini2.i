@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_prueba3_mini2.c" 2
-# 29 "main_prueba3_mini2.c"
+# 31 "main_prueba3_mini2.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 29 "main_prueba3_mini2.c" 2
+# 31 "main_prueba3_mini2.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 30 "main_prueba3_mini2.c" 2
+# 32 "main_prueba3_mini2.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 31 "main_prueba3_mini2.c" 2
+# 33 "main_prueba3_mini2.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2807,7 +2807,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 32 "main_prueba3_mini2.c" 2
+# 34 "main_prueba3_mini2.c" 2
 
 
 # 1 "./LCD.h" 1
@@ -2833,7 +2833,7 @@ void Lcd_Shift_Left();
 void Lcd_Clear(void);
 void LCD_Write_Nibble(uint8_t n);
 void LCD_PutC(char LCD_Char);
-# 34 "main_prueba3_mini2.c" 2
+# 36 "main_prueba3_mini2.c" 2
 
 # 1 "./USART.h" 1
 # 14 "./USART.h"
@@ -2852,7 +2852,7 @@ void USART_INTERRUPT(void);
 void Write_USART(uint8_t a);
 void Write_USART_String(char *a);
 uint8_t Read_USART();
-# 35 "main_prueba3_mini2.c" 2
+# 37 "main_prueba3_mini2.c" 2
 
 # 1 "./Oscilador.h" 1
 # 14 "./Oscilador.h"
@@ -2867,7 +2867,7 @@ uint8_t Read_USART();
 
 
 void initOsc(uint8_t IRCF);
-# 36 "main_prueba3_mini2.c" 2
+# 38 "main_prueba3_mini2.c" 2
 
 # 1 "./I2C.h" 1
 # 23 "./I2C.h"
@@ -2910,7 +2910,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 37 "main_prueba3_mini2.c" 2
+# 39 "main_prueba3_mini2.c" 2
 
 
 
@@ -2929,14 +2929,14 @@ void I2C_Slave_Init(uint8_t address);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 66 "main_prueba3_mini2.c"
+# 68 "main_prueba3_mini2.c"
 uint8_t i, second, minute, hour, m_day, month, year;
 char data_total[20];
 uint8_t cont;
 char data_recive;
 
-static char Time[] = "TIME: 20:37:00";
-static char Date[] = "DATE: 06/03/2021";
+static char Time[] = "TIME: 00:00:00";
+static char Date[] = "DATE: 00/00/0000";
 
 
 
@@ -2947,8 +2947,6 @@ void Write_to_RTC(void);
 void RTC_display(void);
 uint8_t decimal_to_bcd(uint8_t number);
 uint8_t bcd_to_decimal(uint8_t number);
-
-
 
 
 
@@ -2986,6 +2984,7 @@ void main(void) {
 
     while (1) {
 
+
         I2C_Master_Start();
         I2C_Master_Write(0xD0);
         I2C_Master_Write(0);
@@ -3003,7 +3002,6 @@ void main(void) {
         RTC_display();
 
         _delay((unsigned long)((100)*(8000000/4000.0)));
-
 
     }
 }
@@ -3040,6 +3038,7 @@ void RTC_display(void){
     Time[12] = second / 10 + '0';
     Time[13] = second % 10 + '0';
 
+
     Date[6] = m_day / 10 + '0';
     Date[7] = m_day % 10 + '0';
     Date[9] = month / 10 + '0';
@@ -3047,19 +3046,21 @@ void RTC_display(void){
     Date[14] = year / 10 + '0';
     Date[15] = year % 10 + '0';
 
+
     Lcd_Set_Cursor(1,1);
     Lcd_Write_String(Time);
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(Date);
 }
 
+
 void Write_to_RTC(void){
     I2C_Master_Start();
     I2C_Master_Write(0xD0);
     I2C_Master_Write(0);
     I2C_Master_Write(0);
-    I2C_Master_Write(58);
-    I2C_Master_Write(9);
+    I2C_Master_Write(3);
+    I2C_Master_Write(10);
     I2C_Master_Write(1);
     I2C_Master_Write(6);
     I2C_Master_Write(3);
@@ -3067,8 +3068,8 @@ void Write_to_RTC(void){
     I2C_Master_Stop();
 }
 
-void setup(void) {
 
+void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;

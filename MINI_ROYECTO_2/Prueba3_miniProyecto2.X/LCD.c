@@ -86,6 +86,7 @@ void Lcd_Shift_Left(void){
 	Lcd_Cmd(0x08);
 }
 
+//Funiones obtenidas de Simple projects: https://simple-circuit.com/mplab-xc8-ds1307-ds3231-pic-mcu/
 void LCD_Write_Nibble(uint8_t n){
   RS = RS;
   D4 = n & 0x01;

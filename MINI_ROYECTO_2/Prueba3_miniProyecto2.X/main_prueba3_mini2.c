@@ -4,7 +4,11 @@
  * carné: 18193
  * Digital 2
  *
- * Created on 7 de febrero de 2021
+ * Created on 1 de marzo de 2021
+ * 
+ * Las funciones relacionadas al sensor RTC fueron tomadas y luego modificadas 
+ * del sitio: https://simple-circuit.com/mplab-xc8-ds1307-ds3231-pic-mcu/ 
+ * Autor: Simple Projects
  */
 
 
@@ -20,8 +24,6 @@
 #define D6 PORTDbits.RD6
 #define D7 PORTDbits.RD7
 
-#define button1      RB0   // button B1 is connected to RB0 pin
-#define button2      RB1   // button B2 is connected to RB1 pin
 
 //******************************************************************************
 //Librerias
@@ -68,8 +70,8 @@ char data_total[20];
 uint8_t cont;
 char data_recive;
 
-static char Time[] = "TIME: 20:37:00";
-static char Date[] = "DATE: 06/03/2021";
+static char Time[] = "TIME: 00:00:00";
+static char Date[] = "DATE: 00/00/0000";
 
 //******************************************************************************
 //Prototipos de funciones
@@ -78,10 +80,8 @@ static char Date[] = "DATE: 06/03/2021";
 void setup(void); 
 void Write_to_RTC(void);
 void RTC_display(void);
-uint8_t decimal_to_bcd(uint8_t number);
-uint8_t bcd_to_decimal(uint8_t number);
-
-
+uint8_t decimal_to_bcd(uint8_t number); //decimal to Binary coded decimal
+uint8_t bcd_to_decimal(uint8_t number); //Binary coded decimal to decimal
 
 //******************************************************************************
 //Interrupciones
@@ -115,10 +115,11 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-    Write_to_RTC(); //escribir valores iniciales de fecha y hora
+    Write_to_RTC(); //escribir valores iniciales de fecha y hora al RTC
    
     while (1) {
         
+        //código obtenido de Simple Projects, pero modificado con la libreía I2C
         I2C_Master_Start();           // start I2C
         I2C_Master_Write(0xD0);       // RTC chip address
         I2C_Master_Write(0);          // send register address
@@ -133,11 +134,10 @@ void main(void) {
         year   = I2C_Master_Read(0);  // read year from register 6
         I2C_Master_Stop();            // stop I2C
 
-        RTC_display();
+        RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
         
         __delay_ms(100);
-        
-
+       
     }
 }
 
@@ -145,18 +145,18 @@ void main(void) {
 //Funciones
 //******************************************************************************
 
-
+// Convertir Binary coded decimal to decimal
 uint8_t bcd_to_decimal(uint8_t number) {
   return((number >> 4) * 10 + (number & 0x0F));
 }
  
-// convert decimal to BCD function
+// Convertir decimal to Binary coded decimal
 uint8_t decimal_to_bcd(uint8_t number) {
   return(((number / 10) << 4) + (number % 10));
 }
  
 void RTC_display(void){
-    // convert data from BCD format to decimal format
+    // Convertir datos BCD a decimal
     second = bcd_to_decimal(second);
     minute = bcd_to_decimal(minute);
     hour   = bcd_to_decimal(hour);
@@ -165,14 +165,15 @@ void RTC_display(void){
     year   = bcd_to_decimal(year);
     // end conversion
 
-    // update time
+    // uActualizar tiempo
     Time[6]  = hour   / 10 + '0';
     Time[7]  = hour   % 10 + '0';
     Time[9]  = minute / 10 + '0';
     Time[10] = minute % 10 + '0';
     Time[12] = second / 10 + '0';
     Time[13] = second % 10 + '0';
-    // update date
+    
+    // Actualizar fecha
     Date[6]  = m_day  / 10 + '0';
     Date[7]  = m_day  % 10 + '0';
     Date[9]  = month  / 10 + '0';
@@ -180,28 +181,30 @@ void RTC_display(void){
     Date[14] = year   / 10 + '0';
     Date[15] = year   % 10 + '0';
     
+    //Mostrar en LCD (PRUEBA)
     Lcd_Set_Cursor(1,1);
     Lcd_Write_String(Time);
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(Date);
 }
 
-void Write_to_RTC(void){
+//Escribir valores iniciales al RTC, obtenido de Simple projects
+void Write_to_RTC(void){ 
     I2C_Master_Start();         // start I2C
     I2C_Master_Write(0xD0);     // RTC chip address
     I2C_Master_Write(0);        // send register address
     I2C_Master_Write(0);        // reset seconds and start oscillator
-    I2C_Master_Write(58);   // write minute value to RTC chip
-    I2C_Master_Write(9);     // write hour value to RTC chip
+    I2C_Master_Write(3);        // write minute value to RTC chip
+    I2C_Master_Write(10);       // write hour value to RTC chip
     I2C_Master_Write(1);        // write day value (not used)
     I2C_Master_Write(6);        // write date value to RTC chip
     I2C_Master_Write(3);        // write month value to RTC chip
     I2C_Master_Write(27);       // write year value to RTC chip
     I2C_Master_Stop();          // stop I2C
 }
+
 // ------ configuraciones ----- //
 void setup(void) {
-    //initOsc(7); //8MHz
     ANSEL = 0; //RA0 y RA1 como analogico
     ANSELH = 0; 
     TRISA = 0; //potenciometros, como entrada

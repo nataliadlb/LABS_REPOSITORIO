@@ -27,8 +27,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 183: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
 [v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
 [p mainexit ]
-"78 main_prueba3_mini2.c
-[; ;main_prueba3_mini2.c: 78: void setup(void);
+"80 main_prueba3_mini2.c
+[; ;main_prueba3_mini2.c: 80: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
 "1602 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
@@ -39,8 +39,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "79
 [; ;./LCD.h: 79: void Lcd_Clear(void);
 [v _Lcd_Clear `(v ~T0 @X0 0 ef ]
-"79 main_prueba3_mini2.c
-[; ;main_prueba3_mini2.c: 79: void Write_to_RTC(void);
+"81 main_prueba3_mini2.c
+[; ;main_prueba3_mini2.c: 81: void Write_to_RTC(void);
 [v _Write_to_RTC `(v ~T0 @X0 0 ef ]
 "46 ./I2C.h
 [; ;./I2C.h: 46: void I2C_Master_Start(void);
@@ -57,8 +57,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "56
 [; ;./I2C.h: 56: void I2C_Master_Stop(void);
 [v _I2C_Master_Stop `(v ~T0 @X0 0 ef ]
-"80 main_prueba3_mini2.c
-[; ;main_prueba3_mini2.c: 80: void RTC_display(void);
+"82 main_prueba3_mini2.c
+[; ;main_prueba3_mini2.c: 82: void RTC_display(void);
 [v _RTC_display `(v ~T0 @X0 0 ef ]
 [v F1256 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
@@ -348,32 +348,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"41 main_prueba3_mini2.c
+"43 main_prueba3_mini2.c
 [p x FOSC  =  INTRC_NOCLKOUT         ]
-"42
-[p x WDTE  =  OFF        ]
-"43
-[p x PWRTE  =  OFF       ]
 "44
-[p x MCLRE  =  OFF        ]
+[p x WDTE  =  OFF        ]
 "45
-[p x CP  =  OFF          ]
+[p x PWRTE  =  OFF       ]
 "46
-[p x CPD  =  OFF         ]
+[p x MCLRE  =  OFF        ]
 "47
-[p x BOREN  =  OFF       ]
+[p x CP  =  OFF          ]
 "48
-[p x IESO  =  OFF        ]
+[p x CPD  =  OFF         ]
 "49
-[p x FCMEN  =  OFF       ]
+[p x BOREN  =  OFF       ]
 "50
+[p x IESO  =  OFF        ]
+"51
+[p x FCMEN  =  OFF       ]
+"52
 [p x LVP  =  OFF         ]
-"53
+"55
 [p x BOR4V  =  BOR40V    ]
-"54
+"56
 [p x WRT  =  OFF         ]
-"66
-[; ;main_prueba3_mini2.c: 66: uint8_t i, second, minute, hour, m_day, month, year;
+"68
+[; ;main_prueba3_mini2.c: 68: uint8_t i, second, minute, hour, m_day, month, year;
 [v _i `uc ~T0 @X0 1 e ]
 [v _second `uc ~T0 @X0 1 e ]
 [v _minute `uc ~T0 @X0 1 e ]
@@ -381,17 +381,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _m_day `uc ~T0 @X0 1 e ]
 [v _month `uc ~T0 @X0 1 e ]
 [v _year `uc ~T0 @X0 1 e ]
-"67
-[; ;main_prueba3_mini2.c: 67: char data_total[20];
-[v _data_total `uc ~T0 @X0 -> 20 `i e ]
-"68
-[; ;main_prueba3_mini2.c: 68: uint8_t cont;
-[v _cont `uc ~T0 @X0 1 e ]
 "69
-[; ;main_prueba3_mini2.c: 69: char data_recive;
-[v _data_recive `uc ~T0 @X0 1 e ]
+[; ;main_prueba3_mini2.c: 69: char data_total[20];
+[v _data_total `uc ~T0 @X0 -> 20 `i e ]
+"70
+[; ;main_prueba3_mini2.c: 70: uint8_t cont;
+[v _cont `uc ~T0 @X0 1 e ]
 "71
-[; ;main_prueba3_mini2.c: 71: static char Time[] = "TIME: 20:37:00";
+[; ;main_prueba3_mini2.c: 71: char data_recive;
+[v _data_recive `uc ~T0 @X0 1 e ]
+"73
+[; ;main_prueba3_mini2.c: 73: static char Time[] = "TIME: 00:00:00";
 [v _Time `uc ~T0 @X0 -> 15 `i s ]
 [i _Time
 :U ..
@@ -401,19 +401,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 69 `c
 -> 58 `c
 -> 32 `c
--> 50 `c
+-> 48 `c
 -> 48 `c
 -> 58 `c
--> 51 `c
--> 55 `c
+-> 48 `c
+-> 48 `c
 -> 58 `c
 -> 48 `c
 -> 48 `c
 -> 0 `c
 ..
 ]
-"72
-[; ;main_prueba3_mini2.c: 72: static char Date[] = "DATE: 06/03/2021";
+"74
+[; ;main_prueba3_mini2.c: 74: static char Date[] = "DATE: 00/00/0000";
 [v _Date `uc ~T0 @X0 -> 17 `i s ]
 [i _Date
 :U ..
@@ -424,15 +424,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 58 `c
 -> 32 `c
 -> 48 `c
--> 54 `c
+-> 48 `c
 -> 47 `c
 -> 48 `c
--> 51 `c
--> 47 `c
--> 50 `c
 -> 48 `c
--> 50 `c
--> 49 `c
+-> 47 `c
+-> 48 `c
+-> 48 `c
+-> 48 `c
+-> 48 `c
 -> 0 `c
 ..
 ]
@@ -537,50 +537,50 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_prueba3_mini2.c: 120:     while (1) {
 [e :U 154 ]
 {
-"122
-[; ;main_prueba3_mini2.c: 122:         I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
 "123
-[; ;main_prueba3_mini2.c: 123:         I2C_Master_Write(0xD0);
-[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;main_prueba3_mini2.c: 123:         I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
 "124
-[; ;main_prueba3_mini2.c: 124:         I2C_Master_Write(0);
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main_prueba3_mini2.c: 124:         I2C_Master_Write(0xD0);
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
 "125
-[; ;main_prueba3_mini2.c: 125:         I2C_Master_RepeatedStart();
-[e ( _I2C_Master_RepeatedStart ..  ]
+[; ;main_prueba3_mini2.c: 125:         I2C_Master_Write(0);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
 "126
-[; ;main_prueba3_mini2.c: 126:         I2C_Master_Write(0xD1);
-[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+[; ;main_prueba3_mini2.c: 126:         I2C_Master_RepeatedStart();
+[e ( _I2C_Master_RepeatedStart ..  ]
 "127
-[; ;main_prueba3_mini2.c: 127:         second = I2C_Master_Read(1);
-[e = _second -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 127:         I2C_Master_Write(0xD1);
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
 "128
-[; ;main_prueba3_mini2.c: 128:         minute = I2C_Master_Read(1);
-[e = _minute -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 128:         second = I2C_Master_Read(1);
+[e = _second -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
 "129
-[; ;main_prueba3_mini2.c: 129:         hour = I2C_Master_Read(1);
-[e = _hour -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 129:         minute = I2C_Master_Read(1);
+[e = _minute -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
 "130
-[; ;main_prueba3_mini2.c: 130:         I2C_Master_Read(1);
-[e ( _I2C_Master_Read (1 -> -> 1 `i `us ]
+[; ;main_prueba3_mini2.c: 130:         hour = I2C_Master_Read(1);
+[e = _hour -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
 "131
-[; ;main_prueba3_mini2.c: 131:         m_day = I2C_Master_Read(1);
-[e = _m_day -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 131:         I2C_Master_Read(1);
+[e ( _I2C_Master_Read (1 -> -> 1 `i `us ]
 "132
-[; ;main_prueba3_mini2.c: 132:         month = I2C_Master_Read(1);
-[e = _month -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 132:         m_day = I2C_Master_Read(1);
+[e = _m_day -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
 "133
-[; ;main_prueba3_mini2.c: 133:         year = I2C_Master_Read(0);
-[e = _year -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+[; ;main_prueba3_mini2.c: 133:         month = I2C_Master_Read(1);
+[e = _month -> ( _I2C_Master_Read (1 -> -> 1 `i `us `uc ]
 "134
-[; ;main_prueba3_mini2.c: 134:         I2C_Master_Stop();
+[; ;main_prueba3_mini2.c: 134:         year = I2C_Master_Read(0);
+[e = _year -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+"135
+[; ;main_prueba3_mini2.c: 135:         I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
-"136
-[; ;main_prueba3_mini2.c: 136:         RTC_display();
+"137
+[; ;main_prueba3_mini2.c: 137:         RTC_display();
 [e ( _RTC_display ..  ]
-"138
-[; ;main_prueba3_mini2.c: 138:         _delay((unsigned long)((100)*(8000000/4000.0)));
+"139
+[; ;main_prueba3_mini2.c: 139:         _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "141
 [; ;main_prueba3_mini2.c: 141:     }
@@ -664,132 +664,132 @@ Version 4.0 HI-TECH Software Intermediate Code
 "174
 [; ;main_prueba3_mini2.c: 174:     Time[13] = second % 10 + '0';
 [e = *U + &U _Time * -> -> -> 13 `i `ui `ux -> -> # *U &U _Time `ui `ux -> + -> % -> _second `i -> 10 `i `ui -> 48 `ui `uc ]
-"176
-[; ;main_prueba3_mini2.c: 176:     Date[6] = m_day / 10 + '0';
-[e = *U + &U _Date * -> -> -> 6 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _m_day `i -> 10 `i `ui -> 48 `ui `uc ]
 "177
-[; ;main_prueba3_mini2.c: 177:     Date[7] = m_day % 10 + '0';
-[e = *U + &U _Date * -> -> -> 7 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> % -> _m_day `i -> 10 `i `ui -> 48 `ui `uc ]
+[; ;main_prueba3_mini2.c: 177:     Date[6] = m_day / 10 + '0';
+[e = *U + &U _Date * -> -> -> 6 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _m_day `i -> 10 `i `ui -> 48 `ui `uc ]
 "178
-[; ;main_prueba3_mini2.c: 178:     Date[9] = month / 10 + '0';
-[e = *U + &U _Date * -> -> -> 9 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _month `i -> 10 `i `ui -> 48 `ui `uc ]
+[; ;main_prueba3_mini2.c: 178:     Date[7] = m_day % 10 + '0';
+[e = *U + &U _Date * -> -> -> 7 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> % -> _m_day `i -> 10 `i `ui -> 48 `ui `uc ]
 "179
-[; ;main_prueba3_mini2.c: 179:     Date[10] = month % 10 + '0';
-[e = *U + &U _Date * -> -> -> 10 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> % -> _month `i -> 10 `i `ui -> 48 `ui `uc ]
+[; ;main_prueba3_mini2.c: 179:     Date[9] = month / 10 + '0';
+[e = *U + &U _Date * -> -> -> 9 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _month `i -> 10 `i `ui -> 48 `ui `uc ]
 "180
-[; ;main_prueba3_mini2.c: 180:     Date[14] = year / 10 + '0';
-[e = *U + &U _Date * -> -> -> 14 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _year `i -> 10 `i `ui -> 48 `ui `uc ]
+[; ;main_prueba3_mini2.c: 180:     Date[10] = month % 10 + '0';
+[e = *U + &U _Date * -> -> -> 10 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> % -> _month `i -> 10 `i `ui -> 48 `ui `uc ]
 "181
-[; ;main_prueba3_mini2.c: 181:     Date[15] = year % 10 + '0';
+[; ;main_prueba3_mini2.c: 181:     Date[14] = year / 10 + '0';
+[e = *U + &U _Date * -> -> -> 14 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> / -> _year `i -> 10 `i `ui -> 48 `ui `uc ]
+"182
+[; ;main_prueba3_mini2.c: 182:     Date[15] = year % 10 + '0';
 [e = *U + &U _Date * -> -> -> 15 `i `ui `ux -> -> # *U &U _Date `ui `ux -> + -> % -> _year `i -> 10 `i `ui -> 48 `ui `uc ]
-"183
-[; ;main_prueba3_mini2.c: 183:     Lcd_Set_Cursor(1,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"184
-[; ;main_prueba3_mini2.c: 184:     Lcd_Write_String(Time);
-[e ( _Lcd_Write_String (1 &U _Time ]
 "185
-[; ;main_prueba3_mini2.c: 185:     Lcd_Set_Cursor(2,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+[; ;main_prueba3_mini2.c: 185:     Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "186
-[; ;main_prueba3_mini2.c: 186:     Lcd_Write_String(Date);
-[e ( _Lcd_Write_String (1 &U _Date ]
+[; ;main_prueba3_mini2.c: 186:     Lcd_Write_String(Time);
+[e ( _Lcd_Write_String (1 &U _Time ]
 "187
-[; ;main_prueba3_mini2.c: 187: }
+[; ;main_prueba3_mini2.c: 187:     Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"188
+[; ;main_prueba3_mini2.c: 188:     Lcd_Write_String(Date);
+[e ( _Lcd_Write_String (1 &U _Date ]
+"189
+[; ;main_prueba3_mini2.c: 189: }
 [e :UE 158 ]
 }
-"189
-[; ;main_prueba3_mini2.c: 189: void Write_to_RTC(void){
+"192
+[; ;main_prueba3_mini2.c: 192: void Write_to_RTC(void){
 [v _Write_to_RTC `(v ~T0 @X0 1 ef ]
 {
 [e :U _Write_to_RTC ]
 [f ]
-"190
-[; ;main_prueba3_mini2.c: 190:     I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
-"191
-[; ;main_prueba3_mini2.c: 191:     I2C_Master_Write(0xD0);
-[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-"192
-[; ;main_prueba3_mini2.c: 192:     I2C_Master_Write(0);
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
 "193
-[; ;main_prueba3_mini2.c: 193:     I2C_Master_Write(0);
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main_prueba3_mini2.c: 193:     I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
 "194
-[; ;main_prueba3_mini2.c: 194:     I2C_Master_Write(58);
-[e ( _I2C_Master_Write (1 -> -> 58 `i `ui ]
+[; ;main_prueba3_mini2.c: 194:     I2C_Master_Write(0xD0);
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
 "195
-[; ;main_prueba3_mini2.c: 195:     I2C_Master_Write(9);
-[e ( _I2C_Master_Write (1 -> -> 9 `i `ui ]
+[; ;main_prueba3_mini2.c: 195:     I2C_Master_Write(0);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
 "196
-[; ;main_prueba3_mini2.c: 196:     I2C_Master_Write(1);
-[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
+[; ;main_prueba3_mini2.c: 196:     I2C_Master_Write(0);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
 "197
-[; ;main_prueba3_mini2.c: 197:     I2C_Master_Write(6);
-[e ( _I2C_Master_Write (1 -> -> 6 `i `ui ]
-"198
-[; ;main_prueba3_mini2.c: 198:     I2C_Master_Write(3);
+[; ;main_prueba3_mini2.c: 197:     I2C_Master_Write(3);
 [e ( _I2C_Master_Write (1 -> -> 3 `i `ui ]
+"198
+[; ;main_prueba3_mini2.c: 198:     I2C_Master_Write(10);
+[e ( _I2C_Master_Write (1 -> -> 10 `i `ui ]
 "199
-[; ;main_prueba3_mini2.c: 199:     I2C_Master_Write(27);
-[e ( _I2C_Master_Write (1 -> -> 27 `i `ui ]
+[; ;main_prueba3_mini2.c: 199:     I2C_Master_Write(1);
+[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
 "200
-[; ;main_prueba3_mini2.c: 200:     I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
+[; ;main_prueba3_mini2.c: 200:     I2C_Master_Write(6);
+[e ( _I2C_Master_Write (1 -> -> 6 `i `ui ]
 "201
-[; ;main_prueba3_mini2.c: 201: }
+[; ;main_prueba3_mini2.c: 201:     I2C_Master_Write(3);
+[e ( _I2C_Master_Write (1 -> -> 3 `i `ui ]
+"202
+[; ;main_prueba3_mini2.c: 202:     I2C_Master_Write(27);
+[e ( _I2C_Master_Write (1 -> -> 27 `i `ui ]
+"203
+[; ;main_prueba3_mini2.c: 203:     I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"204
+[; ;main_prueba3_mini2.c: 204: }
 [e :UE 159 ]
 }
-"203
-[; ;main_prueba3_mini2.c: 203: void setup(void) {
+"207
+[; ;main_prueba3_mini2.c: 207: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"205
-[; ;main_prueba3_mini2.c: 205:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
-"206
-[; ;main_prueba3_mini2.c: 206:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"207
-[; ;main_prueba3_mini2.c: 207:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
 "208
-[; ;main_prueba3_mini2.c: 208:     TRISB = 0b00000011;
-[e = _TRISB -> -> 3 `i `uc ]
+[; ;main_prueba3_mini2.c: 208:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
 "209
-[; ;main_prueba3_mini2.c: 209:     TRISCbits.TRISC6 = 0;
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 209:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "210
-[; ;main_prueba3_mini2.c: 210:     TRISCbits.TRISC7 = 1;
-[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
+[; ;main_prueba3_mini2.c: 210:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
 "211
-[; ;main_prueba3_mini2.c: 211:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 211:     TRISB = 0b00000011;
+[e = _TRISB -> -> 3 `i `uc ]
 "212
-[; ;main_prueba3_mini2.c: 212:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 212:     TRISCbits.TRISC6 = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
 "213
-[; ;main_prueba3_mini2.c: 213:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 213:     TRISCbits.TRISC7 = 1;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
 "214
-[; ;main_prueba3_mini2.c: 214:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 214:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "215
-[; ;main_prueba3_mini2.c: 215:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 215:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "216
-[; ;main_prueba3_mini2.c: 216:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 216:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "217
-[; ;main_prueba3_mini2.c: 217:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
+[; ;main_prueba3_mini2.c: 217:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "218
-[; ;main_prueba3_mini2.c: 218:     I2C_Master_Init(100000);
+[; ;main_prueba3_mini2.c: 218:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
+"219
+[; ;main_prueba3_mini2.c: 219:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"220
+[; ;main_prueba3_mini2.c: 220:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
+"221
+[; ;main_prueba3_mini2.c: 221:     I2C_Master_Init(100000);
 [e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-"223
-[; ;main_prueba3_mini2.c: 223: }
+"226
+[; ;main_prueba3_mini2.c: 226: }
 [e :UE 160 ]
 }

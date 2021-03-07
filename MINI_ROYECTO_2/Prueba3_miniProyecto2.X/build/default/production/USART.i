@@ -1,4 +1,4 @@
-# 1 "LCD.c"
+# 1 "USART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "LCD.c" 2
-# 11 "LCD.c"
+# 1 "USART.c" 2
+# 1 "./USART.h" 1
+# 13 "./USART.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,10 +2489,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 11 "LCD.c" 2
+# 13 "./USART.h" 2
 
-# 1 "./LCD.h" 1
-# 63 "./LCD.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2625,7 +2624,64 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 63 "./LCD.h" 2
+# 14 "./USART.h" 2
+
+
+
+
+
+void USART_Init(void);
+void USART_Init_BaudRate(void);
+void Trasmission_1(char val_1_mapeado);
+void Trasmission_2(char val_2_mapeado);
+void USART_INTERRUPT(void);
+void Write_USART(uint8_t a);
+void Write_USART_String(char *a);
+uint8_t Read_USART();
+# 1 "USART.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
 
 
 
@@ -2633,115 +2689,99 @@ typedef uint16_t uintptr_t;
 
 
 
-
-void Lcd_Init(void);
-void Lcd_Port(char a);
-void Lcd_Cmd(char a);
-void Lcd_Set_Cursor(char a, char b);
-void Lcd_Write_Char(char a);
-void Lcd_Write_String(char *a);
-void Lcd_Shift_Right();
-void Lcd_Shift_Left();
-void Lcd_Clear(void);
-void LCD_Write_Nibble(uint8_t n);
-void LCD_PutC(char LCD_Char);
-# 12 "LCD.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
 
 
 
-void Lcd_Init(void){
-  Lcd_Port(0x00);
-   _delay((unsigned long)((20)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-    _delay((unsigned long)((5)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-    _delay((unsigned long)((11)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-  Lcd_Cmd(0x38);
-  Lcd_Cmd(0x0C);
-  Lcd_Cmd(0x01);
-  Lcd_Cmd(0x06);
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 2 "USART.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 3 "USART.c" 2
+
+
+
+
+
+void USART_Init(void){
+
+    RCSTAbits.SPEN = 1;
+    TXSTAbits.SYNC = 0;
+
+    TXSTAbits.TXEN = 1;
+
+    RCSTAbits.CREN = 1;
+    RCREG = 0;
+}
+
+void USART_Init_BaudRate(void){
+    SPBRGH = 0;
+    SPBRG = 12;
+}
+
+void USART_INTERRUPT(void){
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIE1bits.RCIE = 1;
+
+
 }
 
 
-void Lcd_Port(char a){
-    PORTD = a;
+void Write_USART(uint8_t a){
+    while(!TRMT);
+    TXREG=a;
 }
-
-void Lcd_Cmd(char a){
- PORTEbits.RE0 = 0;
- Lcd_Port(a);
- PORTEbits.RE2 = 1;
-        _delay((unsigned long)((4)*(8000000/4000.0)));
-        PORTEbits.RE2 = 0;
+void Write_USART_String(char *a){
+    uint8_t i;
+    for(i=0;a[i]!='\0';i++){
+        Write_USART(a[i]);
+    }
 }
-
-
-void Lcd_Clear(void){
- Lcd_Cmd(0);
- Lcd_Cmd(1);
-}
-
-
-void Lcd_Set_Cursor(char a, char b){
- char temp;
- if(a == 1){
-        temp = 0x80 + b - 1;
-        Lcd_Cmd(temp);
- }
- else if(a == 2){
-  temp = 0xC0 + b - 1;
-  Lcd_Cmd(temp);
- }
-}
-
-
-void Lcd_Write_Char(char a){
-   PORTEbits.RE0 = 1;
-   Lcd_Port(a);
-   PORTEbits.RE2 = 1;
-   _delay((unsigned long)((40)*(8000000/4000000.0)));
-   PORTEbits.RE2 = 0;
-}
-
-
-void Lcd_Write_String(char *a){
- int i;
- for(i=0;a[i]!='\0';i++)
-    Lcd_Write_Char(a[i]);
-}
-
-
-void Lcd_Shift_Right(void){
- Lcd_Cmd(0x01);
- Lcd_Cmd(0x0C);
-}
-
-
-void Lcd_Shift_Left(void){
- Lcd_Cmd(0x01);
- Lcd_Cmd(0x08);
-}
-
-
-void LCD_Write_Nibble(uint8_t n){
-  PORTEbits.RE0 = PORTEbits.RE0;
-  PORTDbits.RD4 = n & 0x01;
-  PORTDbits.RD5 = (n >> 1) & 0x01;
-  PORTDbits.RD6 = (n >> 2) & 0x01;
-  PORTDbits.RD7 = (n >> 3) & 0x01;
-
-
-  PORTEbits.RE2 = 0;
-  _delay((unsigned long)((1)*(8000000/4000000.0)));
-  PORTEbits.RE2 = 1;
-  _delay((unsigned long)((1)*(8000000/4000000.0)));
-  PORTEbits.RE2 = 0;
-  _delay((unsigned long)((100)*(8000000/4000000.0)));
-}
-
-void LCD_PutC(char LCD_Char){
-  PORTEbits.RE0 = 1;
-  LCD_Write_Nibble(LCD_Char >> 4);
-  LCD_Write_Nibble(LCD_Char );
+uint8_t Read_USART(){
+  while(!RCIF);
+  return RCREG;
 }
