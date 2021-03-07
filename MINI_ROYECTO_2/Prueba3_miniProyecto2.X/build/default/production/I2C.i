@@ -2698,8 +2698,7 @@ void I2C_Master_Wait()
 
 
 
-void I2C_Master_Start()
-{
+void I2C_Master_Start(){
     I2C_Master_Wait();
     SSPCON2bits.SEN = 1;
 }

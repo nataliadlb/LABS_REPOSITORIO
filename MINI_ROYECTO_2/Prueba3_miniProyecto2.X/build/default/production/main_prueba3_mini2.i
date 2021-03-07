@@ -2867,9 +2867,53 @@ uint8_t Read_USART();
 void initOsc(uint8_t IRCF);
 # 33 "main_prueba3_mini2.c" 2
 
+# 1 "./I2C.h" 1
+# 23 "./I2C.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 23 "./I2C.h" 2
+# 32 "./I2C.h"
+void I2C_Master_Init(const unsigned long c);
+# 41 "./I2C.h"
+void I2C_Master_Wait(void);
 
 
-#pragma config FOSC = HS
+
+
+void I2C_Master_Start(void);
+
+
+
+
+void I2C_Master_RepeatedStart(void);
+
+
+
+
+void I2C_Master_Stop(void);
+
+
+
+
+
+
+void I2C_Master_Write(unsigned d);
+
+
+
+
+
+unsigned short I2C_Master_Read(unsigned short a);
+
+
+
+
+void I2C_Slave_Init(uint8_t address);
+# 34 "main_prueba3_mini2.c" 2
+
+
+
+
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2883,7 +2927,9 @@ void initOsc(uint8_t IRCF);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 62 "main_prueba3_mini2.c"
+# 63 "main_prueba3_mini2.c"
+uint8_t i, second, minute, hour, m_day, month, year;
+char Time[20];
 float S1_val = 0.0;
 float S2_val = 0.0;
 char data_total[20];
@@ -2895,11 +2941,10 @@ char data_recive;
 
 
 void setup(void);
-void ADC_channel1(void);
-void ADC_channel2(void);
-void ADC_to_string(void);
 void Show_val_LCD(void);
-
+void RTC_display(void);
+uint8_t decimal_to_bcd(uint8_t number);
+uint8_t bcd_to_decimal(uint8_t number) ;
 
 
 
@@ -2908,13 +2953,17 @@ void Show_val_LCD(void);
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
         data_recive = RCREG;
-        if (data_recive == '+'){
-            cont++;
-            PORTB = cont;
+        if (data_recive == 'P11'){
+            PORTAbits.RA6 = 1;
         }
-        else if (data_recive == '-'){
-            cont--;
-            PORTB = cont;
+        else if (data_recive == 'P10'){
+            PORTAbits.RA6 = 0;
+        }
+        else if (data_recive == 'P21'){
+            PORTAbits.RA7 = 1;
+        }
+        else if (data_recive == 'P20'){
+            PORTAbits.RA7 = 0;
         }
         data_recive = 0;
         }
@@ -2929,14 +2978,31 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-
+    Lcd_Set_Cursor(1,1);
+    Lcd_Write_String("TIME: 00:00:00");
 
     while (1) {
+        I2C_Master_Start();
+        I2C_Master_Write(0xD0);
+        I2C_Master_Write(0);
+        I2C_Master_RepeatedStart();
+        I2C_Master_Write(0xD1);
+        second = I2C_Master_Read(1);
+        minute = I2C_Master_Read(1);
+        hour = I2C_Master_Read(1);
+        I2C_Master_Read(1);
+        m_day = I2C_Master_Read(1);
+        month = I2C_Master_Read(1);
+        year = I2C_Master_Read(0);
+        I2C_Master_Stop();
+
+        RTC_display();
 
 
 
         Show_val_LCD();
-        _delay((unsigned long)((500)*(8000000/4000.0)));
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+
 
     }
 }
@@ -2948,19 +3014,58 @@ void main(void) {
 
 void Show_val_LCD(void){
 
-    Lcd_Clear();
-    Lcd_Set_Cursor(1,2);
-    Lcd_Write_String("S1:   S2:   S3:");
+    sprintf(data_total, " %d", cont);
     Lcd_Set_Cursor(2,1);
-    Lcd_Write_String("HOLA PINCHE");
+    Lcd_Write_String(data_total);
+    cont++;
 }
+
+uint8_t bcd_to_decimal(uint8_t number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+
+
+uint8_t decimal_to_bcd(uint8_t number) {
+  return(((number / 10) << 4) + (number % 10));
+}
+
+void RTC_display(void){
+    static char Time[] = "TIME: 00:00:00";
+    static char Date[] = "DATE: 00/00/2000";
+
+
+    second = bcd_to_decimal(second);
+    minute = bcd_to_decimal(minute);
+    hour = bcd_to_decimal(hour);
+    m_day = bcd_to_decimal(m_day);
+    month = bcd_to_decimal(month);
+    year = bcd_to_decimal(year);
+
+
+
+    Time[6] = hour / 10 + '0';
+    Time[7] = hour % 10 + '0';
+    Time[9] = minute / 10 + '0';
+    Time[10] = minute % 10 + '0';
+    Time[12] = second / 10 + '0';
+    Time[13] = second % 10 + '0';
+
+    Date[6] = m_day / 10 + '0';
+    Date[7] = m_day % 10 + '0';
+    Date[9] = month / 10 + '0';
+    Date[10] = month % 10 + '0';
+    Date[14] = year / 10 + '0';
+    Date[15] = year % 10 + '0';
+# 201 "main_prueba3_mini2.c"
+}
+
 
 
 void setup(void) {
 
-    ANSEL = 0b00000011;
+    ANSEL = 0;
     ANSELH = 0;
-    TRISA = 0b00000011;
+    TRISA = 0;
     TRISB = 0;
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
@@ -2971,6 +3076,7 @@ void setup(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    I2C_Master_Init(100000);
 
 
 

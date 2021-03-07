@@ -16,10 +16,10 @@
 
 uint8_t bcd_to_decimal(uint8_t number);
 uint8_t decimal_to_bcd(uint8_t number);
-void RTC_display();
-__bit debounce();
-void blink(void);
-uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter);
+//void RTC_display(void);
+//__bit debounce();
+//void blink(void);
+//uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter);
 
 
 #endif	/* RTC_H */
