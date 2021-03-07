@@ -16,6 +16,9 @@
 #include <pic16f887.h>
 #include "I2C.h"
 #include "USART.h"
+#include "LCD.h"
+#include "RTC.h"
+#include "Oscilador"
 
 //****************************************************************************//
 //CONFIGURACION BITS                                                          //
@@ -40,7 +43,21 @@
 //DEFINE                                                                      //
 //****************************************************************************//
 #define _XTAL_FREQ 8000000
-
+#define button1      RB0   // button B1 is connected to RB0 pin
+#define button2      RB1   // button B2 is connected to RB1 pin
+//LCD module connections
+#define LCD_RS       RD0
+#define LCD_EN       RD1
+#define LCD_D4       RD2
+#define LCD_D5       RD3
+#define LCD_D6       RD4
+#define LCD_D7       RD5
+#define LCD_RS_DIR   TRISD0
+#define LCD_EN_DIR   TRISD1
+#define LCD_D4_DIR   TRISD2
+#define LCD_D5_DIR   TRISD3
+#define LCD_D6_DIR   TRISD4
+#define LCD_D7_DIR   TRISD5
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
@@ -48,11 +65,11 @@ char data_recive;
 uint8_t cont;
 char prueba;
 int holiwis;
+uint8_t  i, second, minute, hour, m_day, month, year;
 //****************************************************************************//
 //PROTOTIPOS DE FUNCIONES                                                     //
 //****************************************************************************//
 void setup(void);
-void MPU6050_Init(void);
 //****************************************************************************//
 //INTERRUPCIONES                                                    //
 //****************************************************************************//
@@ -81,9 +98,7 @@ void __interrupt() ISR(void) {
 
 void main(void) {
     setup();
-    prueba = "Hola";
-    //MPU6050_Init();
-
+    
     //************************************************************************//
     //LOOP PRINCIPAL                                                          //
     //************************************************************************//
@@ -101,21 +116,42 @@ void main(void) {
 //        I2C_Master_Stop();
 //        __delay_ms(200);
 //        PORTB++;  
-        
-        // ----* USART *---- //
-        PORTAbits.RA7 = 1;
-        __delay_ms(1000);
-        PORTAbits.RA6 = 1;
-        __delay_ms(1000);
-        PORTAbits.RA7 = 0;
-        __delay_ms(1000);
-        PORTAbits.RA6 = 0;
-        __delay_ms(1000);
-        Write_USART(holiwis); 
-        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
-        Write_USART(10);
-        PORTD = holiwis;
-        holiwis++;
+        I2C_Master_Start();           // start I2C
+        I2C_Master_Write(0xD0);       // RTC chip address
+        I2C_Master_Write(0);          // send register address
+        I2C_Master_RepeatedStart();  // restart I2C
+        I2C_Master_Write(0xD1);       // initialize data read
+        second = I2C_Master_Read(1);  // read seconds from register 0
+        minute = I2C_Master_Read(1);  // read minutes from register 1
+        hour   = I2C_Master_Read(1);  // read hour from register 2
+        I2C_Master_Read(1);           // read day from register 3 (not used)
+        m_day  = I2C_Master_Read(1);  // read date from register 4
+        month  = I2C_Master_Read(1);  // read month from register 5
+        year   = I2C_Master_Read(0);  // read year from register 6
+        I2C_Master_Stop();            // stop I2C
+
+        RTC_display();    // print time & date
+    
+    //  LCD_Goto(1, 1);    // go to column 1, row 1
+    //  LCD_Print(Time);   // print time
+    //  LCD_Goto(1, 2);    // go to column 1, row 2
+    //  LCD_Print(Date);   // print date
+    
+//    __delay_ms(50);   // wait 50 ms
+//        // ----* USART *---- //
+//        PORTAbits.RA7 = 1;
+//        __delay_ms(1000);
+//        PORTAbits.RA6 = 1;
+//        __delay_ms(1000);
+//        PORTAbits.RA7 = 0;
+//        __delay_ms(1000);
+//        PORTAbits.RA6 = 0;
+//        __delay_ms(1000);
+//        Write_USART(holiwis); 
+//        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+//        Write_USART(10);
+//        PORTD = holiwis;
+//        holiwis++;
     }
     //return;
 }
@@ -125,6 +161,9 @@ void main(void) {
 //****************************************************************************//
 
 void setup(void) {
+    OSCCON = 0X70;
+    nRBPU  = 0;      // clear RBPU bit (OPTION_REG.7)
+    WPUB   = 0x03;
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
@@ -141,6 +180,7 @@ void setup(void) {
     USART_Init();
     USART_INTERRUPT();
     I2C_Master_Init(100000);        // Inicializar Comuncación I2C
+    Lcd_Init();
 }
 
 //****************************************************************************//
