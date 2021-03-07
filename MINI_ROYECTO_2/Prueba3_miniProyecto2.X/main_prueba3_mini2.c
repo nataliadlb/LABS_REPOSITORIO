@@ -120,7 +120,7 @@ void main(void) {
    
     while (1) {
         
-        //código obtenido de Simple Projects, pero modificado con la libreía I2C
+        //Código obtenido de Simple Projects, pero modificado con la libreía I2C
         I2C_Master_Start();           // start I2C
         I2C_Master_Write(0xD0);       // RTC chip address
         I2C_Master_Write(0);          // send register address
@@ -136,9 +136,11 @@ void main(void) {
         I2C_Master_Stop();            // stop I2C
 
         RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
-        Write_USART_String(Time); //enviar el string con los valores a la pc
+        
+        // ---- comunicación serial ---- //
+        Write_USART_String(Time); //enviar el string con los valores de hora
         Write_USART_String("  ");
-        Write_USART_String(Date);
+        Write_USART_String(Date); //enviar el string con los valores de fecha
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
         __delay_ms(100);

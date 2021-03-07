@@ -103,11 +103,11 @@ void handleMessage1(AdafruitIO_Data *data) {
   
   if(data->toString() == "ON"){
     Serial.println("HIGH");
-    piloto = "P11";
+    piloto = "1";
   }
   else{
     Serial.println("OFF");
-    piloto = "P10";
+    piloto = "2";
   }
   Serial.println(" ");
   Serial.print("valor: ");
@@ -123,12 +123,12 @@ void handleMessage2(AdafruitIO_Data *data) {
   
   if(data->toString() == "ON"){
     Serial.println("HIGH");
-    piloto = "P21";
+    piloto = "3";
 
   }
   else{
     Serial.println("OFF");
-    piloto = "P20";
+    piloto = "4";
     
   }
   Serial.println(" ");
