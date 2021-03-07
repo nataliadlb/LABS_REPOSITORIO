@@ -2986,7 +2986,21 @@ void main(void) {
 
 
     while (1) {
-# 178 "main_prueba3_mini2.c"
+# 168 "main_prueba3_mini2.c"
+          I2C_Master_Start();
+          I2C_Master_Write(0xD0);
+          I2C_Master_Write(0);
+          I2C_Master_Write(0);
+          I2C_Master_Write(minute);
+          I2C_Master_Write(hour);
+          I2C_Master_Write(1);
+          I2C_Master_Write(6);
+          I2C_Master_Write(3);
+          I2C_Master_Write(27);
+          I2C_Master_Stop();
+
+      _delay((unsigned long)((200)*(8000000/4000.0)));
+
         I2C_Master_Start();
         I2C_Master_Write(0xD0);
         I2C_Master_Write(0);
@@ -3006,9 +3020,6 @@ void main(void) {
 
 
 
-        _delay((unsigned long)((100)*(8000000/4000.0)));
-
-
     }
 }
 
@@ -3016,16 +3027,6 @@ void main(void) {
 
 
 
-
-void Show_val_LCD(void){
-
-
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String("HOLA PINCHE");
-
-
-
-}
 
 uint8_t bcd_to_decimal(uint8_t number) {
   return((number >> 4) * 10 + (number & 0x0F));

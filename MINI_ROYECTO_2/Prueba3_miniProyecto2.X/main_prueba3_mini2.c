@@ -119,27 +119,7 @@ void main(void) {
 
     
     while (1) {
-//      minute = decimal_to_bcd(minute);
-//      hour   = decimal_to_bcd(hour);
-//      m_day  = decimal_to_bcd(m_day);
-//      month  = decimal_to_bcd(month);
-//      year   = decimal_to_bcd(year);
-//      // end conversion
-//
-//      // Write data to DS3231 RTC
-//      I2C_Master_Start();         // start I2C
-//      I2C_Master_Write(0xD0);     // RTC chip address
-//      I2C_Master_Write(0);        // send register address
-//      I2C_Master_Write(0);        // reset seconds and start oscillator
-//      I2C_Master_Write(minute);   // write minute value to RTC chip
-//      I2C_Master_Write(hour);     // write hour value to RTC chip
-//      I2C_Master_Write(1);        // write day value (not used)
-//      I2C_Master_Write(m_day);    // write date value to RTC chip
-//      I2C_Master_Write(month);    // write month value to RTC chip
-//      I2C_Master_Write(year);     // write year value to RTC chip
-//      I2C_Master_Stop();          // stop I2C
-//
-//      __delay_ms(200);
+
 //        if(!button1)     // if button B1 is pressed
 //        if(debounce()){ // call debounce function (make sure if B1 is pressed)
 //          i = 0;
@@ -175,6 +155,30 @@ void main(void) {
 //      __delay_ms(200);
 // 
 //    }
+        
+          // convert decimal to BCD
+          //minute = decimal_to_bcd(minute);
+          //hour   = decimal_to_bcd(hour);
+//          m_day  = decimal_to_bcd(m_day);
+//          month  = decimal_to_bcd(month);
+//          year   = decimal_to_bcd(year);
+          // end conversion
+
+          // Write data to DS3231 RTC
+          I2C_Master_Start();         // start I2C
+          I2C_Master_Write(0xD0);     // RTC chip address
+          I2C_Master_Write(0);        // send register address
+          I2C_Master_Write(0);        // reset seconds and start oscillator
+          I2C_Master_Write(minute);   // write minute value to RTC chip
+          I2C_Master_Write(hour);     // write hour value to RTC chip
+          I2C_Master_Write(1);        // write day value (not used)
+          I2C_Master_Write(6);    // write date value to RTC chip
+          I2C_Master_Write(3);    // write month value to RTC chip
+          I2C_Master_Write(27);     // write year value to RTC chip
+          I2C_Master_Stop();          // stop I2C
+
+      __delay_ms(200);
+        
         I2C_Master_Start();           // start I2C
         I2C_Master_Write(0xD0);       // RTC chip address
         I2C_Master_Write(0);          // send register address
@@ -191,10 +195,7 @@ void main(void) {
 
         RTC_display();
         
-        
-        //Write_USART_String("S1   S2   S3 \n"); //enviar los datos del pic a la compu
-        //Show_val_LCD();
-        __delay_ms(100);
+        //__delay_ms(100);
         
 
     }
@@ -204,16 +205,6 @@ void main(void) {
 //Funciones
 //******************************************************************************
 
-
-void Show_val_LCD(void){
-    //Valores de S1 y S2
-    //sprintf(data_total, " %d", cont);
-    Lcd_Set_Cursor(2,1); //nombres S1, S2 y S3
-    Lcd_Write_String("HOLA PINCHE");
-//    cont++;
-//    Lcd_Set_Cursor(1,1);
-//    Lcd_Write_String(Time);
-}
 
 uint8_t bcd_to_decimal(uint8_t number) {
   return((number >> 4) * 10 + (number & 0x0F));
