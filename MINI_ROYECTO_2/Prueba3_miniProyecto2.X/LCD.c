@@ -86,3 +86,24 @@ void Lcd_Shift_Left(void){
 	Lcd_Cmd(0x08);
 }
 
+void LCD_Write_Nibble(uint8_t n){
+  RS = RS;
+  D4 = n & 0x01;
+  D5 = (n >> 1) & 0x01;
+  D6 = (n >> 2) & 0x01;
+  D7 = (n >> 3) & 0x01;
+
+  // send enable pulse
+  EN = 0;
+  __delay_us(1);
+  EN = 1;
+  __delay_us(1);
+  EN = 0;
+  __delay_us(100);
+}
+
+void LCD_PutC(char LCD_Char){
+  RS = 1;
+  LCD_Write_Nibble(LCD_Char >> 4);
+  LCD_Write_Nibble(LCD_Char );
+}

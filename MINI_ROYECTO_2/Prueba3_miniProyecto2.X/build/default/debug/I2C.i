@@ -1,4 +1,4 @@
-# 1 "LCD.c"
+# 1 "I2C.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,10 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "LCD.c" 2
-# 11 "LCD.c"
+# 1 "I2C.c" 2
+# 16 "I2C.c"
+# 1 "./I2C.h" 1
+# 21 "./I2C.h"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,10 +2490,9 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 11 "LCD.c" 2
+# 21 "./I2C.h" 2
 
-# 1 "./LCD.h" 1
-# 63 "./LCD.h"
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2625,122 +2626,146 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 63 "./LCD.h" 2
+# 23 "./I2C.h" 2
+# 32 "./I2C.h"
+void I2C_Master_Init(const unsigned long c);
+# 41 "./I2C.h"
+void I2C_Master_Wait(void);
+
+
+
+
+void I2C_Master_Start(void);
+
+
+
+
+void I2C_Master_RepeatedStart(void);
+
+
+
+
+void I2C_Master_Stop(void);
 
 
 
 
 
 
-
-
-void Lcd_Init(void);
-void Lcd_Port(char a);
-void Lcd_Cmd(char a);
-void Lcd_Set_Cursor(char a, char b);
-void Lcd_Write_Char(char a);
-void Lcd_Write_String(char *a);
-void Lcd_Shift_Right();
-void Lcd_Shift_Left();
-void Lcd_Clear(void);
-void LCD_Write_Nibble(uint8_t n);
-void LCD_PutC(char LCD_Char);
-# 12 "LCD.c" 2
+void I2C_Master_Write(unsigned d);
 
 
 
-void Lcd_Init(void){
-  Lcd_Port(0x00);
-   _delay((unsigned long)((20)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-    _delay((unsigned long)((5)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-    _delay((unsigned long)((11)*(8000000/4000.0)));
-  Lcd_Cmd(0x30);
-  Lcd_Cmd(0x38);
-  Lcd_Cmd(0x0C);
-  Lcd_Cmd(0x01);
-  Lcd_Cmd(0x06);
+
+
+unsigned short I2C_Master_Read(unsigned short a);
+
+
+
+
+void I2C_Slave_Init(uint8_t address);
+# 16 "I2C.c" 2
+
+
+
+
+
+void I2C_Master_Init(const unsigned long c)
+{
+    SSPCON = 0b00101000;
+
+
+
+
+    SSPCON2 = 0;
+
+
+
+
+
+
+    SSPADD = (8000000/(4*c))-1;
+    SSPSTAT = 0;
+    TRISCbits.TRISC3 = 1;
+    TRISCbits.TRISC4 = 1;
+}
+# 48 "I2C.c"
+void I2C_Master_Wait()
+{
+    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
 
-void Lcd_Port(char a){
-    PORTD = a;
-}
 
-void Lcd_Cmd(char a){
- PORTEbits.RE0 = 0;
- Lcd_Port(a);
- PORTEbits.RE2 = 1;
-        _delay((unsigned long)((4)*(8000000/4000.0)));
-        PORTEbits.RE2 = 0;
+
+void I2C_Master_Start(){
+    I2C_Master_Wait();
+    SSPCON2bits.SEN = 1;
 }
 
 
-void Lcd_Clear(void){
- Lcd_Cmd(0);
- Lcd_Cmd(1);
+
+
+void I2C_Master_RepeatedStart()
+{
+    I2C_Master_Wait();
+    SSPCON2bits.RSEN = 1;
 }
 
 
-void Lcd_Set_Cursor(char a, char b){
- char temp;
- if(a == 1){
-        temp = 0x80 + b - 1;
-        Lcd_Cmd(temp);
- }
- else if(a == 2){
-  temp = 0xC0 + b - 1;
-  Lcd_Cmd(temp);
- }
+
+
+void I2C_Master_Stop()
+{
+    I2C_Master_Wait();
+    SSPCON2bits.PEN = 1;
 }
 
 
-void Lcd_Write_Char(char a){
-   PORTEbits.RE0 = 1;
-   Lcd_Port(a);
-   PORTEbits.RE2 = 1;
-   _delay((unsigned long)((40)*(8000000/4000000.0)));
-   PORTEbits.RE2 = 0;
+
+
+
+
+void I2C_Master_Write(unsigned d)
+{
+    I2C_Master_Wait();
+    SSPBUF = d;
 }
 
 
-void Lcd_Write_String(char *a){
- int i;
- for(i=0;a[i]!='\0';i++)
-    Lcd_Write_Char(a[i]);
+
+
+
+unsigned short I2C_Master_Read(unsigned short a)
+{
+    unsigned short temp;
+    I2C_Master_Wait();
+    SSPCON2bits.RCEN = 1;
+    I2C_Master_Wait();
+    temp = SSPBUF;
+    I2C_Master_Wait();
+    if(a == 1){
+        SSPCON2bits.ACKDT = 0;
+    }else{
+        SSPCON2bits.ACKDT = 1;
+    }
+    SSPCON2bits.ACKEN = 1;
+    return temp;
 }
 
 
-void Lcd_Shift_Right(void){
- Lcd_Cmd(0x01);
- Lcd_Cmd(0x0C);
-}
 
 
-void Lcd_Shift_Left(void){
- Lcd_Cmd(0x01);
- Lcd_Cmd(0x08);
-}
-
-void LCD_Write_Nibble(uint8_t n){
-  PORTEbits.RE0 = PORTEbits.RE0;
-  PORTDbits.RD4 = n & 0x01;
-  PORTDbits.RD5 = (n >> 1) & 0x01;
-  PORTDbits.RD6 = (n >> 2) & 0x01;
-  PORTDbits.RD7 = (n >> 3) & 0x01;
-
-
-  PORTEbits.RE2 = 0;
-  _delay((unsigned long)((1)*(8000000/4000000.0)));
-  PORTEbits.RE2 = 1;
-  _delay((unsigned long)((1)*(8000000/4000000.0)));
-  PORTEbits.RE2 = 0;
-  _delay((unsigned long)((100)*(8000000/4000000.0)));
-}
-
-void LCD_PutC(char LCD_Char){
-  PORTEbits.RE0 = 1;
-  LCD_Write_Nibble(LCD_Char >> 4);
-  LCD_Write_Nibble(LCD_Char );
+void I2C_Slave_Init(uint8_t address)
+{
+    SSPADD = address;
+    SSPCON = 0x36;
+    SSPSTAT = 0x80;
+    SSPCON2 = 0x01;
+    TRISC3 = 1;
+    TRISC4 = 1;
+    GIE = 1;
+    PEIE = 1;
+    SSPIF = 0;
+    SSPIE = 1;
 }
