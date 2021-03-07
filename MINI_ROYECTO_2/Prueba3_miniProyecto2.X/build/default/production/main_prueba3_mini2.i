@@ -2936,7 +2936,7 @@ uint8_t cont;
 char data_recive;
 
 static char Time[] = "TIME: 00:00:00";
-static char Date[] = "DATE: 00/00/0000";
+static char Date[] = "DATE: 00/00/2000";
 
 
 
@@ -2955,16 +2955,16 @@ uint8_t bcd_to_decimal(uint8_t number);
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
         data_recive = RCREG;
-        if (data_recive == 'P11'){
+        if (data_recive == '1'){
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == 'P10'){
+        else if (data_recive == '2'){
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == 'P21'){
+        else if (data_recive == '3'){
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == 'P20'){
+        else if (data_recive == '4'){
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
@@ -2981,6 +2981,7 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Write_to_RTC();
+
 
     while (1) {
 
@@ -3000,7 +3001,11 @@ void main(void) {
         I2C_Master_Stop();
 
         RTC_display();
-
+        Write_USART_String(Time);
+        Write_USART_String("  ");
+        Write_USART_String(Date);
+        Write_USART(13);
+        Write_USART(10);
         _delay((unsigned long)((100)*(8000000/4000.0)));
 
     }
@@ -3070,6 +3075,7 @@ void Write_to_RTC(void){
 
 
 void setup(void) {
+
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
@@ -3084,8 +3090,8 @@ void setup(void) {
     PORTD = 0;
     PORTE = 0;
     I2C_Master_Init(100000);
-
-
-
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
 
 }

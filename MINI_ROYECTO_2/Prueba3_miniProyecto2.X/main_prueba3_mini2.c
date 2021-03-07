@@ -71,7 +71,7 @@ uint8_t cont;
 char data_recive;
 
 static char Time[] = "TIME: 00:00:00";
-static char Date[] = "DATE: 00/00/0000";
+static char Date[] = "DATE: 00/00/2000";
 
 //******************************************************************************
 //Prototipos de funciones
@@ -90,16 +90,16 @@ uint8_t bcd_to_decimal(uint8_t number); //Binary coded decimal to decimal
 void __interrupt() ISR(void) {
     if(PIR1bits.RCIF == 1){
         data_recive = RCREG; //Recibe los datos que manda la terminal
-        if (data_recive == 'P11'){ //auementa
+        if (data_recive == '1'){ //auementa
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == 'P10'){ //decrementa
+        else if (data_recive == '2'){ //decrementa
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == 'P21'){ //decrementa
+        else if (data_recive == '3'){ //decrementa
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == 'P20'){ //decrementa
+        else if (data_recive == '4'){ //decrementa
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
@@ -116,6 +116,7 @@ void main(void) {
     Lcd_Init();
     Lcd_Clear();
     Write_to_RTC(); //escribir valores iniciales de fecha y hora al RTC
+    //Write_USART_String("HOLA PINCHE");
    
     while (1) {
         
@@ -135,7 +136,11 @@ void main(void) {
         I2C_Master_Stop();            // stop I2C
 
         RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
-        
+        Write_USART_String(Time); //enviar el string con los valores a la pc
+        Write_USART_String("  ");
+        Write_USART_String(Date);
+        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+        Write_USART(10);
         __delay_ms(100);
        
     }
@@ -205,6 +210,7 @@ void Write_to_RTC(void){
 
 // ------ configuraciones ----- //
 void setup(void) {
+    //OSCCON = 0x07;
     ANSEL = 0; //RA0 y RA1 como analogico
     ANSELH = 0; 
     TRISA = 0; //potenciometros, como entrada
@@ -219,8 +225,8 @@ void setup(void) {
     PORTD = 0;
     PORTE = 0;
     I2C_Master_Init(100000);
-    //USART_Init_BaudRate();
-    //USART_Init();
-    //USART_INTERRUPT();
+    USART_Init_BaudRate();
+    USART_Init();
+    USART_INTERRUPT();
 
 }
