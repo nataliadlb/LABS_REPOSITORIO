@@ -2943,12 +2943,11 @@ static char Date[] = "DATE: 06/03/2021";
 
 
 void setup(void);
-void Show_val_LCD(void);
+void Write_to_RTC(void);
 void RTC_display(void);
 uint8_t decimal_to_bcd(uint8_t number);
 uint8_t bcd_to_decimal(uint8_t number);
-__bit debounce ();
-uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter);
+
 
 
 
@@ -2983,23 +2982,9 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-
+    Write_to_RTC();
 
     while (1) {
-# 168 "main_prueba3_mini2.c"
-          I2C_Master_Start();
-          I2C_Master_Write(0xD0);
-          I2C_Master_Write(0);
-          I2C_Master_Write(0);
-          I2C_Master_Write(minute);
-          I2C_Master_Write(hour);
-          I2C_Master_Write(1);
-          I2C_Master_Write(6);
-          I2C_Master_Write(3);
-          I2C_Master_Write(27);
-          I2C_Master_Stop();
-
-      _delay((unsigned long)((200)*(8000000/4000.0)));
 
         I2C_Master_Start();
         I2C_Master_Write(0xD0);
@@ -3017,7 +3002,7 @@ void main(void) {
 
         RTC_display();
 
-
+        _delay((unsigned long)((100)*(8000000/4000.0)));
 
 
     }
@@ -3068,74 +3053,19 @@ void RTC_display(void){
     Lcd_Write_String(Date);
 }
 
-__bit debounce (){
-  uint8_t count = 0;
-  for(uint8_t i = 0; i < 5; i++) {
-    if (RB0 == 0)
-      count++;
-    _delay((unsigned long)((10)*(8000000/4000.0)));
-  }
-  if(count > 2) return 1;
-  else return 0;
+void Write_to_RTC(void){
+    I2C_Master_Start();
+    I2C_Master_Write(0xD0);
+    I2C_Master_Write(0);
+    I2C_Master_Write(0);
+    I2C_Master_Write(58);
+    I2C_Master_Write(9);
+    I2C_Master_Write(1);
+    I2C_Master_Write(6);
+    I2C_Master_Write(3);
+    I2C_Master_Write(27);
+    I2C_Master_Stop();
 }
-
-
-void blink()
-{
-  uint8_t j = 0;
-  while(j < 100 && RB0 && RB1) {
-    j++;
-    _delay((unsigned long)((5)*(8000000/4000.0)));
-  }
-}
-
-
-uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter){
-  while(debounce());
-
-  while(1) {
-
-    while(!RB1)
-    {
-      parameter++;
-      if(i == 0 && parameter > 23)
-        parameter = 0;
-      if(i == 1 && parameter > 59)
-        parameter = 0;
-      if(i == 2 && parameter > 31)
-        parameter = 1;
-      if(i == 3 && parameter > 12)
-        parameter = 1;
-      if(i == 4 && parameter > 99)
-        parameter = 0;
-
-      Lcd_Set_Cursor(x, y);
-      LCD_PutC(parameter / 10 + '0');
-      LCD_PutC(parameter % 10 + '0');
-      _delay((unsigned long)((200)*(8000000/4000.0)));
-
-    }
-
-    Lcd_Set_Cursor(x, y);
-    Lcd_Write_String("  ");
-    blink();
-
-    Lcd_Set_Cursor(x, y);
-    LCD_PutC(parameter / 10 + '0');
-    LCD_PutC(parameter % 10 + '0');
-    blink();
-
-    if(!RB0)
-    if(debounce())
-    {
-      i++;
-      return parameter;
-    }
-
-  }
-
-}
-
 
 void setup(void) {
 

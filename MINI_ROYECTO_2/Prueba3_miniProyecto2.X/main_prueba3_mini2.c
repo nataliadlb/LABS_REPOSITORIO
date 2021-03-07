@@ -76,12 +76,11 @@ static char Date[] = "DATE: 06/03/2021";
 //******************************************************************************
 
 void setup(void); 
-void Show_val_LCD(void);
+void Write_to_RTC(void);
 void RTC_display(void);
 uint8_t decimal_to_bcd(uint8_t number);
 uint8_t bcd_to_decimal(uint8_t number);
-__bit debounce ();
-uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter);
+
 
 
 //******************************************************************************
@@ -116,73 +115,14 @@ void main(void) {
     TRISD = 0x00;
     Lcd_Init();
     Lcd_Clear();
-
-    
+    Write_to_RTC(); //escribir valores iniciales de fecha y hora
+   
     while (1) {
-
-//        if(!button1)     // if button B1 is pressed
-//        if(debounce()){ // call debounce function (make sure if B1 is pressed)
-//          i = 0;
-//          hour   = edit(7,  1, hour);
-//          minute = edit(10, 1, minute);
-//          m_day  = edit(7,  2, m_day);
-//          month  = edit(10, 2, month);
-//          year   = edit(15, 2, year);
-//
-//          while(debounce());  // call debounce function (wait for button B1 to be released)
-//
-//          // convert decimal to BCD
-//          minute = decimal_to_bcd(minute);
-//          hour   = decimal_to_bcd(hour);
-//          m_day  = decimal_to_bcd(m_day);
-//          month  = decimal_to_bcd(month);
-//          year   = decimal_to_bcd(year);
-//          // end conversion
-//
-//          // Write data to DS3231 RTC
-//          I2C_Master_Start();         // start I2C
-//          I2C_Master_Write(0xD0);     // RTC chip address
-//          I2C_Master_Write(0);        // send register address
-//          I2C_Master_Write(0);        // reset seconds and start oscillator
-//          I2C_Master_Write(minute);   // write minute value to RTC chip
-//          I2C_Master_Write(hour);     // write hour value to RTC chip
-//          I2C_Master_Write(1);        // write day value (not used)
-//          I2C_Master_Write(m_day);    // write date value to RTC chip
-//          I2C_Master_Write(month);    // write month value to RTC chip
-//          I2C_Master_Write(year);     // write year value to RTC chip
-//          I2C_Master_Stop();          // stop I2C
-//
-//      __delay_ms(200);
-// 
-//    }
-        
-          // convert decimal to BCD
-          //minute = decimal_to_bcd(minute);
-          //hour   = decimal_to_bcd(hour);
-//          m_day  = decimal_to_bcd(m_day);
-//          month  = decimal_to_bcd(month);
-//          year   = decimal_to_bcd(year);
-          // end conversion
-
-          // Write data to DS3231 RTC
-          I2C_Master_Start();         // start I2C
-          I2C_Master_Write(0xD0);     // RTC chip address
-          I2C_Master_Write(0);        // send register address
-          I2C_Master_Write(0);        // reset seconds and start oscillator
-          I2C_Master_Write(minute);   // write minute value to RTC chip
-          I2C_Master_Write(hour);     // write hour value to RTC chip
-          I2C_Master_Write(1);        // write day value (not used)
-          I2C_Master_Write(6);    // write date value to RTC chip
-          I2C_Master_Write(3);    // write month value to RTC chip
-          I2C_Master_Write(27);     // write year value to RTC chip
-          I2C_Master_Stop();          // stop I2C
-
-      __delay_ms(200);
         
         I2C_Master_Start();           // start I2C
         I2C_Master_Write(0xD0);       // RTC chip address
         I2C_Master_Write(0);          // send register address
-        I2C_Master_RepeatedStart();  // restart I2C
+        I2C_Master_RepeatedStart();   // restart I2C
         I2C_Master_Write(0xD1);       // initialize data read
         second = I2C_Master_Read(1);  // read seconds from register 0
         minute = I2C_Master_Read(1);  // read minutes from register 1
@@ -195,7 +135,7 @@ void main(void) {
 
         RTC_display();
         
-        //__delay_ms(100);
+        __delay_ms(100);
         
 
     }
@@ -246,74 +186,19 @@ void RTC_display(void){
     Lcd_Write_String(Date);
 }
 
-__bit debounce (){
-  uint8_t count = 0;
-  for(uint8_t i = 0; i < 5; i++) {
-    if (button1 == 0)
-      count++;
-    __delay_ms(10);
-  }
-  if(count > 2)  return 1;
-  else           return 0;
+void Write_to_RTC(void){
+    I2C_Master_Start();         // start I2C
+    I2C_Master_Write(0xD0);     // RTC chip address
+    I2C_Master_Write(0);        // send register address
+    I2C_Master_Write(0);        // reset seconds and start oscillator
+    I2C_Master_Write(58);   // write minute value to RTC chip
+    I2C_Master_Write(9);     // write hour value to RTC chip
+    I2C_Master_Write(1);        // write day value (not used)
+    I2C_Master_Write(6);        // write date value to RTC chip
+    I2C_Master_Write(3);        // write month value to RTC chip
+    I2C_Master_Write(27);       // write year value to RTC chip
+    I2C_Master_Stop();          // stop I2C
 }
-
-// make editing parameter blinks function
-void blink()
-{
-  uint8_t j = 0;
-  while(j < 100 && button1 && button2) {
-    j++;
-    __delay_ms(5);
-  }
-}
- 
-// Edit time and date function
-uint8_t edit(uint8_t x, uint8_t y, uint8_t parameter){
-  while(debounce());  // call debounce function (wait for B1 to be released)
- 
-  while(1) {
- 
-    while(!button2)    // if button B2 is pressed
-    {
-      parameter++;
-      if(i == 0 && parameter > 23)   // if hours > 23 ==> hours = 0
-        parameter = 0;
-      if(i == 1 && parameter > 59)   // if minutes > 59 ==> minutes = 0
-        parameter = 0;
-      if(i == 2 && parameter > 31)   // if date > 31 ==> date = 1
-        parameter = 1;
-      if(i == 3 && parameter > 12)   // if month > 12 ==> month = 1
-        parameter = 1;
-      if(i == 4 && parameter > 99)   // if year > 99 ==> year = 0
-        parameter = 0;
- 
-      Lcd_Set_Cursor(x, y);
-      LCD_PutC(parameter / 10 + '0');
-      LCD_PutC(parameter % 10 + '0');
-      __delay_ms(200);
- 
-    }
- 
-    Lcd_Set_Cursor(x, y);
-    Lcd_Write_String("  ");  // print 2 spaces
-    blink();
- 
-    Lcd_Set_Cursor(x, y);
-    LCD_PutC(parameter / 10 + '0');
-    LCD_PutC(parameter % 10 + '0');
-    blink();
- 
-    if(!button1)     // if button B1 is pressed
-    if(debounce())   // call debounce function (make sure if B1 is pressed)
-    {
-      i++;   // increment 'i' for the next parameter
-      return parameter;     // return parameter value and exit
-    }
- 
-  }
- 
-}
-
 // ------ configuraciones ----- //
 void setup(void) {
     //initOsc(7); //8MHz
