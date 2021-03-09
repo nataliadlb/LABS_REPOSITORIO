@@ -1,6 +1,6 @@
 
 String piloto  = " ";
-//char cont;
+String cont;
 int hola = 0;
 #include "HardwareSerial.h"
 
@@ -12,7 +12,9 @@ void setup() {
   // start the serial connection
   Serial.begin(9600);
   // wait for serial monitor to open
-
+  while (!Serial2) {
+    ; // wait for serial port to connect. Needed for native USB
+  }
 }
 
 void loop() {
@@ -21,8 +23,8 @@ void loop() {
 //  cont++;
 
 
-  while(Serial.available()>0){
-      char cont = Serial.read();
+  while(Serial2.available()>0){
+      cont = Serial2.read();
       Serial.print("sending -> ");
       Serial.println(cont);
    }

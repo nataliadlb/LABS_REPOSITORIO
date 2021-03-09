@@ -70,7 +70,12 @@ char data_total[20];
 uint8_t cont;
 char data_recive;
 char cont_send[8];
-
+char sec_send[8];
+char min_send[8];
+char hour_send[8];
+char day_send[8];
+char month_send[8];
+char year_send[8];
 
 static char Time[] = "TIME: 00:00:00";
 static char Date[] = "DATE: 00/00/00";
@@ -128,22 +133,31 @@ void main(void) {
         I2C_Master_Write(0);          // send register address
         I2C_Master_RepeatedStart();   // restart I2C
         I2C_Master_Write(0xD1);       // initialize data read
-        second = I2C_Master_Read(1);  // read seconds from register 0
-        minute = I2C_Master_Read(1);  // read minutes from register 1
-        hour   = I2C_Master_Read(1);  // read hour from register 2
+        second = bcd_to_decimal(I2C_Master_Read(1)); // read seconds from register 0
+        minute = bcd_to_decimal(I2C_Master_Read(1));  // read minutes from register 1
+        hour   = bcd_to_decimal(I2C_Master_Read(1));  // read hour from register 2
         I2C_Master_Read(1);           // read day from register 3 (not used)
-        m_day  = I2C_Master_Read(1);  // read date from register 4
-        month  = I2C_Master_Read(1);  // read month from register 5
-        year   = I2C_Master_Read(0);  // read year from register 6
+        m_day  = bcd_to_decimal(I2C_Master_Read(1));  // read date from register 4
+        month  = bcd_to_decimal(I2C_Master_Read(1));  // read month from register 5
+        year   = bcd_to_decimal(I2C_Master_Read(1));  // read year from register 6
         I2C_Master_Stop();            // stop I2C
 
-        RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
+        //RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
         
+        sprintf(sec_send, "%d ", second);
+        //Mostrar en LCD (PRUEBA)
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String(sec_send);
+        //Lcd_Write_String(Time);
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_String(Date);
         // ---- comunicación serial ---- //
-        for(i = 0; i < 13; i++){
-            Write_USART_String(Time[i]);
-        }
-        //Write_USART_String(Time); //enviar el string con los valores de hora
+//        for(i = 0; i < 14; i++){
+//            Write_USART(Time[i]);
+//        }
+//        sprintf(cont_send, "%d", second);
+        Write_USART_String(sec_send);
+        //  Write_USART_String(Time); //enviar el string con los valores de hora
         //Write_USART_String("  ");
         //Write_USART_String(Date); //enviar el string con los valores de fecha
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
@@ -159,7 +173,7 @@ void main(void) {
 //        Write_USART(10);
 //        cont++;
         //__delay_ms(500);
-        __delay_ms(100);
+        __delay_ms(1000);
     }
 }
 
@@ -203,9 +217,11 @@ void RTC_display(void){
     Date[12] = year   / 10 + '0';
     Date[13] = year   % 10 + '0';
     
+    sprintf(cont_send, "%d", second);
     //Mostrar en LCD (PRUEBA)
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String(Time);
+    Lcd_Write_String(cont_send);
+    //Lcd_Write_String(Time);
     Lcd_Set_Cursor(2,1);
     Lcd_Write_String(Date);
 }
