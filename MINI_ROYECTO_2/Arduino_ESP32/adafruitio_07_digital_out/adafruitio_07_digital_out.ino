@@ -22,7 +22,7 @@
 unsigned long lastUpdate = 0;
 
 String piloto  = " ";
-int cont = 0;
+String cont;
 int hola = 0;
 
 //char[14] Time ;

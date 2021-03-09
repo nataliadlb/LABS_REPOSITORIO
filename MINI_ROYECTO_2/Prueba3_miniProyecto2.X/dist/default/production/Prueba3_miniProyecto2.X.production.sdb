@@ -59,11 +59,13 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "120
 [v _main main `(v  1 e 1 0 ]
-"185
+"183
 [v _bcd_to_decimal bcd_to_decimal `(uc  1 e 1 0 ]
-"230
+"192
+[v _RTC_display RTC_display `(v  1 e 1 0 ]
+"233
 [v _Write_to_RTC Write_to_RTC `(v  1 e 1 0 ]
-"245
+"248
 [v _setup setup `(v  1 e 1 0 ]
 "8 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
 [v _USART_Init USART_Init `(v  1 e 1 0 ]
@@ -95,7 +97,7 @@
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S341 . 1 `uc 1 RD0 1 0 :1:0 
+[s S350 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -105,19 +107,19 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "369
-[u S350 . 1 `S341 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES350  1 e 1 @8 ]
+[u S359 . 1 `S350 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES359  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S328 . 1 `uc 1 RE0 1 0 :1:0 
+[s S337 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "427
-[u S333 . 1 `S328 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES333  1 e 1 @9 ]
-[s S518 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S342 . 1 `S337 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES342  1 e 1 @9 ]
+[s S527 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -127,13 +129,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S527 . 1 `uc 1 . 1 0 :2:0 
+[s S536 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S532 . 1 `S518 1 . 1 0 `S527 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES532  1 e 1 @11 ]
+[u S541 . 1 `S527 1 . 1 0 `S536 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES541  1 e 1 @11 ]
 [s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -149,7 +151,7 @@
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S434 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S443 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -159,18 +161,18 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S443 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S452 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S447 . 1 `uc 1 . 1 0 :6:0 
+[s S456 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S450 . 1 `uc 1 . 1 0 :6:0 
+[s S459 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S453 . 1 `S434 1 . 1 0 `S443 1 . 1 0 `S447 1 . 1 0 `S450 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES453  1 e 1 @24 ]
+[u S462 . 1 `S443 1 . 1 0 `S452 1 . 1 0 `S456 1 . 1 0 `S459 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES462  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
@@ -179,7 +181,7 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S144 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S143 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -189,13 +191,13 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S153 . 1 `S144 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES153  1 e 1 @135 ]
+[u S152 . 1 `S143 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES152  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S550 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S559 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -204,25 +206,25 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S558 . 1 `S550 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES558  1 e 1 @140 ]
-[s S397 . 1 `uc 1 SCS 1 0 :1:0 
+[u S567 . 1 `S559 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES567  1 e 1 @140 ]
+[s S406 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S403 . 1 `uc 1 . 1 0 :4:0 
+[s S412 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S408 . 1 `S397 1 . 1 0 `S403 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES408  1 e 1 @143 ]
+[u S417 . 1 `S406 1 . 1 0 `S412 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES417  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S265 . 1 `uc 1 SEN 1 0 :1:0 
+[s S274 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -232,13 +234,13 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S274 . 1 `S265 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES274  1 e 1 @145 ]
+[u S283 . 1 `S274 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES283  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S478 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S487 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -248,15 +250,15 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S487 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S496 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S491 . 1 `uc 1 . 1 0 :6:0 
+[s S500 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S494 . 1 `S478 1 . 1 0 `S487 1 . 1 0 `S491 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES494  1 e 1 @152 ]
+[u S503 . 1 `S487 1 . 1 0 `S496 1 . 1 0 `S500 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES503  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "2704
@@ -293,9 +295,17 @@
 "71
 [v _data_recive data_recive `uc  1 e 1 0 ]
 "72
-[v _cont_send cont_send `[8]uc  1 e 8 0 ]
-"73
 [v _sec_send sec_send `[8]uc  1 e 8 0 ]
+"73
+[v _min_send min_send `[8]uc  1 e 8 0 ]
+"74
+[v _hour_send hour_send `[8]uc  1 e 8 0 ]
+"75
+[v _day_send day_send `[8]uc  1 e 8 0 ]
+"76
+[v _month_send month_send `[8]uc  1 e 8 0 ]
+"77
+[v _year_send year_send `[8]uc  1 e 8 0 ]
 "80
 [v _Time Time `[15]uc  1 s 15 Time ]
 "81
@@ -303,7 +313,88 @@
 "120
 [v _main main `(v  1 e 1 0 ]
 {
-"178
+"176
+} 0
+"248
+[v _setup setup `(v  1 e 1 0 ]
+{
+"268
+} 0
+"19 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+[v _USART_Init_BaudRate USART_Init_BaudRate `(v  1 e 1 0 ]
+{
+"22
+} 0
+"8
+[v _USART_Init USART_Init `(v  1 e 1 0 ]
+{
+"17
+} 0
+"24
+[v _USART_INTERRUPT USART_INTERRUPT `(v  1 e 1 0 ]
+{
+"30
+} 0
+"21 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+[v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
+{
+[v I2C_Master_Init@c c `DCul  1 p 4 13 ]
+"39
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"10
+[v ___lldiv@quotient quotient `ul  1 a 4 8 ]
+"11
+[v ___lldiv@counter counter `uc  1 a 1 12 ]
+"5
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
+"30
+} 0
+"233 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+[v _Write_to_RTC Write_to_RTC `(v  1 e 1 0 ]
+{
+"245
+} 0
+"84 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+[v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
+{
+[v I2C_Master_Write@d d `ui  1 p 2 3 ]
+"88
+} 0
+"73
+[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
+{
+"77
+} 0
+"56
+[v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
+{
+"59
+} 0
+"37 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+[v _Write_USART_String Write_USART_String `(v  1 e 1 0 ]
+{
+"38
+[v Write_USART_String@i i `uc  1 a 1 7 ]
+"37
+[v Write_USART_String@a a `*.26uc  1 p 2 4 ]
+"42
+} 0
+"33
+[v _Write_USART Write_USART `(v  1 e 1 0 ]
+{
+[v Write_USART@a a `uc  1 a 1 wreg ]
+[v Write_USART@a a `uc  1 a 1 wreg ]
+[v Write_USART@a a `uc  1 a 1 3 ]
+"36
+} 0
+"192 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+[v _RTC_display RTC_display `(v  1 e 1 0 ]
+{
+"230
 } 0
 "505 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
@@ -348,51 +439,13 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 5 ]
 "30
 } 0
-"245 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-[v _setup setup `(v  1 e 1 0 ]
-{
-"265
-} 0
-"19 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
-[v _USART_Init_BaudRate USART_Init_BaudRate `(v  1 e 1 0 ]
-{
-"22
-} 0
-"8
-[v _USART_Init USART_Init `(v  1 e 1 0 ]
-{
-"17
-} 0
-"24
-[v _USART_INTERRUPT USART_INTERRUPT `(v  1 e 1 0 ]
-{
-"30
-} 0
-"21 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-[v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
-{
-[v I2C_Master_Init@c c `DCul  1 p 4 13 ]
-"39
-} 0
-"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-[v ___lldiv __lldiv `(ul  1 e 4 0 ]
-{
-"10
-[v ___lldiv@quotient quotient `ul  1 a 4 8 ]
-"11
-[v ___lldiv@counter counter `uc  1 a 1 12 ]
-"5
-[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
-[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
-"30
-} 0
-"185 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+"183 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
 [v _bcd_to_decimal bcd_to_decimal `(uc  1 e 1 0 ]
 {
 [v bcd_to_decimal@number number `uc  1 a 1 wreg ]
 [v bcd_to_decimal@number number `uc  1 a 1 wreg ]
 [v bcd_to_decimal@number number `uc  1 a 1 7 ]
-"187
+"185
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -407,46 +460,29 @@
 [v ___bmul@multiplier multiplier `uc  1 a 1 6 ]
 "51
 } 0
-"230 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-[v _Write_to_RTC Write_to_RTC `(v  1 e 1 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 {
-"242
+"10
+[v ___awmod@sign sign `uc  1 a 1 1 ]
+[v ___awmod@counter counter `uc  1 a 1 0 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 3 ]
+[v ___awmod@dividend dividend `i  1 p 2 5 ]
+"34
 } 0
-"84 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-[v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
 {
-[v I2C_Master_Write@d d `ui  1 p 2 3 ]
-"88
-} 0
-"73
-[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
-{
-"77
-} 0
-"56
-[v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
-{
-"59
-} 0
-"37 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
-[v _Write_USART_String Write_USART_String `(v  1 e 1 0 ]
-{
-[v Write_USART_String@a a `*.4uc  1 a 1 wreg ]
-"38
-[v Write_USART_String@i i `uc  1 a 1 6 ]
-"37
-[v Write_USART_String@a a `*.4uc  1 a 1 wreg ]
-"39
-[v Write_USART_String@a a `*.4uc  1 a 1 5 ]
-"42
-} 0
-"33
-[v _Write_USART Write_USART `(v  1 e 1 0 ]
-{
-[v Write_USART@a a `uc  1 a 1 wreg ]
-[v Write_USART@a a `uc  1 a 1 wreg ]
-[v Write_USART@a a `uc  1 a 1 3 ]
-"36
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 2 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 1 ]
+[v ___awdiv@counter counter `uc  1 a 1 0 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 3 ]
+[v ___awdiv@dividend dividend `i  1 p 2 5 ]
+"41
 } 0
 "71 C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
