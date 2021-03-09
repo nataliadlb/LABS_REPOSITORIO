@@ -69,9 +69,11 @@ uint8_t  i, second, minute, hour, m_day, month, year;
 char data_total[20];
 uint8_t cont;
 char data_recive;
+char cont_send[8];
+
 
 static char Time[] = "TIME: 00:00:00";
-static char Date[] = "DATE: 00/00/2000";
+static char Date[] = "DATE: 00/00/00";
 
 //******************************************************************************
 //Prototipos de funciones
@@ -138,13 +140,26 @@ void main(void) {
         RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
         
         // ---- comunicación serial ---- //
-        Write_USART_String(Time); //enviar el string con los valores de hora
-        Write_USART_String("  ");
-        Write_USART_String(Date); //enviar el string con los valores de fecha
+        for(i = 0; i < 13; i++){
+            Write_USART_String(Time[i]);
+        }
+        //Write_USART_String(Time); //enviar el string con los valores de hora
+        //Write_USART_String("  ");
+        //Write_USART_String(Date); //enviar el string con los valores de fecha
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
+        
+//        sprintf(cont_send, "%d", cont);
+//        Lcd_Set_Cursor(1,1);
+//        Lcd_Write_String(cont_send);
+//        
+//        Write_USART_String(cont_send);
+//        //xWrite_USART_String(cont);
+//        Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
+//        Write_USART(10);
+//        cont++;
+        //__delay_ms(500);
         __delay_ms(100);
-       
     }
 }
 
@@ -185,8 +200,8 @@ void RTC_display(void){
     Date[7]  = m_day  % 10 + '0';
     Date[9]  = month  / 10 + '0';
     Date[10] = month  % 10 + '0';
-    Date[14] = year   / 10 + '0';
-    Date[15] = year   % 10 + '0';
+    Date[12] = year   / 10 + '0';
+    Date[13] = year   % 10 + '0';
     
     //Mostrar en LCD (PRUEBA)
     Lcd_Set_Cursor(1,1);
@@ -201,10 +216,10 @@ void Write_to_RTC(void){
     I2C_Master_Write(0xD0);     // RTC chip address
     I2C_Master_Write(0);        // send register address
     I2C_Master_Write(0);        // reset seconds and start oscillator
-    I2C_Master_Write(3);        // write minute value to RTC chip
-    I2C_Master_Write(10);       // write hour value to RTC chip
+    I2C_Master_Write(48);        // write minute value to RTC chip //y media
+    I2C_Master_Write(6);       // write hour value to RTC chip
     I2C_Master_Write(1);        // write day value (not used)
-    I2C_Master_Write(6);        // write date value to RTC chip
+    I2C_Master_Write(8);        // write date value to RTC chip
     I2C_Master_Write(3);        // write month value to RTC chip
     I2C_Master_Write(27);       // write year value to RTC chip
     I2C_Master_Stop();          // stop I2C

@@ -2934,9 +2934,11 @@ uint8_t i, second, minute, hour, m_day, month, year;
 char data_total[20];
 uint8_t cont;
 char data_recive;
+char cont_send[8];
+
 
 static char Time[] = "TIME: 00:00:00";
-static char Date[] = "DATE: 00/00/2000";
+static char Date[] = "DATE: 00/00/00";
 
 
 
@@ -3001,13 +3003,18 @@ void main(void) {
         I2C_Master_Stop();
 
         RTC_display();
-        Write_USART_String(Time);
-        Write_USART_String("  ");
-        Write_USART_String(Date);
+
+
+        for(i = 0; i < 13; i++){
+            Write_USART_String(Time[i]);
+        }
+
+
+
         Write_USART(13);
         Write_USART(10);
+# 162 "main_prueba3_mini2.c"
         _delay((unsigned long)((100)*(8000000/4000.0)));
-
     }
 }
 
@@ -3048,8 +3055,8 @@ void RTC_display(void){
     Date[7] = m_day % 10 + '0';
     Date[9] = month / 10 + '0';
     Date[10] = month % 10 + '0';
-    Date[14] = year / 10 + '0';
-    Date[15] = year % 10 + '0';
+    Date[12] = year / 10 + '0';
+    Date[13] = year % 10 + '0';
 
 
     Lcd_Set_Cursor(1,1);
@@ -3064,10 +3071,10 @@ void Write_to_RTC(void){
     I2C_Master_Write(0xD0);
     I2C_Master_Write(0);
     I2C_Master_Write(0);
-    I2C_Master_Write(3);
-    I2C_Master_Write(10);
-    I2C_Master_Write(1);
+    I2C_Master_Write(48);
     I2C_Master_Write(6);
+    I2C_Master_Write(1);
+    I2C_Master_Write(8);
     I2C_Master_Write(3);
     I2C_Master_Write(27);
     I2C_Master_Stop();

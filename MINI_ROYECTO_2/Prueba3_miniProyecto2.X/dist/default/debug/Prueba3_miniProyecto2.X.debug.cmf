@@ -12,48 +12,44 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-cinit CODE 0 F F 1D 2
-text1 CODE 0 7CA 7CA 22 2
-text2 CODE 0 6BC 6BC 3A 2
-text3 CODE 0 50C 50C 68 2
-text4 CODE 0 38E 38E 115 2
-text5 CODE 0 758 758 29 2
-text6 CODE 0 FC0 FC0 20 2
-text7 CODE 0 F71 F71 19 2
-text8 CODE 0 5CF 5CF 57 2
-text9 CODE 0 6F6 6F6 32 2
-text10 CODE 0 211 211 17D 2
-text11 CODE 0 FA4 FA4 1C 2
-text12 CODE 0 F46 F46 15 2
-text13 CODE 0 574 574 5B 2
-text14 CODE 0 4A3 4A3 69 2
-text15 CODE 0 676 676 46 2
-text16 CODE 0 F5B F5B 16 2
-text17 CODE 0 781 781 26 2
-text18 CODE 0 626 626 50 2
-text19 CODE 0 F27 F27 D 2
-text20 CODE 0 F8A F8A 1A 2
-text21 CODE 0 EE7 EE7 6 2
-text22 CODE 0 F10 F10 A 2
-text23 CODE 0 F07 F07 9 2
-text24 CODE 0 EFE EFE 9 2
-text25 CODE 0 EF5 EF5 9 2
-text26 CODE 0 728 728 30 2
-text27 CODE 0 F1A F1A D 2
-text28 CODE 0 F34 F34 12 2
-maintext CODE 0 2C 2C 1E5 2
+cinit CODE 0 F F 24 2
+text1 CODE 0 33 33 F7 2
+text2 CODE 0 362 362 3C 2
+text3 CODE 0 31C 31C 46 2
+text4 CODE 0 40A 40A 31 2
+text5 CODE 0 55A 55A 6 2
+text6 CODE 0 515 515 C 2
+text7 CODE 0 560 560 6 2
+text8 CODE 0 39E 39E 3A 2
+text9 CODE 0 20A 20A 68 2
+text10 CODE 0 272 272 5A 2
+text11 CODE 0 52D 52D A 2
+text12 CODE 0 537 537 9 2
+text13 CODE 0 540 540 9 2
+text14 CODE 0 43B 43B 30 2
+text15 CODE 0 521 521 C 2
+text16 CODE 0 2CC 2CC 50 2
+text17 CODE 0 4FB 4FB D 2
+text18 CODE 0 4BB 4BB 1A 2
+text19 CODE 0 566 566 6 2
+text20 CODE 0 549 549 9 2
+text21 CODE 0 46B 46B 30 2
+text22 CODE 0 508 508 D 2
+text23 CODE 0 3D8 3D8 32 2
+maintext CODE 0 12A 12A E0 2
 cstackCOMMON COMMON 1 70 70 8 1
-cstackBANK0 BANK0 1 5A 5A 14 1
-inittext CODE 0 7EC 7EC 13 2
+cstackBANK0 BANK0 1 40 40 1A 1
+inittext CODE 0 4E8 4E8 13 2
 intentry CODE 0 4 4 8 2
-bssBANK0 BANK0 1 40 40 1A 1
-idataBANK0 CODE 0 FE0 FE0 20 2
-strings STRING 0 7A7 7A7 23 2
+bssBANK0 BANK0 1 5A 5A 7 1
+bssBANK1 BANK1 1 A0 A0 14 1
+idataBANK0 CODE 0 49B 49B 20 2
+strings STRING 0 4D5 4D5 13 2
 dataBANK0 BANK0 1 20 20 20 1
-clrtext CODE 0 EED EED 8 2
+clrtext CODE 0 552 552 8 2
 bssCOMMON COMMON 1 78 78 3 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\cnata\AppData\Local\Temp\smbg.o
+$C:\Users\cnata\AppData\Local\Temp\sg64.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -63,25 +59,22 @@ config CONFIG 4 2007 2007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 6E-6F 1
-RAM A0-EF 1
+RAM 61-6F 1
+RAM B4-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 6E-6F 1
-BANK1 A0-EF 1
+BANK0 61-6F 1
+BANK1 B4-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 7FF-EE6 2
-CONST 1000-1FFF 2
+CONST 56C-1FFF 2
 ENTRY 3-3 2
-ENTRY 7FF-EE6 2
-ENTRY 1000-1FFF 2
+ENTRY 56C-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE 7FF-EE6 2
-CODE 1000-1FFF 2
+CODE 56C-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -89,11 +82,9 @@ SFR3 180-18F 1
 COMMON 7B-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 7FF-EE6 2
-STRCODE 1000-1FFF 2
+STRCODE 56C-1FFF 2
 STRING 3-3 2
-STRING 7FF-EE6 2
-STRING 1000-1FFF 2
+STRING 56C-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -108,377 +99,299 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-F cinit CODE >952:C:\Users\cnata\AppData\Local\Temp\smbg.s
-F cinit CODE >955:C:\Users\cnata\AppData\Local\Temp\smbg.s
-F cinit CODE >1038:C:\Users\cnata\AppData\Local\Temp\smbg.s
-10 cinit CODE >1039:C:\Users\cnata\AppData\Local\Temp\smbg.s
-11 cinit CODE >1040:C:\Users\cnata\AppData\Local\Temp\smbg.s
-12 cinit CODE >1041:C:\Users\cnata\AppData\Local\Temp\smbg.s
-13 cinit CODE >1042:C:\Users\cnata\AppData\Local\Temp\smbg.s
-14 cinit CODE >1043:C:\Users\cnata\AppData\Local\Temp\smbg.s
-15 cinit CODE >1044:C:\Users\cnata\AppData\Local\Temp\smbg.s
-16 cinit CODE >1045:C:\Users\cnata\AppData\Local\Temp\smbg.s
-17 cinit CODE >1046:C:\Users\cnata\AppData\Local\Temp\smbg.s
-18 cinit CODE >1047:C:\Users\cnata\AppData\Local\Temp\smbg.s
-1D cinit CODE >1066:C:\Users\cnata\AppData\Local\Temp\smbg.s
-1E cinit CODE >1067:C:\Users\cnata\AppData\Local\Temp\smbg.s
-1F cinit CODE >1068:C:\Users\cnata\AppData\Local\Temp\smbg.s
-20 cinit CODE >1069:C:\Users\cnata\AppData\Local\Temp\smbg.s
-25 cinit CODE >1072:C:\Users\cnata\AppData\Local\Temp\smbg.s
-26 cinit CODE >1073:C:\Users\cnata\AppData\Local\Temp\smbg.s
-27 cinit CODE >1074:C:\Users\cnata\AppData\Local\Temp\smbg.s
-28 cinit CODE >1080:C:\Users\cnata\AppData\Local\Temp\smbg.s
-28 cinit CODE >1082:C:\Users\cnata\AppData\Local\Temp\smbg.s
-29 cinit CODE >1083:C:\Users\cnata\AppData\Local\Temp\smbg.s
+F cinit CODE >1259:C:\Users\cnata\AppData\Local\Temp\sg64.s
+F cinit CODE >1262:C:\Users\cnata\AppData\Local\Temp\sg64.s
+F cinit CODE >1351:C:\Users\cnata\AppData\Local\Temp\sg64.s
+10 cinit CODE >1352:C:\Users\cnata\AppData\Local\Temp\sg64.s
+11 cinit CODE >1353:C:\Users\cnata\AppData\Local\Temp\sg64.s
+12 cinit CODE >1354:C:\Users\cnata\AppData\Local\Temp\sg64.s
+13 cinit CODE >1355:C:\Users\cnata\AppData\Local\Temp\sg64.s
+14 cinit CODE >1356:C:\Users\cnata\AppData\Local\Temp\sg64.s
+15 cinit CODE >1357:C:\Users\cnata\AppData\Local\Temp\sg64.s
+16 cinit CODE >1358:C:\Users\cnata\AppData\Local\Temp\sg64.s
+17 cinit CODE >1359:C:\Users\cnata\AppData\Local\Temp\sg64.s
+18 cinit CODE >1360:C:\Users\cnata\AppData\Local\Temp\sg64.s
+1D cinit CODE >1379:C:\Users\cnata\AppData\Local\Temp\sg64.s
+1E cinit CODE >1380:C:\Users\cnata\AppData\Local\Temp\sg64.s
+1F cinit CODE >1381:C:\Users\cnata\AppData\Local\Temp\sg64.s
+20 cinit CODE >1382:C:\Users\cnata\AppData\Local\Temp\sg64.s
+25 cinit CODE >1385:C:\Users\cnata\AppData\Local\Temp\sg64.s
+26 cinit CODE >1386:C:\Users\cnata\AppData\Local\Temp\sg64.s
+27 cinit CODE >1387:C:\Users\cnata\AppData\Local\Temp\sg64.s
+28 cinit CODE >1388:C:\Users\cnata\AppData\Local\Temp\sg64.s
+29 cinit CODE >1389:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2A cinit CODE >1390:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2B cinit CODE >1391:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2C cinit CODE >1394:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2D cinit CODE >1395:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2E cinit CODE >1396:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2F cinit CODE >1402:C:\Users\cnata\AppData\Local\Temp\sg64.s
+2F cinit CODE >1404:C:\Users\cnata\AppData\Local\Temp\sg64.s
+30 cinit CODE >1405:C:\Users\cnata\AppData\Local\Temp\sg64.s
 4 intentry CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F34 text28 CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F34 text28 CODE >92:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F3A text28 CODE >93:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F3E text28 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F3F text28 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F1A text27 CODE >48:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F1A text27 CODE >50:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F26 text27 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-728 text26 CODE >94:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-728 text26 CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-72D text26 CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-730 text26 CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-735 text26 CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-73E text26 CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-743 text26 CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-749 text26 CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-74C text26 CODE >104:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-74D text26 CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-750 text26 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-750 text26 CODE >107:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-751 text26 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-757 text26 CODE >109:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EF5 text25 CODE >64:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EF5 text25 CODE >66:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EFA text25 CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EFD text25 CODE >68:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EFE text24 CODE >56:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EFE text24 CODE >57:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F03 text24 CODE >58:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F06 text24 CODE >59:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F07 text23 CODE >73:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F07 text23 CODE >75:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F0C text23 CODE >76:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F0F text23 CODE >77:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F10 text22 CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F10 text22 CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F15 text22 CODE >87:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-F19 text22 CODE >88:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-EE7 text21 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-EE8 text21 CODE >31:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-EEC text21 CODE >32:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F8A text20 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F8B text20 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F8E text20 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F94 text20 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F97 text20 CODE >38:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-FA0 text20 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-FA3 text20 CODE >40:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F27 text19 CODE >43:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F27 text19 CODE >44:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F2D text19 CODE >45:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F33 text19 CODE >46:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-626 text18 CODE >15:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-626 text18 CODE >16:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-62C text18 CODE >17:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-636 text18 CODE >18:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-63C text18 CODE >19:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-646 text18 CODE >20:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-64C text18 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-657 text18 CODE >22:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-65D text18 CODE >23:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-663 text18 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-669 text18 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-66F text18 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-675 text18 CODE >27:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-781 text17 CODE >49:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-784 text17 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-789 text17 CODE >52:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-78E text17 CODE >53:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-794 text17 CODE >54:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-795 text17 CODE >55:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-79B text17 CODE >56:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-7A0 text17 CODE >57:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-7A6 text17 CODE >59:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F5B text16 CODE >62:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F5C text16 CODE >63:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F5F text16 CODE >64:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F65 text16 CODE >65:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F68 text16 CODE >66:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F6D text16 CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F70 text16 CODE >68:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-676 text15 CODE >71:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-676 text15 CODE >73:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-67B text15 CODE >74:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-6BB text15 CODE >75:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-4A3 text14 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4A3 text14 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4A6 text14 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4AA text14 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4AF text14 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4B1 text14 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4B5 text14 CODE >19:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4BA text14 CODE >20:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4BE text14 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4C0 text14 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4C6 text14 CODE >24:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4C8 text14 CODE >25:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4C9 text14 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4D0 text14 CODE >27:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4D4 text14 CODE >25:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4D8 text14 CODE >30:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4DF text14 CODE >31:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4E9 text14 CODE >32:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4EF text14 CODE >33:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4F0 text14 CODE >35:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4F7 text14 CODE >36:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-4FD text14 CODE >38:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-502 text14 CODE >39:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-507 text14 CODE >40:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-50B text14 CODE >41:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-574 text13 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-574 text13 CODE >12:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-577 text13 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-57B text13 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-580 text13 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-582 text13 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-586 text13 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-58B text13 CODE >19:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-591 text13 CODE >20:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-593 text13 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-594 text13 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-59B text13 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-59F text13 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5A3 text13 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5AD text13 CODE >27:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5B3 text13 CODE >28:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5BA text13 CODE >29:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5C0 text13 CODE >31:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5C5 text13 CODE >32:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5CA text13 CODE >33:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-5CE text13 CODE >34:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
-F46 text12 CODE >4:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F47 text12 CODE >6:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F48 text12 CODE >43:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F4C text12 CODE >44:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F50 text12 CODE >45:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F52 text12 CODE >46:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F54 text12 CODE >47:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F59 text12 CODE >50:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-F5A text12 CODE >51:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8.c
-FA4 text11 CODE >199:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FA5 text11 CODE >200:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FBF text11 CODE >201:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-211 text10 CODE >208:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-211 text10 CODE >210:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-21C text10 CODE >211:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-227 text10 CODE >212:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-232 text10 CODE >213:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-23D text10 CODE >214:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-248 text10 CODE >215:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-253 text10 CODE >219:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-26A text10 CODE >220:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-281 text10 CODE >221:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-298 text10 CODE >222:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2AF text10 CODE >223:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2C6 text10 CODE >224:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2DD text10 CODE >226:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2F4 text10 CODE >227:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-30B text10 CODE >228:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-322 text10 CODE >229:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-339 text10 CODE >230:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-350 text10 CODE >231:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-367 text10 CODE >233:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-36F text10 CODE >234:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-378 text10 CODE >235:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-384 text10 CODE >236:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-38D text10 CODE >237:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-6F6 text9 CODE >204:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-6F9 text9 CODE >205:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-727 text9 CODE >206:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-5CF text8 CODE >89:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-5D0 text8 CODE >90:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-5DC text8 CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-5E5 text8 CODE >92:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-5F2 text8 CODE >93:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-605 text8 CODE >94:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-617 text8 CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-618 text8 CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-619 text8 CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-61C text8 CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-61D text8 CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-620 text8 CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-625 text8 CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F71 text7 CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F72 text7 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F75 text7 CODE >107:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F83 text7 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-F89 text7 CODE >109:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
-FC0 text6 CODE >251:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FC0 text6 CODE >253:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FC1 text6 CODE >254:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FC2 text6 CODE >255:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FC6 text6 CODE >256:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FCF text6 CODE >254:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FDF text6 CODE >258:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-758 text5 CODE >239:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-758 text5 CODE >240:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-759 text5 CODE >241:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-75A text5 CODE >242:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-760 text5 CODE >243:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-764 text5 CODE >244:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-76D text5 CODE >245:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-777 text5 CODE >246:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-77F text5 CODE >247:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-780 text5 CODE >248:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-38E text4 CODE >261:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-391 text4 CODE >262:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-39B text4 CODE >268:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-39F text4 CODE >269:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3AA text4 CODE >270:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3AB text4 CODE >271:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3B6 text4 CODE >272:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3B7 text4 CODE >273:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3C3 text4 CODE >274:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3C5 text4 CODE >275:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3D1 text4 CODE >276:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3D3 text4 CODE >277:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3DF text4 CODE >278:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3E0 text4 CODE >280:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3EA text4 CODE >281:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-403 text4 CODE >282:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-41C text4 CODE >283:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-42B text4 CODE >266:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-431 text4 CODE >287:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-43B text4 CODE >288:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-444 text4 CODE >289:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-449 text4 CODE >291:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-455 text4 CODE >292:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-46E text4 CODE >293:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-487 text4 CODE >294:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-48C text4 CODE >296:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-492 text4 CODE >297:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-49B text4 CODE >299:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-4A1 text4 CODE >300:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-4A2 text4 CODE >305:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-50C text3 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-50C text3 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-516 text3 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-51E text3 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-520 text3 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-521 text3 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-52A text3 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-52E text3 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-532 text3 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-53B text3 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-54D text3 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-55B text3 CODE >24:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-55C text3 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-565 text3 CODE >27:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-56B text3 CODE >29:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-573 text3 CODE >30:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
-6BC text2 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6BC text2 CODE >23:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6C0 text2 CODE >28:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6C3 text2 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6F2 text2 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6F3 text2 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6F4 text2 CODE >38:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-6F5 text2 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
-7CA text1 CODE >308:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7CA text1 CODE >310:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7CD text1 CODE >311:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7CE text1 CODE >312:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D1 text1 CODE >313:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D3 text1 CODE >314:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D4 text1 CODE >315:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D5 text1 CODE >316:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D6 text1 CODE >317:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7D7 text1 CODE >318:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7DA text1 CODE >319:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7DB text1 CODE >320:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7DC text1 CODE >321:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7DD text1 CODE >322:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7DE text1 CODE >323:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-7EB text1 CODE >328:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2C maintext CODE >114:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-2C maintext CODE >115:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-31 maintext CODE >116:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-34 maintext CODE >117:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-39 maintext CODE >118:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-3E maintext CODE >124:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-44 maintext CODE >125:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-4D maintext CODE >126:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-50 maintext CODE >127:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-61 maintext CODE >128:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-72 maintext CODE >129:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-85 maintext CODE >130:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-98 maintext CODE >131:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-AB maintext CODE >133:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-B4 maintext CODE >136:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-C1 maintext CODE >137:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-CC maintext CODE >138:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-D7 maintext CODE >139:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-E2 maintext CODE >140:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-ED maintext CODE >144:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-F2 maintext CODE >145:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-FB maintext CODE >146:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-103 maintext CODE >147:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-10B maintext CODE >148:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-119 maintext CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-127 maintext CODE >150:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-130 maintext CODE >151:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-13E maintext CODE >152:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-14C maintext CODE >153:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-15A maintext CODE >154:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-15F maintext CODE >156:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-16E maintext CODE >159:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-173 maintext CODE >160:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-17C maintext CODE >161:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-184 maintext CODE >162:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-189 maintext CODE >163:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-192 maintext CODE >164:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1A1 maintext CODE >165:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1B0 maintext CODE >166:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1BF maintext CODE >167:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1C8 maintext CODE >168:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1D7 maintext CODE >169:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1E6 maintext CODE >170:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1F4 maintext CODE >171:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1F9 maintext CODE >173:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-1FE maintext CODE >178:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
-EED clrtext CODE >1053:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EED clrtext CODE >1054:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EEE clrtext CODE >1055:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EEE clrtext CODE >1056:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EEF clrtext CODE >1057:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EF0 clrtext CODE >1058:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EF1 clrtext CODE >1059:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EF2 clrtext CODE >1060:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EF3 clrtext CODE >1061:C:\Users\cnata\AppData\Local\Temp\smbg.s
-EF4 clrtext CODE >1062:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7EC inittext CODE >1012:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7EC inittext CODE >1013:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7ED inittext CODE >1014:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7EE inittext CODE >1015:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7EF inittext CODE >1016:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F0 inittext CODE >1023:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F0 inittext CODE >1024:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F5 inittext CODE >1025:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F6 inittext CODE >1026:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F7 inittext CODE >1027:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F8 inittext CODE >1028:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7F9 inittext CODE >1029:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7FA inittext CODE >1030:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7FB inittext CODE >1031:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7FC inittext CODE >1032:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7FD inittext CODE >1033:C:\Users\cnata\AppData\Local\Temp\smbg.s
-7FE inittext CODE >1034:C:\Users\cnata\AppData\Local\Temp\smbg.s
+3D8 text23 CODE >91:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3D8 text23 CODE >92:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3DE text23 CODE >93:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3E2 text23 CODE >94:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3E8 text23 CODE >95:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3E9 text23 CODE >96:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3EA text23 CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3F0 text23 CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3F1 text23 CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3F2 text23 CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3F8 text23 CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3F9 text23 CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+3FA text23 CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+400 text23 CODE >104:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+402 text23 CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+402 text23 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+403 text23 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+508 text22 CODE >48:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+508 text22 CODE >50:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+514 text22 CODE >51:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+46B text21 CODE >94:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+46B text21 CODE >97:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+470 text21 CODE >98:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+473 text21 CODE >99:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+478 text21 CODE >100:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+481 text21 CODE >101:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+486 text21 CODE >102:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+48C text21 CODE >103:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+48F text21 CODE >104:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+490 text21 CODE >105:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+493 text21 CODE >106:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+493 text21 CODE >107:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+494 text21 CODE >108:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+49A text21 CODE >109:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+549 text20 CODE >64:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+549 text20 CODE >66:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+54E text20 CODE >67:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+551 text20 CODE >68:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+566 text19 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+567 text19 CODE >31:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+56B text19 CODE >32:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4BB text18 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4BC text18 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4BF text18 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4C5 text18 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4C8 text18 CODE >38:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4D1 text18 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4D4 text18 CODE >40:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4FB text17 CODE >43:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+4FB text17 CODE >44:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+501 text17 CODE >45:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+507 text17 CODE >46:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2CC text16 CODE >15:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2CC text16 CODE >16:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2D2 text16 CODE >17:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2DC text16 CODE >18:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2E2 text16 CODE >19:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2EC text16 CODE >20:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2F2 text16 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+2FD text16 CODE >22:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+303 text16 CODE >23:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+309 text16 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+30F text16 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+315 text16 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+31B text16 CODE >27:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\LCD.c
+521 text15 CODE >33:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+522 text15 CODE >34:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+528 text15 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+52C text15 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+43B text14 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+43B text14 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+43F text14 CODE >40:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+452 text14 CODE >41:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+46A text14 CODE >42:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+540 text13 CODE >56:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+540 text13 CODE >57:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+545 text13 CODE >58:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+548 text13 CODE >59:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+537 text12 CODE >73:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+537 text12 CODE >75:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+53C text12 CODE >76:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+53F text12 CODE >77:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+52D text11 CODE >84:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+52D text11 CODE >86:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+532 text11 CODE >87:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+536 text11 CODE >88:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+272 text10 CODE >206:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+272 text10 CODE >207:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+277 text10 CODE >208:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+280 text10 CODE >209:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+288 text10 CODE >210:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+290 text10 CODE >211:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+299 text10 CODE >212:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2A2 text10 CODE >213:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2AB text10 CODE >214:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2B4 text10 CODE >215:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2BD text10 CODE >216:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2C6 text10 CODE >217:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+2CB text10 CODE >218:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+20A text9 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+20A text9 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+214 text9 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+21C text9 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+21E text9 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+21F text9 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+228 text9 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+22C text9 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+230 text9 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+239 text9 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+24B text9 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+259 text9 CODE >24:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+25A text9 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+263 text9 CODE >27:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+269 text9 CODE >29:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+271 text9 CODE >30:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
+39E text8 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+39E text8 CODE >23:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3A2 text8 CODE >28:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3A5 text8 CODE >35:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3D4 text8 CODE >36:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3D5 text8 CODE >37:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3D6 text8 CODE >38:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+3D7 text8 CODE >39:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\I2C.c
+560 text7 CODE >24:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+560 text7 CODE >25:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+561 text7 CODE >26:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+562 text7 CODE >27:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+565 text7 CODE >30:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+515 text6 CODE >8:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+515 text6 CODE >10:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+518 text6 CODE >11:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+51B text6 CODE >13:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+51C text6 CODE >15:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+51F text6 CODE >16:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+520 text6 CODE >17:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+55A text5 CODE >19:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+55A text5 CODE >20:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+55D text5 CODE >21:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+55F text5 CODE >22:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\USART.c
+40A text4 CODE >221:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+40A text4 CODE >223:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+40D text4 CODE >224:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+40E text4 CODE >225:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+411 text4 CODE >226:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+413 text4 CODE >227:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+414 text4 CODE >228:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+415 text4 CODE >229:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+416 text4 CODE >230:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+417 text4 CODE >231:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+41A text4 CODE >232:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+41B text4 CODE >233:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+41C text4 CODE >234:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+41D text4 CODE >235:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+41E text4 CODE >236:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+42B text4 CODE >237:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+430 text4 CODE >238:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+435 text4 CODE >239:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+43A text4 CODE >241:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+31C text3 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+31C text3 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+320 text3 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+326 text3 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+328 text3 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+329 text3 CODE >17:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+330 text3 CODE >18:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+334 text3 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+338 text3 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+33F text3 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+349 text3 CODE >23:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+34F text3 CODE >24:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+350 text3 CODE >26:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+357 text3 CODE >27:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+35D text3 CODE >29:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+361 text3 CODE >30:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwdiv.c
+362 text2 CODE >5:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+362 text2 CODE >12:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+36A text2 CODE >13:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+36C text2 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+36D text2 CODE >15:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+374 text2 CODE >16:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+378 text2 CODE >14:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+37C text2 CODE >19:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+386 text2 CODE >20:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+38C text2 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+393 text2 CODE >22:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+399 text2 CODE >24:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+39D text2 CODE >25:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\lwmod.c
+33 text1 CODE >505:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+33 text1 CODE >550:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+39 text1 CODE >553:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+3A text1 CODE >555:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+40 text1 CODE >558:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+4F text1 CODE >559:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+50 text1 CODE >565:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+51 text1 CODE >848:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+6E text1 CODE >1285:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+7A text1 CODE >1287:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+7E text1 CODE >1288:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+82 text1 CODE >1289:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+87 text1 CODE >1331:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+89 text1 CODE >1332:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+A5 text1 CODE >1333:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+AF text1 CODE >1464:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+B5 text1 CODE >1465:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+C4 text1 CODE >1498:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+C8 text1 CODE >1500:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+C9 text1 CODE >1515:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+F9 text1 CODE >1550:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+108 text1 CODE >1500:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+111 text1 CODE >553:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+123 text1 CODE >1564:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+129 text1 CODE >1567:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
+12A maintext CODE >114:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+12A maintext CODE >115:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+12F maintext CODE >116:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+132 maintext CODE >117:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+137 maintext CODE >118:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+13C maintext CODE >119:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+141 maintext CODE >125:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+146 maintext CODE >126:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+14F maintext CODE >127:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+157 maintext CODE >128:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+15C maintext CODE >129:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+165 maintext CODE >130:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+174 maintext CODE >131:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+183 maintext CODE >132:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+192 maintext CODE >133:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+19B maintext CODE >134:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1AA maintext CODE >135:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1B9 maintext CODE >136:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1C7 maintext CODE >137:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1CC maintext CODE >147:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1E2 maintext CODE >148:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1EB maintext CODE >149:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1F1 maintext CODE >151:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+1F7 maintext CODE >152:C:\Users\cnata\Documents\7_SEMESTRE\Digital_2\Laboratorio\LAB_REPOSITORIO\MINI_ROYECTO_2\Prueba3_miniProyecto2.X\main_prueba3_mini2.c
+552 clrtext CODE >1366:C:\Users\cnata\AppData\Local\Temp\sg64.s
+552 clrtext CODE >1367:C:\Users\cnata\AppData\Local\Temp\sg64.s
+553 clrtext CODE >1368:C:\Users\cnata\AppData\Local\Temp\sg64.s
+553 clrtext CODE >1369:C:\Users\cnata\AppData\Local\Temp\sg64.s
+554 clrtext CODE >1370:C:\Users\cnata\AppData\Local\Temp\sg64.s
+555 clrtext CODE >1371:C:\Users\cnata\AppData\Local\Temp\sg64.s
+556 clrtext CODE >1372:C:\Users\cnata\AppData\Local\Temp\sg64.s
+557 clrtext CODE >1373:C:\Users\cnata\AppData\Local\Temp\sg64.s
+558 clrtext CODE >1374:C:\Users\cnata\AppData\Local\Temp\sg64.s
+559 clrtext CODE >1375:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4E8 inittext CODE >1325:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4E8 inittext CODE >1326:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4E9 inittext CODE >1327:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4EA inittext CODE >1328:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4EB inittext CODE >1329:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4EC inittext CODE >1336:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4EC inittext CODE >1337:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F1 inittext CODE >1338:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F2 inittext CODE >1339:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F3 inittext CODE >1340:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F4 inittext CODE >1341:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F5 inittext CODE >1342:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F6 inittext CODE >1343:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F7 inittext CODE >1344:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F8 inittext CODE >1345:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4F9 inittext CODE >1346:C:\Users\cnata\AppData\Local\Temp\sg64.s
+4FA inittext CODE >1347:C:\Users\cnata\AppData\Local\Temp\sg64.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -491,109 +404,106 @@ EF4 clrtext CODE >1062:C:\Users\cnata\AppData\Local\Temp\smbg.s
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-_i 45 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 ___latbits 2 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awdiv@counter 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwmod@counter 48 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
-__Hspace_0 1000 0 ABS 0 - -
-__Hspace_1 7B 0 ABS 0 - -
+__Hspace_0 56C 0 ABS 0 - -
+__Hspace_1 B4 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
-__size_of_decimal_to_bcd 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
-_Lcd_Init C4C 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Port 1DCE 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-I2C_Master_Init@c 67 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Lcd_Init 598 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Lcd_Port ACC 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of_Write_USART_String 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+I2C_Master_Init@c 4D 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_Lcd_Init CEC 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Port 1DDA 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+Write_USART_String@a 74 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+Write_USART_String@i 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Lcd_Init 638 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Lcd_Port AD8 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hstrings 0 0 ABS 0 strings -
 _Date 20 0 BANK0 1 dataBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PEIE 5E 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_RCIF 65 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_TRMT 4C1 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _Time 31 0 BANK0 1 dataBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\smbg.o
-_edit 71C 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_hour 43 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_main 58 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_year 40 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\sg64.o
+_cont 5B 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_hour 5F 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_main 254 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_year 5C 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Write_Char 1EB6 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-start 18 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\smbg.o
-__size_of___awdiv 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of___awmod 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_edit 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+start 18 0 CODE 0 init C:\Users\cnata\AppData\Local\Temp\sg64.o
 __size_of_main 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of___lldiv 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of___lwdiv 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of___lwmod 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 Lcd_Port@a 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _data_recive 78 0 COMMON 1 bssCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
+__size_of_USART_INTERRUPT 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_USART_Init A42 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
-_LCD_PutC 1EE2 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hpowerup 0 0 CODE 0 powerup -
-bcd_to_decimal@number 77 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awmod@sign 5B 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 I2C_Master_Read@a 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\smbg.o
-__end_of_LCD_PutC 1F14 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Write_USART A5A 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\cnata\AppData\Local\Temp\sg64.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
-___bmul@multiplicand 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_OSCCONbits 8F 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 wtemp0 7E 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
-I2C_Master_Read@temp 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_Lcd_Set_Cursor 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awdiv@sign 5B 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+I2C_Master_Read@temp 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hclrtext 0 0 ABS 0 clrtext -
-__end_of_RTC_display 71C 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Write_Char 1EE2 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _ANSELH 189 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awdiv@dividend 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_bcd_to_decimal 1F48 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of___bmul 1EB6 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Write_to_RTC 4E4 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
-_data_total 46 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___bmul@multiplier 76 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awdiv@divisor 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of___awdiv A18 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of___awmod B9E 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of___lldiv AE8 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\smbg.o
-___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\smbg.o
-__size_of_blink 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of_sprintf 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwmod@divisor 43 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of___lldiv 4E4 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of___lwdiv 6C4 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of___lwmod 73C 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___stackhi 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\sg64.o
+___stacklo 0 0 ABS 0 - C:\Users\cnata\AppData\Local\Temp\sg64.o
+_dpowers 9B6 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwdiv@quotient 41 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_setup 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-Lcd_Set_Cursor@temp 5C 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___lldiv@counter 66 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of_Write_to_RTC 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwmod@dividend 45 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lldiv@counter 4C 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 start_initialization 1E 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-debounce@count 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_bcd_to_decimal 1F80 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-LCD_PutC@LCD_Char 77 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISCbits 87 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___lldiv@dividend 5E 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Write_String CEC 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-clear_ram0 1DDA 0 CODE 0 clrtext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__pcstackBANK0 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lldiv@dividend 44 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+clear_ram0 AA4 0 CODE 0 clrtext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_SPBRGH 9A 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pcstackBANK0 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPADD 93 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPBUF 13 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPCON 14 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Write_to_RTC 598 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISC3 43B 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISC4 43C 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_Lcd_Cmd 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\smbg.o
+__size_of_Write_USART 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of_USART_Init 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___int_sp 0 0 STACK 2 stack C:\Users\cnata\AppData\Local\Temp\sg64.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
-__Hcinit 58 0 CODE 0 cinit -
+__Hcinit 66 0 CODE 0 cinit -
 __Hstack 0 0 STACK 2 stack -
-__stringbase F6C 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__stringbase 9B4 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwdiv@counter 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 I2C_Master_Write@d 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hmaintext 0 0 ABS 0 maintext -
-_I2C_Master_RepeatedStart 1DEA 0 CODE 0 text25 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_RepeatedStart A92 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_sprintf 254 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4012 0 CONFIG 4 config -
 __Lbank0 0 0 ABS 0 bank0 -
@@ -601,13 +511,12 @@ __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
 __Lcinit 1E 0 CODE 0 cinit -
-__size_of_RTC_display 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lstack 0 0 STACK 2 stack -
 __Linittext 0 0 ABS 0 inittext -
 _PORTAbits 5 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTDbits 8 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTEbits 9 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_decimal_to_bcd DEC 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_INTCONbits B 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hinit 18 0 CODE 0 init -
@@ -624,184 +533,170 @@ __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
-___bmul 1E8C 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _GIE 5F 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_ISR 1E68 0 CODE 0 text28 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_RB0 30 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_RB1 31 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__S0 1000 0 ABS 0 - -
-__S1 7B 0 ABS 0 - -
+_ISR 7B0 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__S0 56C 0 ABS 0 - -
+__S1 B4 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-decimal_to_bcd@number 63 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_LCD_Write_Nibble B9E 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-blink@j 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 saved_w 7E 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_I2C_Master_Start 1DFC 0 CODE 0 text24 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_I2C_Master_Write 1E20 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Write_String D78 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_ISR 1E8C 0 CODE 0 text28 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Clear 1E68 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Start A80 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Write A5A 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@val 54 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_ISR 814 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Lcd_Clear A10 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lintentry 8 0 CODE 0 intentry -
-___lldiv@divisor 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_Lcd_Write_String 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__stringtab F4E 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-Lcd_Write_String@a 76 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-Lcd_Write_String@i 5D 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\smbg.o
+___lldiv@divisor 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__stringtab 9AA 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\cnata\AppData\Local\Temp\sg64.o
 __size_of_Lcd_Clear 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__size_of_USART_Init_BaudRate 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __pdataBANK0 20 0 BANK0 1 dataBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Cmd 1F48 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of___bmul 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_Lcd_Cmd 9AA 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
-__end_of_decimal_to_bcd E50 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awmod@counter 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_minute 44 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-LCD_Write_Nibble@n 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext10 422 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext11 1F48 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext12 1E8C 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext13 AE8 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext14 946 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext15 CEC 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext16 1EB6 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext17 F02 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext18 C4C 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext19 1E4E 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext20 1F14 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext21 1DCE 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext22 1E20 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext23 1E0E 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext24 1DFC 0 CODE 0 text24 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext25 1DEA 0 CODE 0 text25 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext26 E50 0 CODE 0 text26 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext27 1E34 0 CODE 0 text27 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext28 1E68 0 CODE 0 text28 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Clear 1E4E 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_Lcd_Write_Char 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awdiv 946 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awmod AE8 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Set_Cursor F02 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___lldiv A18 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__pmaintext 58 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-edit@parameter 60 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__LbssBANK1 0 0 ABS 0 bssBANK1 -
+__end_of_Write_USART_String 8D6 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_RCSTAbits 18 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_PIE1bits 8C 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_minute 79 0 COMMON 1 bssCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@flag 52 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@prec 53 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext10 4E4 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext11 A5A 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext12 A6E 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext13 A80 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext14 876 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext15 A42 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext16 598 0 CODE 0 text16 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext17 9F6 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext18 976 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext19 ACC 0 CODE 0 text19 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext20 A92 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext21 8D6 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext22 A10 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext23 7B0 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Lcd_Clear 9F6 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lldiv 414 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwdiv 638 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwmod 6C4 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pmaintext 254 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-__size_of_debounce 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hinittext 0 0 ABS 0 inittext -
 _second 7A 0 COMMON 1 bssCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwdiv@divisor 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_RepeatedStart 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-debounce@i 76 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 ?_I2C_Master_Read 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_LCD_Write_Nibble C4C 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_I2C_Master_Init DEC 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_I2C_Master_Read EB0 0 CODE 0 text26 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_I2C_Master_Stop 1E20 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_I2C_Master_Wait 1E4E 0 CODE 0 text27 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of__stringtab F6E 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_LCD_Write_Nibble 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_I2C_Master_Start 1E0E 0 CODE 0 text24 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Write_USART_String 876 0 CODE 0 text14 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_USART_Init_BaudRate AB4 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Init 7B0 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Read 936 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Stop A80 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Wait A2A 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of__stringtab 9B6 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+Write_USART@a 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Start A92 0 CODE 0 text13 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-__end_of_I2C_Master_Write 1E34 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_Write A6E 0 CODE 0 text11 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __pbssCOMMON 78 0 COMMON 1 bssCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-init_fetch0 FD8 0 CODE 0 inittext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+init_fetch0 9D0 0 CODE 0 inittext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 _PIR1bits C 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lend_init 18 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_Write_USART A42 0 CODE 0 text15 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_Start 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_Write 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-end_of_initialization 50 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_Lcd_Set_Cursor F4E 0 CODE 0 text17 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+end_of_initialization 5E 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hintentry 18 0 CODE 0 intentry -
-Lcd_Set_Cursor@a 5B 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-Lcd_Set_Cursor@b 77 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lstrings 0 0 ABS 0 strings -
-___awdiv@quotient 5C 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-?___awdiv 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-?___awmod 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-?___lldiv 5A 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lwdiv@dividend 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+?___lldiv 40 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+?___lwdiv 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+?___lwmod 43 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hreset_vec 6 0 CODE 0 reset_vec -
-_debounce EB0 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_bcd_to_decimal 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-___awmod@dividend 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_RTC_display 422 0 CODE 0 text10 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__HbssBANK1 0 0 ABS 0 bssBANK1 -
 _SSPCON2bits 91 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext1 F94 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext2 D78 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext3 A18 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext4 71C 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext5 EB0 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext6 1F80 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext7 1EE2 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext8 B9E 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__ptext9 DEC 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_debounce F02 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext1 66 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext2 6C4 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext3 638 0 CODE 0 text3 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext4 814 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext5 AB4 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext6 A2A 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext7 AC0 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext8 73C 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__ptext9 414 0 CODE 0 text9 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_USART_INTERRUPT ACC 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_sprintf 66 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_I2C_Master_Init D78 0 CODE 0 text2 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_I2C_Master_Read E50 0 CODE 0 text26 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_I2C_Master_Stop 1E0E 0 CODE 0 text23 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_I2C_Master_Wait 1E34 0 CODE 0 text27 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Init 73C 0 CODE 0 text8 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Read 8D6 0 CODE 0 text21 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Stop A6E 0 CODE 0 text12 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_I2C_Master_Wait A10 0 CODE 0 text22 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@ap 51 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@sp 49 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of_I2C_Master_RepeatedStart 1DFC 0 CODE 0 text25 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of__initialization 50 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___awmod@divisor 73 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_I2C_Master_RepeatedStart AA4 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of__initialization 5E 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
 Lcd_Cmd@a 76 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__pidataBANK0 1FC0 0 CODE 0 idataBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pidataBANK0 936 0 CODE 0 idataBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Lclrtext 0 0 ABS 0 clrtext -
-___lldiv@quotient 62 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_USART_Init_BaudRate AC0 0 CODE 0 text5 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+___lldiv@quotient 48 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_TXSTAbits 98 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPCON2 91 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPSTAT 94 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_Lcd_Init 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_Lcd_Port 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hend_init 1E 0 CODE 0 end_init -
-init_ram0 FE0 0 CODE 0 inittext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_edit 946 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_main 422 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+init_ram0 9D8 0 CODE 0 inittext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_USART_INTERRUPT AC0 0 CODE 0 text7 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@c 56 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+sprintf@f 4B 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_main 414 0 CODE 0 maintext dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _ANSEL 188 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_blink 1FC0 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_dpowers 9CA 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+?_sprintf 49 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTA 5 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTB 6 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTC 7 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTD 8 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _PORTE 9 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _RCREG 1A 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_SPBRG 99 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPIE 463 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _SSPIF 63 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISA 85 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISB 86 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISD 88 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 _TRISE 89 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__end_of_setup FD8 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_TXREG 19 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__end_of_setup 876 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_blink 1F80 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 interrupt_function 8 0 CODE 0 intentry dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_m_day 42 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_month 41 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_setup F94 0 CODE 0 text1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_m_day 5E 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_month 5D 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_setup 814 0 CODE 0 text4 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __pintentry 8 0 CODE 0 intentry dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-_Lcd_Cmd 1F14 0 CODE 0 text20 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+_Lcd_Cmd 976 0 CODE 0 text18 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_ISR 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __HdataBANK0 0 0 ABS 0 dataBANK0 -
+_USART_Init A2A 0 CODE 0 text6 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __initialization 1E 0 CODE 0 cinit dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-___bmul@product 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__pbssBANK0 40 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__pstrings F4E 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-edit@x 64 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-edit@y 5F 0 BANK0 1 cstackBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-__size_of_LCD_PutC 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
-Lcd_Write_Char@a 75 0 COMMON 1 cstackCOMMON dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pbssBANK0 5A 0 BANK0 1 bssBANK0 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pbssBANK1 A0 0 BANK1 1 bssBANK1 dist/default/debug\Prueba3_miniProyecto2.X.debug.o
+__pstrings 9AA 0 STRING 0 strings dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_Init 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_Read 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
 __size_of_I2C_Master_Stop 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X.debug.o
@@ -831,28 +726,13 @@ __size_of_I2C_Master_Wait 0 0 ABS 0 - dist/default/debug\Prueba3_miniProyecto2.X
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text1 0 7CA F94 35 2
-text6 0 FC0 1F80 20 2
-text7 0 F71 1EE2 19 2
-text11 0 FA4 1F48 1C 2
-text12 0 F46 1E8C 15 2
-text16 0 F5B 1EB6 16 2
-text19 0 F27 1E4E D 2
-text20 0 F8A 1F14 1A 2
-text21 0 EE7 1DCE 6 2
-text22 0 F10 1E20 A 2
-text23 0 F07 1E0E 9 2
-text24 0 EFE 1DFC 9 2
-text25 0 EF5 1DEA 9 2
-text27 0 F1A 1E34 D 2
-text28 0 F34 1E68 12 2
 cstackCOMMON 1 70 70 B 1
-intentry 0 4 8 7A3 2
+inittext 0 4E8 9D0 84 2
+intentry 0 4 8 4D1 2
 reset_vec 0 0 0 3 2
-idataBANK0 0 FE0 1FC0 20 2
-strings 0 7A7 F4E 23 2
-dataBANK0 1 20 20 4E 1
-clrtext 0 EED 1DDA 8 2
+bssBANK1 1 A0 A0 14 1
+strings 0 4D5 9AA 13 2
+dataBANK0 1 20 20 41 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

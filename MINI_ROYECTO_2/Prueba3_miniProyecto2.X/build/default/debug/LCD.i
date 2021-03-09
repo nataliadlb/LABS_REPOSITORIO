@@ -2723,6 +2723,7 @@ void Lcd_Shift_Left(void){
  Lcd_Cmd(0x08);
 }
 
+
 void LCD_Write_Nibble(uint8_t n){
   PORTEbits.RE0 = PORTEbits.RE0;
   PORTDbits.RD4 = n & 0x01;
