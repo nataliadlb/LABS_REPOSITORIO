@@ -14,20 +14,17 @@
 #include "config.h"
 #include <stdint.h>
 #include <stdio.h>
-
+#include "HardwareSerial.h"
 /************************ Example Starts Here *******************************/
 
 
-const int BUFFER_SIZE = 1;
-char buf[BUFFER_SIZE];
+const int BUFFER_SIZE = 14;
+char rec_data[BUFFER_SIZE];
 uint8_t cont = 0;
 String send_data;
-uint8_t rec_data = 0;
-bool rec = false;
+//uint8_t rec_data = 0;
 
-//char[14] Time ;
-//char[14] Date;
-//char[14] Recibir;
+
 
 #define IO_LOOP_DELAY 5000
 unsigned long lastUpdate = 0;
@@ -74,35 +71,32 @@ void loop() {
   io.run();
   
    if(Serial2.available()>0){
-      Serial.print("valor: ");
+    
+      Serial.print("Mandando: ");
       if (send_data == "1"){
-        Serial.write((char)49);
-//        Serial.println(" ");
-//        Serial.println((char)49);
-//        Serial.println(" ");
+        Serial2.write((char)49);
+        Serial.println((char)49);
         }
       else if (send_data == "2"){
         Serial2.write((char)50);
-        Serial.println(" ");
-        Serial.println("RA6 OFF");
-        Serial.println(" ");
+        Serial.println((char)50);
         }
         else if (send_data == "3"){
         Serial2.write((char)51);
-        Serial.println(" ");
-        Serial.println("RA7 ON");
-        Serial.println(" ");
+        Serial.println((char)51);
         }
         else if (send_data == "4"){
         Serial2.write((char)52);
-        Serial.println(" ");
-        Serial.println("RA7 OFF");
-        Serial.println(" ");
+        Serial.println((char)52);
         }
-      //Serial2.write(Serial.read());
-      
-     
-     //Serial2.write(Serial.read());  
+
+        
+        int rlen = Serial.readBytesUntil('\n', rec_data, BUFFER_SIZE);
+        Serial.print("Recibiendo: ");
+        for(int i = 0; i < rlen; i++){
+          Serial.print(rec_data[i]);
+          }
+       Serial.println(" ");
    }
  
 //if (millis() > (lastUpdate + IO_LOOP_DELAY)) {
@@ -110,23 +104,7 @@ void loop() {
 //    // increment the count by 1
 //    // after publishing, store the current time
 //    lastUpdate = millis();
-//
-//    if (rec) {
-//      //  Serial.println(" - TRANSMITTING");
-//      Serial.println(send_data);
-//    }
-//    else {
-//      //  Serial.println("");
-//    }
-//    rec = false;
-//  }
-  
-//   if(Serial2.available()){
-//      cont = (uint8_t)Serial2.read();
-//      Serial.print("sending -> ");
-//      Serial.println(cont);
-//      ContadorFeed->save(cont);
-//      Serial2.write(piloto); 
+
 //   }
   delay(3000);
 }
@@ -135,30 +113,21 @@ void loop() {
 // this function is called whenever an 'digital' feed message
 // is received from Adafruit IO. it was attached to
 // the 'digital' feed in the setup() function above.
+
 void handleMessage1(AdafruitIO_Data *data) {
-//  Serial.println("--------");
-//  Serial.println("Piloto 1");
-//  Serial.print("received <- ");
-  //Serial.println(data->value());
   
   if(data->toString() == "ON"){
     //Serial.println("HIGH");
     send_data = "1";
-    //Serial2.write('1'); //49 EN ASCII
   }
   else{
     //Serial.println("OFF");
     send_data = "2";
-    //Serial2.write('2');
   }
   
 }
 
 void handleMessage2(AdafruitIO_Data *data) {
-//  Serial.println("--------");
-//  Serial.println("Piloto 2");
-//  Serial.print("received <- ");
-  //Serial.println(data->value());
   
   if(data->toString() == "ON"){
     //Serial.println("HIGH");
