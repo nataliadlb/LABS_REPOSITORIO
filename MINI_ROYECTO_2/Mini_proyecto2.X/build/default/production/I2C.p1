@@ -288,65 +288,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"20 I2C.c
-[; ;I2C.c: 20: void I2C_Master_Init(const unsigned long c)
+"21 I2C.c
+[; ;I2C.c: 21: void I2C_Master_Init(const unsigned long c)
 [v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]
-"21
-[; ;I2C.c: 21: {
+"22
+[; ;I2C.c: 22: {
 {
 [e :U _I2C_Master_Init ]
-"20
-[; ;I2C.c: 20: void I2C_Master_Init(const unsigned long c)
-[v _c `Cul ~T0 @X0 1 r1 ]
 "21
-[; ;I2C.c: 21: {
-[f ]
+[; ;I2C.c: 21: void I2C_Master_Init(const unsigned long c)
+[v _c `Cul ~T0 @X0 1 r1 ]
 "22
-[; ;I2C.c: 22:     SSPCON = 0b00101000;
+[; ;I2C.c: 22: {
+[f ]
+"23
+[; ;I2C.c: 23:     SSPCON = 0b00101000;
 [e = _SSPCON -> -> 40 `i `uc ]
-"27
-[; ;I2C.c: 27:     SSPCON2 = 0;
+"28
+[; ;I2C.c: 28:     SSPCON2 = 0;
 [e = _SSPCON2 -> -> 0 `i `uc ]
-"34
-[; ;I2C.c: 34:     SSPADD = (8000000/(4*c))-1;
-[e = _SSPADD -> - / -> -> 8000000 `l `ul * -> -> -> 4 `i `l `ul _c -> -> -> 1 `i `l `ul `uc ]
 "35
-[; ;I2C.c: 35:     SSPSTAT = 0;
-[e = _SSPSTAT -> -> 0 `i `uc ]
+[; ;I2C.c: 35:     SSPADD = (8000000/(4*c))-1;
+[e = _SSPADD -> - / -> -> 8000000 `l `ul * -> -> -> 4 `i `l `ul _c -> -> -> 1 `i `l `ul `uc ]
 "36
-[; ;I2C.c: 36:     TRISCbits.TRISC3 = 1;
-[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
+[; ;I2C.c: 36:     SSPSTAT = 0;
+[e = _SSPSTAT -> -> 0 `i `uc ]
 "37
-[; ;I2C.c: 37:     TRISCbits.TRISC4 = 1;
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+[; ;I2C.c: 37:     TRISCbits.TRISC3 = 1;
+[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
 "38
-[; ;I2C.c: 38: }
+[; ;I2C.c: 38:     TRISCbits.TRISC4 = 1;
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+"39
+[; ;I2C.c: 39: }
 [e :UE 138 ]
 }
-"47
-[; ;I2C.c: 47: void I2C_Master_Wait()
-[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
 "48
-[; ;I2C.c: 48: {
+[; ;I2C.c: 48: void I2C_Master_Wait()
+[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
+"49
+[; ;I2C.c: 49: {
 {
 [e :U _I2C_Master_Wait ]
 [f ]
-"49
-[; ;I2C.c: 49:     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+"50
+[; ;I2C.c: 50:     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 [e $U 140  ]
 [e :U 141 ]
 [e :U 140 ]
 [e $ || != & -> _SSPSTAT `i -> 4 `i -> 0 `i != & -> _SSPCON2 `i -> 31 `i -> 0 `i 141  ]
 [e :U 142 ]
-"50
-[; ;I2C.c: 50: }
+"51
+[; ;I2C.c: 51: }
 [e :UE 139 ]
 }
-"55
-[; ;I2C.c: 55: void I2C_Master_Start()
-[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
 "56
-[; ;I2C.c: 56: {
+[; ;I2C.c: 56: void I2C_Master_Start(){
+[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
 {
 [e :U _I2C_Master_Start ]
 [f ]

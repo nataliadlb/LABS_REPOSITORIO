@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main_mini2.c" 2
-# 14 "main_mini2.c"
+# 31 "main_mini2.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 14 "main_mini2.c" 2
+# 31 "main_mini2.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,8 +2623,251 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 15 "main_mini2.c" 2
+# 32 "main_mini2.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 33 "main_mini2.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
+
+
+
+
+
+
+typedef unsigned short wchar_t;
+
+
+
+
+
+
+
+typedef struct {
+ int rem;
+ int quot;
+} div_t;
+typedef struct {
+ unsigned rem;
+ unsigned quot;
+} udiv_t;
+typedef struct {
+ long quot;
+ long rem;
+} ldiv_t;
+typedef struct {
+ unsigned long quot;
+ unsigned long rem;
+} uldiv_t;
+# 65 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 3
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+
+
+
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+
+
+
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+# 104 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 3
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+# 34 "main_mini2.c" 2
+
+
+# 1 "./LCD.h" 1
+# 63 "./LCD.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 63 "./LCD.h" 2
+
+
+
+
+
+
+
+
+void Lcd_Init(void);
+void Lcd_Port(char a);
+void Lcd_Cmd(char a);
+void Lcd_Set_Cursor(char a, char b);
+void Lcd_Write_Char(char a);
+void Lcd_Write_String(char *a);
+void Lcd_Shift_Right();
+void Lcd_Shift_Left();
+void Lcd_Clear(void);
+void LCD_Write_Nibble(uint8_t n);
+void LCD_PutC(char LCD_Char);
+# 36 "main_mini2.c" 2
+
+# 1 "./USART.h" 1
+# 14 "./USART.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./USART.h" 2
+
+
+
+
+
+void USART_Init(void);
+void USART_Init_BaudRate(void);
+void Trasmission_1(char val_1_mapeado);
+void Trasmission_2(char val_2_mapeado);
+void USART_INTERRUPT(void);
+void Write_USART(uint8_t a);
+void Write_USART_String(char *a);
+uint8_t Read_USART();
+# 37 "main_mini2.c" 2
+
+# 1 "./Oscilador.h" 1
+# 14 "./Oscilador.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./Oscilador.h" 2
+
+
+
+
+
+
+
+
+void initOsc(uint8_t IRCF);
+# 38 "main_mini2.c" 2
 
 # 1 "./I2C.h" 1
 # 23 "./I2C.h"
@@ -2667,28 +2910,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 17 "main_mini2.c" 2
-
-# 1 "./USART.h" 1
-# 14 "./USART.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 14 "./USART.h" 2
-
-
-
-
-
-void USART_Init(void);
-void USART_Init_BaudRate(void);
-void Trasmission_1(char val_1_mapeado);
-void Trasmission_2(char val_2_mapeado);
-void USART_INTERRUPT(void);
-void Write_USART(uint8_t a);
-void Write_USART_String(char *a);
-uint8_t Read_USART();
-# 18 "main_mini2.c" 2
-
-
+# 39 "main_mini2.c" 2
 
 
 
@@ -2705,35 +2927,53 @@ uint8_t Read_USART();
 #pragma config LVP = OFF
 
 
-#pragma config BOR4V = BOR40V
+#pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
-# 56 "main_mini2.c"
-char data_recive;
+# 68 "main_mini2.c"
+uint8_t i, second, minute, hour, m_day, month, year;
+char data_total[20];
 uint8_t cont;
-char prueba;
-int holiwis;
+int data_recive;
+char sec_send[8];
+char min_send[8];
+char hour_send[8];
+char day_send[8];
+char month_send[8];
+char year_send[8];
+char cont_send[8];
+
+static char Time[] = "TIME: 00:00:00";
+static char Date[] = "DATE: 00/00/00";
+
+
 
 
 
 void setup(void);
-void MPU6050_Init(void);
+void Write_to_RTC(void);
+void RTC_display(void);
+void Led_RTC(void);
+void Piloto(void);
+uint8_t decimal_to_bcd(uint8_t number);
+uint8_t bcd_to_decimal(uint8_t number);
+
 
 
 
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
-        data_recive = RCREG;
-        if (data_recive == 'P11'){
+        data_recive = Read_USART();
+        if (data_recive == 1){
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == 'P10'){
+        else if (data_recive == 0){
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == 'P21'){
+        else if (data_recive == 3){
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == 'P20'){
+        else if (data_recive == 2){
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
@@ -2743,43 +2983,168 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 
 
 
+
 void main(void) {
     setup();
-    prueba = "Hola";
+    TRISD = 0x00;
+    Write_to_RTC();
+
+
+    while (1) {
+
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD0);
+        I2C_Master_Write(0);
+        I2C_Master_RepeatedStart();
+        I2C_Master_Write(0xD1);
+        second = I2C_Master_Read(1);
+        minute = I2C_Master_Read(1);
+        hour = I2C_Master_Read(1);
+        I2C_Master_Read(1);
+        m_day = I2C_Master_Read(1);
+        month = I2C_Master_Read(1);
+        year = I2C_Master_Read(0);
+        I2C_Master_Stop();
+
+        RTC_display();
+
+        Led_RTC();
+        Piloto();
+        cont++;
 
 
 
 
-
-    while(1){
-# 115 "main_mini2.c"
-        PORTAbits.RA7 = 1;
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
-        PORTAbits.RA6 = 1;
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
-        PORTAbits.RA7 = 0;
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
-        PORTAbits.RA6 = 0;
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
-        Write_USART(holiwis);
+        Write_USART_String(Time);
+        Write_USART_String("  ");
+        Write_USART_String(Date);
         Write_USART(13);
         Write_USART(10);
-        PORTD = holiwis;
-        holiwis++;
-    }
 
+        _delay((unsigned long)((500)*(8000000/4000.0)));
+    }
 }
 
 
 
 
 
+
+uint8_t bcd_to_decimal(uint8_t number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+
+
+uint8_t decimal_to_bcd(uint8_t number) {
+  return(((number / 10) << 4) + (number % 10));
+}
+
+void RTC_display(void){
+
+    second = bcd_to_decimal(second);
+    minute = bcd_to_decimal(minute);
+    hour = bcd_to_decimal(hour);
+    m_day = bcd_to_decimal(m_day);
+    month = bcd_to_decimal(month);
+    year = bcd_to_decimal(year);
+
+
+
+    Time[6] = hour / 10 + '0';
+    Time[7] = hour % 10 + '0';
+    Time[9] = minute / 10 + '0';
+    Time[10] = minute % 10 + '0';
+    Time[12] = second / 10 + '0';
+    Time[13] = second % 10 + '0';
+
+
+    Date[6] = m_day / 10 + '0';
+    Date[7] = m_day % 10 + '0';
+    Date[9] = month / 10 + '0';
+    Date[10] = month % 10 + '0';
+    Date[12] = year / 10 + '0';
+    Date[13] = year % 10 + '0';
+
+
+    sprintf(sec_send, "%d", second);
+    sprintf(min_send, "%02d", minute);
+    sprintf(hour_send, "%02d", hour);
+    sprintf(day_send, "%02d", m_day);
+    sprintf(month_send, "%02d", month);
+    sprintf(year_send, "%2d", year);
+
+}
+
+
+void Write_to_RTC(void){
+    I2C_Master_Start();
+    I2C_Master_Write(0xD0);
+    I2C_Master_Write(0);
+    I2C_Master_Write(0);
+    I2C_Master_Write(48);
+    I2C_Master_Write(6);
+    I2C_Master_Write(1);
+    I2C_Master_Write(8);
+    I2C_Master_Write(3);
+    I2C_Master_Write(27);
+    I2C_Master_Stop();
+}
+
+void Led_RTC(void){
+    if (second == 6){
+        PORTDbits.RD0 = 1;
+    }
+    else if (second == 7){
+        PORTDbits.RD1 = 1;
+    }
+    else if (second == 8){
+        PORTDbits.RD2 = 1;
+    }
+    else if (second == 9){
+        PORTDbits.RD3 = 1;
+    }
+    else if (second == 10){
+        PORTDbits.RD4 = 1;
+    }
+    else if (second == 11){
+        PORTDbits.RD5 = 1;
+    }
+    else if (second == 12){
+        PORTDbits.RD6 = 1;
+    }
+    else if (minute == 31){
+        PORTDbits.RD7 = 1;
+    }
+}
+
+void Piloto(void){
+    if (cont == 7){
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 0;
+    }
+    else if (cont == 8){
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 1;
+    }
+    else if (cont == 11){
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 1;
+    }
+    else if (cont == 12){
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
+    }
+}
+
 void setup(void) {
+
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
-    TRISB = 0;
-    TRISC = 0;
+    TRISB = 0b00000011;
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
     TRISD = 0;
     TRISE = 0;
     PORTA = 0;
@@ -2787,54 +3152,9 @@ void setup(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    I2C_Master_Init(100000);
     USART_Init_BaudRate();
     USART_Init();
     USART_INTERRUPT();
-    I2C_Master_Init(100000);
-}
 
-
-
-
-
-void MPU6050_Init(void){
-
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x19);
-      I2C_Master_Write(0x07);
-      I2C_Master_Stop();
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x6B);
-      I2C_Master_Write(0x01);
-      I2C_Master_Stop();
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x1A);
-      I2C_Master_Write(0x00);
-      I2C_Master_Stop();
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x1C);
-      I2C_Master_Write(0x00);
-      I2C_Master_Stop();
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x1B);
-      I2C_Master_Write(0x18);
-      I2C_Master_Stop();
-
-      I2C_Master_Start();
-      I2C_Master_Write(0x38);
-      I2C_Master_Write(0x01);
-      I2C_Master_Stop();
-}
-
-void MPU_Start_Loc()
-
-{
- I2C_Master_Wait();
- I2C_Master_Write(0x3B);
- I2C_Master_RepeatedStart();
 }

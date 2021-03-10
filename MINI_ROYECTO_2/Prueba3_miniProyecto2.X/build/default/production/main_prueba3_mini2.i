@@ -2927,13 +2927,13 @@ void I2C_Slave_Init(uint8_t address);
 #pragma config LVP = OFF
 
 
-#pragma config BOR4V = BOR40V
+#pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 # 68 "main_prueba3_mini2.c"
 uint8_t i, second, minute, hour, m_day, month, year;
 char data_total[20];
 uint8_t cont;
-char data_recive;
+int data_recive;
 char sec_send[8];
 char min_send[8];
 char hour_send[8];
@@ -2961,17 +2961,17 @@ uint8_t bcd_to_decimal(uint8_t number);
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if(PIR1bits.RCIF == 1){
-        data_recive = RCREG;
-        if (data_recive == '1'){
+        data_recive = Read_USART();
+        if (data_recive == 1){
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == '2'){
+        else if (data_recive == 0){
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == '3'){
+        else if (data_recive == 3){
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == '4'){
+        else if (data_recive == 2){
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
@@ -2985,8 +2985,8 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
 void main(void) {
     setup();
     TRISD = 0x00;
-    Lcd_Init();
-    Lcd_Clear();
+
+
     Write_to_RTC();
 
 
@@ -3009,23 +3009,38 @@ void main(void) {
 
         RTC_display();
 
-
-
-
-
-
-        Write_USART_String("TIME:");
-        Write_USART_String("  ");
-        Write_USART_String(hour_send);
-        Write_USART_String(":");
-        Write_USART_String(min_send);
-        Write_USART_String(":");
+        if (second == 2){
+            PORTDbits.RD0 = 1;
+        }
+        else if (second == 3){
+            PORTDbits.RD1 = 1;
+        }
+        else if (second == 4){
+            PORTDbits.RD2 = 1;
+        }
+        else if (second == 5){
+            PORTDbits.RD3 = 1;
+        }
+        else if (second == 6){
+            PORTDbits.RD4 = 1;
+        }
+        else if (second == 10){
+            PORTDbits.RD5 = 1;
+        }
+        else if (second == 15){
+            PORTDbits.RD6 = 1;
+        }
+        else if (minute == 31){
+            PORTDbits.RD7 = 1;
+        }
+# 182 "main_prueba3_mini2.c"
         Write_USART_String(sec_send);
-        Write_USART_String("  ");
-        Write_USART_String(Date);
+
+
+
         Write_USART(13);
         Write_USART(10);
-# 174 "main_prueba3_mini2.c"
+# 199 "main_prueba3_mini2.c"
         _delay((unsigned long)((100)*(8000000/4000.0)));
     }
 }
@@ -3072,16 +3087,16 @@ void RTC_display(void){
 
 
     sprintf(sec_send, "%d", second);
-    sprintf(min_send, "%d", minute);
-    sprintf(hour_send, "%d", hour);
-    sprintf(day_send, "%d", m_day);
-    sprintf(month_send, "%d", month);
-    sprintf(year_send, "%d", year);
+    sprintf(min_send, "%02d", minute);
+    sprintf(hour_send, "%02d", hour);
+    sprintf(day_send, "%02d", m_day);
+    sprintf(month_send, "%02d", month);
+    sprintf(year_send, "%2d", year);
 
-    Lcd_Set_Cursor(1,1);
-    Lcd_Write_String(Time);
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String(Date);
+
+
+
+
 }
 
 

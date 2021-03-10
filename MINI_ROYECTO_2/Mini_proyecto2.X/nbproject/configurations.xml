@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Oscilador.h</itemPath>
+      <itemPath>LCD.h</itemPath>
       <itemPath>USART.h</itemPath>
       <itemPath>I2C.h</itemPath>
     </logicalFolder>
@@ -16,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main_mini2.c</itemPath>
+      <itemPath>LCD.c</itemPath>
       <itemPath>Oscilador.c</itemPath>
       <itemPath>USART.c</itemPath>
       <itemPath>I2C.c</itemPath>

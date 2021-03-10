@@ -1,30 +1,49 @@
 /*
- * Título: Mini proyecto 2
- * Autor: Natalia de Leon Bercian
- * Carne: 18193
- * Seccion: 20
- * 
- * 
+ * Código -- Laboratorio # 3
+ * Author: Natalia de León Bercián
+ * carné: 18193
+ * Digital 2
+ *
  * Created on 1 de marzo de 2021
+ * 
+ * Las funciones relacionadas al sensor RTC fueron tomadas y luego modificadas 
+ * del sitio: https://simple-circuit.com/mplab-xc8-ds1307-ds3231-pic-mcu/ 
+ * Autor: Simple Projects
  */
 
-//****************************************************************************//
-//IMPORTAR LIBRERIAS                                                          //
-//****************************************************************************//
+
+#define RS PORTEbits.RE0
+#define RW PORTEbits.RE1
+#define EN PORTEbits.RE2
+#define D0 PORTDbits.RD0
+#define D1 PORTDbits.RD1
+#define D2 PORTDbits.RD2
+#define D3 PORTDbits.RD3
+#define D4 PORTDbits.RD4
+#define D5 PORTDbits.RD5
+#define D6 PORTDbits.RD6
+#define D7 PORTDbits.RD7
+
+
+//******************************************************************************
+//Librerias
+//******************************************************************************
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <pic16f887.h>
-#include "I2C.h"
+#include "LCD.h"
 #include "USART.h"
+#include "Oscilador.h"
+#include "I2C.h"
+//#include "RTC.h"
 
-//****************************************************************************//
-//CONFIGURACION BITS                                                          //
-//****************************************************************************//
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
+#pragma config MCLRE = OFF       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
 #pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
 #pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
@@ -33,167 +52,244 @@
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
 
 // CONFIG2
-#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config BOR4V = BOR21V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-//****************************************************************************//
-//DEFINE                                                                      //
-//****************************************************************************//
+//******************************************************************************
+//Define
+//******************************************************************************
 #define _XTAL_FREQ 8000000
 
-// --- SENSOR --- //
-#define SMPLRT_DIV 0x19
-#define PWR_MGMT_1 0x6B
-#define CONFIG 0x1A
-#define ACCEL_CONFIG 0x1C
-#define GYRO_CONFIG 0x1B
-#define INT_ENABLE 0x38
-#define ACCEL_XOUT_H 0x3B
+
 
 //****************************************************************************//
 //VARIABLES                                                                   //
 //****************************************************************************//
-char data_recive;
+uint8_t  i, second, minute, hour, m_day, month, year;
+char data_total[20];
 uint8_t cont;
-char prueba;
-int holiwis;
-//****************************************************************************//
-//PROTOTIPOS DE FUNCIONES                                                     //
-//****************************************************************************//
-void setup(void);
-void MPU6050_Init(void);
-//****************************************************************************//
-//INTERRUPCIONES                                                    //
-//****************************************************************************//
+int data_recive;
+char sec_send[8];
+char min_send[8];
+char hour_send[8];
+char day_send[8];
+char month_send[8];
+char year_send[8];
+char cont_send[8];
+
+static char Time[] = "TIME: 00:00:00";
+static char Date[] = "DATE: 00/00/00";
+
+//******************************************************************************
+//Prototipos de funciones
+//******************************************************************************
+
+void setup(void); 
+void Write_to_RTC(void);
+void RTC_display(void);
+void Led_RTC(void);
+void Piloto(void);
+uint8_t decimal_to_bcd(uint8_t number); //decimal to Binary coded decimal
+uint8_t bcd_to_decimal(uint8_t number); //Binary coded decimal to decimal
+
+//******************************************************************************
+//Interrupciones
+//****************************************************************************** 
 
 void __interrupt() ISR(void) {
     if(PIR1bits.RCIF == 1){
-        data_recive = RCREG; //Recibe los datos que manda la terminal
-        if (data_recive == 'P11'){ //auementa
+        data_recive = Read_USART(); //Recibe los datos que manda la terminal
+        if (data_recive == 1){ //auementa
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == 'P10'){ //decrementa
+        else if (data_recive == 0){ //decrementa
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == 'P21'){ //decrementa
+        else if (data_recive == 3){ //decrementa
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == 'P20'){ //decrementa
+        else if (data_recive == 2){ //decrementa
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
         }
 }
-//****************************************************************************//
-//PROGRAMACION PRINCIPAL                                                      //
-//****************************************************************************//
+
+//******************************************************************************
+//Ciclo Principal
+//******************************************************************************
 
 void main(void) {
     setup();
-    prueba = "Hola";
-    //MPU6050_Init();
+    TRISD = 0x00;
+    Write_to_RTC(); //escribir valores iniciales de fecha y hora al RTC
 
-    //************************************************************************//
-    //LOOP PRINCIPAL                                                          //
-    //************************************************************************//
-    while(1){
-        // ----* SENSOR *---- //
-//        I2C_Master_Start();
-//        I2C_Master_Write(0x50);
-//        I2C_Master_Write(PORTB);
-//        I2C_Master_Stop();
-//        __delay_ms(200);
-//       
-//        I2C_Master_Start();
-//        I2C_Master_Write(0x51);
-//        PORTD = I2C_Master_Read(0);
-//        I2C_Master_Stop();
-//        __delay_ms(200);
-//        PORTB++;  
+   
+    while (1) {
         
-        // ----* USART *---- //
-        PORTAbits.RA7 = 1;
-        __delay_ms(1000);
-        PORTAbits.RA6 = 1;
-        __delay_ms(1000);
-        PORTAbits.RA7 = 0;
-        __delay_ms(1000);
-        PORTAbits.RA6 = 0;
-        __delay_ms(1000);
-        Write_USART(holiwis); 
+        //Código obtenido de Simple Projects, pero modificado con la libreía I2C
+        I2C_Master_Start();           // start I2C
+        I2C_Master_Write(0xD0);       // RTC chip address
+        I2C_Master_Write(0);          // send register address
+        I2C_Master_RepeatedStart();   // restart I2C
+        I2C_Master_Write(0xD1);       // initialize data read
+        second = I2C_Master_Read(1);  // read seconds from register 0
+        minute = I2C_Master_Read(1);  // read minutes from register 1
+        hour   = I2C_Master_Read(1);  // read hour from register 2
+        I2C_Master_Read(1);           // read day from register 3 (not used)
+        m_day  = I2C_Master_Read(1);  // read date from register 4
+        month  = I2C_Master_Read(1);  // read month from register 5
+        year   = I2C_Master_Read(0);  // read year from register 6
+        I2C_Master_Stop();            // stop I2C
+
+        RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
+        
+        Led_RTC();
+        Piloto();
+        cont++;
+        
+        
+        // ---- comunicación serial ---- //
+
+        Write_USART_String(Time);
+        Write_USART_String("  ");
+        Write_USART_String(Date); //enviar el string con los valores de fecha
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
-        PORTD = holiwis;
-        holiwis++;
+        
+        __delay_ms(500);
     }
-    //return;
 }
 
-//****************************************************************************//
-//CONFIGURACION  (puertos, bits...)                                           //
-//****************************************************************************//
+//******************************************************************************
+//Funciones
+//******************************************************************************
 
+// Convertir Binary coded decimal to decimal
+uint8_t bcd_to_decimal(uint8_t number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+ 
+// Convertir decimal to Binary coded decimal
+uint8_t decimal_to_bcd(uint8_t number) {
+  return(((number / 10) << 4) + (number % 10));
+}
+ 
+void RTC_display(void){
+    // Convertir datos BCD a decimal
+    second = bcd_to_decimal(second);
+    minute = bcd_to_decimal(minute);
+    hour   = bcd_to_decimal(hour);
+    m_day  = bcd_to_decimal(m_day);
+    month  = bcd_to_decimal(month);
+    year   = bcd_to_decimal(year);
+    // end conversion
+
+    // uActualizar tiempo
+    Time[6]  = hour   / 10 + '0';
+    Time[7]  = hour   % 10 + '0';
+    Time[9]  = minute / 10 + '0';
+    Time[10] = minute % 10 + '0';
+    Time[12] = second / 10 + '0';
+    Time[13] = second % 10 + '0';
+    
+    // Actualizar fecha
+    Date[6]  = m_day  / 10 + '0';
+    Date[7]  = m_day  % 10 + '0';
+    Date[9]  = month  / 10 + '0';
+    Date[10] = month  % 10 + '0';
+    Date[12] = year   / 10 + '0';
+    Date[13] = year   % 10 + '0';
+    
+    
+    sprintf(sec_send, "%d", second);
+    sprintf(min_send, "%02d", minute);
+    sprintf(hour_send, "%02d", hour);
+    sprintf(day_send, "%02d", m_day);
+    sprintf(month_send, "%02d", month);
+    sprintf(year_send, "%2d", year);
+
+}
+
+//Escribir valores iniciales al RTC, obtenido de Simple projects
+void Write_to_RTC(void){ 
+    I2C_Master_Start();         // start I2C
+    I2C_Master_Write(0xD0);     // RTC chip address
+    I2C_Master_Write(0);        // send register address
+    I2C_Master_Write(0);        // reset seconds and start oscillator
+    I2C_Master_Write(48);        // write minute value to RTC chip //y media
+    I2C_Master_Write(6);       // write hour value to RTC chip
+    I2C_Master_Write(1);        // write day value (not used)
+    I2C_Master_Write(8);        // write date value to RTC chip
+    I2C_Master_Write(3);        // write month value to RTC chip
+    I2C_Master_Write(27);       // write year value to RTC chip
+    I2C_Master_Stop();          // stop I2C
+}
+
+void Led_RTC(void){
+    if (second == 6){
+        PORTDbits.RD0 = 1;
+    }
+    else if (second == 7){
+        PORTDbits.RD1 = 1;
+    }
+    else if (second == 8){
+        PORTDbits.RD2 = 1;
+    }
+    else if (second == 9){
+        PORTDbits.RD3 = 1;
+    }
+    else if (second == 10){
+        PORTDbits.RD4 = 1;
+    }
+    else if (second == 11){
+        PORTDbits.RD5 = 1;
+    }
+    else if (second == 12){
+        PORTDbits.RD6 = 1;
+    }
+    else if (minute == 31){
+        PORTDbits.RD7 = 1;
+    }
+}
+
+void Piloto(void){
+    if (cont == 7){
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 0;
+    }
+    else if (cont == 8){
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 1;
+    }
+    else if (cont == 11){
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 1;
+    }
+    else if (cont == 12){
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
+    }
+}
+// ------ configuraciones ----- //
 void setup(void) {
-    ANSEL = 0;
-    ANSELH = 0;
-    TRISA = 0;
-    TRISB = 0;
-    TRISC = 0;
-    TRISD = 0;
+    //OSCCON = 0x07;
+    ANSEL = 0; //RA0 y RA1 como analogico
+    ANSELH = 0; 
+    TRISA = 0; //potenciometros, como entrada
+    TRISB = 0b00000011;
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
+    TRISD = 0; 
     TRISE = 0;
-    PORTA = 0;
+    PORTA = 0; 
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    I2C_Master_Init(100000);
     USART_Init_BaudRate();
     USART_Init();
     USART_INTERRUPT();
-    I2C_Master_Init(100000);        // Inicializar Comuncación I2C
-}
 
-//****************************************************************************//
-//FUNCIONES                                                                   //
-//****************************************************************************//
-
-void MPU6050_Init(void){
-
-      // Setting The Sample (Data) Rate
-      I2C_Master_Start(); //I2C_Master_Start(0xD0)
-      I2C_Master_Write(SMPLRT_DIV);
-      I2C_Master_Write(0x07);
-      I2C_Master_Stop();
-      // Setting The Clock Source
-      I2C_Master_Start();
-      I2C_Master_Write(PWR_MGMT_1);
-      I2C_Master_Write(0x01);
-      I2C_Master_Stop();
-      // Configure The DLPF
-      I2C_Master_Start();
-      I2C_Master_Write(CONFIG);
-      I2C_Master_Write(0x00);
-      I2C_Master_Stop();
-      // Configure The ACCEL (FSR= +-2g)
-      I2C_Master_Start();
-      I2C_Master_Write(ACCEL_CONFIG);
-      I2C_Master_Write(0x00);
-      I2C_Master_Stop();
-      // Configure The GYRO (FSR= +-2000d/s)
-      I2C_Master_Start();
-      I2C_Master_Write(GYRO_CONFIG);
-      I2C_Master_Write(0x18);
-      I2C_Master_Stop();
-      // Enable Data Ready Interrupts
-      I2C_Master_Start();
-      I2C_Master_Write(INT_ENABLE);
-      I2C_Master_Write(0x01);
-      I2C_Master_Stop();
-}
-
-void MPU_Start_Loc()
-
-{
-	I2C_Master_Wait();	/* I2C start with device write address */
-	I2C_Master_Write(ACCEL_XOUT_H);/* Write start location address to read */ 
-	I2C_Master_RepeatedStart();/* I2C start with device read address */
 }

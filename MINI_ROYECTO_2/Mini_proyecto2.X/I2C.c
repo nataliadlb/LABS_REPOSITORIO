@@ -14,6 +14,7 @@
  * 
  */
 #include "I2C.h"
+#include <xc.h>
 //*****************************************************************************
 // Función para inicializar I2C Maestro
 //*****************************************************************************
@@ -52,8 +53,7 @@ void I2C_Master_Wait()
 //*****************************************************************************
 // Función de inicio de la comunicación I2C PIC
 //*****************************************************************************
-void I2C_Master_Start()
-{
+void I2C_Master_Start(){
     I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
     SSPCON2bits.SEN = 1;    //inicia la comunicación i2c
 }
@@ -126,3 +126,4 @@ void I2C_Slave_Init(uint8_t address)
 }
 
 //*****************************************************************************
+

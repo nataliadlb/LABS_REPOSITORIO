@@ -77,6 +77,8 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right();
 void Lcd_Shift_Left();
 void Lcd_Clear(void);
+void LCD_Write_Nibble(uint8_t n);
+void LCD_PutC(char LCD_Char);
 
 
 

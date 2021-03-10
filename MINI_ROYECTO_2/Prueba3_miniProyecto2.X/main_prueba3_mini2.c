@@ -52,7 +52,7 @@
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
 
 // CONFIG2
-#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config BOR4V = BOR21V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 //******************************************************************************
@@ -68,7 +68,7 @@
 uint8_t  i, second, minute, hour, m_day, month, year;
 char data_total[20];
 uint8_t cont;
-char data_recive;
+int data_recive;
 char sec_send[8];
 char min_send[8];
 char hour_send[8];
@@ -96,17 +96,17 @@ uint8_t bcd_to_decimal(uint8_t number); //Binary coded decimal to decimal
 
 void __interrupt() ISR(void) {
     if(PIR1bits.RCIF == 1){
-        data_recive = RCREG; //Recibe los datos que manda la terminal
-        if (data_recive == '1'){ //auementa
+        data_recive = Read_USART(); //Recibe los datos que manda la terminal
+        if (data_recive == 1){ //auementa
             PORTAbits.RA6 = 1;
         }
-        else if (data_recive == '2'){ //decrementa
+        else if (data_recive == 0){ //decrementa
             PORTAbits.RA6 = 0;
         }
-        else if (data_recive == '3'){ //decrementa
+        else if (data_recive == 3){ //decrementa
             PORTAbits.RA7 = 1;
         }
-        else if (data_recive == '4'){ //decrementa
+        else if (data_recive == 2){ //decrementa
             PORTAbits.RA7 = 0;
         }
         data_recive = 0;
@@ -120,8 +120,8 @@ void __interrupt() ISR(void) {
 void main(void) {
     setup();
     TRISD = 0x00;
-    Lcd_Init();
-    Lcd_Clear();
+    //Lcd_Init();
+    //Lcd_Clear();
     Write_to_RTC(); //escribir valores iniciales de fecha y hora al RTC
     //Write_USART_String("HOLA PINCHE");
    
@@ -144,20 +144,45 @@ void main(void) {
 
         RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
         
+        if (second == 2){
+            PORTDbits.RD0 = 1;
+        }
+        else if (second == 3){
+            PORTDbits.RD1 = 1;
+        }
+        else if (second == 4){
+            PORTDbits.RD2 = 1;
+        }
+        else if (second == 5){
+            PORTDbits.RD3 = 1;
+        }
+        else if (second == 6){
+            PORTDbits.RD4 = 1;
+        }
+        else if (second == 10){
+            PORTDbits.RD5 = 1;
+        }
+        else if (second == 15){
+            PORTDbits.RD6 = 1;
+        }
+        else if (minute == 31){
+            PORTDbits.RD7 = 1;
+        }
         // ---- comunicación serial ---- //
 //        for(i = 0; i < 13; i++){
 //            Write_USART_String(Time[i]);
 //        }
 //        Write_USART_String(Time);
-        Write_USART_String("TIME:"); //enviar el string con los valores de hora
-        Write_USART_String("  ");
-        Write_USART_String(hour_send);
-        Write_USART_String(":");
-        Write_USART_String(min_send);
-        Write_USART_String(":");
+//        Write_USART_String("TIME:"); //enviar el string con los valores de hora
+//        Write_USART_String("  ");
+//        Write_USART_String(hour_send);
+//        Write_USART_String(":");
+//        Write_USART_String(min_send);
+//        Write_USART_String(":");
         Write_USART_String(sec_send);
-        Write_USART_String("  ");
-        Write_USART_String(Date); //enviar el string con los valores de fecha
+        //Write_USART(second);
+//        Write_USART_String("  ");
+//        Write_USART_String(Date); //enviar el string con los valores de fecha
         Write_USART(13);//13 y 10 la secuencia es para dar un salto de linea 
         Write_USART(10);
         
@@ -217,16 +242,16 @@ void RTC_display(void){
     
     
     sprintf(sec_send, "%d", second);
-    sprintf(min_send, "%d", minute);
-    sprintf(hour_send, "%d", hour);
-    sprintf(day_send, "%d", m_day);
-    sprintf(month_send, "%d", month);
-    sprintf(year_send, "%d", year);
+    sprintf(min_send, "%02d", minute);
+    sprintf(hour_send, "%02d", hour);
+    sprintf(day_send, "%02d", m_day);
+    sprintf(month_send, "%02d", month);
+    sprintf(year_send, "%2d", year);
     //Mostrar en LCD (PRUEBA)
-    Lcd_Set_Cursor(1,1);
-    Lcd_Write_String(Time);
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String(Date);
+    //Lcd_Set_Cursor(1,1);
+    //Lcd_Write_String(Time);
+    //Lcd_Set_Cursor(2,1);
+    //Lcd_Write_String(Date);
 }
 
 //Escribir valores iniciales al RTC, obtenido de Simple projects

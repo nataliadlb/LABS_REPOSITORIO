@@ -2669,6 +2669,7 @@ void I2C_Slave_Init(uint8_t address);
 
 
 
+
 void I2C_Master_Init(const unsigned long c)
 {
     SSPCON = 0b00101000;
@@ -2688,7 +2689,7 @@ void I2C_Master_Init(const unsigned long c)
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
 }
-# 47 "I2C.c"
+# 48 "I2C.c"
 void I2C_Master_Wait()
 {
     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
@@ -2697,8 +2698,7 @@ void I2C_Master_Wait()
 
 
 
-void I2C_Master_Start()
-{
+void I2C_Master_Start(){
     I2C_Master_Wait();
     SSPCON2bits.SEN = 1;
 }
