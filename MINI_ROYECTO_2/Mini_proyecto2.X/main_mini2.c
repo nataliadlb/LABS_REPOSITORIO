@@ -67,7 +67,7 @@
 //****************************************************************************//
 uint8_t  i, second, minute, hour, m_day, month, year;
 char data_total[20];
-uint8_t cont;
+uint8_t cont = 0;
 int data_recive;
 char sec_send[8];
 char min_send[8];
@@ -96,24 +96,24 @@ uint8_t bcd_to_decimal(uint8_t number); //Binary coded decimal to decimal
 //Interrupciones
 //****************************************************************************** 
 
-void __interrupt() ISR(void) {
-    if(PIR1bits.RCIF == 1){
-        data_recive = Read_USART(); //Recibe los datos que manda la terminal
-        if (data_recive == 1){ //auementa
-            PORTAbits.RA6 = 1;
-        }
-        else if (data_recive == 0){ //decrementa
-            PORTAbits.RA6 = 0;
-        }
-        else if (data_recive == 3){ //decrementa
-            PORTAbits.RA7 = 1;
-        }
-        else if (data_recive == 2){ //decrementa
-            PORTAbits.RA7 = 0;
-        }
-        data_recive = 0;
-        }
-}
+//void __interrupt() ISR(void) {
+//    if(PIR1bits.RCIF == 1){
+//        data_recive = Read_USART(); //Recibe los datos que manda la terminal
+//        if (data_recive == 1){ //auementa
+//            PORTAbits.RA6 = 1;
+//        }
+//        else if (data_recive == 0){ //decrementa
+//            PORTAbits.RA6 = 0;
+//        }
+//        else if (data_recive == 3){ //decrementa
+//            PORTAbits.RA7 = 1;
+//        }
+//        else if (data_recive == 2){ //decrementa
+//            PORTAbits.RA7 = 0;
+//        }
+//        data_recive = 0;
+//        }
+//}
 
 //******************************************************************************
 //Ciclo Principal
@@ -122,6 +122,7 @@ void __interrupt() ISR(void) {
 void main(void) {
     setup();
     TRISD = 0x00;
+    PORTA = 0;
     Write_to_RTC(); //escribir valores iniciales de fecha y hora al RTC
 
    
@@ -145,10 +146,7 @@ void main(void) {
         RTC_display(); //ir constantemente convirtiendo, aumentando y actualizando
         
         Led_RTC();
-        Piloto();
-        cont++;
-        
-        
+
         // ---- comunicación serial ---- //
 
         Write_USART_String(Time);
@@ -227,57 +225,56 @@ void Write_to_RTC(void){
 }
 
 void Led_RTC(void){
-    if (second == 6){
+    if (second == 5){
         PORTDbits.RD0 = 1;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
+    }
+    else if (second == 6){
+        PORTDbits.RD1 = 1;
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 0;
     }
     else if (second == 7){
-        PORTDbits.RD1 = 1;
+        PORTDbits.RD2 = 1;
+        PORTAbits.RA6 = 1;
+        PORTAbits.RA7 = 1;
     }
     else if (second == 8){
-        PORTDbits.RD2 = 1;
-    }
-    else if (second == 9){
         PORTDbits.RD3 = 1;
     }
-    else if (second == 10){
+    else if (second == 9){
         PORTDbits.RD4 = 1;
     }
-    else if (second == 11){
+    else if (second == 10){
         PORTDbits.RD5 = 1;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 1;
     }
-    else if (second == 12){
+    else if (second == 11){
         PORTDbits.RD6 = 1;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
     }
     else if (minute == 31){
         PORTDbits.RD7 = 1;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
+    }
+    else{
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
     }
 }
 
-void Piloto(void){
-    if (cont == 7){
-        PORTAbits.RA6 = 1;
-        PORTAbits.RA7 = 0;
-    }
-    else if (cont == 8){
-        PORTAbits.RA6 = 1;
-        PORTAbits.RA7 = 1;
-    }
-    else if (cont == 11){
-        PORTAbits.RA6 = 0;
-        PORTAbits.RA7 = 1;
-    }
-    else if (cont == 12){
-        PORTAbits.RA6 = 0;
-        PORTAbits.RA7 = 0;
-    }
-}
+
 // ------ configuraciones ----- //
 void setup(void) {
     //OSCCON = 0x07;
     ANSEL = 0; //RA0 y RA1 como analogico
     ANSELH = 0; 
     TRISA = 0; //potenciometros, como entrada
-    TRISB = 0b00000011;
+    TRISB = 0;
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
     TRISD = 0; 
@@ -290,6 +287,6 @@ void setup(void) {
     I2C_Master_Init(100000);
     USART_Init_BaudRate();
     USART_Init();
-    USART_INTERRUPT();
+    //USART_INTERRUPT();
 
 }

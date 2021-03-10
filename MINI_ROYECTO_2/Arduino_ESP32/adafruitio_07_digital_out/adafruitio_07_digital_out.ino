@@ -71,7 +71,7 @@ void loop() {
   io.run();
   
    if(Serial2.available()>0){
-    
+
       Serial.print("Mandando: ");
       if (send_data == "1"){
         Serial2.write((char)49);
