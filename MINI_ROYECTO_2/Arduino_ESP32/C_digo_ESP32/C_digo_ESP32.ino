@@ -19,8 +19,9 @@
 
 
 const int BUFFER_SIZE = 14;
-char rec_data[BUFFER_SIZE];
-uint8_t cont = 0;
+char Time[BUFFER_SIZE];
+char Date[BUFFER_SIZE];
+int tog = 0;
 String send_data;
 //uint8_t rec_data = 0;
 
@@ -64,12 +65,13 @@ void setup() {
   Serial.println(io.statusText());
   LedPiloto1Feed->get();
   LedPiloto2Feed->get();
+  DateFeed->save(Date);
 }
 
 void loop() {
 
   io.run();
-  
+  TimeFeed->save(Time);
    if(Serial2.available()>0){
 
       Serial.print("Mandando: ");
@@ -90,23 +92,27 @@ void loop() {
         Serial.println((char)52);
         }
 
-        
-        int rlen = Serial.readBytesUntil('\n', rec_data, BUFFER_SIZE);
-        Serial.print("Recibiendo: ");
-        for(int i = 0; i < rlen; i++){
-          Serial.print(rec_data[i]);
+        if (tog == 0){
+          int rlen_T = Serial.readBytesUntil('\n', Time, BUFFER_SIZE);
+          Serial.print("Recibiendo: ");
+          for(int i = 0; i < rlen_T; i++){
+          Serial.print(Time[i]);
+          tog = 1;
           }
+        }
+         else if (tog == 1){
+          int rlen_D = Serial.readBytesUntil('\n', Date, BUFFER_SIZE);
+          Serial.print("Recibiendo: ");
+          for(int i = 0; i < rlen_D; i++){
+            Serial.print(Date[i]);
+          }
+          tog = 0;
+         }   
+ 
        Serial.println(" ");
    }
  
-//if (millis() > (lastUpdate + IO_LOOP_DELAY)) {
-//    ContadorFeed->save(cont);
-//    // increment the count by 1
-//    // after publishing, store the current time
-//    lastUpdate = millis();
-
-//   }
-  delay(3000);
+  delay(500);
 }
 
   
@@ -123,8 +129,7 @@ void handleMessage1(AdafruitIO_Data *data) {
   else{
     //Serial.println("OFF");
     send_data = "2";
-  }
-  
+  } 
 }
 
 void handleMessage2(AdafruitIO_Data *data) {
@@ -136,8 +141,6 @@ void handleMessage2(AdafruitIO_Data *data) {
   }
   else{
     //Serial.println("OFF");
-    send_data = "4";
-    
+    send_data = "4";  
   }
- 
 }
