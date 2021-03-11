@@ -65,16 +65,17 @@ void setup() {
   Serial.println(io.statusText());
   LedPiloto1Feed->get();
   LedPiloto2Feed->get();
-  DateFeed->save(Date);
+  DateFeed->save(Date);//Mandar la fecha a adafruit
 }
 
 void loop() {
 
   io.run();
-  TimeFeed->save(Time);
+  TimeFeed->save(Time); //Mandar valor de la hora a Adafruit
+  
    if(Serial2.available()>0){
 
-      Serial.print("Mandando: ");
+      Serial.print("Mandando: "); //Dependiendo de que led en adafruit se enciende o apaga
       if (send_data == "1"){
         Serial2.write((char)49);
         Serial.println((char)49);
@@ -92,7 +93,7 @@ void loop() {
         Serial.println((char)52);
         }
 
-        if (tog == 0){
+        if (tog == 0){ //constante toggle para guardar el valor de la fecha y de la hora
           int rlen_T = Serial.readBytesUntil('\n', Time, BUFFER_SIZE);
           Serial.print("Recibiendo: ");
           for(int i = 0; i < rlen_T; i++){
@@ -114,8 +115,7 @@ void loop() {
  
   delay(500);
 }
-
-  
+ 
 // this function is called whenever an 'digital' feed message
 // is received from Adafruit IO. it was attached to
 // the 'digital' feed in the setup() function above.
