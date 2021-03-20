@@ -118,8 +118,8 @@ void main(void) {
     while (1) {
         
         //Código obtenido de Simple Projects, pero modificado con la libreía I2C
-        I2C_Master_Start();           // start I2C
-        I2C_Master_Write(0xD0);       // RTC chip address
+        I2C_Master_Start();           // start I2C SPEN = 1
+        I2C_Master_Write(0xD0);       // RTC chip address 
         I2C_Master_Write(0);          // send register address
         I2C_Master_RepeatedStart();   // restart I2C
         I2C_Master_Write(0xD1);       // initialize data read
@@ -222,7 +222,7 @@ void Write_to_RTC(void){
     I2C_Master_Write(48);        // write minute value to RTC chip //y media
     I2C_Master_Write(6);       // write hour value to RTC chip
     I2C_Master_Write(1);        // write day value (not used)
-    I2C_Master_Write(8);        // write date value to RTC chip
+    I2C_Master_Write(10);        // write date value to RTC chip
     I2C_Master_Write(3);        // write month value to RTC chip
     I2C_Master_Write(27);       // write year value to RTC chip
     I2C_Master_Stop();          // stop I2C

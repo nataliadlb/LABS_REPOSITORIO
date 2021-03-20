@@ -32,7 +32,8 @@ unsigned long lastUpdate = 0;
 
 AdafruitIO_Feed *LedPiloto1Feed = io.feed("LedPiloto1"); //DIGITAL
 AdafruitIO_Feed *LedPiloto2Feed = io.feed("LedPiloto2"); //DIGITAL
-AdafruitIO_Feed *ContadorFeed = io.feed("contador");
+AdafruitIO_Feed *TimeFeed = io.feed("Time");
+AdafruitIO_Feed *DateFeed = io.feed("Date");
 
 void setup() {
   Serial.begin(9600);
