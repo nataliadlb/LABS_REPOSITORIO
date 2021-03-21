@@ -18,8 +18,8 @@ const byte ledJ2_6 = 25;
 const byte ledJ2_7 = 24; 
 const byte ledJ2_8 = 23; 
 
-const byte ledJ1_WIN = 18; 
-const byte ledJ2_WIN = 19; 
+const byte ledJ1_WIN = 19; 
+const byte ledJ2_WIN = 18; 
 
 // LEDS SEMAFORO //
 const byte led_VERDE = GREEN_LED; 
@@ -90,7 +90,7 @@ void loop() {
     if (debouncing1 == 1){
       contJ1++;
       debouncing1 = 0;
-      Serial.println(contJ1);
+      //Serial.println(contJ1);
       } 
       if (contJ1 > 0 && contJ1 <= 8){
           aumento_J1();
@@ -102,7 +102,7 @@ void loop() {
     if (debouncing2 == 1){
       contJ2++;
       debouncing2 = 0;
-      Serial.println(contJ2);
+      //Serial.println(contJ2);
       }
       if (contJ2 > 0 && contJ2 <= 8){
           aumento_J2();
@@ -111,7 +111,6 @@ void loop() {
         ganadorJ2();
         }
     }
- 
 
 }
 
@@ -124,23 +123,25 @@ void semaforo() { //INTERRUPCION SEMAFORO
 void J1() { //INTERRUPCION PUSH1
   if (flag_BEGIN == HIGH){
     int Estado_PUSHJ1 = digitalRead(interruptPin2);
-    while (Estado_PUSHJ1 == 0){
-      debouncing1 = 1;
+    while (Estado_PUSHJ1 == 1){
       }
+    debouncing1 = 1;
     }
 }
 
 void J2() { //INTERRUPCION PUSH2
    if (flag_BEGIN == HIGH){
-      int Estado_PUSHJ2 = digitalRead(interruptPin3);
-      if (Estado_PUSHJ2 == 0){
-        debouncing2 = 1;
+     int Estado_PUSHJ2 = digitalRead(interruptPin3);
+     while (Estado_PUSHJ2 == 1){
       }
+      debouncing2 = 1;
     }
 }
 
 void sec_semaforo(){
     if (flag_semaf == HIGH){
+      digitalWrite(ledJ2_WIN, LOW);
+      digitalWrite(ledJ1_WIN, LOW);
       digitalWrite(led_ROJO, HIGH);
       digitalWrite(led_AZUL, LOW);
       digitalWrite(led_VERDE, LOW);
@@ -167,24 +168,19 @@ void sec_semaforo(){
       contJ2 = 0;
     }
   }
-
-
-//void sumador_push(){
-//  if (debouncing1 == 1){
-//    contJ1++;
-//    debouncing1 = 0;
-//    }
-//    
-//  if (debouncing2 == 1){
-//    contJ2++;
-//    debouncing2 = 0;
-//    }
-//  }
   
 void ganadorJ1(){
   if(flag_J1_WIN == HIGH){
     digitalWrite(ledJ1_WIN, HIGH);
     digitalWrite(ledJ2_WIN, LOW);
+    digitalWrite(ledJ2_1, LOW);
+    digitalWrite(ledJ2_2, LOW);
+    digitalWrite(ledJ2_3, LOW);
+    digitalWrite(ledJ2_4, LOW);
+    digitalWrite(ledJ2_5, LOW);
+    digitalWrite(ledJ2_6, LOW);
+    digitalWrite(ledJ2_7, LOW);
+    digitalWrite(ledJ2_8, LOW);
     flag_J1_WIN = LOW;
     flag_J2_WIN = LOW;
     contJ1 = 0;
@@ -199,6 +195,14 @@ void ganadorJ2(){
   if(flag_J2_WIN == HIGH){
     digitalWrite(ledJ2_WIN, HIGH);
     digitalWrite(ledJ1_WIN, LOW);
+    digitalWrite(ledJ1_1, LOW);
+    digitalWrite(ledJ1_2, LOW);
+    digitalWrite(ledJ1_3, LOW);
+    digitalWrite(ledJ1_4, LOW);
+    digitalWrite(ledJ1_5, LOW);
+    digitalWrite(ledJ1_6, LOW);
+    digitalWrite(ledJ1_7, LOW);
+    digitalWrite(ledJ1_8, LOW);
     flag_J1_WIN = LOW;
     flag_J2_WIN = LOW;
     contJ1 = 0;
@@ -240,11 +244,10 @@ void aumento_J1(){
     digitalWrite(ledJ1_7, HIGH);
     Serial.println(contJ1);
     }
-  else if (contJ1 == 8){
+  else{
     digitalWrite(ledJ1_8, HIGH);
     Serial.println(contJ1);
-    }
-  else if (contJ1 > 8){
+    delay(500);
     digitalWrite(ledJ1_1, LOW);
     digitalWrite(ledJ1_2, LOW);
     digitalWrite(ledJ1_3, LOW);
@@ -254,6 +257,7 @@ void aumento_J1(){
     digitalWrite(ledJ1_7, LOW);
     digitalWrite(ledJ1_8, LOW);
     contJ1 = 0;
+    Serial.println(contJ1);
     flag_J1_WIN = HIGH;
     }
   }
@@ -280,10 +284,9 @@ void aumento_J2(){
   else if (contJ2 == 7){
     digitalWrite(ledJ2_7, HIGH);
     }
-  else if (contJ2 == 8){
+  else{
     digitalWrite(ledJ2_8, HIGH);
-    }
-  else if (contJ1 > 8){
+    delay(500);
     digitalWrite(ledJ2_1, LOW);
     digitalWrite(ledJ2_2, LOW);
     digitalWrite(ledJ2_3, LOW);
