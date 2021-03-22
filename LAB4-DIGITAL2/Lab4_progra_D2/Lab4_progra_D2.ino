@@ -1,3 +1,10 @@
+/* 
+  Laboratorio # 4
+  Natalia de León Bercián
+  carné: 18193
+  Digital 2
+  Marzo 2021
+*/
 
 // LEDS J1 //
 const byte ledJ1_1 = 3; 
@@ -76,44 +83,31 @@ void setup() {
   pinMode(ledJ2_WIN, OUTPUT);    
 
   //Interrupciones//
-  attachInterrupt(digitalPinToInterrupt(interruptPin), semaforo, FALLING); //interrupcion
-  attachInterrupt(digitalPinToInterrupt(interruptPin2), J1, FALLING);
-  attachInterrupt(digitalPinToInterrupt(interruptPin3), J2, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), semaforo, FALLING); //interrupcion semáforo
+  attachInterrupt(digitalPinToInterrupt(interruptPin2), J1, FALLING); //interrupción J1
+  attachInterrupt(digitalPinToInterrupt(interruptPin3), J2, FALLING); //interrupción J2
 
   Serial.begin(9600);
-
 }
 
 void loop() {
   sec_semaforo();
   if (flag_BEGIN == HIGH){
-    int Estado_PUSHJ1 = digitalRead(interruptPin2);
-    int Estado_PUSHJ2 = digitalRead(interruptPin3);
     
-    if (debouncing1 == 1 && Estado_PUSHJ1 == 0){
-        contJ1++;
-        debouncing1 = 0;
-        //Serial.println(contJ1);
-        } 
-        if (contJ1 > 0 && contJ1 <= 8){
-            aumento_J1();
+        if (contJ1 > 0 && contJ1 <= 8){ //Que se mantenga dentro de los 8 bits J1
+            aumento_J1(); //Encender los leds del J1
           }
         else{
-          ganadorJ1();
+          ganadorJ1(); //Cuando gana J1
           }
-        
-    if (debouncing2 == 1 && Estado_PUSHJ2 == 0){
-        contJ2++;
-        debouncing2 = 0;
-        }
-        if (contJ2 > 0 && contJ2 <= 8){
-            aumento_J2();
+
+        if (contJ2 > 0 && contJ2 <= 8){ //Que se mantenga dentro de los 8 bits J2
+            aumento_J2(); //Encender los leds del J2
           }
         else{
-          ganadorJ2();
+          ganadorJ2(); //Cuando gana J2
           }
   }
-
 }
 
 void semaforo() { //INTERRUPCION SEMAFORO
@@ -124,13 +118,19 @@ void semaforo() { //INTERRUPCION SEMAFORO
 
 void J1() { //INTERRUPCION PUSH1
   if (flag_BEGIN == HIGH){
-    debouncing1 = 1;
+    int Estado_PUSHJ1 = digitalRead(interruptPin2);
+    if (Estado_PUSHJ1 == 0){
+      contJ1++;
+      }
     }
 }
 
 void J2() { //INTERRUPCION PUSH2
    if (flag_BEGIN == HIGH){
-      debouncing2 = 1;
+      int Estado_PUSHJ2 = digitalRead(interruptPin3);
+      if (Estado_PUSHJ2 == 0){
+        contJ2++;
+      }
     }
 }
 
@@ -156,7 +156,7 @@ void sec_semaforo(){
       digitalWrite(led_ROJO, LOW);
       digitalWrite(led_AZUL, LOW);
       digitalWrite(led_VERDE, LOW);
-      Serial.print("GO  ");
+      Serial.println("GO  ");
       flag_semaf = LOW;
       flag_BEGIN = HIGH;
       flag_DONE = LOW;
@@ -165,7 +165,102 @@ void sec_semaforo(){
     }
   }
   
-void ganadorJ1(){
+ 
+void aumento_J1(){
+  if (contJ1 == 1){
+    digitalWrite(ledJ1_1, HIGH);
+    //Serial.println(contJ1);
+    }
+  else if (contJ1 == 2){
+    digitalWrite(ledJ1_2, HIGH);
+    //Serial.println(contJ1);
+    }
+  else if (contJ1 == 3){
+    digitalWrite(ledJ1_3, HIGH);
+    //Serial.println(contJ1);
+    } 
+  else if (contJ1 == 4){
+    digitalWrite(ledJ1_4, HIGH);
+    //Serial.println(contJ1);
+    }
+  else if (contJ1 == 5){
+    digitalWrite(ledJ1_5, HIGH);
+    //Serial.println(contJ1);
+    }
+  else if (contJ1 == 6){
+    digitalWrite(ledJ1_6, HIGH);
+    //Serial.println(contJ1);
+    }
+  else if (contJ1 == 7){
+    digitalWrite(ledJ1_7, HIGH);
+    //Serial.println(contJ1);
+    }
+  else{
+    digitalWrite(ledJ1_8, HIGH);
+    //Serial.println(contJ1);
+    delay(500);
+    digitalWrite(ledJ1_1, LOW);
+    digitalWrite(ledJ1_2, LOW);
+    digitalWrite(ledJ1_3, LOW);
+    digitalWrite(ledJ1_4, LOW);
+    digitalWrite(ledJ1_5, LOW);
+    digitalWrite(ledJ1_6, LOW);
+    digitalWrite(ledJ1_7, LOW);
+    digitalWrite(ledJ1_8, LOW);
+    contJ1 = 0;
+    //Serial.println(contJ1);
+    flag_J1_WIN = HIGH;
+    }
+  }
+  
+void aumento_J2(){
+  if (contJ2 == 1){
+    digitalWrite(ledJ2_1, HIGH);
+    //Serial.println(contJ2);
+    }
+  else if (contJ2 == 2){
+    digitalWrite(ledJ2_2, HIGH);
+    //Serial.println(contJ2);
+    }
+  else if (contJ2 == 3){
+    digitalWrite(ledJ2_3, HIGH);
+    //Serial.println(contJ2);
+    } 
+  else if (contJ2 == 4){
+    digitalWrite(ledJ2_4, HIGH);
+    //Serial.println(contJ2);
+    }
+  else if (contJ2 == 5){
+    digitalWrite(ledJ2_5, HIGH);
+    //Serial.println(contJ2);
+    }
+  else if (contJ2 == 6){
+    digitalWrite(ledJ2_6, HIGH);
+    //Serial.println(contJ2);
+    }
+  else if (contJ2 == 7){
+    digitalWrite(ledJ2_7, HIGH);
+    //Serial.println(contJ2);
+    }
+  else{
+    digitalWrite(ledJ2_8, HIGH);
+    //Serial.println(contJ2);
+    delay(500);
+    digitalWrite(ledJ2_1, LOW);
+    digitalWrite(ledJ2_2, LOW);
+    digitalWrite(ledJ2_3, LOW);
+    digitalWrite(ledJ2_4, LOW);
+    digitalWrite(ledJ2_5, LOW);
+    digitalWrite(ledJ2_6, LOW);
+    digitalWrite(ledJ2_7, LOW);
+    digitalWrite(ledJ2_8, LOW);
+    contJ2 = 0;
+    flag_J2_WIN = HIGH;
+    }
+  }
+
+
+  void ganadorJ1(){
   if(flag_J1_WIN == HIGH){
     digitalWrite(ledJ1_WIN, HIGH);
     digitalWrite(ledJ2_WIN, LOW);
@@ -183,7 +278,8 @@ void ganadorJ1(){
     contJ2 = 0;
     flag_DONE = HIGH;
     flag_BEGIN = LOW;
-    Serial.println("J1 GANADOR");
+    Serial.println("---GANADOR---");
+    Serial.println("     J1       ");
     }
 }
 
@@ -205,90 +301,7 @@ void ganadorJ2(){
     contJ2 = 0;
     flag_DONE = HIGH;
     flag_BEGIN = LOW;
-    Serial.println("J2 GANADOR");
-    }
-  }
-  
-void aumento_J1(){
-  if (contJ1 == 1){
-    digitalWrite(ledJ1_1, HIGH);
-    }
-  else if (contJ1 == 2){
-    digitalWrite(ledJ1_2, HIGH);
-    }
-  else if (contJ1 == 3){
-    digitalWrite(ledJ1_3, HIGH);
-    } 
-  else if (contJ1 == 4){
-    digitalWrite(ledJ1_4, HIGH);
-    }
-  else if (contJ1 == 5){
-    digitalWrite(ledJ1_5, HIGH);
-    }
-  else if (contJ1 == 6){
-    digitalWrite(ledJ1_6, HIGH);
-    }
-  else if (contJ1 == 7){
-    digitalWrite(ledJ1_7, HIGH);
-    }
-  else{
-    digitalWrite(ledJ1_8, HIGH);
-    delay(500);
-    digitalWrite(ledJ1_1, LOW);
-    digitalWrite(ledJ1_2, LOW);
-    digitalWrite(ledJ1_3, LOW);
-    digitalWrite(ledJ1_4, LOW);
-    digitalWrite(ledJ1_5, LOW);
-    digitalWrite(ledJ1_6, LOW);
-    digitalWrite(ledJ1_7, LOW);
-    digitalWrite(ledJ1_8, LOW);
-    contJ1 = 0;
-    flag_J1_WIN = HIGH;
-    }
-  }
-  
-void aumento_J2(){
-  if (contJ2 == 1){
-    digitalWrite(ledJ2_1, HIGH);
-    Serial.println(contJ2);
-    }
-  else if (contJ2 == 2){
-    digitalWrite(ledJ2_2, HIGH);
-    Serial.println(contJ2);
-    }
-  else if (contJ2 == 3){
-    digitalWrite(ledJ2_3, HIGH);
-    Serial.println(contJ2);
-    } 
-  else if (contJ2 == 4){
-    digitalWrite(ledJ2_4, HIGH);
-    Serial.println(contJ2);
-    }
-  else if (contJ2 == 5){
-    digitalWrite(ledJ2_5, HIGH);
-    Serial.println(contJ2);
-    }
-  else if (contJ2 == 6){
-    digitalWrite(ledJ2_6, HIGH);
-    Serial.println(contJ2);
-    }
-  else if (contJ2 == 7){
-    digitalWrite(ledJ2_7, HIGH);
-    Serial.println(contJ2);
-    }
-  else{
-    digitalWrite(ledJ2_8, HIGH);
-    Serial.println(contJ2);
-    delay(500);
-    digitalWrite(ledJ2_1, LOW);
-    digitalWrite(ledJ2_2, LOW);
-    digitalWrite(ledJ2_3, LOW);
-    digitalWrite(ledJ2_4, LOW);
-    digitalWrite(ledJ2_5, LOW);
-    digitalWrite(ledJ2_6, LOW);
-    digitalWrite(ledJ2_7, LOW);
-    digitalWrite(ledJ2_8, LOW);
-    contJ2 = 0;
-    flag_J2_WIN = HIGH;
+    Serial.println("---GANADOR---");
+    Serial.println("     J2       ");
     }
   }
