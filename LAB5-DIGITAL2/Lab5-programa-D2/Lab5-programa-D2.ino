@@ -40,7 +40,7 @@ void setup()
   // or the SD library functions will not work.
   pinMode(PA_3, OUTPUT);
 
-  if (!SD.begin(32)) {
+  if (!SD.begin(PA_3)) {
     Serial.println("initialization failed!");
     return;
   }
