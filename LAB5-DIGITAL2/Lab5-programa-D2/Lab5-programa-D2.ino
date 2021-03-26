@@ -21,7 +21,9 @@
 #include <SPI.h>
 #include <SD.h>
 
-int Num;
+int Num; //variable de .TXT que quieren ver
+int control; //para que se ejecute hast que el usuario decida terminar
+
 File myFile;
 
 void setup()
@@ -35,10 +37,6 @@ void setup()
 
   Serial.println(" ");
   Serial.println("Initializing SD card...");
-  // On the Ethernet Shield, CS is pin 4. It's set as an output by default.
-  // Note that even if it's not used as the CS pin, the hardware SS pin
-  // (10 on most Arduino boards, 53 on the Mega) must be left as an output
-  // or the SD library functions will not work.
   pinMode(PA_3, OUTPUT);
 
   if (!SD.begin(PA_3)) {
@@ -49,8 +47,8 @@ void setup()
   Serial.println();
   Serial.println("--------- ARCHIVOS EN LA SD ---------");
   Serial.println();
-  myFile = SD.open("/");
-  printDirectory(myFile, 0);
+  myFile = SD.open("/"); //abrir archivos
+  printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
   Serial.println("");
   Serial.println("-----------------------------------------------------");
   Serial.println("¿Qué archivo .TXT  quieres ver? Escribir 1, 2, 3 o 4");
@@ -59,7 +57,9 @@ void setup()
 }
 
 void loop(){
-    if (Serial.available() > 0) { //Leer valor que se ingresa
+  
+  while (control != 5){//mientras no se escriba 5, el programa corre 
+      if (Serial.available() > 0) { //Leer valor que se ingresa
      Num = Serial.read();
     }
     
@@ -80,13 +80,17 @@ void loop(){
           // if the file didn't open, print an error:
           Serial.println("error opening test.txt");
         }
+        Serial.println("");
+        Serial.println("-------------------------------------------------------------");//volver a preguntar
+        Serial.println("Escribir 1, 2, 3 o 4 para ver otro archivo o 5 para terminar");
+        Serial.println("-------------------------------------------------------------");
       } 
        
       else if (Num == '2'){ //si es opcion 2, mostrar archivo 2 (corazon)
           myFile = SD.open("corazon.txt");
         if (myFile) {
           Serial.println();
-          Serial.println("------------ Corazon ------------");
+          Serial.println("------------ Corazón ------------");
           Serial.println();
       
           // read from the file until there's nothing else in it:
@@ -100,6 +104,10 @@ void loop(){
           
           Serial.println("error opening test.txt");
         }
+        Serial.println("");
+        Serial.println("-------------------------------------------------------------"); //volver a preguntar
+        Serial.println("Escribir 1, 2, 3 o 4 para ver otro archivo o 5 para terminar");
+        Serial.println("-------------------------------------------------------------");
       }
         
     else if (Num == '3'){ //si es opcion 3, mostrar archivo 3 (ying yang)
@@ -119,6 +127,10 @@ void loop(){
           // if the file didn't open, print an error:
           Serial.println("error opening test.txt");
         }
+        Serial.println("");
+        Serial.println("-------------------------------------------------------------"); //volver a preguntar
+        Serial.println("Escribir 1, 2, 3 o 4 para ver otro archivo o 5 para terminar");
+        Serial.println("-------------------------------------------------------------");
       }
 
    else if (Num == '4'){ //si es opcion 4, mostrar archivo 4 (fantasma pacman)
@@ -139,10 +151,20 @@ void loop(){
           // if the file didn't open, print an error:
           Serial.println("error opening test.txt");
         }
-        Serial.println();
+        //Serial.println();
+        Serial.println("");
+        Serial.println("-------------------------------------------------------------"); //volver a preguntar
+        Serial.println("Escribir 1, 2, 3 o 4 para ver otro archivo o 5 para terminar");
+        Serial.println("-------------------------------------------------------------");
       }
+   else if (Num == '5'){
+      Serial.println("");
+      Serial.println("Fin del programa");
+      control = 5;
+    }
     else{}
- }
+    }
+}    
         
 
 void printDirectory(File dir, int numTabs) {//funcion que muestra los archivos de la SD 
