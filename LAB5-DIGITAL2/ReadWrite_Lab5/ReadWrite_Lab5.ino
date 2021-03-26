@@ -44,27 +44,16 @@ void setup()
     return;
   }
   Serial.println("initialization done.");
-/*
-  // open the file. note that only one file can be open at a time,
-  // so you have to close this one before opening another.
-  myFile = SD.open("test.txt", FILE_WRITE);
-
-  // if the file opened okay, write to it:
-  if (myFile) {
-    Serial.print("Writing to test.txt...");
-    myFile.println("testing 1, 2, 3.");
-    // close the file:
-    myFile.close();
-    Serial.println("done.");
-  } else {
-    // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
-  }
-*/
+  
+  root = SD.open("/"); //Nombre para abrir SD
+  printDirectory(root, 0); //Mostrar directorio
+  Serial.println("done!");
+  
+//////////////////////////
   // re-open the file for reading:
-  myFile = SD.open("test.txt");
+  myFile = SD.open("hola.txt");
   if (myFile) {
-    Serial.println("test.txt:");
+    Serial.println("hola.txt:");
 
     // read from the file until there's nothing else in it:
     while (myFile.available()) {

@@ -21,7 +21,7 @@
 #include <SPI.h>
 #include <SD.h>
 
-int Num;
+int Num = 0;
 File myFile;
 
 void setup()
@@ -46,25 +46,24 @@ void setup()
     return;
   }
   Serial.println("initialization done.");
-  Serial.println();
-  Serial.println("----- ARCHIVOS EN LA SD -----");
-  Serial.println();
   myFile = SD.open("/");
-  printDirectory(myFile, 1);
+  printDirectory(myFile, 0);
+  //Serial.println("done!");
 
   
 }
 
-void loop(){
+void loop()
+{
     if (Serial.available() > 0) {
-     Num = Serial.read();
+    Num = Serial.read();
     }
     
-      if (Num == '1'){
-         myFile = SD.open("pacman.txt");
+  switch (Num){
+      case '1': 
+        myFile = SD.open("hola.txt");
         if (myFile) {
-          Serial.println("Pacman");
-          Serial.println();
+          Serial.println("hola.txt:");
       
           // read from the file until there's nothing else in it:
           while (myFile.available()) {
@@ -76,71 +75,16 @@ void loop(){
           // if the file didn't open, print an error:
           Serial.println("error opening test.txt");
         }
-      } 
-       
-      else if (Num == '2'){
-          myFile = SD.open("corazon.txt");
-        if (myFile) {
-          Serial.println("Corazon");
-          Serial.println();
-      
-          // read from the file until there's nothing else in it:
-          while (myFile.available()) {
-            Serial.write(myFile.read());
-          }
-          // close the file:
-          myFile.close();
-        } else {
-          // if the file didn't open, print an error:
-          
-          Serial.println("error opening test.txt");
-        }
+      case '2':
+        Serial.println("caso 2 wuuuu");
       }
-        
+    
   
-    else if (Num == '3'){
-      myFile = SD.open("yingyang.txt");
-        if (myFile) {
-          Serial.println("Ying yang");
-          Serial.println();
-      
-          // read from the file until there's nothing else in it:
-          while (myFile.available()) {
-            Serial.write(myFile.read());
-          }
-          // close the file:
-          myFile.close();
-        } else {
-          // if the file didn't open, print an error:
-          Serial.println("error opening test.txt");
-        }
-      }
-
-   else if (Num == '4'){
-      myFile = SD.open("fantasma.txt");
-        if (myFile) {
-          Serial.println("Fantasma de pacman");
-          Serial.println();
-      
-          // read from the file until there's nothing else in it:
-          while (myFile.available()) {
-            Serial.write(myFile.read());
-            
-          }
-          // close the file:
-          myFile.close();
-        } else {
-          // if the file didn't open, print an error:
-          Serial.println("error opening test.txt");
-        }
-        Serial.println();
-      }
-    else{}
- }
-        
+}
 
 void printDirectory(File dir, int numTabs) {
    while(true) {
+     
      File entry =  dir.openNextFile();
      if (! entry) {
        // no more files
@@ -159,6 +103,5 @@ void printDirectory(File dir, int numTabs) {
        Serial.println(entry.size(), DEC);
      }
      entry.close();
-     
    }
 }
