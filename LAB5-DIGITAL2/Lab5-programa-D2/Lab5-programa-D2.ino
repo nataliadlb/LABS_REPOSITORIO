@@ -47,23 +47,27 @@ void setup()
   }
   Serial.println("initialization done.");
   Serial.println();
-  Serial.println("----- ARCHIVOS EN LA SD -----");
+  Serial.println("--------- ARCHIVOS EN LA SD ---------");
   Serial.println();
   myFile = SD.open("/");
-  printDirectory(myFile, 1);
-
+  printDirectory(myFile, 0);
+  Serial.println("");
+  Serial.println("-----------------------------------------------------");
+  Serial.println("¿Qué archivo .TXT  quieres ver? Escribir 1, 2, 3 o 4");
+  Serial.println("-----------------------------------------------------");
   
 }
 
 void loop(){
-    if (Serial.available() > 0) {
+    if (Serial.available() > 0) { //Leer valor que se ingresa
      Num = Serial.read();
     }
     
-      if (Num == '1'){
+      if (Num == '1'){ //si es opcion 1, mostrar archivo 1 (pacman)
          myFile = SD.open("pacman.txt");
         if (myFile) {
-          Serial.println("Pacman");
+          Serial.println();
+          Serial.println("------------ Pacman ------------");
           Serial.println();
       
           // read from the file until there's nothing else in it:
@@ -78,10 +82,11 @@ void loop(){
         }
       } 
        
-      else if (Num == '2'){
+      else if (Num == '2'){ //si es opcion 2, mostrar archivo 2 (corazon)
           myFile = SD.open("corazon.txt");
         if (myFile) {
-          Serial.println("Corazon");
+          Serial.println();
+          Serial.println("------------ Corazon ------------");
           Serial.println();
       
           // read from the file until there's nothing else in it:
@@ -97,11 +102,11 @@ void loop(){
         }
       }
         
-  
-    else if (Num == '3'){
+    else if (Num == '3'){ //si es opcion 3, mostrar archivo 3 (ying yang)
       myFile = SD.open("yingyang.txt");
         if (myFile) {
-          Serial.println("Ying yang");
+          Serial.println();
+          Serial.println("----------- Ying yang -----------");
           Serial.println();
       
           // read from the file until there's nothing else in it:
@@ -116,10 +121,11 @@ void loop(){
         }
       }
 
-   else if (Num == '4'){
+   else if (Num == '4'){ //si es opcion 4, mostrar archivo 4 (fantasma pacman)
       myFile = SD.open("fantasma.txt");
         if (myFile) {
-          Serial.println("Fantasma de pacman");
+          Serial.println();
+          Serial.println("------- Fantasma de pacman -------");
           Serial.println();
       
           // read from the file until there's nothing else in it:
@@ -139,7 +145,7 @@ void loop(){
  }
         
 
-void printDirectory(File dir, int numTabs) {
+void printDirectory(File dir, int numTabs) {//funcion que muestra los archivos de la SD 
    while(true) {
      File entry =  dir.openNextFile();
      if (! entry) {
@@ -159,6 +165,7 @@ void printDirectory(File dir, int numTabs) {
        Serial.println(entry.size(), DEC);
      }
      entry.close();
-     
    }
+  Serial.println("");
+
 }
