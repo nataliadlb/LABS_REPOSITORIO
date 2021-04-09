@@ -60,7 +60,7 @@ void loop(){
   
   while (control != 5){//mientras no se escriba 5, el programa corre 
       if (Serial.available() > 0) { //Leer valor que se ingresa
-     Num = Serial.read();
+        Num = Serial.read();
     }
     
       if (Num == '1'){ //si es opcion 1, mostrar archivo 1 (pacman)
