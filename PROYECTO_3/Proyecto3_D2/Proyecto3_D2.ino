@@ -30,10 +30,6 @@
 #define LCD_WR PD_3
 #define LCD_RD PE_1
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};  
-const byte interruptPin = PUSH1; 
-const byte interruptPin2 = PUSH2; 
-const byte ledPin1 = GREEN_LED; 
-const byte ledPin2 = BLUE_LED; 
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -51,39 +47,26 @@ void LCD_Print(String text, int x, int y, int fontSize, int color, int backgroun
 void LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
 void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
 
+
+extern uint8_t fondo[];
 //***************************************************************************************************************************************
 // Inicialización
 //***************************************************************************************************************************************
 void setup() {
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
-  Serial.begin(115200);
+  Serial.begin(9600);
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
-  pinMode(LCD_RST, OUTPUT);
-  pinMode(LCD_CS, OUTPUT);
-  pinMode(LCD_RS, OUTPUT);
-  pinMode(LCD_WR, OUTPUT);
-  pinMode(LCD_RD, OUTPUT);
-  pinMode(interruptPin, INPUT_PULLUP);
-  pinMode(interruptPin2, INPUT_PULLUP);
-  pinMode(ledPin1, OUTPUT);   
-  pinMode(ledPin2, OUTPUT);
-  for (uint8_t i = 0; i < 8; i++){
-    pinMode(DPINS[i], OUTPUT);
-    
-  }
-  
   Serial.println("Inicio");
   LCD_Init();
-  LCD_Clear(0xF800);
-  Serial.println("HOLA");
+  LCD_Clear(0x0000);
   
-//  FillRect(0, 0, 319, 206, 0x421b);
-//  String text1 = "Super Mario World!";
-//  LCD_Print(text1, 20, 100, 2, 0xffff, 0x421b);
+  FillRect(0, 0, 319, 206, 0x421b);
+  String text1 = "Super Mario World!";
+  LCD_Print(text1, 20, 100, 2, 0xffff, 0x421b);
 //LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
-    
-  //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-  
+//    
+//  //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
+//  LCD_Bitmap(0, 0, 320, 240, fondo);
   
 //  for(int x = 0; x <319; x++){
 //    LCD_Bitmap(x, 52, 16, 16, tile2);
@@ -93,75 +76,72 @@ void setup() {
 //    LCD_Bitmap(x, 223, 16, 16, tile);
 //    x += 15;
 // }
-  attachInterrupt(digitalPinToInterrupt(interruptPin), flag_interrupt, FALLING); //interrupcion semáforo
-  attachInterrupt(digitalPinToInterrupt(interruptPin2), flag_interrupt2, FALLING);
+  
 }
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-//  for(int x = 0; x <320-32; x++){
-//    delay(15);
-//    int anim2 = (x/35)%2;
-//    
-//    LCD_Sprite(x,100,16,24,planta,2,anim2,0,1);
-//    V_line( x -1, 100, 24, 0x421b);
-//    
-//    //LCD_Bitmap(x, 100, 32, 32, prueba);
-//    
-//    int anim = (x/11)%8;
-//    
-//
-//    int anim3 = (x/11)%4;
-//    
-//    LCD_Sprite(x, 20, 16, 32, mario,8, anim,1, 0);
-//    V_line( x -1, 20, 32, 0x421b);
-// 
-//    //LCD_Sprite(x,100,32,32,bowser,4,anim3,0,1);
-//    //V_line( x -1, 100, 32, 0x421b);
-// 
-// 
-//    LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,1, 0);
-//    V_line( x -1, 140, 16, 0x421b);
-//  
-//    LCD_Sprite(x, 175, 16, 32, luigi,8, anim,1, 0);
-//    V_line( x -1, 175, 32, 0x421b);
-//  }
-//  for(int x = 320-32; x >0; x--){
-//    delay(5);
-//    int anim = (x/11)%8;
-//    int anim2 = (x/11)%2;
-//    
-//    LCD_Sprite(x,100,16,24,planta,2,anim2,0,0);
-//    V_line( x + 16, 100, 24, 0x421b);
-//    
-//    //LCD_Bitmap(x, 100, 32, 32, prueba);
-//    
-//    //LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,0, 0);
-//    //V_line( x + 16, 140, 16, 0x421b);
-//    
-//    //LCD_Sprite(x, 175, 16, 32, luigi,8, anim,0, 0);
-//    //V_line( x + 16, 175, 32, 0x421b);
-//
-//    //LCD_Sprite(x, 20, 16, 32, mario,8, anim,0, 0);
-//    //V_line( x + 16, 20, 32, 0x421b);
-//  } 
+  for(int x = 0; x <320-32; x++){
+    delay(15);
+    int anim2 = (x/35)%2;
+    
+    LCD_Sprite(x,100,16,24,planta,2,anim2,0,1);
+    V_line( x -1, 100, 24, 0x421b);
+  
+    //LCD_Bitmap(x, 100, 32, 32, prueba);
+    
+    int anim = (x/11)%8;
+    
+
+    int anim3 = (x/11)%4;
+    
+    LCD_Sprite(x, 20, 16, 32, mario,8, anim,1, 0);
+    V_line( x -1, 20, 32, 0x421b);
+ 
+    //LCD_Sprite(x,100,32,32,bowser,4,anim3,0,1);
+    //V_line( x -1, 100, 32, 0x421b);
+ 
+ 
+    LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,1, 0);
+    V_line( x -1, 140, 16, 0x421b);
+  
+    LCD_Sprite(x, 175, 16, 32, luigi,8, anim,1, 0);
+    V_line( x -1, 175, 32, 0x421b);
+  }
+  for(int x = 320-32; x >0; x--){
+    delay(5);
+    int anim = (x/11)%8;
+    int anim2 = (x/11)%2;
+    
+    LCD_Sprite(x,100,16,24,planta,2,anim2,0,0);
+    V_line( x + 16, 100, 24, 0x421b);
+    
+    //LCD_Bitmap(x, 100, 32, 32, prueba);
+    
+    //LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,0, 0);
+    //V_line( x + 16, 140, 16, 0x421b);
+    
+    //LCD_Sprite(x, 175, 16, 32, luigi,8, anim,0, 0);
+    //V_line( x + 16, 175, 32, 0x421b);
+
+    //LCD_Sprite(x, 20, 16, 32, mario,8, anim,0, 0);
+    //V_line( x + 16, 20, 32, 0x421b);
+  } 
 
 }
-
-void flag_interrupt() { //INTERRUPCION PUSH1
-    digitalWrite(ledPin1, HIGH);
-}
-
-void flag_interrupt2() { //INTERRUPCION PUSH1
-    digitalWrite(ledPin2, HIGH);
-}
-
 //***************************************************************************************************************************************
 // Función para inicializar LCD
 //***************************************************************************************************************************************
 void LCD_Init(void) {
-  
+  pinMode(LCD_RST, OUTPUT);
+  pinMode(LCD_CS, OUTPUT);
+  pinMode(LCD_RS, OUTPUT);
+  pinMode(LCD_WR, OUTPUT);
+  pinMode(LCD_RD, OUTPUT);
+  for (uint8_t i = 0; i < 8; i++){
+    pinMode(DPINS[i], OUTPUT);
+  }
   //****************************************
   // Secuencia de Inicialización
   //****************************************
@@ -258,7 +238,7 @@ void LCD_Init(void) {
   delay(120);
   LCD_CMD(ILI9341_DISPON);    //Display on
   digitalWrite(LCD_CS, HIGH);
-  Serial.println("DONEEEE");
+  Serial.println("Listo init");
 }
 //***************************************************************************************************************************************
 // Función para enviar comandos a la LCD - parámetro (comando)
@@ -356,12 +336,36 @@ void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsign
 //***************************************************************************************************************************************
 // Función para dibujar un rectángulo relleno - parámetros ( coordenada x, cordenada y, ancho, alto, color)
 //***************************************************************************************************************************************
-void FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c) {
+/*void FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c) {
   unsigned int i;
   for (i = 0; i < h; i++) {
     H_line(x  , y  , w, c);
     H_line(x  , y+i, w, c);
   }
+}
+*/
+
+void FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c) {
+  LCD_CMD(0x02c); // write_memory_start
+  digitalWrite(LCD_RS, HIGH);
+  digitalWrite(LCD_CS, LOW); 
+  
+  unsigned int x2, y2;
+  x2 = x+w;
+  y2 = y+h;
+  SetWindows(x, y, x2-1, y2-1);
+  unsigned int k = w*h*2-1;
+  unsigned int i, j;
+  for (int i = 0; i < w; i++) {
+    for (int j = 0; j < h; j++) {
+      LCD_DATA(c >> 8);
+      LCD_DATA(c);
+      
+      //LCD_DATA(bitmap[k]);    
+      k = k - 2;
+     } 
+  }
+  digitalWrite(LCD_CS, HIGH);
 }
 //***************************************************************************************************************************************
 // Función para dibujar texto - parámetros ( texto, coordenada x, cordenada y, color, background) 
