@@ -29,8 +29,12 @@
 #define LCD_RS PD_2
 #define LCD_WR PD_3
 #define LCD_RD PE_1
-int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};  
+int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7}; 
 
+//***************************************************************************************************************************************
+// Variables
+//***************************************************************************************************************************************
+int flag_jugar = 0;
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -49,7 +53,8 @@ void LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int
 void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
 
 //---- FUNCIONES PROPIAS ----//
-void Pantalla_inicio(void);
+void Static_Pantalla_Inicio(void);
+void Mov_Pantalla_inicio(void);
 
 
 extern uint8_t fondo[];
@@ -70,8 +75,9 @@ void setup() {
   //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
   LCD_Bitmap(0, 0, 320, 240, fondo);
   delay(500);
-
-  Pantalla_inicio();
+  Static_Pantalla_Inicio();
+  
+  
 //LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
 
   
@@ -89,13 +95,18 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
+while(flag_jugar != 1){
+  Mov_Pantalla_inicio();
+  }  
+  
+  
 //  for(int x = 0; x <320-32; x++){
 //    delay(15);
 //    int anim2 = (x/35)%2;
 //    
 //    LCD_Sprite(x,100,16,24,planta,2,anim2,0,1);
-//    V_line( x -1, 100, 24, 0x421b);
-//  
+//    V_line( x -1, 100, 24, 0x421b);}
+////  
 //    //LCD_Bitmap(x, 100, 32, 32, prueba);
 //    
 //    int anim = (x/11)%8;
@@ -104,8 +115,8 @@ void loop() {
 //    int anim3 = (x/11)%4;
 //    
 //    LCD_Sprite(x, 20, 16, 32, mario,8, anim,1, 0);
-//    V_line( x -1, 20, 32, 0x421b);
-// 
+//    V_line( x -1, 20, 32, 0x421b);}
+ 
 //    //LCD_Sprite(x,100,32,32,bowser,4,anim3,0,1);
 //    //V_line( x -1, 100, 32, 0x421b);
 // 
@@ -123,7 +134,7 @@ void loop() {
 //    int anim2 = (x/11)%2;
 //    
 //    LCD_Sprite(x,100,16,24,planta,2,anim2,0,0);
-//    V_line( x + 16, 100, 24, 0x421b);
+//    V_line( x + 16, 100, 24, 0x421b);}
 //    
 //    //LCD_Bitmap(x, 100, 32, 32, prueba);
 //    
@@ -144,14 +155,25 @@ void loop() {
 // Función para el munú de inicio
 //***************************************************************************************************************************************
 
-void Pantalla_inicio(void){
-  //--- PANTALLA DE INICIO ---//
+void Static_Pantalla_Inicio(void){
   //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
   FillRect(0, 0, 319, 239, 0x0000);
-  FillRect(110, 160, 85, 25, 0xFF40);
+  //FillRect(110, 160, 85, 25, 0xFF40);
   String text1 = "JUGAR";
   // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
   LCD_Print(text1, 111, 163, 2, 0x000, 0xFF40);
+  }
+  
+void Mov_Pantalla_inicio(void){
+  //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
+  for(int x = 90; x <110; x++){
+    LCD_Bitmap(x, 50, 100, 100, Muneco_inicio);
+  }
+  for(int x = 110; x >90; x--){
+    delay(5);
+    //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
+    LCD_Sprite(x,50,100,100,Muneco_inicio,1,0,1,0);
+   }
 
   }
 
