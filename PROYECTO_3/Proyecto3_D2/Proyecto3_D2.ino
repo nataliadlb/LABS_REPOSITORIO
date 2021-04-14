@@ -34,7 +34,14 @@ int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};
 //***************************************************************************************************************************************
 // Variables
 //***************************************************************************************************************************************
-int flag_jugar = 0;
+
+volatile byte flag_jugar = LOW;
+volatile byte flag_boton_jugar = LOW;
+volatile byte ganar_N1 = LOW;
+int nivel = 0;
+const byte interruptPin1 = PUSH1; 
+String Valor_record = "1";
+
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -58,29 +65,32 @@ void Mov_Pantalla_inicio(void);
 
 
 extern uint8_t fondo[];
-extern uint8_t fondo_pasar[];
+extern uint8_t fondo2[];
 
 //***************************************************************************************************************************************
 // Inicialización
 //***************************************************************************************************************************************
 void setup() {
+  pinMode(interruptPin1, INPUT_PULLUP);
+  
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
   Serial.begin(9600);
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
   Serial.println("Inicio");
+  attachInterrupt(digitalPinToInterrupt(interruptPin1), JUGAR, FALLING);
   LCD_Init();
   LCD_Clear(0x0000);
 
   //--- Fondo del juego ---//
-  //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
   LCD_Bitmap(0, 0, 320, 240, fondo);
   delay(500);
+
+  //--- Pantalla de inicio ---//
   Static_Pantalla_Inicio();
   
   
 //LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
-
-  
+ 
 //  for(int x = 0; x <319; x++){
 //    LCD_Bitmap(x, 52, 16, 16, tile2);
 //    LCD_Bitmap(x, 68, 16, 16, tile);
@@ -95,11 +105,33 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_jugar != 1){
+while(flag_jugar != HIGH){
   Mov_Pantalla_inicio();
   }  
   
-  
+if (flag_boton_jugar == HIGH){
+  String text1 = "JUGAR";
+  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
+  flag_boton_jugar = LOW;
+  delay(500);
+  }
+
+  switch (nivel){
+    case 1: //NIVEL 1
+      FillRect(0, 0, 319, 239, 0x0000);
+      String text2 = "NIVEL 1";
+      LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
+      
+      delay(500);
+      
+      while (ganar_N1 != HIGH){
+        //void LCD_Print(String text, int x, int y, int fontSize, int color, int background);
+        LCD_Bitmap(0, 0, 320, 240, fondo);
+        }
+      
+    }
+    
+
 //  for(int x = 0; x <320-32; x++){
 //    delay(15);
 //    int anim2 = (x/35)%2;
@@ -151,6 +183,13 @@ while(flag_jugar != 1){
 }
 
 //---------------------------------------------------FUNCIONES PROPIAS-----------------------------------------------------------------------//
+void JUGAR() { //INTERRUPCION PUSH1
+    flag_jugar = HIGH;
+    flag_boton_jugar = HIGH;
+    nivel = 1;
+}
+
+
 //***************************************************************************************************************************************
 // Función para el munú de inicio
 //***************************************************************************************************************************************
@@ -158,10 +197,16 @@ while(flag_jugar != 1){
 void Static_Pantalla_Inicio(void){
   //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
   FillRect(0, 0, 319, 239, 0x0000);
-  //FillRect(110, 160, 85, 25, 0xFF40);
   String text1 = "JUGAR";
+  String text_record = "RECORD: ";
+  String text_valor_vidas = "2";
   // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
   LCD_Print(text1, 111, 163, 2, 0x000, 0xFF40);
+  LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000);
+  LCD_Print(Valor_record, 115, 0, 2, 0xFF40,0x000);
+  LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000);
+  LCD_Bitmap(135, 0, 16, 16, estrella);
+  LCD_Bitmap(280, 0, 16, 16, estrella);//corazon de las vidas
   }
   
 void Mov_Pantalla_inicio(void){
