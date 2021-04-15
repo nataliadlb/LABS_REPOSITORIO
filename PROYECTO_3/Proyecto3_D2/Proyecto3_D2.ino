@@ -62,6 +62,7 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
 //---- FUNCIONES PROPIAS ----//
 void Static_Pantalla_Inicio(void);
 void Mov_Pantalla_inicio(void);
+void Nivel_pantalla(String Num_Nivel);
 
 
 extern uint8_t fondo[];
@@ -118,10 +119,7 @@ if (flag_boton_jugar == HIGH){
 
   switch (nivel){
     case 1: //NIVEL 1
-      FillRect(0, 0, 319, 239, 0x0000);
-      String text2 = "NIVEL 1";
-      LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
-      
+      Nivel_pantalla("1");
       delay(500);
       
       while (ganar_N1 != HIGH){
@@ -195,33 +193,48 @@ void JUGAR() { //INTERRUPCION PUSH1
 //***************************************************************************************************************************************
 
 void Static_Pantalla_Inicio(void){
-  //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
-  FillRect(0, 0, 319, 239, 0x0000);
-  String text1 = "JUGAR";
-  String text_record = "RECORD: ";
-  String text_valor_vidas = "2";
-  // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-  LCD_Print(text1, 111, 163, 2, 0x000, 0xFF40);
-  LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000);
-  LCD_Print(Valor_record, 115, 0, 2, 0xFF40,0x000);
-  LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000);
-  LCD_Bitmap(135, 0, 16, 16, estrella);
-  LCD_Bitmap(280, 0, 15, 13, corazon);//corazon de las vidas
-  }
+    //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
+    FillRect(0, 0, 319, 239, 0x0000);
+    String text1 = "JUGAR";
+    String text_record = "RECORD: ";
+    String text_valor_vidas = "2";
+    // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
+    LCD_Print(text1, 111, 163, 2, 0x000, 0xFF40);
+    LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000);
+    LCD_Print(Valor_record, 115, 0, 2, 0xFF40,0x000);
+    LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000);
+    LCD_Bitmap(135, 0, 16, 16, estrella);
+    LCD_Bitmap(280, 0, 15, 13, corazon);//corazon de las vidas
+}
   
 void Mov_Pantalla_inicio(void){
-  //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-  for(int x = 90; x <110; x++){
-    LCD_Bitmap(x, 50, 100, 100, Muneco_inicio);
-  }
-  for(int x = 110; x >90; x--){
-    //delay(5);
-    //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
-    LCD_Sprite(x,50,100,100,Muneco_inicio,1,0,1,0);
-   }
+    //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
+    for(int x = 50; x <70; x++){
+      LCD_Bitmap(x, 50, 100, 100, Muneco_100);
+      LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+      if(flag_jugar == HIGH){
+        LCD_Bitmap(x, 50, 100, 100, Muneco_100);
+        LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+        break;
+        }
+    }
+    for(int x = 70; x >50; x--){
+      //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
+      LCD_Sprite(x,50,100,100,Muneco_100,1,0,1,0);
+      LCD_Sprite(x+100,50,100,100,Muneco_100,1,0,1,0);
+      if(flag_jugar == HIGH){
+        LCD_Bitmap(x, 50, 100, 100, Muneco_100);
+        LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+        break;
+        }
+     }
+}
 
-  }
-
+void Nivel_pantalla(String Num_Nivel){
+    FillRect(0, 0, 319, 239, 0x0000);
+    String text2 = "NIVEL " + Num_Nivel;
+    LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
+}
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
 // Función para inicializar LCD
