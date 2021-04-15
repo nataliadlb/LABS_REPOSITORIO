@@ -1,3 +1,10 @@
+/*
+ * Proyecto # 3
+ * Natalia de León 18193
+ * Katharine Senn 18012
+ * 
+ */
+
 //***************************************************************************************************************************************
 /* Librería para el uso de la pantalla ILI9341 en modo 8 bits
  * Basado en el código de martinayotte - https://www.stm32duino.com/viewtopic.php?t=637
@@ -66,11 +73,14 @@ void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
 void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
 void Nivel_pantalla(String Num_Nivel); //para mostrar la pantalla del nivel que toca
 void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
-void Posicion_inicial_munecos(int nivel_pos_i);
+void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
+void Mapa_nivel(int nivel_mapa);
 
 
 extern uint8_t fondo[];
 extern uint8_t fondo2[];
+extern uint8_t Muneco_50[];
+extern uint8_t Koala_50[];
 
 //***************************************************************************************************************************************
 // Inicialización
@@ -87,7 +97,7 @@ void setup() {
   LCD_Clear(0x0000);
 
   //--- Fondo del juego ---//
-  LCD_Bitmap(0, 0, 320, 240, fondo);
+  //LCD_Bitmap(0, 0, 320, 240, fondo);
   delay(500);
 
   //--- Pantalla de inicio ---//
@@ -128,39 +138,30 @@ if (flag_boton_jugar == HIGH){
       
       while (ganar_N1 != HIGH){
         FillRect(0, 0, 319, 239, 0x0000);
-        Linea_divisora(1);
-        Posicion_inicial_munecos(1);
-
-        for(int y = 144; y <240; y++){
-          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
-          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
-          y += 7;
-          }
-
-          for(int y = 208; y <240; y++){
-          LCD_Bitmap(280, y, 8, 8, Bloque_8_morado); //320 - 32
-          LCD_Bitmap(112, y, 8, 8, Bloque_8_morado); //152-32
-          y += 7;
-          }
-          
-        for(int x = 272; x <312; x++){ //312-40
-          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
-          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
-          x += 7;
-          }
-        delay(1000);
-        }
-      
-    }
-    
+        Linea_divisora(1); //linea divisiora de jugadores
+        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+        Mapa_nivel(1);
+        
+        } 
+    }    
 }
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//                                                        FUNCIONES PROPIAS                                                                  //
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 
-//---------------------------------------------------FUNCIONES PROPIAS-----------------------------------------------------------------------//
+//-----------------------------------------------              INTERRUPCIONES              -----------------------------------------------//
+ 
+//***************************************************************************************************************************************
+// Función interrupcion para comenzar a jugar
+//***************************************************************************************************************************************
 void JUGAR() { //INTERRUPCION PUSH1
     flag_jugar = HIGH;
     flag_boton_jugar = HIGH;
     nivel = 1;
 }
+
+//-----------------------------------------------              FUNCIONES DEL PROGRAMA              -----------------------------------------------//
+
 
 //***************************************************************************************************************************************
 // Función para el munú de inicio
@@ -187,29 +188,30 @@ void Static_Pantalla_Inicio(void){
 void Mov_Pantalla_inicio(void){
     //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
     for(int x = 50; x <70; x++){
-      LCD_Bitmap(x, 50, 100, 100, Muneco_100);
-      LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+      LCD_Bitmap(x, 80, 50, 50, Muneco_50);
+      LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
+      
       if(flag_jugar == HIGH){
-        
-        LCD_Bitmap(x, 50, 100, 100, Muneco_100);
-        LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+        LCD_Bitmap(x, 80, 50, 50, Muneco_50);
+        LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
         break;
         }
     }
     for(int x = 70; x >50; x--){
       //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
-      LCD_Sprite(x,50,100,100,Muneco_100,1,0,1,0);
-      LCD_Sprite(x+100,50,100,100,Muneco_100,1,0,1,0);
+      LCD_Sprite(x,80,50,50,Muneco_50,1,0,1,0);
+      LCD_Sprite(x+120,80,50,50,Koala_50,1,0,1,0);
+      
       if(flag_jugar == HIGH){
-        LCD_Bitmap(x, 50, 100, 100, Muneco_100);
-        LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
+        LCD_Bitmap(x, 80, 50, 50, Muneco_50);
+        LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
         break;
         }
      }
 }
 
 //***************************************************************************************************************************************
-// Función para pantalla del nivel que toca
+// Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
 void Nivel_pantalla(String Num_Nivel){\
     int val = Num_Nivel.toInt();
@@ -224,7 +226,7 @@ void Nivel_pantalla(String Num_Nivel){\
 }
 
 //***************************************************************************************************************************************
-// Función hacer linea divisora
+// Función hacer linea divisora en cada mapa
 //***************************************************************************************************************************************
 void Linea_divisora(int nivel_line){      
   switch (nivel_line){
@@ -248,14 +250,52 @@ void Linea_divisora(int nivel_line){
         break;
   }
 }
+
 //***************************************************************************************************************************************
 // Función hacer colocar los muñecos en su posicion incial en cada mapa
 //***************************************************************************************************************************************
-void Posicion_inicial_munecos(int nivel_pos_i){
+void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LOS MUNECOS
+  
   switch (nivel_pos_i){
     case 1:
       LCD_Bitmap(288, 216, 24, 24, Muneco_24); 
-      LCD_Bitmap(120, 216, 24, 24, Muneco_24); 
+      LCD_Bitmap(120, 216, 24, 24, Koala_24); 
+      break;
+    case 2:
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
+      LCD_Bitmap(296, 224, 24, 24, Koala_24); 
+      break; 
+    case 3:
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24);
+      LCD_Bitmap(296, 224, 24, 24, Koala_24);  
+      break;
+  }
+}
+
+//***************************************************************************************************************************************
+// Función para de los mapas de los niveles
+//***************************************************************************************************************************************
+void Mapa_nivel(int nivel_mapa){
+  switch (nivel_mapa){
+    case 1:
+      for(int y = 144; y <240; y++){
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
+          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
+          y += 7;
+          }
+
+          for(int y = 208; y <240; y++){
+          LCD_Bitmap(280, y, 8, 8, Bloque_8_morado); //320 - 32
+          LCD_Bitmap(112, y, 8, 8, Bloque_8_morado); //152-32
+          y += 7;
+          }
+          
+        for(int x = 272; x <312; x++){ //312-40
+          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+        delay(1000);
       break;
     case 2:
       LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
@@ -266,7 +306,8 @@ void Posicion_inicial_munecos(int nivel_pos_i){
       LCD_Bitmap(296, 224, 24, 24, Muneco_24);  
       break;
   }
-}
+  }
+
   
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
