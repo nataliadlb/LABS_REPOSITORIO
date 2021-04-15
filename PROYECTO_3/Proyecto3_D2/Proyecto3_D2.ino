@@ -66,6 +66,7 @@ void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
 void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
 void Nivel_pantalla(String Num_Nivel); //para mostrar la pantalla del nivel que toca
 void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
+void Posicion_inicial_munecos(int nivel_pos_i);
 
 
 extern uint8_t fondo[];
@@ -128,25 +129,26 @@ if (flag_boton_jugar == HIGH){
       while (ganar_N1 != HIGH){
         FillRect(0, 0, 319, 239, 0x0000);
         Linea_divisora(1);
+        Posicion_inicial_munecos(1);
 
-//        for(int y = 144; y <240; y++){
-//          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
-//          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
-//          y += 7;
-//          }
-//
-//          for(int y = 208; y <240; y++){
-//          LCD_Bitmap(288, y, 8, 8, Bloque_8_morado); //320 - 32
-//          LCD_Bitmap(120, y, 8, 8, Bloque_8_morado); //152-32
-//          y += 7;
-//          }
-//          
-//        for(int x = 272; x <312; x++){ //312-40
-//          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
-//          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
-//          x += 7;
-//          }
-//        delay(1000);
+        for(int y = 144; y <240; y++){
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
+          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
+          y += 7;
+          }
+
+          for(int y = 208; y <240; y++){
+          LCD_Bitmap(280, y, 8, 8, Bloque_8_morado); //320 - 32
+          LCD_Bitmap(112, y, 8, 8, Bloque_8_morado); //152-32
+          y += 7;
+          }
+          
+        for(int x = 272; x <312; x++){ //312-40
+          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+        delay(1000);
         }
       
     }
@@ -246,6 +248,26 @@ void Linea_divisora(int nivel_line){
         break;
   }
 }
+//***************************************************************************************************************************************
+// Función hacer colocar los muñecos en su posicion incial en cada mapa
+//***************************************************************************************************************************************
+void Posicion_inicial_munecos(int nivel_pos_i){
+  switch (nivel_pos_i){
+    case 1:
+      LCD_Bitmap(288, 216, 24, 24, Muneco_24); 
+      LCD_Bitmap(120, 216, 24, 24, Muneco_24); 
+      break;
+    case 2:
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
+      break; 
+    case 3:
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24);
+      LCD_Bitmap(296, 224, 24, 24, Muneco_24);  
+      break;
+  }
+}
+  
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
 // Función para inicializar LCD
