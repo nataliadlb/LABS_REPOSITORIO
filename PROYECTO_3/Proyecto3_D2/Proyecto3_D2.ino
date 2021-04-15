@@ -83,11 +83,11 @@ void setup() {
   LCD_Clear(0x0000);
 
   //--- Fondo del juego ---//
-  LCD_Bitmap(0, 0, 320, 240, fondo);
-  delay(500);
-
-  //--- Pantalla de inicio ---//
-  Static_Pantalla_Inicio();
+//  LCD_Bitmap(0, 0, 320, 240, fondo);
+//  delay(500);
+//
+//  //--- Pantalla de inicio ---//
+//  Static_Pantalla_Inicio();
   
   
 //LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
@@ -106,28 +106,56 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_jugar != HIGH){
-  Mov_Pantalla_inicio();
-  }  
-  
-if (flag_boton_jugar == HIGH){
-  String text1 = "JUGAR";
-  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
-  flag_boton_jugar = LOW;
-  delay(500);
-  }
+//while(flag_jugar != HIGH){
+//  Mov_Pantalla_inicio();
+//  }  
+//  
+//if (flag_boton_jugar == HIGH){
+//  String text1 = "JUGAR";
+//  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
+//  flag_boton_jugar = LOW;
+//  delay(500);
+//  }
+//
+//  switch (nivel){
+//    case 1: //NIVEL 1
+//      Nivel_pantalla("1");
+//      delay(500);
+//      
+//      while (ganar_N1 != HIGH){
+//        FillRect(0, 0, 319, 239, 0x0000);
+//        //void LCD_Print(String text, int x, int y, int fontSize, int color, int background);
 
-  switch (nivel){
-    case 1: //NIVEL 1
-      Nivel_pantalla("1");
-      delay(500);
+        //-- Línea divisora --//
+        for(int y = 0; y <239; y++){
+          LCD_Bitmap(156, y, 8, 8, Bloque_8_celeste);
+          y += 7;
+          }
+
+        for(int y = 208; y <240; y++){
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(148, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+
+          for(int y = 208; y <239; y++){
+          LCD_Bitmap(288, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(124, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+//        for(int x = 158; x <319; x++){
+//          LCD_Bitmap(x, 0, 8, 8, Bloque_8_morado);
+//          LCD_Bitmap(x, 232, 8, 8, Bloque_8_morado);
+//          
+////          LCD_Bitmap(x, 207, 8, 8, Bloque_8_morado);
+////          LCD_Bitmap(x, 223, 8, 8, Bloque_8_morado);
+//          x += 7;
+//          }
+        //LCD_Bitmap(0, 0, 320, 240, fondo);
+//        }
       
-      while (ganar_N1 != HIGH){
-        //void LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-        LCD_Bitmap(0, 0, 320, 240, fondo);
-        }
-      
-    }
+//    }
     
 
 //  for(int x = 0; x <320-32; x++){
@@ -213,6 +241,7 @@ void Mov_Pantalla_inicio(void){
       LCD_Bitmap(x, 50, 100, 100, Muneco_100);
       LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
       if(flag_jugar == HIGH){
+        
         LCD_Bitmap(x, 50, 100, 100, Muneco_100);
         LCD_Bitmap(x+100, 50, 100, 100, Muneco_100);
         break;
@@ -230,10 +259,17 @@ void Mov_Pantalla_inicio(void){
      }
 }
 
-void Nivel_pantalla(String Num_Nivel){
+void Nivel_pantalla(String Num_Nivel){\
+    int val = Num_Nivel.toInt();
     FillRect(0, 0, 319, 239, 0x0000);
     String text2 = "NIVEL " + Num_Nivel;
     LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
+//    switch (val){
+//      case 1: 
+//        LCD_Bitmap(0,0, 100, 100, Koala_100);
+//      }
+    delay(300);
+    
 }
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
