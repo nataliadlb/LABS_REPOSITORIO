@@ -206,7 +206,7 @@ void Static_Pantalla_Inicio(void){
   LCD_Print(Valor_record, 115, 0, 2, 0xFF40,0x000);
   LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000);
   LCD_Bitmap(135, 0, 16, 16, estrella);
-  LCD_Bitmap(280, 0, 16, 16, estrella);//corazon de las vidas
+  LCD_Bitmap(280, 0, 15, 13, corazon);//corazon de las vidas
   }
   
 void Mov_Pantalla_inicio(void){
@@ -215,7 +215,7 @@ void Mov_Pantalla_inicio(void){
     LCD_Bitmap(x, 50, 100, 100, Muneco_inicio);
   }
   for(int x = 110; x >90; x--){
-    delay(5);
+    //delay(5);
     //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
     LCD_Sprite(x,50,100,100,Muneco_inicio,1,0,1,0);
    }
