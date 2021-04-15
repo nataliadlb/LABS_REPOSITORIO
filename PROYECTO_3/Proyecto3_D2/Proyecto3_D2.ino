@@ -40,7 +40,9 @@ volatile byte flag_boton_jugar = LOW;
 volatile byte ganar_N1 = LOW;
 int nivel = 0;
 const byte interruptPin1 = PUSH1; 
-String Valor_record = "1";
+int Valor_record = 1;
+String Str_valor_record;
+
 
 //***************************************************************************************************************************************
 // Functions Prototypes
@@ -60,9 +62,10 @@ void LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int
 void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
 
 //---- FUNCIONES PROPIAS ----//
-void Static_Pantalla_Inicio(void);
-void Mov_Pantalla_inicio(void);
-void Nivel_pantalla(String Num_Nivel);
+void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
+void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
+void Nivel_pantalla(String Num_Nivel); //para mostrar la pantalla del nivel que toca
+void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 
 
 extern uint8_t fondo[];
@@ -83,11 +86,11 @@ void setup() {
   LCD_Clear(0x0000);
 
   //--- Fondo del juego ---//
-//  LCD_Bitmap(0, 0, 320, 240, fondo);
-//  delay(500);
-//
-//  //--- Pantalla de inicio ---//
-//  Static_Pantalla_Inicio();
+  LCD_Bitmap(0, 0, 320, 240, fondo);
+  delay(500);
+
+  //--- Pantalla de inicio ---//
+  Static_Pantalla_Inicio();
   
   
 //LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
@@ -106,106 +109,48 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-//while(flag_jugar != HIGH){
-//  Mov_Pantalla_inicio();
-//  }  
-//  
-//if (flag_boton_jugar == HIGH){
-//  String text1 = "JUGAR";
-//  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
-//  flag_boton_jugar = LOW;
-//  delay(500);
-//  }
+while(flag_jugar != HIGH){
+  Mov_Pantalla_inicio();
+  }  
+  
+if (flag_boton_jugar == HIGH){
+  String text1 = "JUGAR";
+  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
+  flag_boton_jugar = LOW;
+  delay(500);
+  }
+
+  switch (nivel){
+    case 1: //NIVEL 1
+      Nivel_pantalla("1");
+      delay(500);
+      
+      while (ganar_N1 != HIGH){
+        FillRect(0, 0, 319, 239, 0x0000);
+        Linea_divisora(1);
+
+//        for(int y = 144; y <240; y++){
+//          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
+//          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
+//          y += 7;
+//          }
 //
-//  switch (nivel){
-//    case 1: //NIVEL 1
-//      Nivel_pantalla("1");
-//      delay(500);
-//      
-//      while (ganar_N1 != HIGH){
-//        FillRect(0, 0, 319, 239, 0x0000);
-//        //void LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-
-        //-- Línea divisora --//
-        for(int y = 0; y <239; y++){
-          LCD_Bitmap(156, y, 8, 8, Bloque_8_celeste);
-          y += 7;
-          }
-
-        for(int y = 208; y <240; y++){
-          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
-          LCD_Bitmap(148, y, 8, 8, Bloque_8_morado);
-          y += 7;
-          }
-
-          for(int y = 208; y <239; y++){
-          LCD_Bitmap(288, y, 8, 8, Bloque_8_morado);
-          LCD_Bitmap(124, y, 8, 8, Bloque_8_morado);
-          y += 7;
-          }
-          
-//        for(int x = 158; x <319; x++){
-//          LCD_Bitmap(x, 0, 8, 8, Bloque_8_morado);
-//          LCD_Bitmap(x, 232, 8, 8, Bloque_8_morado);
+//          for(int y = 208; y <240; y++){
+//          LCD_Bitmap(288, y, 8, 8, Bloque_8_morado); //320 - 32
+//          LCD_Bitmap(120, y, 8, 8, Bloque_8_morado); //152-32
+//          y += 7;
+//          }
 //          
-////          LCD_Bitmap(x, 207, 8, 8, Bloque_8_morado);
-////          LCD_Bitmap(x, 223, 8, 8, Bloque_8_morado);
+//        for(int x = 272; x <312; x++){ //312-40
+//          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
+//          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
 //          x += 7;
 //          }
-        //LCD_Bitmap(0, 0, 320, 240, fondo);
-//        }
+//        delay(1000);
+        }
       
-//    }
+    }
     
-
-//  for(int x = 0; x <320-32; x++){
-//    delay(15);
-//    int anim2 = (x/35)%2;
-//    
-//    LCD_Sprite(x,100,16,24,planta,2,anim2,0,1);
-//    V_line( x -1, 100, 24, 0x421b);}
-////  
-//    //LCD_Bitmap(x, 100, 32, 32, prueba);
-//    
-//    int anim = (x/11)%8;
-//    
-//
-//    int anim3 = (x/11)%4;
-//    
-//    LCD_Sprite(x, 20, 16, 32, mario,8, anim,1, 0);
-//    V_line( x -1, 20, 32, 0x421b);}
- 
-//    //LCD_Sprite(x,100,32,32,bowser,4,anim3,0,1);
-//    //V_line( x -1, 100, 32, 0x421b);
-// 
-// 
-//    LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,1, 0);
-//    V_line( x -1, 140, 16, 0x421b);
-//  
-//    LCD_Sprite(x, 175, 16, 32, luigi,8, anim,1, 0);
-//    V_line( x -1, 175, 32, 0x421b);
-//  }
-//  
-//  for(int x = 320-32; x >0; x--){
-//    delay(5);
-//    int anim = (x/11)%8;
-//    int anim2 = (x/11)%2;
-//    
-//    LCD_Sprite(x,100,16,24,planta,2,anim2,0,0);
-//    V_line( x + 16, 100, 24, 0x421b);}
-//    
-//    //LCD_Bitmap(x, 100, 32, 32, prueba);
-//    
-//    //LCD_Sprite(x, 140, 16, 16, enemy,2, anim2,0, 0);
-//    //V_line( x + 16, 140, 16, 0x421b);
-//    
-//    //LCD_Sprite(x, 175, 16, 32, luigi,8, anim,0, 0);
-//    //V_line( x + 16, 175, 32, 0x421b);
-//
-//    //LCD_Sprite(x, 20, 16, 32, mario,8, anim,0, 0);
-//    //V_line( x + 16, 20, 32, 0x421b);
-//  } 
-
 }
 
 //---------------------------------------------------FUNCIONES PROPIAS-----------------------------------------------------------------------//
@@ -215,23 +160,25 @@ void JUGAR() { //INTERRUPCION PUSH1
     nivel = 1;
 }
 
-
 //***************************************************************************************************************************************
 // Función para el munú de inicio
 //***************************************************************************************************************************************
-
 void Static_Pantalla_Inicio(void){
+  
     //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
     FillRect(0, 0, 319, 239, 0x0000);
-    String text1 = "JUGAR";
+    
+    String text_boton_jugar = "JUGAR";
     String text_record = "RECORD: ";
+    Str_valor_record = String(Valor_record); //convertir valor INT de cantidad estrellas a STRING
     String text_valor_vidas = "2";
+    
     // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-    LCD_Print(text1, 111, 163, 2, 0x000, 0xFF40);
-    LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000);
-    LCD_Print(Valor_record, 115, 0, 2, 0xFF40,0x000);
-    LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000);
-    LCD_Bitmap(135, 0, 16, 16, estrella);
+    LCD_Print(text_boton_jugar, 111, 163, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
+    LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000); //palabras RECORD
+    LCD_Print(Str_valor_record, 115, 0, 2, 0xFF40,0x000); // CANTIDAD DE ESTRELLAS (VALOR)
+    LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000); //CANTIDAD DE VIDAS
+    LCD_Bitmap(135, 0, 16, 16, estrella); //ESTRELLA
     LCD_Bitmap(280, 0, 15, 13, corazon);//corazon de las vidas
 }
   
@@ -259,6 +206,9 @@ void Mov_Pantalla_inicio(void){
      }
 }
 
+//***************************************************************************************************************************************
+// Función para pantalla del nivel que toca
+//***************************************************************************************************************************************
 void Nivel_pantalla(String Num_Nivel){\
     int val = Num_Nivel.toInt();
     FillRect(0, 0, 319, 239, 0x0000);
@@ -268,8 +218,33 @@ void Nivel_pantalla(String Num_Nivel){\
 //      case 1: 
 //        LCD_Bitmap(0,0, 100, 100, Koala_100);
 //      }
-    delay(300);
-    
+    delay(300);   
+}
+
+//***************************************************************************************************************************************
+// Función hacer linea divisora
+//***************************************************************************************************************************************
+void Linea_divisora(int nivel_line){      
+  switch (nivel_line){
+    case 1:
+        for(int y = 0; y <239; y++){
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste); // en medio +-4 a partir del 156
+          y += 7;
+          }
+         break;
+    case 2:
+        for(int y = 0; y <239; y++){
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
+          y += 7;
+          }
+        break; 
+    case 3:
+        for(int y = 0; y <239; y++){
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste); // en medio +-4 a partir del 156
+          y += 7;
+          }
+        break;
+  }
 }
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
