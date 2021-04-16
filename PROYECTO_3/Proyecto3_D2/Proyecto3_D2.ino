@@ -71,7 +71,7 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
 //---- FUNCIONES PROPIAS ----//
 void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
 void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
-void Nivel_pantalla(String Num_Nivel); //para mostrar la pantalla del nivel que toca
+void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toca
 void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Mapa_nivel(int nivel_mapa);
@@ -81,6 +81,7 @@ extern uint8_t fondo[];
 extern uint8_t fondo2[];
 extern uint8_t Muneco_50[];
 extern uint8_t Koala_50[];
+extern uint8_t dec_nivel_32[];
 
 //***************************************************************************************************************************************
 // Inicialización
@@ -98,7 +99,7 @@ void setup() {
 
   //--- Fondo del juego ---//
   //LCD_Bitmap(0, 0, 320, 240, fondo);
-  delay(500);
+  //delay(500);
 
   //--- Pantalla de inicio ---//
   Static_Pantalla_Inicio();
@@ -114,8 +115,8 @@ void setup() {
 //    LCD_Bitmap(x, 223, 16, 16, tile);
 //    x += 15;
 // }
-  
 }
+
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
@@ -133,18 +134,19 @@ if (flag_boton_jugar == HIGH){
 
   switch (nivel){
     case 1: //NIVEL 1
-      Nivel_pantalla("1");
+      Nivel_pantalla(1);
       delay(500);
       
-      while (ganar_N1 != HIGH){
-        FillRect(0, 0, 319, 239, 0x0000);
-        Linea_divisora(1); //linea divisiora de jugadores
-        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-        Mapa_nivel(1);
-        
-        } 
+//      while (ganar_N1 != HIGH){
+//        FillRect(0, 0, 319, 239, 0x0000);
+//        Linea_divisora(1); //linea divisiora de jugadores
+//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+//        Mapa_nivel(1);
+//        
+//        } 
     }    
 }
+
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 //                                                        FUNCIONES PROPIAS                                                                  //
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -187,24 +189,28 @@ void Static_Pantalla_Inicio(void){
   
 void Mov_Pantalla_inicio(void){
     //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-    for(int x = 50; x <70; x++){
-      LCD_Bitmap(x, 80, 50, 50, Muneco_50);
-      LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
+    for(int x = 70; x <90; x++){
+      LCD_Sprite(x,80,50,50,Muneco_50,1,0,0,0);
+      V_line( x -1, 80, 50, 0x0000);
+      LCD_Sprite(x+100,80,50,50,Koala_50,1,0,0,0);
+      V_line( x + 99, 80, 50, 0x0000);
       
       if(flag_jugar == HIGH){
-        LCD_Bitmap(x, 80, 50, 50, Muneco_50);
-        LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
+        LCD_Sprite(x,80,50,50,Muneco_50,1,0,0,0);
+        LCD_Sprite(x+100,80,50,50,Koala_50,1,0,0,0);
         break;
         }
     }
-    for(int x = 70; x >50; x--){
+    for(int x = 90; x >70; x--){
       //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
       LCD_Sprite(x,80,50,50,Muneco_50,1,0,1,0);
-      LCD_Sprite(x+120,80,50,50,Koala_50,1,0,1,0);
+      V_line( x + 50, 80, 50, 0x0000);
+      LCD_Sprite(x+100,80,50,50,Koala_50,1,0,1,0);
+      V_line( x + 150, 80, 50, 0x0000);
       
       if(flag_jugar == HIGH){
-        LCD_Bitmap(x, 80, 50, 50, Muneco_50);
-        LCD_Bitmap(x+120, 80, 50, 50, Koala_50);
+        LCD_Sprite(x,80,50,50,Muneco_50,1,0,1,0);
+        LCD_Sprite(x+100,80,50,50,Koala_50,1,0,1,0);
         break;
         }
      }
@@ -213,15 +219,28 @@ void Mov_Pantalla_inicio(void){
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
-void Nivel_pantalla(String Num_Nivel){\
-    int val = Num_Nivel.toInt();
+void Nivel_pantalla(int Num_Nivel){\
     FillRect(0, 0, 319, 239, 0x0000);
-    String text2 = "NIVEL " + Num_Nivel;
+    String Str_nivel = String(Num_Nivel); //convertir valor INT de cantidad estrellas a STRING
+    String text2 = "NIVEL " + Str_nivel;
     LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
-//    switch (val){
-//      case 1: 
-//        LCD_Bitmap(0,0, 100, 100, Koala_100);
-//      }
+    switch (Num_Nivel){
+      case 1: 
+         LCD_Bitmap(138, 160, 32, 32, dec_nivel_32);
+         break;
+
+      case 2:
+         LCD_Bitmap(113, 160, 32, 32, dec_nivel_32);
+         LCD_Bitmap(155, 160, 32, 32, dec_nivel_32);
+         break;
+
+      case 3:
+         LCD_Bitmap(92, 160, 32, 32, dec_nivel_32);
+         LCD_Bitmap(134, 160, 32, 32, dec_nivel_32);
+         LCD_Bitmap(176, 160, 32, 32, dec_nivel_32);
+         break;
+        
+      }
     delay(300);   
 }
 
