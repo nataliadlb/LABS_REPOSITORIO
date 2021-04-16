@@ -1,5 +1,5 @@
 /*
- * Proyecto # 3
+ * ------ Proyecto # 3 ------ 
  * Natalia de León 18193
  * Katharine Senn 18012
  * Sección 20
@@ -54,25 +54,31 @@ int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};
 //***************************************************************************************************************************************
 // Variables
 //***************************************************************************************************************************************
-
+//--- BANDERAS ---//
 volatile byte flag_jugar = LOW; //BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGER
 volatile byte flag_boton_jugar = LOW;
 volatile byte ganar_N1 = LOW;
 volatile byte Listo_per_J1 = LOW;
 volatile byte Listo_per_J2 = LOW;
+
+//--- CONTADORES ---//
 int cont_PUSH1 = 0;
+int cont_personajes_J1 = 0;
+int cont_personajes_J2 = 0;
+
+//--- VARIABLES DE INFO ---//
 int nivel = 0;
+int num_personaje = 0;
+
+//--- PUSH TIVA ---//
 const byte interruptPin1 = PUSH1; 
 const byte interruptPin2 = PUSH2;
-
 const byte led_VERDE = GREEN_LED; 
  
-
-
-
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
+//--- FUNCIONES LCD ---//
 void LCD_Init(void);
 void LCD_CMD(uint8_t cmd);
 void LCD_DATA(uint8_t data);
@@ -94,8 +100,9 @@ void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toc
 void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Mapa_nivel(int nivel_mapa);
+void Listo_personajes(void);
 
-
+//--- GRAFICOS ---//
 extern uint8_t fondo[];
 extern uint8_t fondo2[];
 extern uint8_t Muneco_50[];
@@ -120,11 +127,12 @@ void setup() {
   pinMode(PUSH_DOWN_J2, INPUT_PULLUP);
   pinMode(led_VERDE, OUTPUT); 
   
-  
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
   Serial.begin(9600);
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
   Serial.println("Inicio");
+  
+  //--- INTERRUPCIONES ---//
   attachInterrupt(digitalPinToInterrupt(interruptPin1), IRS_PUSH1, FALLING);
   attachInterrupt(digitalPinToInterrupt(interruptPin2), IRS_PUSH2, FALLING);
   attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J1), LEFT_J1, FALLING);
@@ -145,18 +153,6 @@ void setup() {
 
   //--- Pantalla de inicio ---//
   Static_Pantalla_Inicio();
-  
-  
-//LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
- 
-//  for(int x = 0; x <319; x++){
-//    LCD_Bitmap(x, 52, 16, 16, tile2);
-//    LCD_Bitmap(x, 68, 16, 16, tile);
-//    
-//    LCD_Bitmap(x, 207, 16, 16, tile);
-//    LCD_Bitmap(x, 223, 16, 16, tile);
-//    x += 15;
-// }
 }
 
 //***************************************************************************************************************************************
@@ -165,11 +161,12 @@ void setup() {
 void loop() {
 while(flag_boton_jugar != HIGH){
   Mov_Pantalla_inicio();
+  Listo_personajes();
   }  
   
 if (flag_boton_jugar == HIGH){
   String text1 = "JUGAR";
-  LCD_Print(text1, 111, 190, 2, 0x000, 0x07FF);
+  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
   flag_boton_jugar = LOW;
   delay(500);
   }
@@ -198,7 +195,7 @@ if (flag_boton_jugar == HIGH){
 //***************************************************************************************************************************************
 // Función interrupcion para comenzar a jugar
 //***************************************************************************************************************************************
-void IRS_PUSH1() { //INTERRUPCION PUSH1
+void IRS_PUSH1() { //INTERRUPCION PUSH1: CAMBIAR PERSONAJES Y COMENZAR A JUGAR
   Listo_per_J1 = HIGH;
   cont_PUSH1++; //LUEGO DE PRESIONAR UNA VEZ PARA ESCOGER EL PERSONAJE SI SE VUELVE A PRESIONAR YA ES PARA JUGAR
   
@@ -213,35 +210,49 @@ void IRS_PUSH2() { //INTERRUPCION PUSH2
    Listo_per_J2 = HIGH;
 }
 
-void LEFT_J1() { //INTERRUPCION PUSH2
+void LEFT_J1() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J1
+  if (Listo_per_J1 != HIGH){
+      cont_personajes_J1++;
+      Rect(28,110,25,25,0x07FF);
+    if (cont_personajes_J1 == 4){
+      cont_personajes_J1 = 0;
+    }
+  }
+}
+  //digitalWrite(led_VERDE, HIGH);
+
+
+void LEFT_J2() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 
-void LEFT_J2() { //INTERRUPCION PUSH2
+void RIGTH_J1() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 
-void RIGTH_J1() { //INTERRUPCION PUSH2
+void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
+  if (Listo_per_J2 != HIGH){
+      cont_personajes_J2++;
+      Rect(258,110,25,25,0x07FF);
+    if (cont_personajes_J2 == 4){
+      cont_personajes_J2 = 0;
+    }
+  }
+}
+
+void UP_J1() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 
-void RIGTH_J2() { //INTERRUPCION PUSH2
+void UP_J2() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 
-void UP_J1() { //INTERRUPCION PUSH2
+void DOWN_J1() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 
-void UP_J2() { //INTERRUPCION PUSH2
-  //digitalWrite(led_VERDE, HIGH);
-}
-
-void DOWN_J1() { //INTERRUPCION PUSH2
-  //digitalWrite(led_VERDE, HIGH);
-}
-
-void DOWN_J2() { //INTERRUPCION PUSH2
+void DOWN_J2() { 
   //digitalWrite(led_VERDE, HIGH);
 }
 //-----------------------------------------------              FUNCIONES DEL PROGRAMA              -----------------------------------------------//
@@ -259,13 +270,13 @@ void Static_Pantalla_Inicio(void){
     String text_J1 = "J1";
     String text_J2 = "J2";
     // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-    LCD_Print(text_escoge_J, 45, 30, 2,0x0000, 0xFF40);
-    LCD_Print(text_J1, 75, 70, 2, 0xFF40, 0x0000);
-    LCD_Print(text_J2, 205, 70, 2, 0xFF40, 0x0000);
-    LCD_Print(text_boton_jugar, 111, 190, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
+    LCD_Print(text_escoge_J, 45, 20, 2,0x0000, 0xFF40);
+    LCD_Print(text_J1, 75, 60, 2, 0xFF40, 0x0000);
+    LCD_Print(text_J2, 205, 60, 2, 0xFF40, 0x0000);
+    LCD_Print(text_boton_jugar, 111, 200, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
     //void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
-    Rect(63,105,56,56,0xFF40);
-    Rect(193,105,56,56,0xFF40);
+    Rect(63,95,56,56,0xFF40);
+    Rect(193,95,56,56,0xFF40);
     for(int y = 0; y <239; y++){
           LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
           LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
@@ -276,12 +287,70 @@ void Static_Pantalla_Inicio(void){
   
 void Mov_Pantalla_inicio(void){
     //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-    LCD_Bitmap(66, 108, 50, 50, Muneco_50);
-    LCD_Sprite(29, 121,24,24,next_amarillo_24,1,0,1,0);
-    LCD_Bitmap(196, 108, 50, 50, Calavera_50);
-    LCD_Bitmap(259, 121, 24, 24, next_amarillo_24);
+    LCD_Sprite(29, 111,24,24,next_amarillo_24,1,0,1,0);
+    LCD_Bitmap(259, 111, 24, 24, next_amarillo_24);
+    switch(cont_personajes_J1){
+      case 0:
+        LCD_Bitmap(66, 98, 50, 50, Muneco_50);
+        Rect(28,110,25,25,0x0000);
+        num_personaje = 0;
+        break;
+      case 1:
+        LCD_Bitmap(66, 98, 50, 50, Calavera_50);
+        Rect(28,110,25,25,0x0000);
+        num_personaje = 1;
+        break;
+      case 2:
+        LCD_Bitmap(66, 98, 50, 50, Koala_50);
+        Rect(28,110,25,25,0x0000);
+        num_personaje = 2;
+        break;
+      case 3:
+        LCD_Bitmap(66, 98, 50, 50, Mono_50);
+        Rect(28,110,25,25,0x0000);
+        num_personaje = 3;
+        break;
+      }
+
+      
+    switch(cont_personajes_J2){
+      case 0:
+        LCD_Bitmap(196, 98, 50, 50, Muneco_50);
+        Rect(258,110,25,25,0x0000);
+        num_personaje = 0;
+        break;
+      case 1:
+        LCD_Bitmap(196, 98, 50, 50, Calavera_50);
+        Rect(258,110,25,25,0x0000);
+        num_personaje = 1;
+        break;
+      case 2:
+        LCD_Bitmap(196, 98, 50, 50, Koala_50);
+        Rect(258,110,25,25,0x0000);
+        num_personaje = 2;
+        break;
+      case 3:
+        LCD_Bitmap(196, 98, 50, 50, Mono_50);
+        Rect(258,110,25,25,0x0000);
+        num_personaje = 3;
+        break;
+      }
 }
 
+//***************************************************************************************************************************************
+// Función escribir que estan listos cuando escogen su personaje
+//***************************************************************************************************************************************
+void Listo_personajes(void){
+  if (Listo_per_J1 ==HIGH){
+    String text_listo_J1 = "LISTO";
+    LCD_Print(text_listo_J1, 72, 160, 1, 0x000, 0x07FF);
+    }
+
+  if (Listo_per_J2 ==HIGH){
+    String text_listo_J2 = "LISTO";
+    LCD_Print(text_listo_J2, 202, 160, 1, 0x000, 0x07FF);
+    }
+  }
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
