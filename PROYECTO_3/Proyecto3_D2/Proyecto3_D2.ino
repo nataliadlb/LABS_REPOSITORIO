@@ -37,17 +37,33 @@
 #define LCD_RS PD_2
 #define LCD_WR PD_3
 #define LCD_RD PE_1
+
+#define PUSH_LEFT_J1 PA_7
+#define PUSH_RIGHT_J1  PE_3
+#define PUSH_UP_J1 PA_6
+#define PUSH_DOWN_J1 PF_1
+
+#define PUSH_LEFT_J2 PF_4
+#define PUSH_RIGHT_J2  PD6
+#define PUSH_UP_J2  PD_7
+#define PUSH_DOWN_J2 PC_7
+ 
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7}; 
 
 //***************************************************************************************************************************************
 // Variables
 //***************************************************************************************************************************************
 
-volatile byte flag_jugar = LOW;
+volatile byte flag_jugar = LOW; //BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGER
 volatile byte flag_boton_jugar = LOW;
 volatile byte ganar_N1 = LOW;
+volatile byte Listo_per_J1 = LOW;
+volatile byte Listo_per_J2 = LOW;
+int cont_PUSH1 = 0;
 int nivel = 0;
 const byte interruptPin1 = PUSH1; 
+const byte interruptPin2 = PUSH2;
+ 
 
 
 
@@ -90,12 +106,14 @@ extern uint8_t dec_nivel_32[];
 //***************************************************************************************************************************************
 void setup() {
   pinMode(interruptPin1, INPUT_PULLUP);
+  pinMode(interruptPin2, INPUT_PULLUP);
   
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
   Serial.begin(9600);
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
   Serial.println("Inicio");
-  attachInterrupt(digitalPinToInterrupt(interruptPin1), JUGAR, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin1), IRS_PUSH1, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin2), IRS_PUSH2, FALLING);
   LCD_Init();
   LCD_Clear(0x0000);
 
@@ -123,13 +141,13 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_jugar != HIGH){
+while(flag_boton_jugar != HIGH){
   Mov_Pantalla_inicio();
   }  
   
 if (flag_boton_jugar == HIGH){
   String text1 = "JUGAR";
-  LCD_Print(text1, 111, 163, 2, 0x000, 0x07FF);
+  LCD_Print(text1, 111, 190, 2, 0x000, 0x07FF);
   flag_boton_jugar = LOW;
   delay(500);
   }
@@ -158,10 +176,19 @@ if (flag_boton_jugar == HIGH){
 //***************************************************************************************************************************************
 // Función interrupcion para comenzar a jugar
 //***************************************************************************************************************************************
-void JUGAR() { //INTERRUPCION PUSH1
-    flag_jugar = HIGH;
+void IRS_PUSH1() { //INTERRUPCION PUSH1
+  Listo_per_J1 = HIGH;
+  cont_PUSH1++; //LUEGO DE PRESIONAR UNA VEZ PARA ESCOGER EL PERSONAJE SI SE VUELVE A PRESIONAR YA ES PARA JUGAR
+  
+  if(Listo_per_J1 == HIGH & Listo_per_J2 == HIGH & cont_PUSH1 !=1){
     flag_boton_jugar = HIGH;
     nivel = 1;
+    cont_PUSH1 = 0;
+    }
+}
+
+void IRS_PUSH2() { //INTERRUPCION PUSH2
+   Listo_per_J2 = HIGH;
 }
 
 //-----------------------------------------------              FUNCIONES DEL PROGRAMA              -----------------------------------------------//
