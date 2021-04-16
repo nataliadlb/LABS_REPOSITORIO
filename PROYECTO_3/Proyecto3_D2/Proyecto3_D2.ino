@@ -30,6 +30,7 @@
 #include "bitmaps.h"
 #include "font.h"
 #include "lcd_registers.h"
+#include "pitches.h"
 
 #define LCD_RST PD_0
 #define LCD_CS PD_1
@@ -47,8 +48,7 @@ volatile byte flag_boton_jugar = LOW;
 volatile byte ganar_N1 = LOW;
 int nivel = 0;
 const byte interruptPin1 = PUSH1; 
-int Valor_record = 1;
-String Str_valor_record;
+
 
 
 //***************************************************************************************************************************************
@@ -81,6 +81,8 @@ extern uint8_t fondo[];
 extern uint8_t fondo2[];
 extern uint8_t Muneco_50[];
 extern uint8_t Koala_50[];
+extern uint8_t Calavera_50[];
+extern uint8_t Mono_50[];
 extern uint8_t dec_nivel_32[];
 
 //***************************************************************************************************************************************
@@ -137,13 +139,13 @@ if (flag_boton_jugar == HIGH){
       Nivel_pantalla(1);
       delay(500);
       
-//      while (ganar_N1 != HIGH){
-//        FillRect(0, 0, 319, 239, 0x0000);
-//        Linea_divisora(1); //linea divisiora de jugadores
-//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-//        Mapa_nivel(1);
-//        
-//        } 
+      while (ganar_N1 != HIGH){
+        FillRect(0, 0, 319, 239, 0x0000);
+        Linea_divisora(1); //linea divisiora de jugadores
+        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+        Mapa_nivel(1);
+        
+        } 
     }    
 }
 
@@ -174,17 +176,10 @@ void Static_Pantalla_Inicio(void){
     FillRect(0, 0, 319, 239, 0x0000);
     
     String text_boton_jugar = "JUGAR";
-    String text_record = "RECORD: ";
-    Str_valor_record = String(Valor_record); //convertir valor INT de cantidad estrellas a STRING
-    String text_valor_vidas = "2";
-    
+
     // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
     LCD_Print(text_boton_jugar, 111, 163, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
-    LCD_Print(text_record, 0, 0, 2, 0xFF40,0x000); //palabras RECORD
-    LCD_Print(Str_valor_record, 115, 0, 2, 0xFF40,0x000); // CANTIDAD DE ESTRELLAS (VALOR)
-    LCD_Print(text_valor_vidas, 300, 0, 2, 0xFF40,0x000); //CANTIDAD DE VIDAS
-    LCD_Bitmap(135, 0, 16, 16, estrella); //ESTRELLA
-    LCD_Bitmap(280, 0, 15, 13, corazon);//corazon de las vidas
+
 }
   
 void Mov_Pantalla_inicio(void){
