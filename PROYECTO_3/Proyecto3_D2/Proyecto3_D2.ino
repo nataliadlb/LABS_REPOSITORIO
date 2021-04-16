@@ -2,7 +2,8 @@
  * Proyecto # 3
  * Natalia de León 18193
  * Katharine Senn 18012
- * 
+ * Sección 20
+ * Abril 2021
  */
 
 //***************************************************************************************************************************************
@@ -39,14 +40,14 @@
 #define LCD_RD PE_1
 
 #define PUSH_LEFT_J1 PA_7
-#define PUSH_RIGHT_J1  PE_3
+#define PUSH_RIGTH_J1 PE_3
 #define PUSH_UP_J1 PA_6
-#define PUSH_DOWN_J1 PF_1
+#define PUSH_DOWN_J1 PE_2
 
-#define PUSH_LEFT_J2 PF_4
-#define PUSH_RIGHT_J2  PD6
-#define PUSH_UP_J2  PD_7
-#define PUSH_DOWN_J2 PC_7
+#define PUSH_LEFT_J2 PD_7
+#define PUSH_RIGTH_J2  PC_7
+#define PUSH_UP_J2  PD_6
+#define PUSH_DOWN_J2 PC_6
  
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7}; 
 
@@ -63,6 +64,8 @@ int cont_PUSH1 = 0;
 int nivel = 0;
 const byte interruptPin1 = PUSH1; 
 const byte interruptPin2 = PUSH2;
+
+const byte led_VERDE = GREEN_LED; 
  
 
 
@@ -107,6 +110,16 @@ extern uint8_t dec_nivel_32[];
 void setup() {
   pinMode(interruptPin1, INPUT_PULLUP);
   pinMode(interruptPin2, INPUT_PULLUP);
+  pinMode(PUSH_LEFT_J1, INPUT_PULLUP);
+  pinMode(PUSH_LEFT_J2, INPUT_PULLUP);
+  pinMode(PUSH_RIGTH_J1, INPUT_PULLUP);
+  pinMode(PUSH_RIGTH_J2, INPUT_PULLUP);
+  pinMode(PUSH_UP_J1, INPUT_PULLUP);
+  pinMode(PUSH_UP_J2, INPUT_PULLUP);
+  pinMode(PUSH_DOWN_J1, INPUT_PULLUP);
+  pinMode(PUSH_DOWN_J2, INPUT_PULLUP);
+  pinMode(led_VERDE, OUTPUT); 
+  
   
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
   Serial.begin(9600);
@@ -114,6 +127,15 @@ void setup() {
   Serial.println("Inicio");
   attachInterrupt(digitalPinToInterrupt(interruptPin1), IRS_PUSH1, FALLING);
   attachInterrupt(digitalPinToInterrupt(interruptPin2), IRS_PUSH2, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J1), LEFT_J1, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J2), LEFT_J2, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_RIGTH_J1), RIGTH_J1, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_RIGTH_J2), RIGTH_J2, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J1), UP_J1, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J2), UP_J2, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J1), DOWN_J1, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J2), DOWN_J2, FALLING);
+  
   LCD_Init();
   LCD_Clear(0x0000);
 
@@ -191,6 +213,37 @@ void IRS_PUSH2() { //INTERRUPCION PUSH2
    Listo_per_J2 = HIGH;
 }
 
+void LEFT_J1() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void LEFT_J2() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void RIGTH_J1() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void RIGTH_J2() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void UP_J1() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void UP_J2() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void DOWN_J1() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
+
+void DOWN_J2() { //INTERRUPCION PUSH2
+  //digitalWrite(led_VERDE, HIGH);
+}
 //-----------------------------------------------              FUNCIONES DEL PROGRAMA              -----------------------------------------------//
 
 
