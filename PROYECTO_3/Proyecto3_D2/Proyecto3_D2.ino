@@ -186,13 +186,20 @@ void Static_Pantalla_Inicio(void){
     //void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
     Rect(63,105,56,56,0xFF40);
     Rect(193,105,56,56,0xFF40);
+    for(int y = 0; y <239; y++){
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
     
 }
   
 void Mov_Pantalla_inicio(void){
     //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
     LCD_Bitmap(66, 108, 50, 50, Muneco_50);
+    LCD_Sprite(29, 121,24,24,next_amarillo_24,1,0,1,0);
     LCD_Bitmap(196, 108, 50, 50, Calavera_50);
+    LCD_Bitmap(259, 121, 24, 24, next_amarillo_24);
 }
 
 //***************************************************************************************************************************************
