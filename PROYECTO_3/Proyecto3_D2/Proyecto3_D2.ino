@@ -174,41 +174,25 @@ void Static_Pantalla_Inicio(void){
   
     //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
     FillRect(0, 0, 319, 239, 0x0000);
-    
+    String text_escoge_J = "ELIGE PERSONAJE";
     String text_boton_jugar = "JUGAR";
-
+    String text_J1 = "J1";
+    String text_J2 = "J2";
     // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-    LCD_Print(text_boton_jugar, 111, 163, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
-
+    LCD_Print(text_escoge_J, 45, 30, 2,0x0000, 0xFF40);
+    LCD_Print(text_J1, 75, 70, 2, 0xFF40, 0x0000);
+    LCD_Print(text_J2, 205, 70, 2, 0xFF40, 0x0000);
+    LCD_Print(text_boton_jugar, 111, 190, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
+    //void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
+    Rect(63,105,56,56,0xFF40);
+    Rect(193,105,56,56,0xFF40);
+    
 }
   
 void Mov_Pantalla_inicio(void){
     //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-    for(int x = 70; x <90; x++){
-      LCD_Sprite(x,80,50,50,Muneco_50,1,0,0,0);
-      V_line( x -1, 80, 50, 0x0000);
-      LCD_Sprite(x+100,80,50,50,Koala_50,1,0,0,0);
-      V_line( x + 99, 80, 50, 0x0000);
-      
-      if(flag_jugar == HIGH){
-        LCD_Sprite(x,80,50,50,Muneco_50,1,0,0,0);
-        LCD_Sprite(x+100,80,50,50,Koala_50,1,0,0,0);
-        break;
-        }
-    }
-    for(int x = 90; x >70; x--){
-      //void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
-      LCD_Sprite(x,80,50,50,Muneco_50,1,0,1,0);
-      V_line( x + 50, 80, 50, 0x0000);
-      LCD_Sprite(x+100,80,50,50,Koala_50,1,0,1,0);
-      V_line( x + 150, 80, 50, 0x0000);
-      
-      if(flag_jugar == HIGH){
-        LCD_Sprite(x,80,50,50,Muneco_50,1,0,1,0);
-        LCD_Sprite(x+100,80,50,50,Koala_50,1,0,1,0);
-        break;
-        }
-     }
+    LCD_Bitmap(66, 108, 50, 50, Muneco_50);
+    LCD_Bitmap(196, 108, 50, 50, Calavera_50);
 }
 
 //***************************************************************************************************************************************
@@ -217,8 +201,8 @@ void Mov_Pantalla_inicio(void){
 void Nivel_pantalla(int Num_Nivel){\
     FillRect(0, 0, 319, 239, 0x0000);
     String Str_nivel = String(Num_Nivel); //convertir valor INT de cantidad estrellas a STRING
-    String text2 = "NIVEL " + Str_nivel;
-    LCD_Print(text2, 100, 110, 2, 0x07FF, 0x0000);
+    String text_nivel = "NIVEL " + Str_nivel;
+    LCD_Print(text_nivel, 100, 110, 2, 0x07FF, 0x0000);
     switch (Num_Nivel){
       case 1: 
          LCD_Bitmap(138, 160, 32, 32, dec_nivel_32);
