@@ -17,6 +17,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <TM4C123GH6PM.h>
+#include <avr/pgmspace.h>
+#include <SPI.h>
+#include <SD.h>
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
@@ -27,6 +30,7 @@
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
+
 
 #include "bitmaps.h"
 #include "font.h"
@@ -51,6 +55,8 @@
  
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7}; 
 
+File myFile;
+
 //***************************************************************************************************************************************
 // Variables
 //***************************************************************************************************************************************
@@ -68,7 +74,10 @@ int cont_personajes_J2 = 0;
 
 //--- VARIABLES DE INFO ---//
 int nivel = 0;
-int num_personaje = 0;
+int num_personaje_J1 = 0;
+int num_personaje_J2 = 0;
+unsigned char bitmap_usar_J1[1152] = {};
+unsigned char bitmap_usar_J2[1152] = {};
 
 //--- PUSH TIVA ---//
 const byte interruptPin1 = PUSH1; 
@@ -101,6 +110,7 @@ void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Mapa_nivel(int nivel_mapa);
 void Listo_personajes(void);
+void Personaje_usar(int num_per);
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
@@ -128,9 +138,25 @@ void setup() {
   pinMode(led_VERDE, OUTPUT); 
   
   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
-  Serial.begin(9600);
+  Serial.begin(115200);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  }
+  SPI.setModule(0);
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
   Serial.println("Inicio");
+
+  //--- INICIALIZACION SD ---//
+  pinMode(PA_3, OUTPUT);
+
+  if (!SD.begin(PA_3)) {
+    Serial.println("initialization failed!");
+    return;
+  }
+  Serial.println("initialization done.");
+  myFile = SD.open("/"); //abrir archivos
+  printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
+  Serial.println("done!");
   
   //--- INTERRUPCIONES ---//
   attachInterrupt(digitalPinToInterrupt(interruptPin1), IRS_PUSH1, FALLING);
@@ -171,6 +197,7 @@ if (flag_boton_jugar == HIGH){
   delay(500);
   }
 
+  //Personaje_usar(num_personaje);
   switch (nivel){
     case 1: //NIVEL 1
       Nivel_pantalla(1);
@@ -281,8 +308,7 @@ void Static_Pantalla_Inicio(void){
           LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
           LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
           y += 7;
-          }
-    
+          }   
 }
   
 void Mov_Pantalla_inicio(void){
@@ -293,22 +319,22 @@ void Mov_Pantalla_inicio(void){
       case 0:
         LCD_Bitmap(66, 98, 50, 50, Muneco_50);
         Rect(28,110,25,25,0x0000);
-        num_personaje = 0;
+        num_personaje_J1 = 0;
         break;
       case 1:
         LCD_Bitmap(66, 98, 50, 50, Calavera_50);
         Rect(28,110,25,25,0x0000);
-        num_personaje = 1;
+        num_personaje_J1 = 1;
         break;
       case 2:
         LCD_Bitmap(66, 98, 50, 50, Koala_50);
         Rect(28,110,25,25,0x0000);
-        num_personaje = 2;
+        num_personaje_J1 = 2;
         break;
       case 3:
         LCD_Bitmap(66, 98, 50, 50, Mono_50);
         Rect(28,110,25,25,0x0000);
-        num_personaje = 3;
+        num_personaje_J1 = 3;
         break;
       }
 
@@ -317,22 +343,22 @@ void Mov_Pantalla_inicio(void){
       case 0:
         LCD_Bitmap(196, 98, 50, 50, Muneco_50);
         Rect(258,110,25,25,0x0000);
-        num_personaje = 0;
+        num_personaje_J2 = 0;
         break;
       case 1:
         LCD_Bitmap(196, 98, 50, 50, Calavera_50);
         Rect(258,110,25,25,0x0000);
-        num_personaje = 1;
+        num_personaje_J2 = 1;
         break;
       case 2:
         LCD_Bitmap(196, 98, 50, 50, Koala_50);
         Rect(258,110,25,25,0x0000);
-        num_personaje = 2;
+        num_personaje_J2 = 2;
         break;
       case 3:
         LCD_Bitmap(196, 98, 50, 50, Mono_50);
         Rect(258,110,25,25,0x0000);
-        num_personaje = 3;
+        num_personaje_J2 = 3;
         break;
       }
 }
@@ -351,6 +377,7 @@ void Listo_personajes(void){
     LCD_Print(text_listo_J2, 202, 160, 1, 0x000, 0x07FF);
     }
   }
+  
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
@@ -379,6 +406,29 @@ void Nivel_pantalla(int Num_Nivel){\
     delay(300);   
 }
 
+//***************************************************************************************************************************************
+// Función para seleccionar el bitmap del personaje a usar
+//***************************************************************************************************************************************
+void Personaje_usar(int num_per){
+    switch (num_per){
+      case 0:
+        bitmap_usar_J1 = Muneco_24;
+        break;
+        
+      case 1:
+        bitmap_usar_J1 = Calavera_24;
+        break;
+        
+      case 2:
+        bitmap_usar_J1 = Koala_24;
+        break;
+
+     case 3:
+        bitmap_usar_J1 = Mono_24;
+        break;
+      }
+   //return bitmap_usar
+  }
 //***************************************************************************************************************************************
 // Función hacer linea divisora en cada mapa
 //***************************************************************************************************************************************
