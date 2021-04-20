@@ -75,13 +75,16 @@ int cont_personajes_J2 = 0;
 int nivel = 0;
 int num_personaje_J1 = 0;
 int num_personaje_J2 = 0;
-//unsigned char bitmap_usar_J1[];
-//unsigned char bitmap_usar_J2[] = {};
 
 //--- PUSH TIVA ---//
 const byte interruptPin1 = PUSH1; 
 const byte interruptPin2 = PUSH2;
 const byte led_VERDE = GREEN_LED; 
+
+//--- ARREGLOS EN SD ---//
+unsigned char personajes_inicio_50[10000]={0};
+unsigned char personaje_J1_24[2304]={0};
+unsigned char personaje_J2_24[2304]={0};
  
 //***************************************************************************************************************************************
 // Functions Prototypes
@@ -109,7 +112,7 @@ void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Mapa_nivel(int nivel_mapa);
 void Listo_personajes(void);
-void Personaje_usar(int num_per);
+void Personajes_usar(int num_per_J1, int num_per_J2);
 
 //--- FUNCIONES PARA SD ---//
 void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
@@ -182,14 +185,13 @@ void setup() {
   //delay(500);
 
   //--- Pantalla de inicio ---//
-  //Static_Pantalla_Inicio();
+  Static_Pantalla_Inicio();
 
-        unsigned char personajes_inicio[10000]={0};
-        unsigned char personajes_mapa[2304]={0};
-//        //void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
-        open_SD_bitmap(personajes_mapa, 2305, "Mono_24.txt");
-        LCD_Bitmap(66, 98, 24, 24, personajes_mapa);
-  
+//        unsigned char personajes_inicio_50[10000]={0};
+//        unsigned char personajes_mapa[2304]={0};
+//        open_SD_bitmap(personajes_mapa, 2305, "Mono_24.txt");
+//        LCD_Bitmap(66, 98, 24, 24, personajes_mapa);
+
 //        open_SD_bitmap(personajes_inicio, 10001, "Cal_50.txt");
 //        LCD_Bitmap(66, 98, 50, 50, personajes_inicio;
 //  
@@ -199,32 +201,32 @@ void setup() {
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-//while(flag_boton_jugar != HIGH){
-//  Mov_Pantalla_inicio();
-//  Listo_personajes();
-//  }  
-//  
-//if (flag_boton_jugar == HIGH){
-//  String text1 = "JUGAR";
-//  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-//  flag_boton_jugar = LOW;
-//  delay(500);
-//  }
-//
-//  //Personaje_usar(num_personaje);
-//  switch (nivel){
-//    case 1: //NIVEL 1
-//      Nivel_pantalla(1);
-//      delay(500);
-//      
-//      while (ganar_N1 != HIGH){
-//        FillRect(0, 0, 319, 239, 0x0000);
-//        Linea_divisora(1); //linea divisiora de jugadores
-//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-//        Mapa_nivel(1);
-//        
-//        } 
-//    }    
+while(flag_boton_jugar != HIGH){
+  Mov_Pantalla_inicio();
+  Listo_personajes();
+  }  
+  
+if (flag_boton_jugar == HIGH){
+  String text1 = "JUGAR";
+  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+  flag_boton_jugar = LOW;
+  delay(500);
+  }
+
+  Personajes_usar(num_personaje_J1, num_personaje_J2);
+  switch (nivel){
+    case 1: //NIVEL 1
+      Nivel_pantalla(1);
+      delay(500);
+      
+      while (ganar_N1 != HIGH){
+        FillRect(0, 0, 319, 239, 0x0000);
+        Linea_divisora(1); //linea divisiora de jugadores
+        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+        Mapa_nivel(1);
+        
+        } 
+    }    
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -332,26 +334,26 @@ void Mov_Pantalla_inicio(void){
     switch(cont_personajes_J1){
       //unsigned char personaje_m[10000]={0};
       case 0:
-        
-        //void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
-        //open_SD_bitmap(personaje_m,10001,"Muneco_50.txt");
-        //LCD_Bitmap(66, 98, 50, 50, personaje_m);
-        LCD_Bitmap(66, 98, 50, 50, Muneco_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 0;
         break;
       case 1:
-        LCD_Bitmap(66, 98, 50, 50, Calavera_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 1;
         break;
       case 2:
-        LCD_Bitmap(66, 98, 50, 50, Koala_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 2;
         break;
       case 3:
-        LCD_Bitmap(66, 98, 50, 50, Mono_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 3;
         break;
@@ -360,22 +362,26 @@ void Mov_Pantalla_inicio(void){
       
     switch(cont_personajes_J2){
       case 0:
-        LCD_Bitmap(196, 98, 50, 50, Muneco_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 0;
         break;
       case 1:
-        LCD_Bitmap(196, 98, 50, 50, Calavera_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 1;
         break;
       case 2:
-        LCD_Bitmap(196, 98, 50, 50, Koala_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 2;
         break;
       case 3:
-        LCD_Bitmap(196, 98, 50, 50, Mono_50);
+        open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 3;
         break;
@@ -400,7 +406,7 @@ void Listo_personajes(void){
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
-void Nivel_pantalla(int Num_Nivel){\
+void Nivel_pantalla(int Num_Nivel){
     FillRect(0, 0, 319, 239, 0x0000);
     String Str_nivel = String(Num_Nivel); //convertir valor INT de cantidad estrellas a STRING
     String text_nivel = "NIVEL " + Str_nivel;
@@ -426,28 +432,45 @@ void Nivel_pantalla(int Num_Nivel){\
 }
 
 //***************************************************************************************************************************************
-// Función para seleccionar el bitmap del personaje a usar
+// Función para seleccionar el bitmap del personaje a usar 
 //***************************************************************************************************************************************
-//void Personaje_usar(int num_per){
-//    switch (num_per){
-//      case 0:
-//        bitmap_usar_J1 = Muneco_24;
-//        break;
-//        
-//      case 1:
-//        bitmap_usar_J1 = Calavera_24;
-//        break;
-//        
-//      case 2:
-//        bitmap_usar_J1 = Koala_24;
-//        break;
-//
-//     case 3:
-//        bitmap_usar_J1 = Mono_24;
-//        break;
-//      }
-//   //return bitmap_usar
-//  }
+void Personajes_usar(int num_per_J1, int num_per_J2){
+  
+    switch (num_per_J1){
+      case 0:
+        open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
+        break;
+      case 1:
+        open_SD_bitmap(personaje_J1_24, 2305, "Cal_24.txt");
+        break;
+        
+      case 2:
+        open_SD_bitmap(personaje_J1_24, 2305, "Koala_24.txt");
+        break;
+
+     case 3:
+        open_SD_bitmap(personaje_J1_24, 2305, "Mono_24.txt");
+        break;
+      }
+
+   switch (num_per_J2){
+      case 0:
+        open_SD_bitmap(personaje_J2_24, 2305, "Mun_24.txt");
+        break;
+      case 1:
+        open_SD_bitmap(personaje_J2_24, 2305, "Cal_24.txt");
+        break;
+        
+      case 2:
+        open_SD_bitmap(personaje_J2_24, 2305, "Koala_24.txt");
+        break;
+
+     case 3:
+        open_SD_bitmap(personaje_J2_24, 2305, "Mono_24.txt");
+        break;
+      }
+
+  }
 //***************************************************************************************************************************************
 // Función hacer linea divisora en cada mapa
 //***************************************************************************************************************************************
@@ -481,16 +504,16 @@ void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COL
   
   switch (nivel_pos_i){
     case 1:
-      LCD_Bitmap(288, 216, 24, 24, Muneco_24); 
-      LCD_Bitmap(120, 216, 24, 24, Koala_24); 
+      LCD_Bitmap(120, 216, 24, 24, personaje_J1_24); 
+      LCD_Bitmap(288, 216, 24, 24, personaje_J2_24); 
       break;
     case 2:
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
-      LCD_Bitmap(296, 224, 24, 24, Koala_24); 
+      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24); 
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
       break; 
     case 3:
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24);
-      LCD_Bitmap(296, 224, 24, 24, Koala_24);  
+      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
       break;
   }
 }
@@ -521,12 +544,12 @@ void Mapa_nivel(int nivel_mapa){
         delay(1000);
       break;
     case 2:
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24); 
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
       break; 
     case 3:
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24);
-      LCD_Bitmap(296, 224, 24, 24, Muneco_24);  
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
       break;
   }
   }
