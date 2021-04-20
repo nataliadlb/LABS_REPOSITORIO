@@ -17,7 +17,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <TM4C123GH6PM.h>
-#include <avr/pgmspace.h>
 #include <SPI.h>
 #include <SD.h>
 #include "inc/hw_ints.h"
@@ -76,8 +75,8 @@ int cont_personajes_J2 = 0;
 int nivel = 0;
 int num_personaje_J1 = 0;
 int num_personaje_J2 = 0;
-unsigned char bitmap_usar_J1[1152] = {};
-unsigned char bitmap_usar_J2[1152] = {};
+//unsigned char bitmap_usar_J1[];
+//unsigned char bitmap_usar_J2[] = {};
 
 //--- PUSH TIVA ---//
 const byte interruptPin1 = PUSH1; 
@@ -111,6 +110,10 @@ void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos
 void Mapa_nivel(int nivel_mapa);
 void Listo_personajes(void);
 void Personaje_usar(int num_per);
+
+//--- FUNCIONES PARA SD ---//
+void openSDformat(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
+int ACII_to_HEX(char *puntero);
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
@@ -155,7 +158,7 @@ void setup() {
   }
   Serial.println("initialization done.");
   myFile = SD.open("/"); //abrir archivos
-  printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
+  //printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
   Serial.println("done!");
   
   //--- INTERRUPCIONES ---//
@@ -409,26 +412,26 @@ void Nivel_pantalla(int Num_Nivel){\
 //***************************************************************************************************************************************
 // Función para seleccionar el bitmap del personaje a usar
 //***************************************************************************************************************************************
-void Personaje_usar(int num_per){
-    switch (num_per){
-      case 0:
-        bitmap_usar_J1 = Muneco_24;
-        break;
-        
-      case 1:
-        bitmap_usar_J1 = Calavera_24;
-        break;
-        
-      case 2:
-        bitmap_usar_J1 = Koala_24;
-        break;
-
-     case 3:
-        bitmap_usar_J1 = Mono_24;
-        break;
-      }
-   //return bitmap_usar
-  }
+//void Personaje_usar(int num_per){
+//    switch (num_per){
+//      case 0:
+//        bitmap_usar_J1 = Muneco_24;
+//        break;
+//        
+//      case 1:
+//        bitmap_usar_J1 = Calavera_24;
+//        break;
+//        
+//      case 2:
+//        bitmap_usar_J1 = Koala_24;
+//        break;
+//
+//     case 3:
+//        bitmap_usar_J1 = Mono_24;
+//        break;
+//      }
+//   //return bitmap_usar
+//  }
 //***************************************************************************************************************************************
 // Función hacer linea divisora en cada mapa
 //***************************************************************************************************************************************
@@ -723,17 +726,7 @@ void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsign
   V_line(x  , y  , h, c);
   V_line(x+w, y  , h, c);
 }
-//***************************************************************************************************************************************
-// Función para dibujar un rectángulo relleno - parámetros ( coordenada x, cordenada y, ancho, alto, color)
-//***************************************************************************************************************************************
-/*void FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c) {
-  unsigned int i;
-  for (i = 0; i < h; i++) {
-    H_line(x  , y  , w, c);
-    H_line(x  , y+i, w, c);
-  }
-}
-*/
+
 
 void FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c) {
   LCD_CMD(0x02c); // write_memory_start
@@ -860,7 +853,8 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
       k = k - 2;
      } 
   }
-  }else{
+  }
+  else{
      for (int j = 0; j < height; j++){
       k = (j*(ancho) + index*width + 1 + offset)*2;
      for (int i = 0; i < width; i++){
@@ -873,4 +867,46 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
     
     }
   digitalWrite(LCD_CS, HIGH);
+}
+
+//***************************************************************************************************************************************
+// Función para leer de la SD y colocarlo dentro de una variable unsigned char
+// FUNCION BRINDADA POR LOS ELECTRÓNICOS
+//***************************************************************************************************************************************
+void openSDformat(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename) {
+  File myFile = SD.open(filename);     // ABRIR EL ARCHIVO 
+  unsigned long i = 0;            
+  char Bitmap_SD_HEX[] = {0, 0};          //SE HACE ARREGLO DE DOS NUM, PARA CADA UNA DE LAS POSICIONES
+  int Pos_1, Pos_2;                     //VARIABLES DE LAS POSICIONES
+  if (myFile) {                 
+    do {
+      Bitmap_SD_HEX[0] = myFile.read(); //LEE
+      Pos_1 = ACII_to_HEX(Bitmap_SD_HEX);       //TRANSOFRMA
+      Bitmap_SD_HEX[0] = myFile.read(); //LEE
+      Pos_2 = ACII_to_HEX(Bitmap_SD_HEX);       //TRANSFORMA
+      Bitmap_SD[i] = (Pos_1 << 4) | (Pos_2 & 0xF);  //SE CONCATENA CONCATENA
+      i++;                        
+    } while (i < (Size_bitmap + 1));
+  }
+  myFile.close();                       
+}
+//***************************************************************************************************************************************
+// TRANSFORMAR
+//***************************************************************************************************************************************
+int ACII_to_HEX(char *puntero) {
+  int i = 0;
+  for (;;) {
+    char num = *puntero;
+    if (num >= '0' && num <= '9') {
+      i *= 16;
+      i += num - '0';
+    }
+    else if (num >= 'a' && num <= 'f') {
+      i *= 16;
+      i += (num - 'a') + 10;
+    }
+    else break;
+    puntero++;
+  }
+  return i;
 }
