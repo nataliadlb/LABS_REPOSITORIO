@@ -112,7 +112,7 @@ void Listo_personajes(void);
 void Personaje_usar(int num_per);
 
 //--- FUNCIONES PARA SD ---//
-void openSDformat(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
+void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
 int ACII_to_HEX(char *puntero);
 
 //--- GRAFICOS ---//
@@ -158,6 +158,7 @@ void setup() {
   }
   Serial.println("initialization done.");
   myFile = SD.open("/"); //abrir archivos
+  printDirectory(myFile, 0); 
   //printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
   Serial.println("done!");
   
@@ -181,39 +182,49 @@ void setup() {
   //delay(500);
 
   //--- Pantalla de inicio ---//
-  Static_Pantalla_Inicio();
+  //Static_Pantalla_Inicio();
+
+        unsigned char personajes_inicio[10000]={0};
+        unsigned char personajes_mapa[2304]={0};
+//        //void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
+        open_SD_bitmap(personajes_mapa, 2305, "Mono_24.txt");
+        LCD_Bitmap(66, 98, 24, 24, personajes_mapa);
+  
+//        open_SD_bitmap(personajes_inicio, 10001, "Cal_50.txt");
+//        LCD_Bitmap(66, 98, 50, 50, personajes_inicio;
+//  
 }
 
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_boton_jugar != HIGH){
-  Mov_Pantalla_inicio();
-  Listo_personajes();
-  }  
-  
-if (flag_boton_jugar == HIGH){
-  String text1 = "JUGAR";
-  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-  flag_boton_jugar = LOW;
-  delay(500);
-  }
-
-  //Personaje_usar(num_personaje);
-  switch (nivel){
-    case 1: //NIVEL 1
-      Nivel_pantalla(1);
-      delay(500);
-      
-      while (ganar_N1 != HIGH){
-        FillRect(0, 0, 319, 239, 0x0000);
-        Linea_divisora(1); //linea divisiora de jugadores
-        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-        Mapa_nivel(1);
-        
-        } 
-    }    
+//while(flag_boton_jugar != HIGH){
+//  Mov_Pantalla_inicio();
+//  Listo_personajes();
+//  }  
+//  
+//if (flag_boton_jugar == HIGH){
+//  String text1 = "JUGAR";
+//  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+//  flag_boton_jugar = LOW;
+//  delay(500);
+//  }
+//
+//  //Personaje_usar(num_personaje);
+//  switch (nivel){
+//    case 1: //NIVEL 1
+//      Nivel_pantalla(1);
+//      delay(500);
+//      
+//      while (ganar_N1 != HIGH){
+//        FillRect(0, 0, 319, 239, 0x0000);
+//        Linea_divisora(1); //linea divisiora de jugadores
+//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+//        Mapa_nivel(1);
+//        
+//        } 
+//    }    
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -319,7 +330,12 @@ void Mov_Pantalla_inicio(void){
     LCD_Sprite(29, 111,24,24,next_amarillo_24,1,0,1,0);
     LCD_Bitmap(259, 111, 24, 24, next_amarillo_24);
     switch(cont_personajes_J1){
+      //unsigned char personaje_m[10000]={0};
       case 0:
+        
+        //void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
+        //open_SD_bitmap(personaje_m,10001,"Muneco_50.txt");
+        //LCD_Bitmap(66, 98, 50, 50, personaje_m);
         LCD_Bitmap(66, 98, 50, 50, Muneco_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 0;
@@ -862,18 +878,15 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
       LCD_DATA(bitmap[k+1]);
       k = k + 2;
      } 
-  }
-    
-    
-    }
+    }   
+   }
   digitalWrite(LCD_CS, HIGH);
 }
 
 //***************************************************************************************************************************************
-// Función para leer de la SD y colocarlo dentro de una variable unsigned char
-// FUNCION BRINDADA POR LOS ELECTRÓNICOS
+// FUNCION PARA LEER VALORES ASCII DE LA SD
 //***************************************************************************************************************************************
-void openSDformat(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename) {
+void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename) {
   File myFile = SD.open(filename);     // ABRIR EL ARCHIVO 
   unsigned long i = 0;            
   char Bitmap_SD_HEX[] = {0, 0};          //SE HACE ARREGLO DE DOS NUM, PARA CADA UNA DE LAS POSICIONES
@@ -890,8 +903,9 @@ void openSDformat(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* fi
   }
   myFile.close();                       
 }
+
 //***************************************************************************************************************************************
-// TRANSFORMAR
+// FUNCION PARA PASAR INFO DE SD A VALORES HEXADECIMALES
 //***************************************************************************************************************************************
 int ACII_to_HEX(char *puntero) {
   int i = 0;
@@ -909,4 +923,31 @@ int ACII_to_HEX(char *puntero) {
     puntero++;
   }
   return i;
+}
+
+//***************************************************************************************************************************************
+// IMPRIMIR CONTENIDO DE SD
+//***************************************************************************************************************************************
+void printDirectory(File dir, int numTabs) {//funcion que muestra los archivos de la SD 
+   while(true) {
+     File entry =  dir.openNextFile();
+     if (! entry) {
+       // no more files
+       break;
+     }
+     for (uint8_t i=0; i<numTabs; i++) {
+       Serial.print('\t');
+     }
+     Serial.print(entry.name());
+     if (entry.isDirectory()) {
+       Serial.println("/");
+       printDirectory(entry, numTabs+1);
+     } else {
+       // files have sizes, directories do not
+       Serial.print("\t\t");
+       Serial.println(entry.size(), DEC);
+     }
+     entry.close();
+   }
+  Serial.println("");
 }
