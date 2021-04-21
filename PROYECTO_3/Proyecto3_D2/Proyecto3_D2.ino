@@ -108,8 +108,8 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
 void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
 void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
 void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toca
-void Linea_divisora(int nivel_line); //hacer la linea que divide los jugadores
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
+void Posicion_meta(int nivel_pos_i); //funcion para poner la meta en cada mapa
 void Mapa_nivel(int nivel_mapa);
 void Listo_personajes(void);
 void Personajes_usar(int num_per_J1, int num_per_J2);
@@ -120,12 +120,8 @@ int ACII_to_HEX(char *puntero);
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
-extern uint8_t fondo2[];
-extern uint8_t Muneco_50[];
-extern uint8_t Koala_50[];
-extern uint8_t Calavera_50[];
-extern uint8_t Mono_50[];
 extern uint8_t dec_nivel_32[];
+extern uint8_t circulo_mov[];
 
 //***************************************************************************************************************************************
 // Inicialización
@@ -185,48 +181,43 @@ void setup() {
   //delay(500);
 
   //--- Pantalla de inicio ---//
-  Static_Pantalla_Inicio();
-
-//        unsigned char personajes_inicio_50[10000]={0};
-//        unsigned char personajes_mapa[2304]={0};
-//        open_SD_bitmap(personajes_mapa, 2305, "Mono_24.txt");
-//        LCD_Bitmap(66, 98, 24, 24, personajes_mapa);
-
-//        open_SD_bitmap(personajes_inicio, 10001, "Cal_50.txt");
-//        LCD_Bitmap(66, 98, 50, 50, personajes_inicio;
-//  
+  //Static_Pantalla_Inicio();
+  open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
+  LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
+  LCD_Bitmap(288, 216, 24, 24, personaje_J1_24);
+  Mapa_nivel(1);
+ 
 }
 
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_boton_jugar != HIGH){
-  Mov_Pantalla_inicio();
-  Listo_personajes();
-  }  
-  
-if (flag_boton_jugar == HIGH){
-  String text1 = "JUGAR";
-  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-  flag_boton_jugar = LOW;
-  delay(500);
-  }
-
-  Personajes_usar(num_personaje_J1, num_personaje_J2);
-  switch (nivel){
-    case 1: //NIVEL 1
-      Nivel_pantalla(1);
-      delay(500);
-      
-      while (ganar_N1 != HIGH){
-        FillRect(0, 0, 319, 239, 0x0000);
-        Linea_divisora(1); //linea divisiora de jugadores
-        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-        Mapa_nivel(1);
-        
-        } 
-    }    
+//while(flag_boton_jugar != HIGH){
+//  Mov_Pantalla_inicio();
+//  Listo_personajes();
+//  }  
+//  
+//if (flag_boton_jugar == HIGH){
+//  String text1 = "JUGAR";
+//  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+//  flag_boton_jugar = LOW;
+//  delay(500);
+//  }
+//
+//  Personajes_usar(num_personaje_J1, num_personaje_J2);
+//  switch (nivel){
+//    case 1: //NIVEL 1
+//      Nivel_pantalla(1);
+//      delay(500);
+//      
+//      while (ganar_N1 != HIGH){
+//        FillRect(0, 0, 319, 239, 0x0000);
+//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+//        Mapa_nivel(1);
+//        
+//        } 
+//    }    
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -307,37 +298,37 @@ void DOWN_J2() {
 void Static_Pantalla_Inicio(void){
   
     //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
-    FillRect(0, 0, 319, 239, 0x0000);
-    String text_escoge_J = "ELIGE PERSONAJE";
+    FillRect(0, 0, 319, 239, 0x0000);         //FONDO
+    String text_escoge_J = "ELIGE PERSONAJE"; //TEXTOS DE LA PANTALLA
     String text_boton_jugar = "JUGAR";
     String text_J1 = "J1";
     String text_J2 = "J2";
     // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
-    LCD_Print(text_escoge_J, 45, 20, 2,0x0000, 0xFF40);
+    LCD_Print(text_escoge_J, 45, 20, 2,0x0000, 0xFF40); //MOSTRAR LOS TEXTOS
     LCD_Print(text_J1, 75, 60, 2, 0xFF40, 0x0000);
     LCD_Print(text_J2, 205, 60, 2, 0xFF40, 0x0000);
     LCD_Print(text_boton_jugar, 111, 200, 2, 0x000, 0xFF40); //TEXTO DE BOTON JUGAR
     //void Rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
-    Rect(63,95,56,56,0xFF40);
+    Rect(63,95,56,56,0xFF40); // MARCOS DE LOS PERSONAJES
     Rect(193,95,56,56,0xFF40);
-    for(int y = 0; y <239; y++){
+    for(int y = 0; y <239; y++){ //DECORACION DE LOS LADOS
           LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
           LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
           y += 7;
           }   
 }
   
-void Mov_Pantalla_inicio(void){
-    //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
-    LCD_Sprite(29, 111,24,24,next_amarillo_24,1,0,1,0);
+void Mov_Pantalla_inicio(void){ //Todo lo que va cambiando de la pantalla de inicio
+
+    LCD_Sprite(29, 111,24,24,next_amarillo_24,1,0,1,0); //FLECHAS PARA CAMBIAR DE PERSONAJE
     LCD_Bitmap(259, 111, 24, 24, next_amarillo_24);
     switch(cont_personajes_J1){
-      //unsigned char personaje_m[10000]={0};
-      case 0:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
-        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
+
+      case 0:                                                     //EN BASE A LA CANTIDAD DE VECES QUE PRESIONA EL BOTON SE MUESTRA EL PERSONAJE
+        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");//POR DEFAULT PERONAJE QUE SE OBTIENE DE LA SD
+        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);         //SE MUESTRA EL PERSONAJE
         Rect(28,110,25,25,0x0000);
-        num_personaje_J1 = 0;
+        num_personaje_J1 = 0;                                     //VARIABLE QUE INDICA CUAL PERSONAJE SE ESCOGIO
         break;
       case 1:
         open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
@@ -359,7 +350,7 @@ void Mov_Pantalla_inicio(void){
         break;
       }
 
-      
+    // PERSONAJE 2 
     switch(cont_personajes_J2){
       case 0:
         open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
@@ -391,7 +382,7 @@ void Mov_Pantalla_inicio(void){
 //***************************************************************************************************************************************
 // Función escribir que estan listos cuando escogen su personaje
 //***************************************************************************************************************************************
-void Listo_personajes(void){
+void Listo_personajes(void){ //MUESTRAN LA PALABRA LISTO DEBAJO DEL PERSONAJE PARA INDICAR QUE YA PUEDEN JUGAR
   if (Listo_per_J1 ==HIGH){
     String text_listo_J1 = "LISTO";
     LCD_Print(text_listo_J1, 72, 160, 1, 0x000, 0x07FF);
@@ -406,12 +397,13 @@ void Listo_personajes(void){
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
-void Nivel_pantalla(int Num_Nivel){
+void Nivel_pantalla(int Num_Nivel){ //MOSTRAR EL NIVEL
     FillRect(0, 0, 319, 239, 0x0000);
     String Str_nivel = String(Num_Nivel); //convertir valor INT de cantidad estrellas a STRING
     String text_nivel = "NIVEL " + Str_nivel;
     LCD_Print(text_nivel, 100, 110, 2, 0x07FF, 0x0000);
-    switch (Num_Nivel){
+    
+    switch (Num_Nivel){ //DECORACION SEGUN EL NIVEL
       case 1: 
          LCD_Bitmap(138, 160, 32, 32, dec_nivel_32);
          break;
@@ -434,8 +426,8 @@ void Nivel_pantalla(int Num_Nivel){
 //***************************************************************************************************************************************
 // Función para seleccionar el bitmap del personaje a usar 
 //***************************************************************************************************************************************
-void Personajes_usar(int num_per_J1, int num_per_J2){
-  
+void Personajes_usar(int num_per_J1, int num_per_J2){ //EN BASE A LO QUE ESCOGIERON EN EL INICIO SE OBTIENE Y GUARDA DE SD EL PERSONAJE A USAR EN EL MAPA
+    //J1//
     switch (num_per_J1){
       case 0:
         open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
@@ -453,6 +445,7 @@ void Personajes_usar(int num_per_J1, int num_per_J2){
         break;
       }
 
+  //J2//
    switch (num_per_J2){
       case 0:
         open_SD_bitmap(personaje_J2_24, 2305, "Mun_24.txt");
@@ -469,42 +462,17 @@ void Personajes_usar(int num_per_J1, int num_per_J2){
         open_SD_bitmap(personaje_J2_24, 2305, "Mono_24.txt");
         break;
       }
-
   }
-//***************************************************************************************************************************************
-// Función hacer linea divisora en cada mapa
-//***************************************************************************************************************************************
-void Linea_divisora(int nivel_line){      
-  switch (nivel_line){
-    case 1:
-        for(int y = 0; y <239; y++){
-          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste); // en medio +-4 a partir del 156
-          y += 7;
-          }
-         break;
-    case 2:
-        for(int y = 0; y <239; y++){
-          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado); // en medio +-4 a partir del 156
-          y += 7;
-          }
-        break; 
-    case 3:
-        for(int y = 0; y <239; y++){
-          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste); // en medio +-4 a partir del 156
-          y += 7;
-          }
-        break;
-  }
-}
+  
 
 //***************************************************************************************************************************************
 // Función hacer colocar los muñecos en su posicion incial en cada mapa
 //***************************************************************************************************************************************
-void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LOS MUNECOS
+void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LOS MUNECOS AL INICIO
   
   switch (nivel_pos_i){
     case 1:
-      LCD_Bitmap(120, 216, 24, 24, personaje_J1_24); 
+      LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
       LCD_Bitmap(288, 216, 24, 24, personaje_J2_24); 
       break;
     case 2:
@@ -519,28 +487,82 @@ void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COL
 }
 
 //***************************************************************************************************************************************
-// Función para de los mapas de los niveles
+// Función hacer colocar los muñecos en su posicion incial en cada mapa
+//***************************************************************************************************************************************
+void Posicion_meta(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA META
+  
+  switch (nivel_pos_i){
+    case 1:
+      //RECTANGULOS DE LUGAR DE SALIDA
+      Rect(8,0,24,24,0xFF40); //J1
+      Rect(12,4,16,16,0xFF40);
+      Rect(16,8,8,8,0xFF40);
+      Rect(168,0,24,24,0xFF40);//J2
+      Rect(172,4,16,16,0xFF40);
+      Rect(176,8,8,8,0xFF40);
+      break;
+    case 2:
+      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24); 
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
+      break; 
+    case 3:
+      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+      break;
+  }
+}
+
+//***************************************************************************************************************************************
+// Función para los bloques de cada mapa de los niveles
 //***************************************************************************************************************************************
 void Mapa_nivel(int nivel_mapa){
   switch (nivel_mapa){
     case 1:
-      for(int y = 144; y <240; y++){
-          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);//320 - 8
-          LCD_Bitmap(144, y, 8, 8, Bloque_8_morado); //152-8
-          y += 7;
-          }
-
-          for(int y = 208; y <240; y++){
-          LCD_Bitmap(280, y, 8, 8, Bloque_8_morado); //320 - 32
-          LCD_Bitmap(112, y, 8, 8, Bloque_8_morado); //152-32
+      Posicion_meta(1);
+      
+      for(int y = 0; y <240; y++){ //LINEAS DE LAS ORILLAS
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(160, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
           
-        for(int x = 272; x <312; x++){ //312-40
-          LCD_Bitmap(x, 144, 8, 8, Bloque_8_morado);
-          LCD_Bitmap(x-168, 144, 8, 8, Bloque_8_morado);
+      for(int x = 240; x <312; x++){ 
+          LCD_Bitmap(x, 208, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x-160, 208, 8, 8, Bloque_8_morado);
           x += 7;
           }
+          
+     for(int x = 200; x <240; x++){ //312-40
+          LCD_Bitmap(x, 184, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x-160, 184, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+     for(int y = 184; y <208; y++){ //LINEAS DE LAS ORILLAS
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+     LCD_Bitmap(40, 216, 8, 8, Bloque_8_morado); 
+     LCD_Bitmap(200, 216, 8, 8, Bloque_8_morado); 
+
+   for(int y = 216; y <240; y++){ //LINEAS DE LAS ORILLAS
+          LCD_Bitmap(208, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(48, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(32, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+  for(int y = 152; y <192; y++){ //LINEAS DE LAS ORILLAS
+          LCD_Bitmap(32, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+              
         delay(1000);
       break;
     case 2:
