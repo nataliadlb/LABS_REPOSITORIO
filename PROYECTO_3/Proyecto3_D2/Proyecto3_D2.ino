@@ -64,6 +64,7 @@ volatile byte flag_jugar = LOW; //BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGE
 volatile byte flag_boton_jugar = LOW;
 volatile byte ganar_N1 = LOW;
 volatile byte ganar_N2 = LOW;
+volatile byte ganar_N3 = LOW;
 volatile byte Listo_per_J1 = LOW;
 volatile byte Listo_per_J2 = LOW;
 volatile byte JUEGO_EN_PROGRESO = HIGH;
@@ -193,55 +194,65 @@ void setup() {
   //delay(500);
 
   //--- Pantalla de inicio ---//
-  //Static_Pantalla_Inicio();
+  Static_Pantalla_Inicio();
 
 //  
-  open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
-  Mapa_nivel(3);
-  LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
-  LCD_Bitmap(288, 216, 24, 24, personaje_J1_24); 
+  //open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
+//  Mapa_nivel(3);
+//  LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
+//  LCD_Bitmap(288, 216, 24, 24, personaje_J1_24); 
 }
 
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-//while(flag_boton_jugar != HIGH){
-//  Mov_Pantalla_inicio();
-//  Listo_personajes();
-//  }  
-//  
-//if (flag_boton_jugar == HIGH){
-//  String text1 = "JUGAR";
-//  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-//  flag_boton_jugar = LOW;
-//  delay(500);
-//  }
-//
-//  Personajes_usar(num_personaje_J1, num_personaje_J2);
-//while (JUEGO_EN_PROGRESO  != LOW){
-//  switch (nivel){
-//    case 1: //NIVEL 1
-//      Nivel_pantalla(1);
-//      delay(500);
-//      Mapa_nivel(1);
-//      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-//      while (ganar_N1 != HIGH){
-//        }
-//      break;
-//        
-//        //FillRect(0, 0, 319, 239, 0x0000);
-//    case 2:
-//      Nivel_pantalla(2);
-//      delay(500);
-//      Mapa_nivel(2);
-//      
-//      while (ganar_N2 != HIGH){
-//        
-//        }
-//      break;
-//        } 
-//  }
+while(flag_boton_jugar != HIGH){
+  Mov_Pantalla_inicio();
+  Listo_personajes();
+  }  
+  
+if (flag_boton_jugar == HIGH){
+  String text1 = "JUGAR";
+  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+  flag_boton_jugar = LOW;
+  delay(500);
+  }
+
+  Personajes_usar(num_personaje_J1, num_personaje_J2);
+while (JUEGO_EN_PROGRESO  != LOW){
+  switch (nivel){
+    case 1: //NIVEL 1
+      Nivel_pantalla(1);
+      delay(500);
+      Mapa_nivel(1);
+      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+      while (ganar_N1 != HIGH){
+        }
+      break;
+        
+        //FillRect(0, 0, 319, 239, 0x0000);
+    case 2:
+      Nivel_pantalla(2);
+      delay(500);
+      Mapa_nivel(2);
+      
+      while (ganar_N2 != HIGH){
+        
+        }
+      break;
+
+    case 3:
+      Nivel_pantalla(3);
+      delay(500);
+      Mapa_nivel(3);
+      
+      while (ganar_N3 != HIGH){
+        
+        }
+      break;
+        } 
+  }
        
 }
 
@@ -288,7 +299,8 @@ void LEFT_J2() {
 }
 
 void RIGTH_J1() { 
-  //digitalWrite(led_VERDE, HIGH);
+  ganar_N2 = HIGH;
+  nivel = 3;
 }
 
 void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
@@ -735,8 +747,9 @@ void Mapa_nivel(int nivel_mapa){
       LCD_Bitmap(272, 24, 8, 8, Bloque_8_morado);     
         //delay(1000);
       break;
-
-// ----------------------- MAPA 2 -----------------------------/
+// ------------------------------------------------------------//
+// ----------------------- MAPA 2 -----------------------------//
+// -----------------------------------------------------------//
     case 2:
       Posicion_inicial_munecos(2); //poner a los munecos en su posicion inicial
       Posicion_meta(2);
@@ -847,11 +860,14 @@ void Mapa_nivel(int nivel_mapa){
           LCD_Bitmap(120, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(120+160, y, 8, 8, Bloque_8_morado); 
           y += 7;
-          }
-              
+          }       
       break; 
+ // ------------------------------------------------------------//
+// ----------------------- MAPA 3 -----------------------------//
+// -----------------------------------------------------------//     
+
     case 3:
-      //Posicion_inicial_munecos(3); //poner a los munecos en su posicion inicial
+      Posicion_inicial_munecos(3); //poner a los munecos en su posicion inicial
       Posicion_meta(3);
       Posicion_estrellas(3);
       LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);
