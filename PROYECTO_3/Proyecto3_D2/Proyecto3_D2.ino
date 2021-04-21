@@ -193,57 +193,56 @@ void setup() {
   //delay(500);
 
   //--- Pantalla de inicio ---//
-  Static_Pantalla_Inicio();
+  //Static_Pantalla_Inicio();
 
 //  
-//  open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
-//  Mapa_nivel(2);
-//  LCD_Bitmap(8, 216, 24, 24, personaje_J1_24); 
-//  LCD_Bitmap(168, 216, 24, 24, personaje_J1_24);
+  open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
+  Mapa_nivel(3);
+  LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
+  LCD_Bitmap(288, 216, 24, 24, personaje_J1_24); 
 }
 
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
-while(flag_boton_jugar != HIGH){
-  Mov_Pantalla_inicio();
-  Listo_personajes();
-  }  
-  
-if (flag_boton_jugar == HIGH){
-  String text1 = "JUGAR";
-  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-  flag_boton_jugar = LOW;
-  delay(500);
-  }
-
-  Personajes_usar(num_personaje_J1, num_personaje_J2);
-while (JUEGO_EN_PROGRESO  != LOW){
-  switch (nivel){
-    case 1: //NIVEL 1
-      Nivel_pantalla(1);
-      delay(500);
-      Mapa_nivel(1);
-      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-      while (ganar_N1 != HIGH){
-        }
-      break;
-        
-        //FillRect(0, 0, 319, 239, 0x0000);
-    case 2:
-      Nivel_pantalla(2);
-      delay(500);
-      Mapa_nivel(2);
-      
-      while (ganar_N2 != HIGH){
-        
-        }
-      break;
-        } 
-  }
-  
-        
+//while(flag_boton_jugar != HIGH){
+//  Mov_Pantalla_inicio();
+//  Listo_personajes();
+//  }  
+//  
+//if (flag_boton_jugar == HIGH){
+//  String text1 = "JUGAR";
+//  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+//  flag_boton_jugar = LOW;
+//  delay(500);
+//  }
+//
+//  Personajes_usar(num_personaje_J1, num_personaje_J2);
+//while (JUEGO_EN_PROGRESO  != LOW){
+//  switch (nivel){
+//    case 1: //NIVEL 1
+//      Nivel_pantalla(1);
+//      delay(500);
+//      Mapa_nivel(1);
+//      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+//      while (ganar_N1 != HIGH){
+//        }
+//      break;
+//        
+//        //FillRect(0, 0, 319, 239, 0x0000);
+//    case 2:
+//      Nivel_pantalla(2);
+//      delay(500);
+//      Mapa_nivel(2);
+//      
+//      while (ganar_N2 != HIGH){
+//        
+//        }
+//      break;
+//        } 
+//  }
+       
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -508,8 +507,8 @@ void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COL
       LCD_Bitmap(168, 216, 24, 24, personaje_J2_24); 
       break; 
     case 3:
-      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+      LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
+      LCD_Bitmap(288, 216, 24, 24, personaje_J2_24); 
       break;
   }
 }
@@ -531,16 +530,22 @@ void Posicion_meta(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA MET
       break;
     case 2:
       //RECTANGULOS DE LUGAR DE SALIDA
-      Rect(288,0,23,24,0xFF40); //J1
+      Rect(288,0,23,24,0xFF40); //J2
       Rect(292,4,16,16,0xFF40);
       Rect(296,8,8,8,0xFF40);
-      Rect(128,0,23,24,0xFF40);//J2
+      
+      Rect(128,0,23,24,0xFF40);//J1
       Rect(132,4,16,16,0xFF40);
       Rect(136,8,8,8,0xFF40);
       break; 
     case 3:
-      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+      //RECTANGULOS DE LUGAR DE SALIDA
+      Rect(72,0,23,24,0xFF40); //J1
+      Rect(76,4,16,16,0xFF40);
+      Rect(80,8,8,8,0xFF40);
+      Rect(232,0,23,24,0xFF40);//J2
+      Rect(236,4,16,16,0xFF40);
+      Rect(240,8,8,8,0xFF40); 
       break;
   }
 }
@@ -586,8 +591,20 @@ void Posicion_estrellas(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN L
       
       break; 
     case 3:
-      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+      LCD_Bitmap(12, 196, 16, 16, estrella_16);
+      LCD_Bitmap(12+160, 220, 16, 16, estrella_16);
+      
+      LCD_Bitmap(76, 188, 16, 16, estrella_16);
+      LCD_Bitmap(76+160, 188, 16, 16, estrella_16);
+
+      LCD_Bitmap(12, 84, 16, 16, estrella_16);
+      LCD_Bitmap(112+160, 84, 16, 16, estrella_16);
+
+      LCD_Bitmap(44, 4, 16, 16, estrella_16);
+      LCD_Bitmap(44+160, 4, 16, 16, estrella_16);
+
+      LCD_Bitmap(132, 4, 16, 16, estrella_16);
+      LCD_Bitmap(132+160, 4, 16, 16, estrella_16);
       break;
   }
 }
@@ -834,11 +851,123 @@ void Mapa_nivel(int nivel_mapa){
               
       break; 
     case 3:
+      //Posicion_inicial_munecos(3); //poner a los munecos en su posicion inicial
+      Posicion_meta(3);
+      Posicion_estrellas(3);
       LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);
       LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+
+      for(int y = 216; y <240; y++){ // 1
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(160, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(152+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int y = 192; y <216; y++){ // 2
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(160, y, 8, 8, Bloque_8_celeste);
+          y += 7;
+          }
+          
+      for(int y = 176; y <208; y++){ // 3
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(152+160, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(64, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(64+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+
+      for(int y = 0; y <192; y++){ // 4
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int y = 136; y <176; y++){ // 5
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(152+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int y = 88; y <136; y++){ // 6
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(152+160, y, 8, 8, Bloque_8_celeste);
+          y += 7;
+          }
+
+      for(int y = 0; y <88; y++){ // 7
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(152+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int y = 24; y <144; y++){ // 8
+          LCD_Bitmap(32, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(32+160, y, 8, 8, Bloque_8_celeste);
+          y += 7;
+          }   
+          
+      for(int y = 112; y <144; y++){ // 9
+          LCD_Bitmap(96, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(96+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int x = 64; x <160; x++){ //10
+          LCD_Bitmap(x, 208, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 208, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+      for(int x = 104; x <152; x++){ //11
+          LCD_Bitmap(x, 136, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 136, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+      for(int x = 8; x <40; x++){ //12
+          LCD_Bitmap(x, 168, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 168, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x, 184, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 184, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+      LCD_Bitmap(32, 176, 8, 8, Bloque_8_morado); //13   
+      LCD_Bitmap(32+160, 176, 8, 8, Bloque_8_morado); 
+
+      for(int y = 0; y <64; y++){ // 14
+          LCD_Bitmap(64, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(64+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int x = 72; x <96; x++){ //15
+          LCD_Bitmap(x, 56, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 56, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x, 48, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(x+160, 48, 8, 8, Bloque_8_celeste);
+          x += 7;
+          }
+          
+      for(int y = 0; y <24; y++){ // 16
+          LCD_Bitmap(96, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(96+160, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(120, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(120+160, y, 8, 8, Bloque_8_morado);
+          y += 7;
+          }
+          
+      for(int x = 104; x <120; x++){ //17
+          LCD_Bitmap(x, 16, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 16, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
       break;
   }
-  }
+}
 
   
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
