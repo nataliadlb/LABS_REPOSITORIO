@@ -104,19 +104,29 @@ void LCD_Print(String text, int x, int y, int fontSize, int color, int backgroun
 void LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
 void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int columns, int index, char flip, char offset);
 
-//---- FUNCIONES PROPIAS ----//
+//---- FUNCIONES PANTALLA INICIO ----//
 void Static_Pantalla_Inicio(void); //lo que aparece en el menu y es fijo
 void Mov_Pantalla_inicio(void); // lo que se mueve en la pagina de inicio
+void Listo_personajes(void); //Mostrar texto de listo cuando se elige personaje
+
+//---- FUNCIONES PANTALLA DE NIVEL ----//
 void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toca
+
+//---- FUNCIONES POSICIONES INICIALES DE OBJETOS EN MAPAS ----//
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Posicion_meta(int nivel_pos_i); //funcion para poner la meta en cada mapa
+void Posicion_estrellas(int nivel_pos_i); //funcion par aponer las estrellas en cada nivel
+
+//---- FUNCION DE CADA MAPA (BLOQUES, ESTRELLAS, ENEMIGOS) ----//
 void Mapa_nivel(int nivel_mapa);
-void Listo_personajes(void);
+
+//---- FUNCIONES PARA ESCOGER PERSONAJE EN TODO EL JEUGO ----//
 void Personajes_usar(int num_per_J1, int num_per_J2);
 
 //--- FUNCIONES PARA SD ---//
 void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
 int ACII_to_HEX(char *puntero);
+
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
@@ -182,11 +192,12 @@ void setup() {
 
   //--- Pantalla de inicio ---//
   //Static_Pantalla_Inicio();
+
+  
   open_SD_bitmap(personaje_J1_24, 2305, "Mun_24.txt");
-  LCD_Bitmap(128, 216, 24, 24, personaje_J1_24); 
-  LCD_Bitmap(288, 216, 24, 24, personaje_J1_24);
-  Mapa_nivel(1);
- 
+  Mapa_nivel(2);
+  LCD_Bitmap(8, 216, 24, 24, personaje_J1_24); 
+  LCD_Bitmap(168, 216, 24, 24, personaje_J1_24);
 }
 
 //***************************************************************************************************************************************
@@ -210,11 +221,10 @@ void loop() {
 //    case 1: //NIVEL 1
 //      Nivel_pantalla(1);
 //      delay(500);
-//      
+//      Mapa_nivel(1);
+//      Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
 //      while (ganar_N1 != HIGH){
-//        FillRect(0, 0, 319, 239, 0x0000);
-//        Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
-//        Mapa_nivel(1);
+//        //FillRect(0, 0, 319, 239, 0x0000);
 //        
 //        } 
 //    }    
@@ -398,7 +408,7 @@ void Listo_personajes(void){ //MUESTRAN LA PALABRA LISTO DEBAJO DEL PERSONAJE PA
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
 void Nivel_pantalla(int Num_Nivel){ //MOSTRAR EL NIVEL
-    FillRect(0, 0, 319, 239, 0x0000);
+    FillRect(0, 0, 320, 240, 0x0000);
     String Str_nivel = String(Num_Nivel); //convertir valor INT de cantidad estrellas a STRING
     String text_nivel = "NIVEL " + Str_nivel;
     LCD_Print(text_nivel, 100, 110, 2, 0x07FF, 0x0000);
@@ -487,7 +497,7 @@ void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COL
 }
 
 //***************************************************************************************************************************************
-// Función hacer colocar los muñecos en su posicion incial en cada mapa
+// Función hacer colocar la meta en cada mapa
 //***************************************************************************************************************************************
 void Posicion_meta(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA META
   
@@ -502,8 +512,60 @@ void Posicion_meta(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA MET
       Rect(176,8,8,8,0xFF40);
       break;
     case 2:
-      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24); 
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
+      //RECTANGULOS DE LUGAR DE SALIDA
+      Rect(288,0,23,24,0xFF40); //J1
+      Rect(292,4,16,16,0xFF40);
+      Rect(296,8,8,8,0xFF40);
+      Rect(128,0,23,24,0xFF40);//J2
+      Rect(132,4,16,16,0xFF40);
+      Rect(136,8,8,8,0xFF40);
+      break; 
+    case 3:
+      LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
+      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);  
+      break;
+  }
+}
+
+//***************************************************************************************************************************************
+// Función hacer colocar las estrellas en cada mapa
+//***************************************************************************************************************************************
+void Posicion_estrellas(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA META
+  
+  switch (nivel_pos_i){
+    case 1:
+      LCD_Bitmap(12, 220, 16, 16, estrella_16);
+      LCD_Bitmap(172, 220, 16, 16, estrella_16);
+      
+      LCD_Bitmap(44, 164, 16, 16, estrella_16);
+      LCD_Bitmap(204, 164, 16, 16, estrella_16);
+
+      LCD_Bitmap(132, 148, 16, 16, estrella_16);
+      LCD_Bitmap(292, 148, 16, 16, estrella_16);
+
+      LCD_Bitmap(44, 92, 16, 16, estrella_16);
+      LCD_Bitmap(204, 92, 16, 16, estrella_16);
+
+      LCD_Bitmap(132, 4, 16, 16, estrella_16);
+      LCD_Bitmap(292, 4, 16, 16, estrella_16);
+      
+      break;
+    case 2:
+      LCD_Bitmap(92, 220, 16, 16, estrella_16);
+      LCD_Bitmap(92+160, 220, 16, 16, estrella_16);
+      
+      LCD_Bitmap(52, 148, 16, 16, estrella_16);
+      LCD_Bitmap(52+160, 148, 16, 16, estrella_16);
+
+      LCD_Bitmap(92, 76, 16, 16, estrella_16);
+      LCD_Bitmap(92+160, 76, 16, 16, estrella_16);
+
+      LCD_Bitmap(132, 124, 16, 16, estrella_16);
+      LCD_Bitmap(132+160, 124, 16, 16, estrella_16);
+
+      LCD_Bitmap(52, 28, 16, 16, estrella_16);
+      LCD_Bitmap(52+160, 28, 16, 16, estrella_16);
+      
       break; 
     case 3:
       LCD_Bitmap(296, 224, 24, 24, personaje_J1_24);
@@ -516,10 +578,12 @@ void Posicion_meta(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LA MET
 // Función para los bloques de cada mapa de los niveles
 //***************************************************************************************************************************************
 void Mapa_nivel(int nivel_mapa){
+  FillRect(0, 0, 320, 240, 0x0000);
   switch (nivel_mapa){
     case 1:
       Posicion_meta(1);
-      
+      Posicion_estrellas(1);
+
       for(int y = 0; y <240; y++){ // 1 LINEAS DE LAS ORILLAS
           LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(160, y, 8, 8, Bloque_8_morado); 
@@ -534,19 +598,19 @@ void Mapa_nivel(int nivel_mapa){
           x += 7;
           }
           
-     for(int x = 200; x <240; x++){ // 3
+      for(int x = 200; x <240; x++){ // 3
           LCD_Bitmap(x, 184, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x-160, 184, 8, 8, Bloque_8_morado);
           x += 7;
           }
           
-     for(int y = 184; y <208; y++){ // 4
+      for(int y = 184; y <208; y++){ // 4
           LCD_Bitmap(80, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(240, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
 
-   for(int y = 216; y <240; y++){ // 5
+      for(int y = 216; y <240; y++){ // 5
           LCD_Bitmap(208, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(48, y, 8, 8, Bloque_8_morado); 
@@ -554,28 +618,28 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
           
-     LCD_Bitmap(40, 216, 8, 8, Bloque_8_morado); //6
-     LCD_Bitmap(200, 216, 8, 8, Bloque_8_morado); 
+      LCD_Bitmap(40, 216, 8, 8, Bloque_8_morado); //6
+      LCD_Bitmap(200, 216, 8, 8, Bloque_8_morado); 
           
-    for(int y = 152; y <192; y++){ //7
+      for(int y = 152; y <192; y++){ //7
           LCD_Bitmap(32, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
 
-    for(int x = 200; x <280; x++){ //8
+      for(int x = 200; x <280; x++){ //8
           LCD_Bitmap(x, 152, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x-160, 152, 8, 8, Bloque_8_morado);
           x += 7;
           }
           
-    for(int y = 80; y <128; y++){ //9
+      for(int y = 80; y <128; y++){ //9
           LCD_Bitmap(32, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
 
-    for(int y = 48; y <88; y++){ //10
+      for(int y = 48; y <88; y++){ //10
           LCD_Bitmap(56, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(88, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(216, y, 8, 8, Bloque_8_morado);
@@ -583,7 +647,7 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
           
-    for(int y = 0; y <24; y++){ //11
+      for(int y = 0; y <24; y++){ //11
           LCD_Bitmap(34, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(72, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(194, y, 8, 8, Bloque_8_morado);
@@ -591,7 +655,7 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
           
-    for(int y = 24; y <56; y++){ //12
+      for(int y = 24; y <56; y++){ //12
           LCD_Bitmap(104, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(120, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(264, y, 8, 8, Bloque_8_morado);
@@ -599,45 +663,155 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
 
-     for(int x = 8; x <32; x++){ //13
+      for(int x = 8; x <32; x++){ //13
           LCD_Bitmap(x, 48, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x+160, 48, 8, 8, Bloque_8_morado);
           x += 7;
           }
 
-     for(int x = 40; x <56; x++){ //14
+      for(int x = 40; x <56; x++){ //14
           LCD_Bitmap(x, 80, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x+160, 80, 8, 8, Bloque_8_morado);
           x += 7;
           }
 
-     for(int x = 40; x <72; x++){ //15
+      for(int x = 40; x <72; x++){ //15
           LCD_Bitmap(x, 16, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x+160, 16, 8, 8, Bloque_8_morado);
           x += 7;
           }
 
-     for(int x = 128; x <152; x++){ //16
+      for(int x = 128; x <152; x++){ //16
           LCD_Bitmap(x, 80, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x+160, 80, 8, 8, Bloque_8_morado);
           x += 7;
           }
 
-     for(int y = 40; y <56; y++){ //17
+      for(int y = 40; y <56; y++){ //17
           LCD_Bitmap(112, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(272, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
           
-     LCD_Bitmap(96, 48, 8, 8, Bloque_8_morado);
-     LCD_Bitmap(256, 48, 8, 8, Bloque_8_morado); 
-     LCD_Bitmap(112, 24, 8, 8, Bloque_8_morado); 
-     LCD_Bitmap(272, 24, 8, 8, Bloque_8_morado);     
+      LCD_Bitmap(96, 48, 8, 8, Bloque_8_morado);
+      LCD_Bitmap(256, 48, 8, 8, Bloque_8_morado); 
+      LCD_Bitmap(112, 24, 8, 8, Bloque_8_morado); 
+      LCD_Bitmap(272, 24, 8, 8, Bloque_8_morado);     
         //delay(1000);
       break;
+
+// ----------------------- MAPA 2 -----------------------------/
     case 2:
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
-      LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
+      Posicion_meta(2);
+      Posicion_estrellas(2);
+      for(int y = 0; y <240; y++){ // 1 LINEAS DE LAS ORILLAS
+          LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(160, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(152, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(0, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+      for(int y = 216; y <240; y++){ // 2
+          LCD_Bitmap(72, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(232, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+      for(int y = 120; y <168; y++){ // 3
+          LCD_Bitmap(72, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(232, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }   
+          
+      for(int y = 120; y <144; y++){ // 4
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+
+      for(int y = 144; y <168; y++){ // 5
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_celeste); 
+          y += 7;
+          }
+          
+      LCD_Bitmap(32, 176, 8, 8, Bloque_8_morado); //6
+      LCD_Bitmap(32+160, 176, 8, 8, Bloque_8_morado);
+      
+      LCD_Bitmap(120, 176, 8, 8, Bloque_8_morado);
+      LCD_Bitmap(120+160, 176, 8, 8, Bloque_8_morado);
+      
+      LCD_Bitmap(24, 104, 8, 8, Bloque_8_morado);
+      LCD_Bitmap(24+160, 104, 8, 8, Bloque_8_morado);
+      
+      LCD_Bitmap(128, 104, 8, 8, Bloque_8_morado);
+      LCD_Bitmap(128+160, 104, 8, 8, Bloque_8_morado);
+      
+      LCD_Bitmap(32, 56, 8, 8, Bloque_8_morado); //6
+      LCD_Bitmap(32+160, 56, 8, 8, Bloque_8_morado);
+      
+      LCD_Bitmap(120, 56, 8, 8, Bloque_8_morado);
+      LCD_Bitmap(120+160, 56, 8, 8, Bloque_8_morado);
+        
+      for(int x = 32; x <128; x++){ //7
+          LCD_Bitmap(x, 184, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(x+160, 184, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(x, 168, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 168, 8, 8, Bloque_8_morado);
+          
+          LCD_Bitmap(x, 64, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 64, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x, 48, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 48, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+      for(int x = 8; x <32; x++){ //8
+          LCD_Bitmap(x, 96, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 96, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x, 112, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 112, 8, 8, Bloque_8_morado);
+          
+          LCD_Bitmap(x+120, 96, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+280, 96, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+120, 112, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+280, 112, 8, 8, Bloque_8_morado);
+
+          LCD_Bitmap(x, 0, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 0, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x, 16, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 16, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+
+      for(int y = 72; y <96; y++){ // 9
+          LCD_Bitmap(72, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(232, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_celeste); 
+          y += 7;
+          }
+          
+      for(int y = 24; y <48; y++){ // 10
+          LCD_Bitmap(72, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(232, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(80, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(240, y, 8, 8, Bloque_8_celeste); 
+          y += 7;
+          }
+          
+      for(int y = 0; y <24; y++){ // 11
+          LCD_Bitmap(32, y, 8, 8, Bloque_8_celeste);
+          LCD_Bitmap(32+160, y, 8, 8, Bloque_8_celeste);
+          
+          LCD_Bitmap(120, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(12+160, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+              
       break; 
     case 3:
       LCD_Bitmap(296, 224, 24, 24, personaje_J2_24);
