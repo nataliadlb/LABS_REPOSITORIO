@@ -520,7 +520,7 @@ void Mapa_nivel(int nivel_mapa){
     case 1:
       Posicion_meta(1);
       
-      for(int y = 0; y <240; y++){ //LINEAS DE LAS ORILLAS
+      for(int y = 0; y <240; y++){ // 1 LINEAS DE LAS ORILLAS
           LCD_Bitmap(312, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(160, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(152, y, 8, 8, Bloque_8_morado); 
@@ -528,28 +528,25 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
           
-      for(int x = 240; x <312; x++){ 
+      for(int x = 240; x <312; x++){ //2
           LCD_Bitmap(x, 208, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x-160, 208, 8, 8, Bloque_8_morado);
           x += 7;
           }
           
-     for(int x = 200; x <240; x++){ //312-40
+     for(int x = 200; x <240; x++){ // 3
           LCD_Bitmap(x, 184, 8, 8, Bloque_8_morado);
           LCD_Bitmap(x-160, 184, 8, 8, Bloque_8_morado);
           x += 7;
           }
           
-     for(int y = 184; y <208; y++){ //LINEAS DE LAS ORILLAS
+     for(int y = 184; y <208; y++){ // 4
           LCD_Bitmap(80, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(240, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
-          
-     LCD_Bitmap(40, 216, 8, 8, Bloque_8_morado); 
-     LCD_Bitmap(200, 216, 8, 8, Bloque_8_morado); 
 
-   for(int y = 216; y <240; y++){ //LINEAS DE LAS ORILLAS
+   for(int y = 216; y <240; y++){ // 5
           LCD_Bitmap(208, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
           LCD_Bitmap(48, y, 8, 8, Bloque_8_morado); 
@@ -557,13 +554,86 @@ void Mapa_nivel(int nivel_mapa){
           y += 7;
           }
           
-  for(int y = 152; y <192; y++){ //LINEAS DE LAS ORILLAS
+     LCD_Bitmap(40, 216, 8, 8, Bloque_8_morado); //6
+     LCD_Bitmap(200, 216, 8, 8, Bloque_8_morado); 
+          
+    for(int y = 152; y <192; y++){ //7
           LCD_Bitmap(32, y, 8, 8, Bloque_8_morado);
           LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
           y += 7;
           }
-              
-        delay(1000);
+
+    for(int x = 200; x <280; x++){ //8
+          LCD_Bitmap(x, 152, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x-160, 152, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+          
+    for(int y = 80; y <128; y++){ //9
+          LCD_Bitmap(32, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(192, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+
+    for(int y = 48; y <88; y++){ //10
+          LCD_Bitmap(56, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(88, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(216, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(248, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+    for(int y = 0; y <24; y++){ //11
+          LCD_Bitmap(34, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(72, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(194, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(232, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+    for(int y = 24; y <56; y++){ //12
+          LCD_Bitmap(104, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(120, y, 8, 8, Bloque_8_morado); 
+          LCD_Bitmap(264, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(280, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+
+     for(int x = 8; x <32; x++){ //13
+          LCD_Bitmap(x, 48, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 48, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+
+     for(int x = 40; x <56; x++){ //14
+          LCD_Bitmap(x, 80, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 80, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+
+     for(int x = 40; x <72; x++){ //15
+          LCD_Bitmap(x, 16, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 16, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+
+     for(int x = 128; x <152; x++){ //16
+          LCD_Bitmap(x, 80, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(x+160, 80, 8, 8, Bloque_8_morado);
+          x += 7;
+          }
+
+     for(int y = 40; y <56; y++){ //17
+          LCD_Bitmap(112, y, 8, 8, Bloque_8_morado);
+          LCD_Bitmap(272, y, 8, 8, Bloque_8_morado); 
+          y += 7;
+          }
+          
+     LCD_Bitmap(96, 48, 8, 8, Bloque_8_morado);
+     LCD_Bitmap(256, 48, 8, 8, Bloque_8_morado); 
+     LCD_Bitmap(112, 24, 8, 8, Bloque_8_morado); 
+     LCD_Bitmap(272, 24, 8, 8, Bloque_8_morado);     
+        //delay(1000);
       break;
     case 2:
       LCD_Bitmap(296, 224, 24, 24, personaje_J2_24); 
