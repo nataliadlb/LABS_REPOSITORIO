@@ -254,36 +254,38 @@ void loop() {
           switch_posicion_LEFT_J1(1);
           }
 
-//        if (b_RIGTH_J1 == HIGH){
-//          switch_posicion_RIGHT_J1(1);
-//          }
-//
-//        if (b_UP_J1 == HIGH){
-//          switch_posicion_UP_J1(1);
-//          } 
-//          
-//       if (b_DOWN_J1 == HIGH){
-//          switch_posicion_DOWN_J1(1);
-//          } 
-//
-//          
+        if (b_RIGHT_J1 == HIGH){
+          //Rect(8,8,24,24,0xFFFF);
+          switch_posicion_RIGHT_J1(1);
+          }
+
+        if (b_UP_J1 == HIGH){
+          switch_posicion_UP_J1(1);
+          } 
+          
+       if (b_DOWN_J1 == HIGH){
+          switch_posicion_DOWN_J1(1);
+          } 
+
+          
         //-- MOVIMIENTOS JUGADOR 2 --//  
        if (b_LEFT_J2 == HIGH){
           switch_posicion_LEFT_J2(1);
           }
-//
-//        if (b_RIGTH_J2 == HIGH){
-//          switch_posicion_RIGHT_J2(1);
-//          }
-//
-//        if (b_UP_J2 == HIGH){
-//          switch_posicion_UP_J2(1);
-//          } 
-//          
-//       if (b_DOWN_J2 == HIGH){
-//          switch_posicion_DOWN_J2(1);
-//          } 
+
+        if (b_RIGHT_J2 == HIGH){
+          switch_posicion_RIGHT_J2(1);
           }
+
+        if (b_UP_J2 == HIGH){
+          switch_posicion_UP_J2(1);
+          } 
+          
+       if (b_DOWN_J2 == HIGH){
+          switch_posicion_DOWN_J2(1);
+          } 
+      }
+
         //nivel = 2;
       break;
       case 2:
@@ -354,8 +356,7 @@ void LEFT_J2() {
 }
 
 void RIGTH_J1() { 
-  //ganar_N2 = HIGH;
-  //nivel = 3;
+  b_RIGHT_J1 = HIGH;
 }
 
 void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
@@ -372,19 +373,19 @@ void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
 }
 
 void UP_J1() { 
-  //digitalWrite(led_VERDE, HIGH);
+  b_UP_J1 = HIGH;
 }
 
 void UP_J2() { 
-  //digitalWrite(led_VERDE, HIGH);
+  b_UP_J2 = HIGH;
 }
 
 void DOWN_J1() { 
-  //digitalWrite(led_VERDE, HIGH);
+  b_DOWN_J1 = HIGH;
 }
 
 void DOWN_J2() { 
-  //digitalWrite(led_VERDE, HIGH);
+  b_DOWN_J2 = HIGH;
 }
 //***************************************************************************************************************************************
 // Función para el menú de inicio
@@ -1473,82 +1474,173 @@ void switch_posicion_LEFT_J1(int num_nivel){
               LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,1,0);
               V_line( x + 24, 216, 24, 0x0000);
             }
+            posicion_J1 = 1;
             b_LEFT_J1 = LOW;
         break; //break pos 0 /LEFT/N1/J1
         
         case 1:
+          b_LEFT_J1 = LOW;
         break; //break pos 1 /LEFT/N1/J1
 
         case 2:
+          b_LEFT_J1 = LOW;
         break; //break pos 2 /LEFT/N1/J1
         
         case 3:
+          for(int x = 56; x >8; x = x-1){
+             LCD_Sprite(x,192,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 192, 24, 0x0000);
+            }
+          posicion_J1 = 4;
+          b_LEFT_J1 = LOW;
         break; //break pos 3 /LEFT/N1/J1
         
         case 4:
+          b_LEFT_J1 = LOW;
         break; //break pos 4 /LEFT/N1/J1
         
         case 5:
+            for(int x = 128; x >88; x = x-1){
+             LCD_Sprite(x,184,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 184, 24, 0x0000);
+            }
+          posicion_J1 = 6;
+          b_LEFT_J1 = LOW;
         break; //break pos 5 /LEFT/N1/J1
         
         case 6:
+          b_LEFT_J1 = LOW;
         break; //break pos 6 /LEFT/N1/J1
         
         case 7:
+          for(int x = 128; x >40; x = x-1){
+             LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 160, 24, 0x0000);
+            }
+          posicion_J1 = 9;
+          b_LEFT_J1 = LOW;
         break; //break pos 7 /LEFT/N1/J1
         
         case 8:
+          for(int x = 88; x >40; x = x-1){
+             LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 160, 24, 0x0000);
+            }
+          posicion_J1 = 9;
+          b_LEFT_J1 = LOW;
         break; //break pos 8 /LEFT/N1/J1
         
         case 9:
+          b_LEFT_J1 = LOW;
         break; //break pos 9 /LEFT/N1/J1
         
         case 10:
+          for(int x = 128; x >8; x = x-1){
+             LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 128, 24, 0x0000);
+            }
+          posicion_J1 = 13;
+          b_LEFT_J1 = LOW;
         break; //break pos 10 /LEFT/N1/J1
         
         case 11:
+          for(int x = 96; x >8; x = x-1){
+             LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 128, 24, 0x0000);
+            }
+          posicion_J1 = 13;
+          b_LEFT_J1 = LOW;
         break; //break pos 11 /LEFT/N1/J1
         
         case 12:
+          for(int x = 40; x >8; x = x-1){
+            LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,1,0);
+            V_line( x + 24, 128, 24, 0x0000);
+          }
+          posicion_J1 = 13;
+          b_LEFT_J1 = LOW;
         break; //break pos 12 /LEFT/N1/J1
         
         case 13:
+          b_LEFT_J1 = LOW;
         break; //break pos 13 /LEFT/N1/J1
         
         case 14:
+          for(int x = 128; x >40; x = x-1){
+             LCD_Sprite(x,88,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 88, 24, 0x0000);
+            }
+          posicion_J1 = 15;
+          b_LEFT_J1 = LOW;
         break; //break pos 14 /LEFT/N1/J1
         
         case 15:
+          b_LEFT_J1 = LOW;
         break; //break pos 15 /LEFT/N1/J1
         
         case 16:
+         for(int x = 128; x >96; x = x-1){
+             LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 56, 24, 0x0000);
+            }
+          posicion_J1 = 17;
+          b_LEFT_J1 = LOW;
         break; //break pos 16 /LEFT/N1/J1
         
         case 17:
+          b_LEFT_J1 = LOW;
         break; //break pos 17 /LEFT/N1/J1
         
         case 18:
+          for(int x = 32; x >8; x = x-1){
+             LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 56, 24, 0x0000);
+            }
+          posicion_J1 = 19;
+          b_LEFT_J1 = LOW;
         break; //break pos 18 /LEFT/N1/J1
         
         case 19:
+          b_LEFT_J1 = LOW;
         break; //break pos 19 /LEFT/N1/J1
         
         case 20:
+          for(int x = 80; x >8; x = x-1){
+             LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 24, 24, 0x0000);
+            }
+          posicion_J1 = 22;
+          b_LEFT_J1 = LOW;
         break; //break pos 20 /LEFT/N1/J1
         
         case 21:
+          for(int x = 32; x >8; x = x-1){
+             LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 24, 24, 0x0000);
+            }
+          posicion_J1 = 22;
+          b_LEFT_J1 = LOW;
         break; //break pos 21 /LEFT/N1/J1
         
         case 22:
+          b_LEFT_J1 = LOW;
         break; //break pos 22 /LEFT/N1/J1
         
         case 23:
+          for(int x = 128; x >80; x = x-1){
+             LCD_Sprite(x,0,24,24,J1_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 0, 24, 0x0000);
+            }
+          posicion_J1 = 24;
+          b_LEFT_J1 = LOW;
         break; //break pos 23 /LEFT/N1/J1
         
         case 24:
+          b_LEFT_J1 = LOW;
         break; //break pos 24 /LEFT/N1/J1
         
         case 25:
+          b_LEFT_J1 = LOW;
         break; //break pos 25 /LEFT/N1/J1
         }
       
@@ -1577,82 +1669,172 @@ void switch_posicion_LEFT_J2(int num_nivel){
             LCD_Sprite(x,216,24,24,J2_Abajo_Derecha,1,0,1,0);
             V_line( x + 24, 216, 24, 0x0000);
           }
+          posicion_J2 = 1;
           b_LEFT_J2 = LOW;
         break; //break pos 0 /LEFT/N1/J2
         
         case 1:
+          b_LEFT_J2 = LOW;
         break; //break pos 1 /LEFT/N1/J2
 
         case 2:
+          b_LEFT_J2 = LOW;
         break; //break pos 2 /LEFT/N1/J2
         
         case 3:
+          for(int x = 216; x >168; x=x-1){
+            LCD_Sprite(x,192,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x+24, 192, 24, 0x0000);
+          }
+          b_LEFT_J2 = LOW;
         break; //break pos 3 /LEFT/N1/J2
         
         case 4:
+          b_LEFT_J2 = LOW;
         break; //break pos 4 /LEFT/N1/J2
         
         case 5:
+         for(int x = 288; x >248; x = x-1){
+             LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 184, 24, 0x0000);
+            }
+          posicion_J2 = 6;
+          b_LEFT_J2 = LOW;
         break; //break pos 5 /LEFT/N1/J2
         
         case 6:
+          b_LEFT_J2 = LOW;
         break; //break pos 6 /LEFT/N1/J2
         
         case 7:
+          for(int x = 288; x >200; x = x-1){
+             LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 160, 24, 0x0000);
+            }
+          posicion_J2 = 9;
+          b_LEFT_J2 = LOW;
         break; //break pos 7 /LEFT/N1/J2
         
         case 8:
+          for(int x = 248; x >200; x = x-1){
+             LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 160, 24, 0x0000);
+            }
+          posicion_J2 = 9;
+          b_LEFT_J2 = LOW;
         break; //break pos 8 /LEFT/N1/J2
         
         case 9:
+          b_LEFT_J2 = LOW;
         break; //break pos 9 /LEFT/N1/J2
         
         case 10:
+          for(int x = 288; x >168; x = x-1){
+             LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 128, 24, 0x0000);
+            }
+          posicion_J2 = 13;
+          b_LEFT_J2 = LOW;
         break; //break pos 10 /LEFT/N1/J2
         
         case 11:
+          for(int x = 356; x >160; x = x-1){
+             LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 128, 24, 0x0000);
+            }
+          posicion_J2 = 13;
+          b_LEFT_J2 = LOW;
         break; //break pos 11 /LEFT/N1/J2
         
         case 12:
+         for(int x = 200; x >168; x = x-1){
+            LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
+            V_line( x + 24, 128, 24, 0x0000);
+          }
+          posicion_J2 = 13;
+          b_LEFT_J2 = LOW;
         break; //break pos 12 /LEFT/N1/J2
         
         case 13:
+          b_LEFT_J2 = LOW;
         break; //break pos 13 /LEFT/N1/J2
         
         case 14:
+         for(int x = 288; x >200; x = x-1){
+             LCD_Sprite(x,88,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 88, 24, 0x0000);
+            }
+          posicion_J2 = 15;
+          b_LEFT_J2 = LOW;
         break; //break pos 14 /LEFT/N1/J2
         
         case 15:
+          b_LEFT_J2 = LOW;
         break; //break pos 15 /LEFT/N1/J2
         
         case 16:
+          for(int x = 288; x >256; x = x-1){
+             LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 56, 24, 0x0000);
+            }
+          posicion_J2 = 17;
+          b_LEFT_J2 = LOW;
         break; //break pos 16 /LEFT/N1/J2
         
         case 17:
+          b_LEFT_J2 = LOW;
         break; //break pos 17 /LEFT/N1/J2
         
         case 18:
+          for(int x = 192; x >168; x = x-1){
+             LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 56, 24, 0x0000);
+            }
+          posicion_J2 = 19;
+          b_LEFT_J2 = LOW;
         break; //break pos 18 /LEFT/N1/J2
         
         case 19:
+          b_LEFT_J2 = LOW;
         break; //break pos 19 /LEFT/N1/J2
         
         case 20:
+          for(int x = 240; x >168; x = x-1){
+             LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 24, 24, 0x0000);
+            }
+          posicion_J2 = 22;
+          b_LEFT_J2 = LOW;
         break; //break pos 20 /LEFT/N1/J2
         
         case 21:
+          for(int x = 192; x >168; x = x-1){
+             LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 24, 24, 0x0000);
+            }
+          posicion_J2 = 22;
+          b_LEFT_J2 = LOW;
         break; //break pos 21 /LEFT/N1/J2
         
         case 22:
+          b_LEFT_J2 = LOW;
         break; //break pos 22 /LEFT/N1/J2
         
         case 23:
+          for(int x = 288; x >240; x = x-1){
+             LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,1,0);
+             V_line( x + 24, 0, 24, 0x0000);
+            }
+          posicion_J2 = 24;
+          b_LEFT_J2 = LOW;
         break; //break pos 23 /LEFT/N1/J2
         
         case 24:
+          b_LEFT_J2 = LOW;
         break; //break pos 24 /LEFT/N1/J2
         
         case 25:
+          b_LEFT_J2 = LOW;
         break; //break pos 25 /LEFT/N1/J2
         }
     break;//break del case 1 (nivel 1 - LEFT - J2)
@@ -1674,81 +1856,178 @@ void switch_posicion_RIGHT_J1(int num_nivel){
     case 1:
       switch(posicion_J1){
         case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
+          b_RIGHT_J1 = LOW;
         break; //break pos 0 /RIGTH/N1/J1
         
         case 1:
+          for(int x = 56; x <128; x++){
+            LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 216, 24, 0x0000);
+          }
+          posicion_J1 = 0;
+          b_RIGHT_J1 = LOW;
         break; //break pos 1 /RIGTH/N1/J1
 
         case 2:
+          b_RIGHT_J1 = LOW;
         break; //break pos 2 /RIGTH/N1/J1
         
         case 3:
+          b_RIGHT_J1 = LOW;
         break; //break pos 3 /RIGTH/N1/J1
         
         case 4:
+          for(int x = 8; x <56; x++){
+            LCD_Sprite(x,192,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 192, 24, 0x0000);
+          }
+          posicion_J1 = 3;
+          b_RIGHT_J1 = LOW;
         break; //break pos 4 /RIGTH/N1/J1
         
         case 5:
+          b_RIGHT_J1 = LOW;
         break; //break pos 5 /RIGTH/N1/J1
         
         case 6:
+          for(int x = 88; x <128; x++){
+            LCD_Sprite(x,184,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 184, 24, 0x0000);
+          }
+          posicion_J1 = 5;
+          b_RIGHT_J1 = LOW;
         break; //break pos 6 /RIGTH/N1/J1
         
         case 7:
+          b_RIGHT_J1 = LOW;
         break; //break pos 7 /RIGTH/N1/J1
         
         case 8:
+          for(int x = 88; x <128; x++){
+            LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 160, 24, 0x0000);
+          }
+          posicion_J1 = 7;
+          b_RIGHT_J1 = LOW;
         break; //break pos 8 /RIGTH/N1/J1
         
         case 9:
+          for(int x = 40; x <128; x++){
+            LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 160, 24, 0x0000);
+          }
+          posicion_J1 = 7;
+          b_RIGHT_J1 = LOW;
         break; //break pos 9 /RIGTH/N1/J1
         
         case 10:
+          b_RIGHT_J1 = LOW;
         break; //break pos 10 /RIGTH/N1/J1
         
         case 11:
+          for(int x = 96; x <128; x++){
+              LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,0,0);
+              V_line( x -1, 128, 24, 0x0000);
+            }
+            posicion_J1 = 10;
+          b_RIGHT_J1 = LOW;
+        
         break; //break pos 11 /RIGTH/N1/J1
         
         case 12:
+        for(int x = 40; x <128; x++){
+            LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 128, 24, 0x0000);
+          }
+          posicion_J1 = 10;
+          b_RIGHT_J1 = LOW;
         break; //break pos 12 /RIGTH/N1/J1
         
         case 13:
+          for(int x = 8; x <128; x++){
+            LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 128, 24, 0x0000);
+          }
+          posicion_J1 = 10;
+          b_RIGHT_J1 = LOW;
         break; //break pos 13 /RIGTH/N1/J1
         
         case 14:
+          b_RIGHT_J1 = LOW;
         break; //break pos 14 /RIGTH/N1/J1
         
         case 15:
+          for(int x = 40; x <128; x++){
+            LCD_Sprite(x,88,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 88, 24, 0x0000);
+          }
+          posicion_J1 = 14;  
+          b_RIGHT_J1 = LOW;
         break; //break pos 15 /RIGTH/N1/J1
         
         case 16:
+          b_RIGHT_J1 = LOW;
         break; //break pos 16 /RIGTH/N1/J1
         
         case 17:
+          for(int x = 96; x <128; x++){
+            LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 56, 24, 0x0000);
+          }
+          posicion_J1 = 16;
+          b_RIGHT_J1 = LOW;
         break; //break pos 17 /RIGTH/N1/J1
         
         case 18:
+          b_RIGHT_J1 = LOW;
         break; //break pos 18 /RIGTH/N1/J1
         
         case 19:
+          for(int x = 8; x <32; x++){
+            LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 56, 24, 0x0000);
+          }
+          posicion_J1 = 18;
+          b_RIGHT_J1 = LOW;
         break; //break pos 19 /RIGTH/N1/J1
         
         case 20:
+          b_RIGHT_J1 = LOW;
         break; //break pos 20 /RIGTH/N1/J1
         
         case 21:
+          for(int x = 32; x <80; x++){
+            LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 24, 24, 0x0000);
+          }
+          posicion_J1 = 20;
+          b_RIGHT_J1 = LOW;
         break; //break pos 21 /RIGTH/N1/J1
         
         case 22:
+          for(int x = 8; x <80; x++){
+            LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 24, 24, 0x0000);
+          }
+          posicion_J1 = 20;
+          b_RIGHT_J1 = LOW;
         break; //break pos 22 /RIGTH/N1/J1
         
         case 23:
+          b_RIGHT_J1 = LOW;
         break; //break pos 23 /RIGTH/N1/J1
         
         case 24:
+          for(int x = 80; x <128; x++){
+            LCD_Sprite(x,0,24,24,J1_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 0, 24, 0x0000);
+          }
+          posicion_J1 = 23;
+          b_RIGHT_J1 = LOW;
         break; //break pos 24 /RIGTH/N1/J1
         
         case 25:
+          b_RIGHT_J1 = LOW;
         break; //break pos 25 /RIGTH/N1
         }
     break; //break del case 1 (nivel 1 - RIGTH - J1)
@@ -1769,83 +2048,179 @@ void switch_posicion_RIGHT_J2(int num_nivel){
   switch(num_nivel){
 //#################### NIVEL 1 DERECHA J2 ###############################//
     case 1:
-      switch(posicion_J1){
+      switch(posicion_J2){
         case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
+          b_RIGHT_J2 = LOW;
         break; //break pos 0 /RIGTH/N1/J2
         
         case 1:
+          for(int x = 216; x <288; x++){
+            LCD_Sprite(x,216,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 216, 24, 0x0000);
+          }
+          posicion_J2 = 0;
+          b_RIGHT_J2 = LOW;
         break; //break pos 1 /RIGTH/N1/J2
 
         case 2:
+          b_RIGHT_J2 = LOW;
         break; //break pos 2 /RIGTH/N1/J2
         
         case 3:
+          b_RIGHT_J2 = LOW;
         break; //break pos 3 /RIGTH/N1/J2
         
         case 4:
+          for(int x = 168; x <116; x++){
+            LCD_Sprite(x,192,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 192, 24, 0x0000);
+          }
+          posicion_J2 = 3;
+          b_RIGHT_J2 = LOW;
         break; //break pos 4 /RIGTH/N1/J2
         
         case 5:
+          b_RIGHT_J2 = LOW;
         break; //break pos 5 /RIGTH/N1/J2
         
         case 6:
+          for(int x = 248; x <288; x++){
+            LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 184, 24, 0x0000);
+          }
+          posicion_J2 = 5;
+          b_RIGHT_J2 = LOW;
         break; //break pos 6 /RIGTH/N1/J2
         
         case 7:
+          b_RIGHT_J2 = LOW;
         break; //break pos 7 /RIGTH/N1/J2
         
         case 8:
+          for(int x = 248; x <288; x++){
+            LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 160, 24, 0x0000);
+          }
+          posicion_J2 = 7;
+          b_RIGHT_J2 = LOW;
         break; //break pos 8 /RIGTH/N1/J2
         
         case 9:
+          for(int x = 200; x <288; x++){
+            LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 160, 24, 0x0000);
+          }
+          posicion_J2 = 7;
+          b_RIGHT_J2 = LOW;
         break; //break pos 9 /RIGTH/N1/J2
         
         case 10:
+        b_RIGHT_J2 = LOW;
         break; //break pos 10 /RIGTH/N1/J2
         
         case 11:
+         for(int x = 256; x <288; x++){
+            LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 128, 24, 0x0000);
+          }
+          posicion_J2 = 10;
+          b_RIGHT_J2 = LOW;
         break; //break pos 11 /RIGTH/N1/J2
         
         case 12:
+          for(int x = 200; x <288; x++){
+            LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 128, 24, 0x0000);
+          }
+          posicion_J2 = 10;
+          b_RIGHT_J2 = LOW;
         break; //break pos 12 /RIGTH/N1/J2
         
         case 13:
+          for(int x = 168; x <288; x++){
+            LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 128, 24, 0x0000);
+          }
+          posicion_J2 = 10;
+          b_RIGHT_J2 = LOW;
         break; //break pos 13 /RIGTH/N1/J2
         
         case 14:
+          b_RIGHT_J2 = LOW;
         break; //break pos 14 /RIGTH/N1/J2
         
         case 15:
+          for(int x = 200; x <288; x++){
+            LCD_Sprite(x,88,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 88, 24, 0x0000);
+          }
+          posicion_J2 = 14; 
+          b_RIGHT_J2 = LOW;
         break; //break pos 15 /RIGTH/N1/J2
         
         case 16:
+          b_RIGHT_J2 = LOW;
         break; //break pos 16 /RIGTH/N1/J2
         
         case 17:
+          for(int x = 256; x <288; x++){
+            LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 56, 24, 0x0000);
+          }
+          posicion_J2 = 16;
+          b_RIGHT_J2 = LOW;
         break; //break pos 17 /RIGTH/N1/J2
         
         case 18:
+          b_RIGHT_J2 = LOW;
         break; //break pos 18 /RIGTH/N1/J2
         
         case 19:
+          for(int x = 168; x <192; x++){
+            LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 56, 24, 0x0000);
+          }
+          posicion_J2 = 18;
+          b_RIGHT_J2 = LOW;
         break; //break pos 19 /RIGTH/N1/J2
         
         case 20:
+          b_RIGHT_J2 = LOW;
         break; //break pos 20 /RIGTH/N1/J2
         
         case 21:
+          for(int x = 192; x <240; x++){
+            LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 24, 24, 0x0000);
+          }
+          posicion_J2 = 20;
+          b_RIGHT_J2 = LOW;
         break; //break pos 21 /RIGTH/N1/J2
         
         case 22:
+          for(int x = 168; x <240; x++){
+            LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 24, 24, 0x0000);
+          }
+          posicion_J2 = 20;
+          b_RIGHT_J2 = LOW;
         break; //break pos 22 /RIGTH/N1/J2
         
         case 23:
+          b_RIGHT_J2 = LOW;
         break; //break pos 23 /RIGTH/N1/J2
         
         case 24:
+          for(int x = 240; x <188; x++){
+            LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,0,0);
+            V_line( x -1, 0, 24, 0x0000);
+          }
+          posicion_J2 = 23;
+          b_RIGHT_J2 = LOW;
         break; //break pos 24 /RIGTH/N1/J2
         
         case 25:
+          b_RIGHT_J2 = LOW;
         break; //break pos 25 /RIGTH/N1/J2
         }
     break;//break del case 1 (nivel 1 - RIGTH - J2)
@@ -1867,82 +2242,178 @@ void switch_posicion_UP_J1(int num_nivel){
 //#################### NIVEL 1 ARRIBA J1 ###############################//
     case 1:
       switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
+        case 0://POSICION INICIO NIVEL 1 JUGADOR 1
+          b_UP_J1 = LOW; 
         break; //break pos 0 /UP/N1/J1
         
         case 1:
+          for(int y = 216; y >192; y--){
+            LCD_Sprite(56,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 56, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 3;
+          b_UP_J1 = LOW;
         break; //break pos 1 /UP/N1/J1
 
         case 2:
+          for(int y = 216; y >56; y--){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 19;
+          b_UP_J1 = LOW;
         break; //break pos 2 /UP/N1/J1
         
         case 3:
+          b_UP_J1 = LOW;
         break; //break pos 3 /UP/N1/J1
         
         case 4:
+          for(int y = 192; y >56; y--){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 19;
+          b_UP_J1 = LOW;
         break; //break pos 4 /UP/N1/J1
         
         case 5:
+          for(int y = 184; y >88; y--){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 14;
+          b_UP_J1 = LOW;
         break; //break pos 5 /UP/N1/J1
         
         case 6:
+          for(int y = 184; y >160; y--){
+            LCD_Sprite(88,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 88, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 8;
+          b_UP_J1 = LOW;
         break; //break pos 6 /UP/N1/J1
         
         case 7:
+          for(int y = 160; y >88; y--){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 14;
+          b_UP_J1 = LOW;
         break; //break pos 7 /UP/N1/J1
         
         case 8:
+          b_UP_J1 = LOW;
         break; //break pos 8 /UP/N1/J1
         
         case 9:
+          b_UP_J1 = LOW;
         break; //break pos 9 /UP/N1/J1
         
         case 10:
+          for(int y = 128; y >88; y--){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 14;
+          b_UP_J1 = LOW;
         break; //break pos 10 /UP/N1/J1
         
         case 11:
+          for(int y = 128; y >56; y--){
+            LCD_Sprite(96,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 96, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 17;
+          b_UP_J1 = LOW;
         break; //break pos 11 /UP/N1/J1
         
         case 12:
+          for(int y = 128; y >88; y--){
+            LCD_Sprite(40,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 40, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 15;
+          b_UP_J1 = LOW;
         break; //break pos 12 /UP/N1/J1
         
         case 13:
+          for(int y = 128; y >56; y--){
+              LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+              H_line( 8, y+25, 24, 0x0000);
+            }
+            posicion_J1 = 19;
+            b_UP_J1 = LOW;
         break; //break pos 13 /UP/N1/J1
         
         case 14:
+          b_UP_J1 = LOW;
         break; //break pos 14 /UP/N1/J1
         
         case 15:
+          b_UP_J1 = LOW;
         break; //break pos 15 /UP/N1/J1
         
         case 16:
+          for(int y = 56; y >0; y--){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 23;
+          b_UP_J1 = LOW;
         break; //break pos 16 /UP/N1/J1
         
         case 17:
+          b_UP_J1 = LOW;
         break; //break pos 17 /UP/N1/J1
         
         case 18:
+          for(int y = 56; y >24; y--){
+            LCD_Sprite(32,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 32, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 21;
+          b_UP_J1 = LOW;
         break; //break pos 18 /UP/N1/J1
         
         case 19:
+          b_UP_J1 = LOW;
         break; //break pos 19 /UP/N1/J1
         
         case 20:
+          for(int y = 24; y >0; y--){
+            LCD_Sprite(80,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 80, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 24;
+          b_UP_J1 = LOW;
         break; //break pos 20 /UP/N1/J1
         
         case 21:
+          b_UP_J1 = LOW;
         break; //break pos 21 /UP/N1/J1
         
         case 22:
+          for(int y = 24; y >0; y--){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 25;
+          b_UP_J1 = LOW;
         break; //break pos 22 /UP/N1/J1
         
         case 23:
+          b_UP_J1 = LOW;
         break; //break pos 23 /UP/N1/J1
         
         case 24:
+          b_UP_J1 = LOW;
         break; //break pos 24 /UP/N1/J1
         
         case 25:
+          b_UP_J1 = LOW;
         break; //break pos 25 /UP/N1/J1
         }
     break;//break del case 1 (nivel 1 - UP - J1)
@@ -1963,83 +2434,139 @@ void switch_posicion_UP_J2(int num_nivel){
   switch(num_nivel){
 //#################### NIVEL 1 ARRIBA J2 ###############################//
     case 1:
-      switch(posicion_J1){
+      switch(posicion_J2){
         case 0://POSICION INICIO NIVEL 1 JUGADOR 2 
+          b_UP_J2 = LOW;
         break; //break pos 0 /UP/N1/J2
         
         case 1:
+          for(int y = 216; y >192; y--){
+            LCD_Sprite(216,y,24,24,J2_Abajo_Derecha,1,0,0,0);
+            H_line( 216, y+25, 24, 0x0000);
+          }
+          posicion_J2 = 3;
+          b_UP_J2 = LOW;
         break; //break pos 1 /UP/N1/J2
 
         case 2:
+          for(int y = 216; y >56; y--){
+            LCD_Sprite(168,y,24,24,J2_Abajo_Derecha,1,0,0,0);
+            H_line(168, y+25, 24, 0x0000);
+          }
+          posicion_J2 = 19;
+          b_UP_J2 = LOW;
         break; //break pos 2 /UP/N1/J2
         
         case 3:
+          b_UP_J2 = LOW;
         break; //break pos 3 /UP/N1/J2
         
         case 4:
+          for(int y = 192; y >56; y--){
+            LCD_Sprite(168,y,24,24,J2_Abajo_Derecha,1,0,0,0);
+            H_line(168, y+25, 24, 0x0000);
+          }
+          posicion_J2 = 19;
+          b_UP_J2 = LOW;
         break; //break pos 4 /UP/N1/J2
         
         case 5:
+          for(int y = 184; y >88; y--){
+            LCD_Sprite(288,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line(288, y+25, 24, 0x0000);
+          }
+          posicion_J1 = 14;
+          b_UP_J2 = LOW;
         break; //break pos 5 /UP/N1/J2
         
         case 6:
+          for(int y = 184; y >160; y--){
+            LCD_Sprite(248,y,24,24,J2_Abajo_Derecha,1,0,0,0);
+            H_line(248, y+25, 24, 0x0000);
+          }
+          posicion_J2 = 8;
+          b_UP_J2 = LOW;
         break; //break pos 6 /UP/N1/J2
         
         case 7:
+          for(int y = 160; y >88; y--){
+            LCD_Sprite(288,y,24,24,J2_Abajo_Derecha,1,0,0,0);
+            H_line(288, y+25, 24, 0x0000);
+          }
+          posicion_J2 = 14;
+          b_UP_J2 = LOW;
         break; //break pos 7 /UP/N1/J2
         
         case 8:
+          b_UP_J2 = LOW;
         break; //break pos 8 /UP/N1/J2
         
         case 9:
+          b_UP_J2 = LOW;
         break; //break pos 9 /UP/N1/J2
         
         case 10:
+          b_UP_J2 = LOW;
         break; //break pos 10 /UP/N1/J2
         
         case 11:
+          b_UP_J2 = LOW;
         break; //break pos 11 /UP/N1/J2
         
         case 12:
+          b_UP_J2 = LOW;
         break; //break pos 12 /UP/N1/J2
         
         case 13:
+          b_UP_J2 = LOW;
         break; //break pos 13 /UP/N1/J2
         
         case 14:
+          b_UP_J2 = LOW;
         break; //break pos 14 /UP/N1/J2
         
         case 15:
+          b_UP_J2 = LOW;
         break; //break pos 15 /UP/N1/J2
         
         case 16:
+          b_UP_J2 = LOW;
         break; //break pos 16 /UP/N1/J2
         
         case 17:
+          b_UP_J2 = LOW;
         break; //break pos 17 /UP/N1/J2
         
         case 18:
+          b_UP_J2 = LOW;
         break; //break pos 18 /UP/N1/J2
         
         case 19:
+          b_UP_J2 = LOW;
         break; //break pos 19 /UP/N1/J2
         
         case 20:
+          b_UP_J2 = LOW;
         break; //break pos 20 /UP/N1/J2
         
         case 21:
+          b_UP_J2 = LOW;
         break; //break pos 21 /UP/N1/J2
         
         case 22:
+          b_UP_J2 = LOW;
         break; //break pos 22 /UP/N1/J2
         
         case 23:
+          b_UP_J2 = LOW;
         break; //break pos 23 /UP/N1/J2
         
         case 24:
+          b_UP_J2 = LOW;
         break; //break pos 24 /UP/N1/J2
         
         case 25:
+          b_UP_J2 = LOW;
         break; //break pos 25 /UP/N1/J2
         }
     break;//break del case 1 (nivel 1 - UP - J2)
@@ -2063,81 +2590,177 @@ void switch_posicion_DOWN_J1(int num_nivel){
     case 1:
       switch(posicion_J1){
         case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
+          b_DOWN_J1 = LOW;  
         break; //break pos 0 /DOWN/N1/J1
         
         case 1:
+          b_DOWN_J1 = LOW;
         break; //break pos 1 /DOWN/N1/J1
 
         case 2:
+          b_DOWN_J1 = LOW;
         break; //break pos 2 /DOWN/N1/J1
         
         case 3:
+          for(int y = 192; y <216; y++){
+            LCD_Sprite(56,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 56, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 1;
+          b_DOWN_J1 = LOW;
         break; //break pos 3 /DOWN/N1/J1
         
         case 4:
+          for(int y = 192; y <216; y++){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 2;
+          b_DOWN_J1 = LOW;
         break; //break pos 4 /DOWN/N1/J1
         
         case 5:
+          b_DOWN_J1 = LOW;
         break; //break pos 5 /DOWN/N1/J1
         
         case 6:
+          b_DOWN_J1 = LOW;
         break; //break pos 6 /DOWN/N1/J1
         
         case 7:
+          for(int y = 160; y <184; y++){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 5;
+          b_DOWN_J1 = LOW;
         break; //break pos 7 /DOWN/N1/J1
         
         case 8:
+          for(int y = 160; y <184; y++){
+            LCD_Sprite(88,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 88, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 6;
+          b_DOWN_J1 = LOW;
         break; //break pos 8 /DOWN/N1/J1
         
         case 9:
+          b_DOWN_J1 = LOW;
         break; //break pos 9 /DOWN/N1/J1
         
         case 10:
+          for(int y = 128; y <184; y++){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 5;
+          b_DOWN_J1 = LOW;
         break; //break pos 10 /DOWN/N1/J1
         
         case 11:
+          b_DOWN_J1 = LOW;
         break; //break pos 11 /DOWN/N1/J1
         
-        case 12:
+        case 12: 
+          b_DOWN_J1 = LOW;
         break; //break pos 12 /DOWN/N1/J1
         
         case 13:
+          for(int y = 128; y <216; y++){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 2;
+          b_DOWN_J1 = LOW;
         break; //break pos 13 /DOWN/N1/J1
         
         case 14:
+          for(int y = 88; y <184; y++){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 5;
+          b_DOWN_J1 = LOW;
         break; //break pos 14 /DOWN/N1/J1
         
         case 15:
+          for(int y = 88; y <128; y++){
+            LCD_Sprite(40,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 40, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 12;
+          b_DOWN_J1 = LOW;
         break; //break pos 15 /DOWN/N1/J1
         
         case 16:
+          b_DOWN_J1 = LOW;
         break; //break pos 16 /DOWN/N1/J1
         
         case 17:
+          for(int y = 56; y <128; y++){
+            LCD_Sprite(96,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 96, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 11;
+          b_DOWN_J1 = LOW;
         break; //break pos 17 /DOWN/N1/J1
         
         case 18:
+          b_DOWN_J1 = LOW;
         break; //break pos 18 /DOWN/N1/J1
         
         case 19:
+          for(int y = 56; y <216; y++){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 2;
+          b_DOWN_J1 = LOW;
         break; //break pos 19 /DOWN/N1/J1
         
         case 20:
+          b_DOWN_J1 = LOW;
         break; //break pos 20 /DOWN/N1/J1
         
         case 21:
+          for(int y = 24; y <56; y++){
+            LCD_Sprite(32,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 32, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 18;
+          b_DOWN_J1 = LOW;
         break; //break pos 21 /DOWN/N1/J1
         
         case 22:
+          b_DOWN_J1 = LOW;
         break; //break pos 22 /DOWN/N1/J1
         
         case 23:
+          for(int y = 0; y <56; y++){
+            LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 128, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 16;
+          b_DOWN_J1 = LOW;
         break; //break pos 23 /DOWN/N1/J1
         
         case 24:
+          for(int y = 0; y <24; y++){
+            LCD_Sprite(80,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 80, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 20;
+          b_DOWN_J1 = LOW;
         break; //break pos 24 /DOWN/N1/J1
         
         case 25:
+          for(int y = 0; y <24; y++){
+            LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
+            H_line( 8, y-1, 24, 0x0000);
+          }
+          posicion_J1 = 22;
+          b_DOWN_J1 = LOW;
         break; //break pos 25 /DOWN/N1/J1
         }
     break;//break del case 1 (nivel 1 - DOWN - J1)
@@ -2158,83 +2781,109 @@ void switch_posicion_DOWN_J2(int num_nivel){
   switch(num_nivel){
 //#################### NIVEL 1 ABAJO J2 ###############################//
     case 1:
-      switch(posicion_J1){
+      switch(posicion_J2){
         case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
+          b_DOWN_J2 = LOW;
         break; //break pos 0 /DOWN/N1/J2
         
         case 1:
+          b_DOWN_J2 = LOW;
         break; //break pos 1 /DOWN/N1/J2
 
         case 2:
+          b_DOWN_J2 = LOW;
         break; //break pos 2 /DOWN/N1/J2
         
         case 3:
+          b_DOWN_J2 = LOW;
         break; //break pos 3 /DOWN/N1/J2
         
         case 4:
+          b_DOWN_J2 = LOW;
         break; //break pos 4 /DOWN/N1/J2
         
         case 5:
+          b_DOWN_J2 = LOW;
         break; //break pos 5 /DOWN/N1/J2
         
         case 6:
+          b_DOWN_J2 = LOW;
         break; //break pos 6 /DOWN/N1/J2
         
         case 7:
+          b_DOWN_J2 = LOW;
         break; //break pos 7 /DOWN/N1/J2
         
         case 8:
+          b_DOWN_J2 = LOW;
         break; //break pos 8 /DOWN/N1/J2
         
         case 9:
+          b_DOWN_J2 = LOW;
         break; //break pos 9 /DOWN/N1/J2
         
         case 10:
+          b_DOWN_J2 = LOW;
         break; //break pos 10 /DOWN/N1/J2
         
         case 11:
+          b_DOWN_J2 = LOW;
         break; //break pos 11 /DOWN/N1/J2
         
         case 12:
+          b_DOWN_J2 = LOW;
         break; //break pos 12 /DOWN/N1/J2
         
         case 13:
+          b_DOWN_J2 = LOW;
         break; //break pos 13 /DOWN/N1/J2
         
         case 14:
+          b_DOWN_J2 = LOW;
         break; //break pos 14 /DOWN/N1/J2
         
         case 15:
+          b_DOWN_J2 = LOW;
         break; //break pos 15 /DOWN/N1/J2
         
         case 16:
+          b_DOWN_J2 = LOW;
         break; //break pos 16 /DOWN/N1/J2
         
         case 17:
+          b_DOWN_J2 = LOW;
         break; //break pos 17 /DOWN/N1/J2
         
         case 18:
+          b_DOWN_J2 = LOW;
         break; //break pos 18 /DOWN/N1/J2
         
         case 19:
+          b_DOWN_J2 = LOW;
         break; //break pos 19 /DOWN/N1/J2
         
         case 20:
+          b_DOWN_J2 = LOW;
         break; //break pos 20 /DOWN/N1/J2
         
         case 21:
+          b_DOWN_J2 = LOW;
         break; //break pos 21 /DOWN/N1/J2
         
         case 22:
+          b_DOWN_J2 = LOW;
         break; //break pos 22 /DOWN/N1/J2
         
         case 23:
+          b_DOWN_J2 = LOW;
         break; //break pos 23 /DOWN/N1/J2
         
         case 24:
+          b_DOWN_J2 = LOW;
         break; //break pos 24 /DOWN/N1/J2
         
         case 25:
+          b_DOWN_J2 = LOW;
         break; //break pos 25 /DOWN/N1/J2
         }
     break;//break del case 1 (nivel 1 - DOWN - J2)
