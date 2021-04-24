@@ -67,7 +67,7 @@ volatile byte ganar_N2 = LOW;
 volatile byte ganar_N3 = LOW;
 volatile byte Listo_per_J1 = LOW;
 volatile byte Listo_per_J2 = LOW;
-volatile byte JUEGO_EN_PROGRESO = HIGH;
+volatile byte JUEGO_EN_PROGRESO = LOW;
 
 //--- BANDERAS PUSH MOVIMIENTO ---//
 volatile byte b_LEFT_J1 = LOW;
@@ -101,12 +101,12 @@ unsigned char personajes_inicio_50[10000]={0};
 
 unsigned char J1_Abajo_Derecha[2304]={0};
 unsigned char J2_Abajo_Derecha[2304]={0};
-unsigned char J1_Arriba_Derecha[2304]={0};
-unsigned char J2_Arriba_Derecha[2304]={0};
-unsigned char J1_Izquierda_Arriba[2304]={0};
-unsigned char J2_Izquierda_Arriba[2304]={0};
-unsigned char J1_Izquierda_Abajo[2304]={0};
-unsigned char J2_Izquierda_Abajo[2304]={0};
+unsigned char J1_Arriba_Derecha[1152]={0};
+unsigned char J2_Arriba_Derecha[1152]={0};
+unsigned char J1_Izquierda_Arriba[1152]={0};
+unsigned char J2_Izquierda_Arriba[1152]={0};
+unsigned char J1_Izquierda_Abajo[1152]={0};
+unsigned char J2_Izquierda_Abajo[1152]={0};
 
  
 //***************************************************************************************************************************************
@@ -150,12 +150,46 @@ void Personajes_usar(int num_per_J1, int num_per_J2);
 void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
 int ACII_to_HEX(char *puntero);
 
+//--- FUNCIONES AL APACHAR CADA BOTON EN CADA JUGADOR ---//
+void switch_posicion_LEFT_J1(int num_nivel);
+void switch_posicion_RIGHT_J1(int num_nivel);
+void switch_posicion_UP_J1(int num_nivel);
+void switch_posicion_DOWN_J1(int num_nivel);
+
+void switch_posicion_LEFT_J2(int num_nivel);
+void switch_posicion_RIGHT_J2(int num_nivel);
+void switch_posicion_UP_J2(int num_nivel);
+void switch_posicion_DOWN_J2(int num_nivel);
+
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
 extern uint8_t dec_nivel_32[];
 extern uint8_t circulo_mov[];
+extern uint8_t next_amarillo_24[];
+extern uint8_t Bloque_8_celeste[];
+extern uint8_t Bloque_8_morado[];
+extern uint8_t estrella_16[];
 
+extern uint8_t Muneco_50[];
+extern uint8_t Koala_50[];
+extern uint8_t Calavera_50[];
+extern uint8_t Mono_50[];
+
+extern uint8_t Muneco_Arriba_Derecha[];
+extern uint8_t Koala_Arriba_Derecha[];
+extern uint8_t Calavera_Arriba_Derecha[];
+extern uint8_t Mono_Arriba_Derecha[];
+
+extern uint8_t Muneco_Izquierda_Arriba[];
+extern uint8_t Koala_Izquierda_Arriba[];
+extern uint8_t Calavera_Izquierda_Arriba[];
+extern uint8_t Mono_Izquierda_Arriba[];
+
+extern uint8_t Muneco_Izquierda_Abajo[];
+extern uint8_t Koala_Izquierda_Abajo[];
+extern uint8_t Calavera_Izquierda_Abajo[];
+extern uint8_t Mono_Izquierda_Abajo[];
 //***************************************************************************************************************************************
 // Inicialización
 //***************************************************************************************************************************************
@@ -215,12 +249,8 @@ void setup() {
 
   //--- Pantalla de inicio ---//
   Static_Pantalla_Inicio();
+  //LCD_Bitmap(0, 0, 24, 24, Mono_Izquierda_Abajo);
 
-//  
-  //open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mun_24.txt");
-//  Mapa_nivel(3);
-//  LCD_Bitmap(128, 216, 24, 24, J1_Abajo_Derecha); 
-//  LCD_Bitmap(288, 216, 24, 24, J1_Abajo_Derecha); 
 }
 
 //***************************************************************************************************************************************
@@ -236,6 +266,7 @@ if (flag_boton_jugar == HIGH){
   String text1 = "JUGAR";
   LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
   flag_boton_jugar = LOW;
+  JUEGO_EN_PROGRESO  = HIGH; //Activar el loop del juego en mapas 
   delay(500);
   }
 
@@ -246,23 +277,47 @@ while (JUEGO_EN_PROGRESO  != LOW){
       Nivel_pantalla(1);
       delay(500);
       Mapa_nivel(1);
-      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+      
       while (ganar_N1 != HIGH){
+        
+        //-- MOVIMIENTOS JUGADOR 1 --//  
         if (b_LEFT_J1 == HIGH){
-          switch(posicion_J1){
-            case 0:
-                for(int x = 288; x >216; x = x-2){
-                  LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,1,0);
-                  V_line( x + 24, 80, 50, 0x0000);
-            
-            }
+          switch_posicion_LEFT_J1();
           }
+
+        if (b_RIGTH_J1 == HIGH){
+          switch_posicion_RIGHT_J1();
+          }
+
+        if (b_UP_J1 == HIGH){
+          switch_posicion_UP_J1();
+          } 
           
-          switch(posicion_J2){}
-        }
+       if (b_DOWN_J1 == HIGH){
+          switch_posicion_DOWN_J1();
+          } 
+
+          
+        //-- MOVIMIENTOS JUGADOR 2 --//  
+       if (b_LEFT_J2 == HIGH){
+          switch_posicion_LEFT_J2();
+          }
+
+        if (b_RIGTH_J2 == HIGH){
+          switch_posicion_RIGHT_J2();
+          }
+
+        if (b_UP_J2 == HIGH){
+          switch_posicion_UP_J2();
+          } 
+          
+       if (b_DOWN_J2 == HIGH){
+          switch_posicion_DOWN_J2();
+          } 
+      }
       break;
         
-        //FillRect(0, 0, 319, 239, 0x0000);
+        
     case 2:
       Nivel_pantalla(2);
       delay(500);
@@ -281,10 +336,9 @@ while (JUEGO_EN_PROGRESO  != LOW){
       while (ganar_N3 != HIGH){
         
         }
-      break;
-        } 
+      break;     
+  }   
   }
-       
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -319,8 +373,13 @@ void LEFT_J1() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J1
       cont_personajes_J1 = 0;
     }
   }
+  if (JUEGO_EN_PROGRESO == HIGH){
+    b_LEFT_J1 = HIGH;
+    }
+   
+  
 }
-  //digitalWrite(led_VERDE, HIGH);
+
 
 
 void LEFT_J2() { 
@@ -394,27 +453,27 @@ void Mov_Pantalla_inicio(void){ //Todo lo que va cambiando de la pantalla de ini
     LCD_Bitmap(259, 111, 24, 24, next_amarillo_24);
     switch(cont_personajes_J1){
 
-      case 0:                                                     //EN BASE A LA CANTIDAD DE VECES QUE PRESIONA EL BOTON SE MUESTRA EL PERSONAJE
-        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");//POR DEFAULT PERONAJE QUE SE OBTIENE DE LA SD
-        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);         //SE MUESTRA EL PERSONAJE
+      case 0:                                                       //EN BASE A LA CANTIDAD DE VECES QUE PRESIONA EL BOTON SE MUESTRA EL PERSONAJE
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");//POR DEFAULT PERONAJE QUE SE OBTIENE DE LA SD
+        LCD_Bitmap(66, 98, 50, 50, Muneco_50);                      //SE MUESTRA EL PERSONAJE
         Rect(28,110,25,25,0x0000);
-        num_personaje_J1 = 0;                                     //VARIABLE QUE INDICA CUAL PERSONAJE SE ESCOGIO
+        num_personaje_J1 = 0;                                       //VARIABLE QUE INDICA CUAL PERSONAJE SE ESCOGIO
         break;
       case 1:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
-        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, Calavera_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 1;
         break;
       case 2:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
-        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, Koala_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 2;
         break;
       case 3:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
-        LCD_Bitmap(66, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
+        LCD_Bitmap(66, 98, 50, 50, Mono_50);
         Rect(28,110,25,25,0x0000);
         num_personaje_J1 = 3;
         break;
@@ -423,26 +482,26 @@ void Mov_Pantalla_inicio(void){ //Todo lo que va cambiando de la pantalla de ini
     // PERSONAJE 2 
     switch(cont_personajes_J2){
       case 0:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
-        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Mun_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, Muneco_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 0;
         break;
       case 1:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
-        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Cal_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, Calavera_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 1;
         break;
       case 2:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
-        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Koala_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, Koala_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 2;
         break;
       case 3:
-        open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
-        LCD_Bitmap(196, 98, 50, 50, personajes_inicio_50);
+        //open_SD_bitmap(personajes_inicio_50, 10001, "Mono_50.txt");
+        LCD_Bitmap(196, 98, 50, 50, Mono_50);
         Rect(258,110,25,25,0x0000);
         num_personaje_J2 = 3;
         break;
@@ -502,29 +561,30 @@ void Personajes_usar(int num_per_J1, int num_per_J2){ //EN BASE A LO QUE ESCOGIE
       
       case 0:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mun_24.txt");
-        open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mu_UP_D.txt");
-        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mu_I_UP.txt");
-        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mu_I_DO.txt");
+        //J1_Arriba_Derecha = Muneco_Arriba_Derecha;
+       //open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mu_UP_D.txt");
+//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mu_I_UP.txt");
+//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mu_I_DO.txt");
         break;
       case 1:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Cal_24.txt");
-        open_SD_bitmap(J1_Arriba_Derecha, 2305, "C_UP_D.txt");
-        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "C_I_UP.txt");
-        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "C_I_DO.txt");
+//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "C_UP_D.txt");
+//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "C_I_UP.txt");
+//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "C_I_DO.txt");
         break;
         
       case 2:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Koala_24.txt");
-        open_SD_bitmap(J1_Arriba_Derecha, 2305, "K_UP_D.txt");
-        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "K_I_UP.txt");
-        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "K_I_DO.txt");
+//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "K_UP_D.txt");
+//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "K_I_UP.txt");
+//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "K_I_DO.txt");
         break;
 
      case 3:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mono_24.txt");
-        open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mo_UP_D.txt");
-        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mo_I_UP.txt");
-        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mo_I_DO.txt");
+//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mo_UP_D.txt");
+//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mo_I_UP.txt");
+//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mo_I_DO.txt");
         break;
       }
 
@@ -1032,7 +1092,148 @@ void Mapa_nivel(int nivel_mapa){
   }
 }
 
-  
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton izquierdo del J1 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_LEFT_J1(int num_nivel){
+  switch(posicion_J1){
+            case 0:
+                for(int x = 288; x >216; x = x-2){
+                  LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,1,0);
+                  V_line( x + 24, 80, 24, 0x0000);
+                  b_LEFT_J1 == LOW;
+                }
+          }
+  };
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton derecho del J1 y revisa la posicion y se mueve MAPA 1
+//***************************************************************************************************************************************
+void switch_posicion_RIGHT_J1(int num_nivel){
+  switch(num_nivel){
+//#################### NIVEL 1 DERECHA J1 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 DERECHA J1 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 DERECHA J1 ###############################//
+    case 3:
+      break;
+    }
+      
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton arriba del J1 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_UP_J1(int num_nivel){
+    switch(num_nivel){
+//#################### NIVEL 1 ARRIBA J1 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 ARRIBA J1 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 ARRIBA J1 ###############################//
+    case 3:
+      break;
+    }  
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton abajo del J1 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_DOWN_J1(int num_nivel){
+    switch(num_nivel){
+//#################### NIVEL 1 ABAJO J1 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 ABAJO J1 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 ABAJO J1 ###############################//
+    case 3:
+      break;
+    }  
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton izquierdo del J2 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_LEFT_J2(int num_nivel){
+    switch(num_nivel){
+//#################### NIVEL 1 IZQUIERDA J2 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 IZQUIERDA J2 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 IZQUIERDA J2 ###############################//
+    case 3:
+      break;
+    }
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton derecho del J2 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_RIGHT_J2(int num_nivel){
+  switch(num_nivel){
+//#################### NIVEL 1 DERECHA J2 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 DERECHA J2 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 DERECHA J2 ###############################//
+    case 3:
+      break;
+    }  
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton arriba del J2 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_UP_J2(int num_nivel){
+  switch(num_nivel){
+//#################### NIVEL 1 ARRIBA J2 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 ARRIBA J2 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 ARRIBA J2 ###############################//
+    case 3:
+      break;
+    }  
+};
+
+//***************************************************************************************************************************************
+// Función cuando se presiona el boton abajo del J2 y revisa la posici[on y se mueve
+//***************************************************************************************************************************************
+void switch_posicion_DOWN_J2(int num_nivel){
+  switch(num_nivel){
+//#################### NIVEL 1 ABAJO J2 ###############################//
+    case 1:
+      break;
+
+//#################### NIVEL 2 ABAJO J2 ###############################//
+    case 2:
+      break;
+//#################### NIVEL 3 ABAJO J2 ###############################//
+    case 3:
+      break;
+    }    
+};
+
+ 
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
 // Función para inicializar LCD
