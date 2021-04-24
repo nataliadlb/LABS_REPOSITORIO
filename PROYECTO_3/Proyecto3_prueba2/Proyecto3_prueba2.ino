@@ -1,19 +1,3 @@
-/*
- * ------ Proyecto # 3 ------ 
- * Natalia de León 18193
- * Katharine Senn 18012
- * Sección 20
- * Abril 2021
- */
-
-//***************************************************************************************************************************************
-/* Librería para el uso de la pantalla ILI9341 en modo 8 bits
- * Basado en el código de martinayotte - https://www.stm32duino.com/viewtopic.php?t=637
- * Adaptación, migración y creación de nuevas funciones: Pablo Mazariegos y José Morales
- * Con ayuda de: José Guerra
- * IE3027: Electrónica Digital 2 - 2019
- */
-//***************************************************************************************************************************************
 #include <stdint.h>
 #include <stdbool.h>
 #include <TM4C123GH6PM.h>
@@ -56,9 +40,7 @@ int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};
 
 File myFile;
 
-//***************************************************************************************************************************************
-// Variables
-//***************************************************************************************************************************************
+
 //--- BANDERAS ---//
 volatile byte flag_jugar = LOW; //BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGER
 volatile byte flag_boton_jugar = LOW;
@@ -67,7 +49,7 @@ volatile byte ganar_N2 = LOW;
 volatile byte ganar_N3 = LOW;
 volatile byte Listo_per_J1 = LOW;
 volatile byte Listo_per_J2 = LOW;
-volatile byte JUEGO_EN_PROGRESO = HIGH;
+volatile byte JUEGO_EN_PROGRESO = LOW;
 
 //--- BANDERAS PUSH MOVIMIENTO ---//
 volatile byte b_LEFT_J1 = LOW;
@@ -108,7 +90,6 @@ unsigned char J2_Izquierda_Arriba[1152]={0};
 unsigned char J1_Izquierda_Abajo[1152]={0};
 unsigned char J2_Izquierda_Abajo[1152]={0};
 
- 
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -190,9 +171,7 @@ extern uint8_t Muneco_Izquierda_Abajo[];
 extern uint8_t Koala_Izquierda_Abajo[];
 extern uint8_t Calavera_Izquierda_Abajo[];
 extern uint8_t Mono_Izquierda_Abajo[];
-//***************************************************************************************************************************************
-// Inicialización
-//***************************************************************************************************************************************
+
 void setup() {
   pinMode(interruptPin1, INPUT_PULLUP);
   pinMode(interruptPin2, INPUT_PULLUP);
@@ -204,9 +183,8 @@ void setup() {
   pinMode(PUSH_UP_J2, INPUT_PULLUP);
   pinMode(PUSH_DOWN_J1, INPUT_PULLUP);
   pinMode(PUSH_DOWN_J2, INPUT_PULLUP);
-  //pinMode(led_VERDE, OUTPUT); 
-  
-  SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
+
+   SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
   Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
@@ -224,125 +202,76 @@ void setup() {
   }
   Serial.println("initialization done.");
   myFile = SD.open("/"); //abrir archivos
-  printDirectory(myFile, 0); 
   //printDirectory(myFile, 0); //funcion que muestra archivos dentro de SD
   Serial.println("done!");
-  
+
   //--- INTERRUPCIONES ---//
   attachInterrupt(digitalPinToInterrupt(interruptPin1), IRS_PUSH1, FALLING);
   attachInterrupt(digitalPinToInterrupt(interruptPin2), IRS_PUSH2, FALLING);
   attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J1), LEFT_J1, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J2), LEFT_J2, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_RIGTH_J1), RIGTH_J1, FALLING);
+//  attachInterrupt(digitalPinToInterrupt(PUSH_LEFT_J2), LEFT_J2, FALLING);
+//  attachInterrupt(digitalPinToInterrupt(PUSH_RIGTH_J1), RIGTH_J1, FALLING);
   attachInterrupt(digitalPinToInterrupt(PUSH_RIGTH_J2), RIGTH_J2, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J1), UP_J1, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J2), UP_J2, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J1), DOWN_J1, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J2), DOWN_J2, FALLING);
-  
+//  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J1), UP_J1, FALLING);
+//  attachInterrupt(digitalPinToInterrupt(PUSH_UP_J2), UP_J2, FALLING);
+//  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J1), DOWN_J1, FALLING);
+//  attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J2), DOWN_J2, FALLING);
+
   LCD_Init();
   LCD_Clear(0x0000);
-
-  //--- Fondo del juego ---//
-  //LCD_Bitmap(0, 0, 320, 240, fondo);
-  //delay(500);
-
   //--- Pantalla de inicio ---//
-  //Static_Pantalla_Inicio();
+  Static_Pantalla_Inicio();
 }
 
-//***************************************************************************************************************************************
-// Loop Infinito
-//***************************************************************************************************************************************
 void loop() {
-while(flag_boton_jugar != HIGH){
-  Mov_Pantalla_inicio();
-  Listo_personajes();
-  }  
-  
-if (flag_boton_jugar == HIGH){
-  String text1 = "JUGAR";
-  LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
-  flag_boton_jugar = LOW;
-  delay(500);
-  }
 
-Personajes_usar(num_personaje_J1, num_personaje_J2);
-if (JUEGO_EN_PROGRESO == HIGH){
-  Rect(8,8,16,16,0xFFF);
-  }
-while (JUEGO_EN_PROGRESO == HIGH){
-  
-  switch (nivel){
-    case 1: //NIVEL 1
-      Nivel_pantalla(1);
-      delay(500);
-      Mapa_nivel(1);
-      //b_LEFT_J1 = LOW;
-      
-      while (ganar_N1 != HIGH){
-        
-//        //-- MOVIMIENTOS JUGADOR 1 --//  
-//        if (b_LEFT_J1 == HIGH){
-//          switch_posicion_LEFT_J1(1);
-//          }
-//
-//        if (b_RIGTH_J1 == HIGH){
-//          switch_posicion_RIGHT_J1(1);
-//          }
-//
-//        if (b_UP_J1 == HIGH){
-//          switch_posicion_UP_J1(1);
-//          } 
-//          
-//       if (b_DOWN_J1 == HIGH){
-//          switch_posicion_DOWN_J1(1);
-//          } 
-//
-//          
-//        //-- MOVIMIENTOS JUGADOR 2 --//  
-//       if (b_LEFT_J2 == HIGH){
-//          switch_posicion_LEFT_J2(1);
-//          }
-//
-//        if (b_RIGTH_J2 == HIGH){
-//          switch_posicion_RIGHT_J2(1);
-//          }
-//
-//        if (b_UP_J2 == HIGH){
-//          switch_posicion_UP_J2(1);
-//          } 
-//          
-//       if (b_DOWN_J2 == HIGH){
-//          switch_posicion_DOWN_J2(1);
-//          } 
+  if (flag_boton_jugar == LOW && JUEGO_EN_PROGRESO == LOW){
+    Mov_Pantalla_inicio();
+    Listo_personajes();
+    }
+  else if (flag_boton_jugar == HIGH && JUEGO_EN_PROGRESO == LOW) {
+    String text1 = "JUGAR";
+    
+    LCD_Print(text1, 111, 200, 2, 0x000, 0x07FF);
+    //flag_boton_jugar = LOW;
+    JUEGO_EN_PROGRESO = HIGH;
+    delay(500);
+    }
+ //else {}
+  while (JUEGO_EN_PROGRESO == HIGH){
+    switch (nivel){
+      case 1:
+        Nivel_pantalla(1);
+        delay(500);
+        Mapa_nivel(1);
+        delay(1000);
+        nivel = 2;
+      break;
+      case 2:
+        Nivel_pantalla(2);
+        delay(500);
+        Mapa_nivel(2);
+        delay(1000);
+        nivel = 3;
+      break;
+      case 3:
+        Nivel_pantalla(3);
+        delay(500);
+        Mapa_nivel(3);
+        delay(1000);
+        nivel = 1;
+      break;
+
+      case 3:
+        Nivel_pantalla(3);
+        delay(500);
+        Mapa_nivel(3);
+        delay(1000);
+        nivel = 1;
+      break;
       }
-    break; //nivel 1 en void loop  
-        
-        
-    case 2:
-      Nivel_pantalla(2);
-      delay(500);
-      Mapa_nivel(2);
-      
-      while (ganar_N2 != HIGH){
-        
-        }
-    break; //nivel 2 en void loop  
-
-    case 3:
-      Nivel_pantalla(3);
-      delay(500);
-      Mapa_nivel(3);
-      
-      while (ganar_N3 != HIGH){
-        
-        }
-     break; //nivel 3 en void loop    
-  }   
- }
+    }
 }
-
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 //                                                        FUNCIONES PROPIAS                                                                  //
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
@@ -356,8 +285,7 @@ void IRS_PUSH1() { //INTERRUPCION PUSH1: CAMBIAR PERSONAJES Y COMENZAR A JUGAR
   Listo_per_J1 = HIGH;
   cont_PUSH1++; //LUEGO DE PRESIONAR UNA VEZ PARA ESCOGER EL PERSONAJE SI SE VUELVE A PRESIONAR YA ES PARA JUGAR
   
-  if(Listo_per_J1 == HIGH & Listo_per_J2 == HIGH & cont_PUSH1 !=1){
-    JUEGO_EN_PROGRESO = HIGH; //Activar el loop del juego en mapas 
+  if(Listo_per_J1 == HIGH & Listo_per_J2 == HIGH & cont_PUSH1 !=1){ 
     flag_boton_jugar = HIGH;
     nivel = 1;
     cont_PUSH1 = 0;
@@ -377,22 +305,9 @@ void LEFT_J1() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J1
       cont_personajes_J1 = 0;
     }
   }
-  if (JUEGO_EN_PROGRESO == HIGH){
-    b_LEFT_J1 = HIGH;
-    } 
-}
-
-
-
-void LEFT_J2() { 
-  //ganar_N1 = HIGH;
-  //nivel = 2;
-  
-}
-
-void RIGTH_J1() { 
-  //ganar_N2 = HIGH;
-  //nivel = 3;
+//  if (JUEGO_EN_PROGRESO == HIGH){
+//    b_LEFT_J1 = HIGH;
+//    } 
 }
 
 void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
@@ -404,27 +319,8 @@ void RIGTH_J2() { //AQUI TAMBIEN CAMBIA PARA ESCOGER PERSONAJE J2
     }
   }
 }
-
-void UP_J1() { 
-  //digitalWrite(led_VERDE, HIGH);
-}
-
-void UP_J2() { 
-  //digitalWrite(led_VERDE, HIGH);
-}
-
-void DOWN_J1() { 
-  //digitalWrite(led_VERDE, HIGH);
-}
-
-void DOWN_J2() { 
-  //digitalWrite(led_VERDE, HIGH);
-}
-//-----------------------------------------------              FUNCIONES DEL PROGRAMA              -----------------------------------------------//
-
-
 //***************************************************************************************************************************************
-// Función para el munú de inicio
+// Función para el menú de inicio
 //***************************************************************************************************************************************
 void Static_Pantalla_Inicio(void){
   
@@ -448,7 +344,7 @@ void Static_Pantalla_Inicio(void){
           y += 7;
           }   
 }
-  
+
 void Mov_Pantalla_inicio(void){ //Todo lo que va cambiando de la pantalla de inicio
 
     LCD_Sprite(29, 111,24,24,next_amarillo_24,1,0,1,0); //FLECHAS PARA CAMBIAR DE PERSONAJE
@@ -524,7 +420,7 @@ void Listo_personajes(void){ //MUESTRAN LA PALABRA LISTO DEBAJO DEL PERSONAJE PA
     LCD_Print(text_listo_J2, 202, 160, 1, 0x000, 0x07FF);
     }
   }
-  
+
 //***************************************************************************************************************************************
 // Función para pantalla con titulo del nivel que toca
 //***************************************************************************************************************************************
@@ -554,82 +450,6 @@ void Nivel_pantalla(int Num_Nivel){ //MOSTRAR EL NIVEL
     delay(300);   
 }
 
-//***************************************************************************************************************************************
-// Función para seleccionar el bitmap del personaje a usar 
-//***************************************************************************************************************************************
-void Personajes_usar(int num_per_J1, int num_per_J2){ //EN BASE A LO QUE ESCOGIERON EN EL INICIO SE OBTIENE Y GUARDA DE SD EL PERSONAJE A USAR EN EL MAPA
-    //J1//
-    switch (num_per_J1){
-      
-      case 0:
-        open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mun_24.txt");
-        //J1_Arriba_Derecha = Muneco_Arriba_Derecha;
-       //open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mu_UP_D.txt");
-//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mu_I_UP.txt");
-//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mu_I_DO.txt");
-        break;
-      case 1:
-        open_SD_bitmap(J1_Abajo_Derecha, 2305, "Cal_24.txt");
-//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "C_UP_D.txt");
-//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "C_I_UP.txt");
-//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "C_I_DO.txt");
-        break;
-        
-      case 2:
-        open_SD_bitmap(J1_Abajo_Derecha, 2305, "Koala_24.txt");
-//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "K_UP_D.txt");
-//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "K_I_UP.txt");
-//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "K_I_DO.txt");
-        break;
-
-     case 3:
-        open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mono_24.txt");
-//        open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mo_UP_D.txt");
-//        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mo_I_UP.txt");
-//        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mo_I_DO.txt");
-        break;
-      }
-
-  //J2//
-   switch (num_per_J2){
-      case 0:
-        open_SD_bitmap(J2_Abajo_Derecha, 2305, "Mun_24.txt");
-        break;
-      case 1:
-        open_SD_bitmap(J2_Abajo_Derecha, 2305, "Cal_24.txt");
-        break;
-        
-      case 2:
-        open_SD_bitmap(J2_Abajo_Derecha, 2305, "Koala_24.txt");
-        break;
-
-     case 3:
-        open_SD_bitmap(J2_Abajo_Derecha, 2305, "Mono_24.txt");
-        break;
-      }
-  }
-  
-
-//***************************************************************************************************************************************
-// Función hacer colocar los muñecos en su posicion incial en cada mapa
-//***************************************************************************************************************************************
-void Posicion_inicial_munecos(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN LOS MUNECOS AL INICIO
-  
-  switch (nivel_pos_i){
-    case 1:
-      LCD_Sprite(128, 216, 24, 24, J1_Abajo_Derecha,1,0,1,0);
-      LCD_Sprite(128+160, 216, 24, 24, J2_Abajo_Derecha,1,0,1,0);
-      break;
-    case 2:
-      LCD_Bitmap(8, 216, 24, 24, J1_Abajo_Derecha); 
-      LCD_Bitmap(168, 216, 24, 24, J2_Abajo_Derecha); 
-      break; 
-    case 3:
-      LCD_Sprite(128, 216, 24, 24, J1_Abajo_Derecha,1,0,1,0);
-      LCD_Sprite(128+160, 216, 24, 24, J2_Abajo_Derecha,1,0,1,0); 
-      break;
-  }
-}
 
 //***************************************************************************************************************************************
 // Función hacer colocar la meta en cada mapa
@@ -738,7 +558,7 @@ void Mapa_nivel(int nivel_mapa){
 // ----------------------- MAPA 1 -----------------------------//
 // -----------------------------------------------------------//
     case 1:
-      Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
+      //Posicion_inicial_munecos(1); //poner a los munecos en su posicion inicial
       Posicion_meta(1);
       Posicion_estrellas(1);
 
@@ -861,7 +681,7 @@ void Mapa_nivel(int nivel_mapa){
 // ----------------------- MAPA 2 -----------------------------//
 // -----------------------------------------------------------//
     case 2:
-      Posicion_inicial_munecos(2); //poner a los munecos en su posicion inicial
+      //Posicion_inicial_munecos(2); //poner a los munecos en su posicion inicial
       Posicion_meta(2);
       Posicion_estrellas(2);
       
@@ -978,7 +798,7 @@ void Mapa_nivel(int nivel_mapa){
 // -----------------------------------------------------------//     
 
     case 3:
-      Posicion_inicial_munecos(3); //poner a los munecos en su posicion inicial
+      //Posicion_inicial_munecos(3); //poner a los munecos en su posicion inicial
       Posicion_meta(3);
       Posicion_estrellas(3);
       //LCD_Bitmap(296, 224, 24, 24, J2_Abajo_Derecha);
@@ -1094,796 +914,6 @@ void Mapa_nivel(int nivel_mapa){
   }
 }
 
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton izquierdo del J1 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_LEFT_J1(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 IZQUIERDA J1 ###############################//
-    case 1: //NIVEL 1 MOVERSE A LA IZQUIERDA
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-          for(int x = 288; x >216; x = x-2){
-            LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,1,0);
-            V_line( x + 24, 80, 24, 0x0000);
-            b_LEFT_J1 == LOW;
-          }
-        break; //break pos 0 /LEFT/N1/J1
-        
-        case 1:
-        break; //break pos 1 /LEFT/N1/J1
-
-        case 2:
-        break; //break pos 2 /LEFT/N1/J1
-        
-        case 3:
-        break; //break pos 3 /LEFT/N1/J1
-        
-        case 4:
-        break; //break pos 4 /LEFT/N1/J1
-        
-        case 5:
-        break; //break pos 5 /LEFT/N1/J1
-        
-        case 6:
-        break; //break pos 6 /LEFT/N1/J1
-        
-        case 7:
-        break; //break pos 7 /LEFT/N1/J1
-        
-        case 8:
-        break; //break pos 8 /LEFT/N1/J1
-        
-        case 9:
-        break; //break pos 9 /LEFT/N1/J1
-        
-        case 10:
-        break; //break pos 10 /LEFT/N1/J1
-        
-        case 11:
-        break; //break pos 11 /LEFT/N1/J1
-        
-        case 12:
-        break; //break pos 12 /LEFT/N1/J1
-        
-        case 13:
-        break; //break pos 13 /LEFT/N1/J1
-        
-        case 14:
-        break; //break pos 14 /LEFT/N1/J1
-        
-        case 15:
-        break; //break pos 15 /LEFT/N1/J1
-        
-        case 16:
-        break; //break pos 16 /LEFT/N1/J1
-        
-        case 17:
-        break; //break pos 17 /LEFT/N1/J1
-        
-        case 18:
-        break; //break pos 18 /LEFT/N1/J1
-        
-        case 19:
-        break; //break pos 19 /LEFT/N1/J1
-        
-        case 20:
-        break; //break pos 20 /LEFT/N1/J1
-        
-        case 21:
-        break; //break pos 21 /LEFT/N1/J1
-        
-        case 22:
-        break; //break pos 22 /LEFT/N1/J1
-        
-        case 23:
-        break; //break pos 23 /LEFT/N1/J1
-        
-        case 24:
-        break; //break pos 24 /LEFT/N1/J1
-        
-        case 25:
-        break; //break pos 25 /LEFT/N1/J1
-        }
-      
-    break; //break del case 1 (nivel 1 - LEFT - J1)
-
-//#################### NIVEL 2 IZQUIERDA J1 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - LEFT - J1)
-//#################### NIVEL 3 IZQUIERDA J1 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - LEFT - J1)
-    }
-          
-  };
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton derecho del J1 y revisa la posicion y se mueve MAPA 1
-//***************************************************************************************************************************************
-void switch_posicion_RIGHT_J1(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 DERECHA J1 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-        break; //break pos 0 /RIGTH/N1/J1
-        
-        case 1:
-        break; //break pos 1 /RIGTH/N1/J1
-
-        case 2:
-        break; //break pos 2 /RIGTH/N1/J1
-        
-        case 3:
-        break; //break pos 3 /RIGTH/N1/J1
-        
-        case 4:
-        break; //break pos 4 /RIGTH/N1/J1
-        
-        case 5:
-        break; //break pos 5 /RIGTH/N1/J1
-        
-        case 6:
-        break; //break pos 6 /RIGTH/N1/J1
-        
-        case 7:
-        break; //break pos 7 /RIGTH/N1/J1
-        
-        case 8:
-        break; //break pos 8 /RIGTH/N1/J1
-        
-        case 9:
-        break; //break pos 9 /RIGTH/N1/J1
-        
-        case 10:
-        break; //break pos 10 /RIGTH/N1/J1
-        
-        case 11:
-        break; //break pos 11 /RIGTH/N1/J1
-        
-        case 12:
-        break; //break pos 12 /RIGTH/N1/J1
-        
-        case 13:
-        break; //break pos 13 /RIGTH/N1/J1
-        
-        case 14:
-        break; //break pos 14 /RIGTH/N1/J1
-        
-        case 15:
-        break; //break pos 15 /RIGTH/N1/J1
-        
-        case 16:
-        break; //break pos 16 /RIGTH/N1/J1
-        
-        case 17:
-        break; //break pos 17 /RIGTH/N1/J1
-        
-        case 18:
-        break; //break pos 18 /RIGTH/N1/J1
-        
-        case 19:
-        break; //break pos 19 /RIGTH/N1/J1
-        
-        case 20:
-        break; //break pos 20 /RIGTH/N1/J1
-        
-        case 21:
-        break; //break pos 21 /RIGTH/N1/J1
-        
-        case 22:
-        break; //break pos 22 /RIGTH/N1/J1
-        
-        case 23:
-        break; //break pos 23 /RIGTH/N1/J1
-        
-        case 24:
-        break; //break pos 24 /RIGTH/N1/J1
-        
-        case 25:
-        break; //break pos 25 /RIGTH/N1
-        }
-    break; //break del case 1 (nivel 1 - RIGTH - J1)
-
-//#################### NIVEL 2 DERECHA J1 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - RIGTH - J1)
-//#################### NIVEL 3 DERECHA J1 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - RIGTH - J1)
-    }
-      
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton arriba del J1 y revisa la posicion y se mueve 
-//***************************************************************************************************************************************
-void switch_posicion_UP_J1(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 ARRIBA J1 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-        break; //break pos 0 /UP/N1/J1
-        
-        case 1:
-        break; //break pos 1 /UP/N1/J1
-
-        case 2:
-        break; //break pos 2 /UP/N1/J1
-        
-        case 3:
-        break; //break pos 3 /UP/N1/J1
-        
-        case 4:
-        break; //break pos 4 /UP/N1/J1
-        
-        case 5:
-        break; //break pos 5 /UP/N1/J1
-        
-        case 6:
-        break; //break pos 6 /UP/N1/J1
-        
-        case 7:
-        break; //break pos 7 /UP/N1/J1
-        
-        case 8:
-        break; //break pos 8 /UP/N1/J1
-        
-        case 9:
-        break; //break pos 9 /UP/N1/J1
-        
-        case 10:
-        break; //break pos 10 /UP/N1/J1
-        
-        case 11:
-        break; //break pos 11 /UP/N1/J1
-        
-        case 12:
-        break; //break pos 12 /UP/N1/J1
-        
-        case 13:
-        break; //break pos 13 /UP/N1/J1
-        
-        case 14:
-        break; //break pos 14 /UP/N1/J1
-        
-        case 15:
-        break; //break pos 15 /UP/N1/J1
-        
-        case 16:
-        break; //break pos 16 /UP/N1/J1
-        
-        case 17:
-        break; //break pos 17 /UP/N1/J1
-        
-        case 18:
-        break; //break pos 18 /UP/N1/J1
-        
-        case 19:
-        break; //break pos 19 /UP/N1/J1
-        
-        case 20:
-        break; //break pos 20 /UP/N1/J1
-        
-        case 21:
-        break; //break pos 21 /UP/N1/J1
-        
-        case 22:
-        break; //break pos 22 /UP/N1/J1
-        
-        case 23:
-        break; //break pos 23 /UP/N1/J1
-        
-        case 24:
-        break; //break pos 24 /UP/N1/J1
-        
-        case 25:
-        break; //break pos 25 /UP/N1/J1
-        }
-    break;//break del case 1 (nivel 1 - UP - J1)
-
-//#################### NIVEL 2 ARRIBA J1 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - UP - J1)
-//#################### NIVEL 3 ARRIBA J1 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - UP - J1)
-    }  
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton abajo del J1 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_DOWN_J1(int num_nivel){
-    switch(num_nivel){
-//#################### NIVEL 1 ABAJO J1 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-        break; //break pos 0 /DOWN/N1/J1
-        
-        case 1:
-        break; //break pos 1 /DOWN/N1/J1
-
-        case 2:
-        break; //break pos 2 /DOWN/N1/J1
-        
-        case 3:
-        break; //break pos 3 /DOWN/N1/J1
-        
-        case 4:
-        break; //break pos 4 /DOWN/N1/J1
-        
-        case 5:
-        break; //break pos 5 /DOWN/N1/J1
-        
-        case 6:
-        break; //break pos 6 /DOWN/N1/J1
-        
-        case 7:
-        break; //break pos 7 /DOWN/N1/J1
-        
-        case 8:
-        break; //break pos 8 /DOWN/N1/J1
-        
-        case 9:
-        break; //break pos 9 /DOWN/N1/J1
-        
-        case 10:
-        break; //break pos 10 /DOWN/N1/J1
-        
-        case 11:
-        break; //break pos 11 /DOWN/N1/J1
-        
-        case 12:
-        break; //break pos 12 /DOWN/N1/J1
-        
-        case 13:
-        break; //break pos 13 /DOWN/N1/J1
-        
-        case 14:
-        break; //break pos 14 /DOWN/N1/J1
-        
-        case 15:
-        break; //break pos 15 /DOWN/N1/J1
-        
-        case 16:
-        break; //break pos 16 /DOWN/N1/J1
-        
-        case 17:
-        break; //break pos 17 /DOWN/N1/J1
-        
-        case 18:
-        break; //break pos 18 /DOWN/N1/J1
-        
-        case 19:
-        break; //break pos 19 /DOWN/N1/J1
-        
-        case 20:
-        break; //break pos 20 /DOWN/N1/J1
-        
-        case 21:
-        break; //break pos 21 /DOWN/N1/J1
-        
-        case 22:
-        break; //break pos 22 /DOWN/N1/J1
-        
-        case 23:
-        break; //break pos 23 /DOWN/N1/J1
-        
-        case 24:
-        break; //break pos 24 /DOWN/N1/J1
-        
-        case 25:
-        break; //break pos 25 /DOWN/N1/J1
-        }
-    break;//break del case 1 (nivel 1 - DOWN - J1)
-
-//#################### NIVEL 2 ABAJO J1 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - DOWN - J1)
-//#################### NIVEL 3 ABAJO J1 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - DOWN - J1)
-    }  
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton izquierdo del J2 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_LEFT_J2(int num_nivel){
-    switch(num_nivel){
-//#################### NIVEL 1 IZQUIERDA J2 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-          for(int x = 288; x >216; x = x-2){
-            LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,1,0);
-            V_line( x + 24, 80, 24, 0x0000);
-            b_LEFT_J1 == LOW;
-          }
-        break; //break pos 0 /LEFT/N1/J2
-        
-        case 1:
-        break; //break pos 1 /LEFT/N1/J2
-
-        case 2:
-        break; //break pos 2 /LEFT/N1/J2
-        
-        case 3:
-        break; //break pos 3 /LEFT/N1/J2
-        
-        case 4:
-        break; //break pos 4 /LEFT/N1/J2
-        
-        case 5:
-        break; //break pos 5 /LEFT/N1/J2
-        
-        case 6:
-        break; //break pos 6 /LEFT/N1/J2
-        
-        case 7:
-        break; //break pos 7 /LEFT/N1/J2
-        
-        case 8:
-        break; //break pos 8 /LEFT/N1/J2
-        
-        case 9:
-        break; //break pos 9 /LEFT/N1/J2
-        
-        case 10:
-        break; //break pos 10 /LEFT/N1/J2
-        
-        case 11:
-        break; //break pos 11 /LEFT/N1/J2
-        
-        case 12:
-        break; //break pos 12 /LEFT/N1/J2
-        
-        case 13:
-        break; //break pos 13 /LEFT/N1/J2
-        
-        case 14:
-        break; //break pos 14 /LEFT/N1/J2
-        
-        case 15:
-        break; //break pos 15 /LEFT/N1/J2
-        
-        case 16:
-        break; //break pos 16 /LEFT/N1/J2
-        
-        case 17:
-        break; //break pos 17 /LEFT/N1/J2
-        
-        case 18:
-        break; //break pos 18 /LEFT/N1/J2
-        
-        case 19:
-        break; //break pos 19 /LEFT/N1/J2
-        
-        case 20:
-        break; //break pos 20 /LEFT/N1/J2
-        
-        case 21:
-        break; //break pos 21 /LEFT/N1/J2
-        
-        case 22:
-        break; //break pos 22 /LEFT/N1/J2
-        
-        case 23:
-        break; //break pos 23 /LEFT/N1/J2
-        
-        case 24:
-        break; //break pos 24 /LEFT/N1/J2
-        
-        case 25:
-        break; //break pos 25 /LEFT/N1/J2
-        }
-    break;//break del case 1 (nivel 1 - LEFT - J2)
-
-//#################### NIVEL 2 IZQUIERDA J2 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - LEFT - J2)
-//#################### NIVEL 3 IZQUIERDA J2 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - LEFT - J2)
-    }
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton derecho del J2 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_RIGHT_J2(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 DERECHA J2 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-        break; //break pos 0 /RIGTH/N1/J2
-        
-        case 1:
-        break; //break pos 1 /RIGTH/N1/J2
-
-        case 2:
-        break; //break pos 2 /RIGTH/N1/J2
-        
-        case 3:
-        break; //break pos 3 /RIGTH/N1/J2
-        
-        case 4:
-        break; //break pos 4 /RIGTH/N1/J2
-        
-        case 5:
-        break; //break pos 5 /RIGTH/N1/J2
-        
-        case 6:
-        break; //break pos 6 /RIGTH/N1/J2
-        
-        case 7:
-        break; //break pos 7 /RIGTH/N1/J2
-        
-        case 8:
-        break; //break pos 8 /RIGTH/N1/J2
-        
-        case 9:
-        break; //break pos 9 /RIGTH/N1/J2
-        
-        case 10:
-        break; //break pos 10 /RIGTH/N1/J2
-        
-        case 11:
-        break; //break pos 11 /RIGTH/N1/J2
-        
-        case 12:
-        break; //break pos 12 /RIGTH/N1/J2
-        
-        case 13:
-        break; //break pos 13 /RIGTH/N1/J2
-        
-        case 14:
-        break; //break pos 14 /RIGTH/N1/J2
-        
-        case 15:
-        break; //break pos 15 /RIGTH/N1/J2
-        
-        case 16:
-        break; //break pos 16 /RIGTH/N1/J2
-        
-        case 17:
-        break; //break pos 17 /RIGTH/N1/J2
-        
-        case 18:
-        break; //break pos 18 /RIGTH/N1/J2
-        
-        case 19:
-        break; //break pos 19 /RIGTH/N1/J2
-        
-        case 20:
-        break; //break pos 20 /RIGTH/N1/J2
-        
-        case 21:
-        break; //break pos 21 /RIGTH/N1/J2
-        
-        case 22:
-        break; //break pos 22 /RIGTH/N1/J2
-        
-        case 23:
-        break; //break pos 23 /RIGTH/N1/J2
-        
-        case 24:
-        break; //break pos 24 /RIGTH/N1/J2
-        
-        case 25:
-        break; //break pos 25 /RIGTH/N1/J2
-        }
-    break;//break del case 1 (nivel 1 - RIGTH - J2)
-
-//#################### NIVEL 2 DERECHA J2 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - RIGTH - J2)
-//#################### NIVEL 3 DERECHA J2 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - RIGTH - J2)
-    }  
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton arriba del J2 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_UP_J2(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 ARRIBA J2 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 2 
-        break; //break pos 0 /UP/N1/J2
-        
-        case 1:
-        break; //break pos 1 /UP/N1/J2
-
-        case 2:
-        break; //break pos 2 /UP/N1/J2
-        
-        case 3:
-        break; //break pos 3 /UP/N1/J2
-        
-        case 4:
-        break; //break pos 4 /UP/N1/J2
-        
-        case 5:
-        break; //break pos 5 /UP/N1/J2
-        
-        case 6:
-        break; //break pos 6 /UP/N1/J2
-        
-        case 7:
-        break; //break pos 7 /UP/N1/J2
-        
-        case 8:
-        break; //break pos 8 /UP/N1/J2
-        
-        case 9:
-        break; //break pos 9 /UP/N1/J2
-        
-        case 10:
-        break; //break pos 10 /UP/N1/J2
-        
-        case 11:
-        break; //break pos 11 /UP/N1/J2
-        
-        case 12:
-        break; //break pos 12 /UP/N1/J2
-        
-        case 13:
-        break; //break pos 13 /UP/N1/J2
-        
-        case 14:
-        break; //break pos 14 /UP/N1/J2
-        
-        case 15:
-        break; //break pos 15 /UP/N1/J2
-        
-        case 16:
-        break; //break pos 16 /UP/N1/J2
-        
-        case 17:
-        break; //break pos 17 /UP/N1/J2
-        
-        case 18:
-        break; //break pos 18 /UP/N1/J2
-        
-        case 19:
-        break; //break pos 19 /UP/N1/J2
-        
-        case 20:
-        break; //break pos 20 /UP/N1/J2
-        
-        case 21:
-        break; //break pos 21 /UP/N1/J2
-        
-        case 22:
-        break; //break pos 22 /UP/N1/J2
-        
-        case 23:
-        break; //break pos 23 /UP/N1/J2
-        
-        case 24:
-        break; //break pos 24 /UP/N1/J2
-        
-        case 25:
-        break; //break pos 25 /UP/N1/J2
-        }
-    break;//break del case 1 (nivel 1 - UP - J2)
-
-//#################### NIVEL 2 ARRIBA J2 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - UP - J2)
-//#################### NIVEL 3 ARRIBA J2 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - UP - J2)
-    }  
-};
-
-//***************************************************************************************************************************************
-// Función cuando se presiona el boton abajo del J2 y revisa la posici[on y se mueve
-//***************************************************************************************************************************************
-void switch_posicion_DOWN_J2(int num_nivel){
-  switch(num_nivel){
-//#################### NIVEL 1 ABAJO J2 ###############################//
-    case 1:
-      switch(posicion_J1){
-        case 0://POSICION INICIO NIVEL 1 JUGADOR 1 
-        break; //break pos 0 /DOWN/N1/J2
-        
-        case 1:
-        break; //break pos 1 /DOWN/N1/J2
-
-        case 2:
-        break; //break pos 2 /DOWN/N1/J2
-        
-        case 3:
-        break; //break pos 3 /DOWN/N1/J2
-        
-        case 4:
-        break; //break pos 4 /DOWN/N1/J2
-        
-        case 5:
-        break; //break pos 5 /DOWN/N1/J2
-        
-        case 6:
-        break; //break pos 6 /DOWN/N1/J2
-        
-        case 7:
-        break; //break pos 7 /DOWN/N1/J2
-        
-        case 8:
-        break; //break pos 8 /DOWN/N1/J2
-        
-        case 9:
-        break; //break pos 9 /DOWN/N1/J2
-        
-        case 10:
-        break; //break pos 10 /DOWN/N1/J2
-        
-        case 11:
-        break; //break pos 11 /DOWN/N1/J2
-        
-        case 12:
-        break; //break pos 12 /DOWN/N1/J2
-        
-        case 13:
-        break; //break pos 13 /DOWN/N1/J2
-        
-        case 14:
-        break; //break pos 14 /DOWN/N1/J2
-        
-        case 15:
-        break; //break pos 15 /DOWN/N1/J2
-        
-        case 16:
-        break; //break pos 16 /DOWN/N1/J2
-        
-        case 17:
-        break; //break pos 17 /DOWN/N1/J2
-        
-        case 18:
-        break; //break pos 18 /DOWN/N1/J2
-        
-        case 19:
-        break; //break pos 19 /DOWN/N1/J2
-        
-        case 20:
-        break; //break pos 20 /DOWN/N1/J2
-        
-        case 21:
-        break; //break pos 21 /DOWN/N1/J2
-        
-        case 22:
-        break; //break pos 22 /DOWN/N1/J2
-        
-        case 23:
-        break; //break pos 23 /DOWN/N1/J2
-        
-        case 24:
-        break; //break pos 24 /DOWN/N1/J2
-        
-        case 25:
-        break; //break pos 25 /DOWN/N1/J2
-        }
-    break;//break del case 1 (nivel 1 - DOWN - J2)
-
-//#################### NIVEL 2 ABAJO J2 ###############################//
-    case 2:
-      break;//break del case 2 (nivel 2 - DOWN - J2)
-//#################### NIVEL 3 ABAJO J2 ###############################//
-    case 3:
-      break;//break del case 3 (nivel 3 - DOWN - J2)
-    }    
-};
-
- 
 //---------------------------------------------------FUNCIONES LIBRERÍA-----------------------------------------------------------------------//
 //***************************************************************************************************************************************
 // Función para inicializar LCD
@@ -2275,31 +1305,4 @@ int ACII_to_HEX(char *puntero) {
     puntero++;
   }
   return i;
-}
-
-//***************************************************************************************************************************************
-// IMPRIMIR CONTENIDO DE SD
-//***************************************************************************************************************************************
-void printDirectory(File dir, int numTabs) {//funcion que muestra los archivos de la SD 
-   while(true) {
-     File entry =  dir.openNextFile();
-     if (! entry) {
-       // no more files
-       break;
-     }
-     for (uint8_t i=0; i<numTabs; i++) {
-       Serial.print('\t');
-     }
-     Serial.print(entry.name());
-     if (entry.isDirectory()) {
-       Serial.println("/");
-       printDirectory(entry, numTabs+1);
-     } else {
-       // files have sizes, directories do not
-       Serial.print("\t\t");
-       Serial.println(entry.size(), DEC);
-     }
-     entry.close();
-   }
-  Serial.println("");
 }
