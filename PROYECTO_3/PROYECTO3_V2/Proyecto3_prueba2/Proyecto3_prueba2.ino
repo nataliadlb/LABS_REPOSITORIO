@@ -1495,6 +1495,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 56; x >8; x = x-1){
              LCD_Sprite(x,192,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 192, 24, 0x0000);
+             FillRect(56,208,24,16,0x0000);
             }
           posicion_J1 = 4;
           b_LEFT_J1 = LOW;
@@ -1690,6 +1691,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 216; x >168; x=x-1){
             LCD_Sprite(x,192,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x+24, 192, 24, 0x0000);
+            FillRect(56+160,208,24,16,0x0000);
           }
           posicion_J2 = 4;
           b_LEFT_J2 = LOW;
@@ -1869,6 +1871,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 56; x <128; x++){
             LCD_Sprite(x,216,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 216, 24, 0x0000);
+            FillRect(56,208,24,16,0x0000);
           }
           posicion_J1 = 0;
           b_RIGHT_J1 = LOW;
@@ -2063,6 +2066,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 216; x <288; x++){
             LCD_Sprite(x,216,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 216, 24, 0x0000);
+            FillRect(56+160,208,24,16,0x0000);
           }
           posicion_J2 = 0;
           b_RIGHT_J2 = LOW;
@@ -2215,8 +2219,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
         case 23:
           b_RIGHT_J2 = LOW;
         break; //break pos 23 /RIGTH/N1/J2
-        SS
-        
+    
         case 24:
           for(int x = 240; x <288; x++){
             LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,0,0);
@@ -2652,6 +2655,7 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 192; y <216; y++){
             LCD_Sprite(56,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 56, y-1, 24, 0x0000);
+            FillRect(48,192,16,24,0x0000);
           }
           posicion_J1 = 1;
           b_DOWN_J1 = LOW;
@@ -2850,6 +2854,7 @@ void switch_posicion_DOWN_J2(int num_nivel){
           for(int y = 192; y <216; y++){
             LCD_Sprite(56+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 56+160, y-1, 24, 0x0000);
+            FillRect(48+160,192,16,24,0x0000);
           }
           posicion_J2 = 1;
           b_DOWN_J2 = LOW;
