@@ -63,6 +63,18 @@ volatile byte b_UP_J2 = LOW;
 volatile byte b_DOWN_J1 = LOW;
 volatile byte b_DOWN_J2 = LOW;
 
+//--- BANDERAS ESTRELLAS ---//
+volatile byte STAR_1_J1 = LOW;
+volatile byte STAR_1_J2 = LOW;
+volatile byte STAR_2_J1 = LOW;
+volatile byte STAR_2_J2 = LOW;
+volatile byte STAR_3_J1 = LOW;
+volatile byte STAR_3_J2 = LOW;
+volatile byte STAR_4_J1 = LOW;
+volatile byte STAR_4_J2 = LOW;
+volatile byte STAR_5_J1 = LOW;
+volatile byte STAR_5_J2 = LOW;
+
 //--- CONTADORES ---//
 int cont_PUSH1 = 0;
 int cont_personajes_J1 = 0;
@@ -74,6 +86,10 @@ int num_personaje_J1 = 0;
 int num_personaje_J2 = 0;
 int posicion_J1 = 0;
 int posicion_J2 = 0;
+int STARS_J1 = 0;
+int STARS_J2 = 0;
+int Juegos_ganados_J1 = 0;
+int Juegos_ganados_J2 = 0;
 
 //--- PUSH TIVA ---//
 const byte interruptPin1 = PUSH1; 
@@ -117,6 +133,7 @@ void Listo_personajes(void); //Mostrar texto de listo cuando se elige personaje
 
 //---- FUNCIONES PANTALLA DE NIVEL ----//
 void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toca
+void Marcador_pantalla(void);
 
 //---- FUNCIONES POSICIONES INICIALES DE OBJETOS EN MAPAS ----//
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
@@ -223,6 +240,9 @@ void setup() {
  digitalWrite(BUZZER, LOW);
   LCD_Init();
   LCD_Clear(0x0000);
+
+  
+
   //--- Pantalla de inicio ---//
   Static_Pantalla_Inicio();
 }
@@ -253,6 +273,10 @@ void loop() {
         delay(500);
         Mapa_nivel(1);
         while (ganar_N1 != HIGH){
+          String Str_estrellas_J1 = String(STARS_J1);
+          String Str_estrellas_J2 = String(STARS_J2);
+          LCD_Print(Str_estrellas_J1, 48, 0, 2, 0x07FF, 0x0000);
+          LCD_Print(Str_estrellas_J2, 48+160, 0, 2, 0x07FF, 0x0000);
         
         //-- MOVIMIENTOS JUGADOR 1 --//  
         if (b_LEFT_J1 == HIGH){
@@ -290,10 +314,11 @@ void loop() {
           switch_posicion_DOWN_J2(1);
           } 
       }
-
+      Marcador_pantalla();
         //nivel = 2;
       break;
       case 2:
+        //Marcador_pantalla();
         Nivel_pantalla(2);
         delay(500);
         Mapa_nivel(2);
@@ -561,20 +586,52 @@ void Nivel_pantalla(int Num_Nivel){ //MOSTRAR EL NIVEL
     switch (Num_Nivel){ //DECORACION SEGUN EL NIVEL
       case 1: 
          LCD_Bitmap(144, 160, 32, 32, dec_nivel_32);
-         break;
+      break;
 
       case 2:
          LCD_Bitmap(118, 160, 32, 32, dec_nivel_32);
          LCD_Bitmap(170, 160, 32, 32, dec_nivel_32);
-         break;
+      break;
 
       case 3:
          LCD_Bitmap(102, 160, 32, 32, dec_nivel_32);
          LCD_Bitmap(144, 160, 32, 32, dec_nivel_32);
          LCD_Bitmap(186, 160, 32, 32, dec_nivel_32);
-         break;
-        
-      }
+      break;
+    }    
+    delay(300);   
+
+}
+
+
+//***************************************************************************************************************************************
+// Función para pantalla con marcador luego de cada nivel
+//***************************************************************************************************************************************
+void Marcador_pantalla(void){ //MOSTRAR EL NIVEL
+    FillRect(0, 0, 320, 240, 0x0000);
+    String text_J1_estrellas = "J1";
+    String text_J2_estrellas = "J2";
+    LCD_Print(text_J1_estrellas, 65, 30, 2, 0x07FF, 0x0000);
+    LCD_Print(text_J2_estrellas, 215, 30, 2, 0x07FF, 0x0000);
+
+    String Str_estrellas_J1 = String(STARS_J1);
+    String Str_estrellas_J2 = String(STARS_J2);
+    LCD_Print(Str_estrellas_J1, 60, 60, 2, 0x07FF, 0x0000);
+    LCD_Print(Str_estrellas_J2, 210, 60, 2, 0x07FF, 0x0000);
+   
+    LCD_Bitmap(85, 60, 16, 16, estrella_16);
+    LCD_Bitmap(235, 60, 16, 16, estrella_16);
+
+    String Str_juegos_gnados_J1 = String(Juegos_ganados_J1);
+    String Str_juegos_gnados_J2 = String(Juegos_ganados_J2);
+    String text_guion = "-";
+    
+    LCD_Print(Str_estrellas_J1, 65, 140, 2, 0xFF40, 0x0000);//juegos ganados J1
+    LCD_Print(text_guion, 155, 140, 2, 0xFF40, 0x0000);//guion
+    LCD_Print(Str_estrellas_J2, 230, 140, 2, 0xFF40, 0x0000);//JUEGOS ganadas J2
+
+   
+    
     delay(300);   
 }
 
@@ -1758,7 +1815,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
         break; //break pos 10 /LEFT/N1/J2
         
         case 11:
-          for(int x = 356; x >160; x = x-1){
+          for(int x = 256; x >168; x = x-1){
              LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 128, 24, 0x0000);
              FillRect(96+160,120,24,16,0x0000);
@@ -2722,6 +2779,10 @@ void switch_posicion_DOWN_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 8, y-1, 24, 0x0000);
           }
+          if (STAR_1_J1 == LOW){
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            }
           posicion_J1 = 2;
           b_DOWN_J1 = LOW;
         break; //break pos 4 /DOWN/N1/J1
@@ -2780,6 +2841,10 @@ void switch_posicion_DOWN_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 8, y-1, 24, 0x0000);
           }
+          if (STAR_1_J1 == LOW){
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            }
           posicion_J1 = 2;
           b_DOWN_J1 = LOW;
         break; //break pos 13 /DOWN/N1/J1
@@ -2830,6 +2895,10 @@ void switch_posicion_DOWN_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 8, y-1, 24, 0x0000);
           }
+          if (STAR_1_J1 == LOW){
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            }
           posicion_J1 = 2;
           b_DOWN_J1 = LOW;
         break; //break pos 19 /DOWN/N1/J1
@@ -2929,6 +2998,10 @@ void switch_posicion_DOWN_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 8+160, y-1, 24, 0x0000);
           }
+          if (STAR_1_J2 == LOW){
+            STARS_J2++;
+            STAR_1_J2 = HIGH;
+            }
           posicion_J2 = 2;
           b_DOWN_J2 = LOW;
         break; //break pos 4 /DOWN/N1/J2
@@ -2987,6 +3060,10 @@ void switch_posicion_DOWN_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 8+160, y-1, 24, 0x0000);
           }
+          if (STAR_1_J2 == LOW){
+            STARS_J2++;
+            STAR_1_J2 = HIGH;
+            }
           posicion_J2 = 2;
           b_DOWN_J2 = LOW;
         break; //break pos 13 /DOWN/N1/J2
@@ -3032,6 +3109,10 @@ void switch_posicion_DOWN_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 8+160, y-1, 24, 0x0000);
           }
+          if (STAR_1_J2 == LOW){
+            STARS_J2++;
+            STAR_1_J2 = HIGH;
+            }
           posicion_J2 = 2;
           b_DOWN_J2 = LOW;
         break; //break pos 19 /DOWN/N1/J2
