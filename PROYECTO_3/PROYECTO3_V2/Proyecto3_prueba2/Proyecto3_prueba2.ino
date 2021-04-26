@@ -649,8 +649,8 @@ void Posicion_estrellas(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN L
       LCD_Bitmap(44, 164, 16, 16, estrella_16);
       LCD_Bitmap(204, 164, 16, 16, estrella_16);
 
-      LCD_Bitmap(132, 148, 16, 16, estrella_16);
-      LCD_Bitmap(292, 148, 16, 16, estrella_16);
+      LCD_Bitmap(132, 156, 16, 16, estrella_16);
+      LCD_Bitmap(292, 156+160, 16, 16, estrella_16);
 
       LCD_Bitmap(44, 92, 16, 16, estrella_16);
       LCD_Bitmap(204, 92, 16, 16, estrella_16);
@@ -1509,6 +1509,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
             for(int x = 128; x >88; x = x-1){
              LCD_Sprite(x,184,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 184, 24, 0x0000);
+             FillRect(128,176,24,16,0x0000);
             }
           posicion_J1 = 6;
           b_LEFT_J1 = LOW;
@@ -1531,6 +1532,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 88; x >40; x = x-1){
              LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 160, 24, 0x0000);
+             FillRect(88,176,24,16,0x0000);
             }
           posicion_J1 = 9;
           b_LEFT_J1 = LOW;
@@ -1553,6 +1555,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 96; x >8; x = x-1){
              LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 128, 24, 0x0000);
+             FillRect(96,120,24,16,0x0000);
             }
           posicion_J1 = 13;
           b_LEFT_J1 = LOW;
@@ -1562,6 +1565,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 40; x >8; x = x-1){
             LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,1,0);
             V_line( x + 24, 128, 24, 0x0000);
+            FillRect(40,120,24,16,0x0000);
           }
           posicion_J1 = 13;
           b_LEFT_J1 = LOW;
@@ -1575,6 +1579,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 128; x >40; x = x-1){
              LCD_Sprite(x,88,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 88, 24, 0x0000);
+             FillRect(128,104,24,16,0x0000);
             }
           posicion_J1 = 15;
           b_LEFT_J1 = LOW;
@@ -1588,6 +1593,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
          for(int x = 128; x >96; x = x-1){
              LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 56, 24, 0x0000);
+             FillRect(128,48,24,16,0x0000);
             }
           posicion_J1 = 17;
           b_LEFT_J1 = LOW;
@@ -1601,6 +1607,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 32; x >8; x = x-1){
              LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 56, 24, 0x0000);
+             FillRect(32,48,24,16,0x0000);
             }
           posicion_J1 = 19;
           b_LEFT_J1 = LOW;
@@ -1614,6 +1621,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 80; x >8; x = x-1){
              LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 24, 24, 0x0000);
+             FillRect(80,16,24,16,0x0000);
             }
           posicion_J1 = 22;
           b_LEFT_J1 = LOW;
@@ -1623,6 +1631,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 32; x >8; x = x-1){
              LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 24, 24, 0x0000);
+             FillRect(32,40,24,16,0x0000);
             }
           posicion_J1 = 22;
           b_LEFT_J1 = LOW;
@@ -1636,6 +1645,7 @@ void switch_posicion_LEFT_J1(int num_nivel){
           for(int x = 128; x >80; x = x-1){
              LCD_Sprite(x,0,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 0, 24, 0x0000);
+             FillRect(128,16,24,16,0x0000);
             }
           posicion_J1 = 24;
           b_LEFT_J1 = LOW;
@@ -1705,6 +1715,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
          for(int x = 288; x >248; x = x-1){
              LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 184, 24, 0x0000);
+             FillRect(128+160,176,24,16,0x0000);
             }
           posicion_J2 = 6;
           b_LEFT_J2 = LOW;
@@ -1727,6 +1738,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 248; x >200; x = x-1){
              LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 160, 24, 0x0000);
+             FillRect(88+160,176,24,16,0x0000);
             }
           posicion_J2 = 9;
           b_LEFT_J2 = LOW;
@@ -1749,6 +1761,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 356; x >160; x = x-1){
              LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 128, 24, 0x0000);
+             FillRect(96+160,120,24,16,0x0000);
             }
           posicion_J2 = 13;
           b_LEFT_J2 = LOW;
@@ -1758,6 +1771,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
          for(int x = 200; x >168; x = x-1){
             LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,1,0);
             V_line( x + 24, 128, 24, 0x0000);
+            FillRect(40+160,120,24,16,0x0000);
           }
           posicion_J2 = 13;
           b_LEFT_J2 = LOW;
@@ -1771,6 +1785,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
          for(int x = 288; x >200; x = x-1){
              LCD_Sprite(x,88,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 88, 24, 0x0000);
+             FillRect(128+160,104,24,16,0x0000);
             }
           posicion_J2 = 15;
           b_LEFT_J2 = LOW;
@@ -1784,6 +1799,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 288; x >256; x = x-1){
              LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 56, 24, 0x0000);
+             FillRect(128+160,48,24,16,0x0000);
             }
           posicion_J2 = 17;
           b_LEFT_J2 = LOW;
@@ -1797,6 +1813,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 192; x >168; x = x-1){
              LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 56, 24, 0x0000);
+             FillRect(32+160,48,24,16,0x0000);
             }
           posicion_J2 = 19;
           b_LEFT_J2 = LOW;
@@ -1810,6 +1827,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 240; x >168; x = x-1){
              LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 24, 24, 0x0000);
+             FillRect(80+160,16,24,16,0x0000);
             }
           posicion_J2 = 22;
           b_LEFT_J2 = LOW;
@@ -1819,6 +1837,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 192; x >168; x = x-1){
              LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 24, 24, 0x0000);
+             FillRect(32+160,40,24,16,0x0000);
             }
           posicion_J2 = 22;
           b_LEFT_J2 = LOW;
@@ -1832,6 +1851,7 @@ void switch_posicion_LEFT_J2(int num_nivel){
           for(int x = 288; x >240; x = x-1){
              LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 0, 24, 0x0000);
+             FillRect(128+160,16,24,16,0x0000);
             }
           posicion_J2 = 24;
           b_LEFT_J2 = LOW;
@@ -1902,6 +1922,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 88; x <128; x++){
             LCD_Sprite(x,184,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 184, 24, 0x0000);
+            FillRect(88,176,24,16,0x0000);
           }
           posicion_J1 = 5;
           b_RIGHT_J1 = LOW;
@@ -1915,6 +1936,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 88; x <128; x++){
             LCD_Sprite(x,160,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 160, 24, 0x0000);
+            FillRect(88,176,24,16,0x0000);
           }
           posicion_J1 = 7;
           b_RIGHT_J1 = LOW;
@@ -1937,6 +1959,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 96; x <128; x++){
               LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,0,0);
               V_line( x -1, 128, 24, 0x0000);
+              FillRect(96,120,24,16,0x0000);
             }
             posicion_J1 = 10;
           b_RIGHT_J1 = LOW;
@@ -1947,6 +1970,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
         for(int x = 40; x <128; x++){
             LCD_Sprite(x,128,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 128, 24, 0x0000);
+            FillRect(40,120,24,16,0x0000);
           }
           posicion_J1 = 10;
           b_RIGHT_J1 = LOW;
@@ -1969,6 +1993,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 40; x <128; x++){
             LCD_Sprite(x,88,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 88, 24, 0x0000);
+            FillRect(40,104,24,16,0x0000);
           }
           posicion_J1 = 14;  
           b_RIGHT_J1 = LOW;
@@ -1982,6 +2007,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 96; x <128; x++){
             LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 56, 24, 0x0000);
+            FillRect(96,72,24,16,0x0000);
           }
           posicion_J1 = 16;
           b_RIGHT_J1 = LOW;
@@ -1995,6 +2021,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 8; x <32; x++){
             LCD_Sprite(x,56,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 56, 24, 0x0000);
+            FillRect(8,72,24,16,0x0000);
           }
           posicion_J1 = 18;
           b_RIGHT_J1 = LOW;
@@ -2008,6 +2035,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 32; x <80; x++){
             LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 24, 24, 0x0000);
+            FillRect(32,40,24,16,0x0000);
           }
           posicion_J1 = 20;
           b_RIGHT_J1 = LOW;
@@ -2018,6 +2046,10 @@ void switch_posicion_RIGHT_J1(int num_nivel){
             LCD_Sprite(x,24,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 24, 24, 0x0000);
           }
+          FillRect(8,16,24,16,0x0000);
+          Rect(8,0,24,24,0xFF40); //J1
+          Rect(12,4,16,16,0xFF40);
+          Rect(16,8,8,8,0xFF40);
           posicion_J1 = 20;
           b_RIGHT_J1 = LOW;
         break; //break pos 22 /RIGTH/N1/J1
@@ -2030,6 +2062,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
           for(int x = 80; x <128; x++){
             LCD_Sprite(x,0,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 0, 24, 0x0000);
+            FillRect(80,16,24,16,0x0000);
           }
           posicion_J1 = 23;
           b_RIGHT_J1 = LOW;
@@ -2097,6 +2130,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 248; x <288; x++){
             LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 184, 24, 0x0000);
+            FillRect(88+160,176,24,16,0x0000);
           }
           posicion_J2 = 5;
           b_RIGHT_J2 = LOW;
@@ -2110,6 +2144,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 248; x <288; x++){
             LCD_Sprite(x,160,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 160, 24, 0x0000);
+            FillRect(88+160,176,24,16,0x0000);
           }
           posicion_J2 = 7;
           b_RIGHT_J2 = LOW;
@@ -2132,6 +2167,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
          for(int x = 256; x <288; x++){
             LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 128, 24, 0x0000);
+            FillRect(96+160,120,24,16,0x0000);
           }
           posicion_J2 = 10;
           b_RIGHT_J2 = LOW;
@@ -2141,6 +2177,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 200; x <288; x++){
             LCD_Sprite(x,128,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 128, 24, 0x0000);
+            FillRect(40+160,120,24,16,0x0000);
           }
           posicion_J2 = 10;
           b_RIGHT_J2 = LOW;
@@ -2163,6 +2200,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 200; x <288; x++){
             LCD_Sprite(x,88,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 88, 24, 0x0000);
+            FillRect(40+160,104,24,16,0x0000);
           }
           posicion_J2 = 14; 
           b_RIGHT_J2 = LOW;
@@ -2176,6 +2214,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 256; x <288; x++){
             LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 56, 24, 0x0000);
+            FillRect(96,72,24,16,0x0000);
           }
           posicion_J2 = 16;
           b_RIGHT_J2 = LOW;
@@ -2189,6 +2228,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 168; x <192; x++){
             LCD_Sprite(x,56,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 56, 24, 0x0000);
+            FillRect(8+160,72,24,16,0x0000);
           }
           posicion_J2 = 18;
           b_RIGHT_J2 = LOW;
@@ -2202,6 +2242,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 192; x <240; x++){
             LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 24, 24, 0x0000);
+            FillRect(32+160,40,24,16,0x0000);
           }
           posicion_J2 = 20;
           b_RIGHT_J2 = LOW;
@@ -2210,8 +2251,12 @@ void switch_posicion_RIGHT_J2(int num_nivel){
         case 22:
           for(int x = 168; x <240; x++){
             LCD_Sprite(x,24,24,24,J2_Abajo_Derecha,1,0,0,0);
-            V_line( x -1, 24, 24, 0x0000);
+            V_line( x -1, 24, 24, 0x0000);  
           }
+          FillRect(8+160,16,24,16,0x0000);
+          Rect(8+160,0,24,24,0xFF40); //J1
+          Rect(12+160,4,16,16,0xFF40);
+          Rect(16+160,8,8,8,0xFF40);
           posicion_J2 = 20;
           b_RIGHT_J2 = LOW;
         break; //break pos 22 /RIGTH/N1/J2
@@ -2224,6 +2269,7 @@ void switch_posicion_RIGHT_J2(int num_nivel){
           for(int x = 240; x <288; x++){
             LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 0, 24, 0x0000);
+            FillRect(80+160,16,24,16,0x0000);
           }
           posicion_J2 = 23;
           b_RIGHT_J2 = LOW;
@@ -2309,6 +2355,7 @@ void switch_posicion_UP_J1(int num_nivel){
           for(int y = 160; y >88; y--){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y+25, 24, 0x0000);
+            FillRect(120,160,16,24,0x0000);
           }
           posicion_J1 = 14;
           b_UP_J1 = LOW;
@@ -2326,6 +2373,7 @@ void switch_posicion_UP_J1(int num_nivel){
           for(int y = 128; y >88; y--){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y+25, 24, 0x0000);
+            FillRect(120,128,16,24,0x0000);
           }
           posicion_J1 = 14;
           b_UP_J1 = LOW;
@@ -2370,6 +2418,7 @@ void switch_posicion_UP_J1(int num_nivel){
           for(int y = 56; y >0; y--){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y+25, 24, 0x0000);
+            FillRect(120,56,16,24,0x0000);
           }
           posicion_J1 = 23;
           b_UP_J1 = LOW;
@@ -2383,6 +2432,7 @@ void switch_posicion_UP_J1(int num_nivel){
           for(int y = 56; y >24; y--){
             LCD_Sprite(32,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 32, y+25, 24, 0x0000);
+            FillRect(24,56,16,24,0x0000);
           }
           posicion_J1 = 21;
           b_UP_J1 = LOW;
@@ -2396,6 +2446,7 @@ void switch_posicion_UP_J1(int num_nivel){
           for(int y = 24; y >0; y--){
             LCD_Sprite(80,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 80, y+25, 24, 0x0000);
+            FillRect(72,24,16,24,0x0000);
           }
           posicion_J1 = 24;
           b_UP_J1 = LOW;
@@ -2502,6 +2553,7 @@ void switch_posicion_UP_J2(int num_nivel){
           for(int y = 160; y >88; y--){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y+25, 24, 0x0000);
+            FillRect(120+160,160,16,24,0x0000);
           }
           posicion_J2 = 14;
           b_UP_J2 = LOW;
@@ -2519,6 +2571,7 @@ void switch_posicion_UP_J2(int num_nivel){
           for(int y = 128; y >88; y--){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y+25, 24, 0x0000);
+            FillRect(120+160,128,16,24,0x0000);
           }
           posicion_J2 = 14;
           b_UP_J2 = LOW;
@@ -2563,6 +2616,7 @@ void switch_posicion_UP_J2(int num_nivel){
           for(int y = 56; y >0; y--){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y+25, 24, 0x0000);
+            FillRect(120+160,56,16,24,0x0000);
           }
           posicion_J2 = 23;
           b_UP_J2 = LOW;
@@ -2576,6 +2630,7 @@ void switch_posicion_UP_J2(int num_nivel){
           for(int y = 56; y >24; y--){
             LCD_Sprite(32+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 32+160, y+25, 24, 0x0000);
+            FillRect(24+160,56,16,24,0x0000);
           }
           posicion_J2 = 21;
           b_UP_J2 = LOW;
@@ -2589,6 +2644,7 @@ void switch_posicion_UP_J2(int num_nivel){
           for(int y = 24; y >0; y--){
             LCD_Sprite(80+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 80+160, y+25, 24, 0x0000);
+            FillRect(72+160,24,16,24,0x0000);
           }
           posicion_J2 = 24;
           b_UP_J2 = LOW;
@@ -2682,6 +2738,7 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 160; y <184; y++){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y-1, 24, 0x0000);
+            FillRect(120,160,16,24,0x0000);
           }
           posicion_J1 = 5;
           b_DOWN_J1 = LOW;
@@ -2704,6 +2761,7 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 128; y <184; y++){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y-1, 24, 0x0000);
+            FillRect(120,128,16,24,0x0000);
           }
           posicion_J1 = 5;
           b_DOWN_J1 = LOW;
@@ -2730,6 +2788,7 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 88; y <184; y++){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y-1, 24, 0x0000);
+            FillRect(120,88,16,24,0x0000);
           }
           posicion_J1 = 5;
           b_DOWN_J1 = LOW;
@@ -2796,6 +2855,7 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 0; y <56; y++){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y-1, 24, 0x0000);
+            FillRect(120,0,16,24,0x0000);
           }
           posicion_J1 = 16;
           b_DOWN_J1 = LOW;
@@ -2814,6 +2874,10 @@ void switch_posicion_DOWN_J1(int num_nivel){
           for(int y = 0; y <24; y++){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 8, y-1, 24, 0x0000);
+            Rect(8,0,24,24,0xFF40); //J1
+            Rect(12,4,16,16,0xFF40);
+            Rect(16,8,8,8,0xFF40);
+            
           }
           posicion_J1 = 22;
           b_DOWN_J1 = LOW;
@@ -2881,6 +2945,7 @@ void switch_posicion_DOWN_J2(int num_nivel){
           for(int y = 160; y <184; y++){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y-1, 24, 0x0000);
+            FillRect(120+160,160,16,24,0x0000);
           }
           posicion_J2 = 5;
           b_DOWN_J2 = LOW;
@@ -2903,6 +2968,7 @@ void switch_posicion_DOWN_J2(int num_nivel){
           for(int y = 128; y <184; y++){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y-1, 24, 0x0000);
+            FillRect(120+160,128,16,24,0x0000);
           }
           posicion_J2 = 5;
           b_DOWN_J2 = LOW;
@@ -2929,6 +2995,7 @@ void switch_posicion_DOWN_J2(int num_nivel){
           for(int y = 88; y <184; y++){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y-1, 24, 0x0000);
+            FillRect(120+160,88,16,24,0x0000);
           }
           posicion_J2 = 5;
           b_DOWN_J2 = LOW;
@@ -2990,6 +3057,7 @@ void switch_posicion_DOWN_J2(int num_nivel){
         for(int y = 0; y <56; y++){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y-1, 24, 0x0000);
+            FillRect(120+160,0,16,24,0x0000);
           }
           posicion_J2 = 16;
           b_DOWN_J2 = LOW;
@@ -3008,6 +3076,9 @@ void switch_posicion_DOWN_J2(int num_nivel){
         for(int y = 0; y <24; y++){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 8+160, y-1, 24, 0x0000);
+            Rect(168,0,24,24,0xFF40);//J2
+            Rect(172,4,16,16,0xFF40);
+            Rect(176,8,8,8,0xFF40);
           }
           posicion_J2 = 22;
           b_DOWN_J2 = LOW;
