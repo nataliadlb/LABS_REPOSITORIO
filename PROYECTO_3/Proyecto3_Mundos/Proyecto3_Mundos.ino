@@ -827,13 +827,13 @@ void Posicion_estrellas(int nivel_pos_i){ //SEGUN EL NUMERO DE MAPA SE COLOCAN L
       break; 
     case 3:
       LCD_Bitmap(12, 196, 16, 16, estrella_16);
-      LCD_Bitmap(12+160, 220, 16, 16, estrella_16);
+      LCD_Bitmap(12+160, 196, 16, 16, estrella_16);
       
       LCD_Bitmap(76, 188, 16, 16, estrella_16);
       LCD_Bitmap(76+160, 188, 16, 16, estrella_16);
 
       LCD_Bitmap(12, 84, 16, 16, estrella_16);
-      LCD_Bitmap(112+160, 84, 16, 16, estrella_16);
+      LCD_Bitmap(12+160, 84, 16, 16, estrella_16);
 
       LCD_Bitmap(44, 4, 16, 16, estrella_16);
       LCD_Bitmap(44+160, 4, 16, 16, estrella_16);
@@ -1905,6 +1905,9 @@ void switch_posicion_LEFT_J1(int num_nivel){
         break; //break pos 7 /LEFT/N2/J1
         
         case 8:
+          FillRect(88, 144, 24, 24, 0x0000);
+          LCD_Sprite(8,216,24,24,J1_Abajo_Derecha,1,0,0,0);
+          posicion_J1 = 0;          
           b_LEFT_J1 = LOW;
         break; //break pos 8 /LEFT/N2/J1
         
@@ -2069,6 +2072,11 @@ void switch_posicion_LEFT_J1(int num_nivel){
              LCD_Sprite(x,192,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 192, 24, 0x0000);
             }
+          if (STAR_1_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            } 
           FillRect(8, 192, 24, 24, 0x0000);
           LCD_Sprite(128,216,24,24,J1_Abajo_Derecha,1,0,1,0);            
           posicion_J1 = 0;
@@ -2087,6 +2095,11 @@ void switch_posicion_LEFT_J1(int num_nivel){
              LCD_Sprite(x,184,24,24,J1_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 184, 24, 0x0000);
             }
+            if (STAR_4_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_4_J1 = HIGH;
+            } 
            posicion_J1 = 6;         
           b_LEFT_J1 = LOW;
         break; //break pos 5 /LEFT/N3/J1
@@ -2464,6 +2477,9 @@ void switch_posicion_LEFT_J2(int num_nivel){
         break; //break pos 7 /LEFT/N2/J2
         
         case 8:
+          FillRect(88+160, 144, 24, 24, 0x0000);
+          LCD_Sprite(8+160,216,24,24,J2_Abajo_Derecha,1,0,0,0);
+          posicion_J2 = 0;       
           b_LEFT_J2 = LOW;
         break; //break pos 8 /LEFT/N2/J2
         
@@ -2628,6 +2644,11 @@ void switch_posicion_LEFT_J2(int num_nivel){
              LCD_Sprite(x,192,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 192, 24, 0x0000);
             }
+          if (STAR_1_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            } 
           FillRect(8+160, 192, 24, 24, 0x0000);
           LCD_Sprite(128+160,216,24,24,J2_Abajo_Derecha,1,0,1,0);            
           posicion_J2 = 0;
@@ -2646,6 +2667,11 @@ void switch_posicion_LEFT_J2(int num_nivel){
              LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,1,0);
              V_line( x + 24, 184, 24, 0x0000);
             }
+            if (STAR_4_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_4_J2 = HIGH;
+            } 
            posicion_J2 = 6;         
           b_LEFT_J2 = LOW;
         break; //break pos 5 /LEFT/N3/J2
@@ -3198,7 +3224,7 @@ void switch_posicion_RIGHT_J1(int num_nivel){
             V_line( x -1, 184, 24, 0x0000);
           }
           FillRect(128, 184, 24, 24, 0x0000);
-          LCD_Sprite(8,216,24,24,J1_Abajo_Derecha,1,0,1,0);           
+          LCD_Sprite(128,216,24,24,J1_Abajo_Derecha,1,0,1,0);           
           posicion_J1 = 0;
           b_RIGHT_J1 = LOW;
         break; //break pos 6 /RIGTH/N3/J1
@@ -3295,6 +3321,11 @@ void switch_posicion_RIGHT_J1(int num_nivel){
             LCD_Sprite(x,0,24,24,J1_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 0, 24, 0x0000);
           }
+          if (STAR_3_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_3_J1 = HIGH;
+            } 
           posicion_J1 = 19;        
           b_RIGHT_J1 = LOW;
         break; //break pos 20 /RIGTH/N3/J1
@@ -3741,8 +3772,8 @@ void switch_posicion_RIGHT_J2(int num_nivel){
             LCD_Sprite(x,184,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 184, 24, 0x0000);
           }
-          FillRect(128, 184, 24, 24, 0x0000);
-          LCD_Sprite(8,216,24,24,J2_Abajo_Derecha,1,0,1,0);           
+          FillRect(128+160, 184, 24, 24, 0x0000);
+          LCD_Sprite(128+160,216,24,24,J2_Abajo_Derecha,1,0,1,0);           
           posicion_J2 = 0;
           b_RIGHT_J2= LOW;
         break; //break pos 6 /RIGTH/N3/J2
@@ -3839,6 +3870,11 @@ void switch_posicion_RIGHT_J2(int num_nivel){
             LCD_Sprite(x,0,24,24,J2_Abajo_Derecha,1,0,0,0);
             V_line( x -1, 0, 24, 0x0000);
           }
+          if (STAR_3_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_3_J2 = HIGH;
+            } 
           posicion_J2 = 19;        
           b_RIGHT_J2 = LOW;
         break; //break pos 20 /RIGTH/N3/J2
@@ -4276,6 +4312,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(40,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(40, y+25, 24, 0x0000);
           }
+          if (STAR_3_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_3_J1 = HIGH;
+            } 
           posicion_J1 = 19;
           b_UP_J1 = LOW;
         break; //break pos 1 /UP/N3/J1
@@ -4285,6 +4326,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(8, y+25, 24, 0x0000);
           }
+          if (STAR_1_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_1_J1 = HIGH;
+            } 
           posicion_J1 = 4;
           b_UP_J1 = LOW;
         break; //break pos 2 /UP/N3/J1
@@ -4294,6 +4340,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(40,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 40, y+25, 24, 0x0000);
           }
+          if (STAR_3_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_3_J1 = HIGH;
+            } 
           posicion_J1 = 19;        
           b_UP_J1 = LOW;
         break; //break pos 3 /UP/N3/J1
@@ -4329,6 +4380,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(8, y+25, 24, 0x0000);
           }
+          if (STAR_2_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_2_J1 = HIGH;
+            } 
           posicion_J1 = 20;        
           b_UP_J1 = LOW;
         break; //break pos 8 /UP/N3/J1
@@ -4338,6 +4394,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 128, y+25, 24, 0x0000);
           }
+          if (STAR_5_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_5_J1 = HIGH;
+            } 
           posicion_J1 = 17;        
           b_UP_J1 = LOW;
         break; //break pos 9 /UP/N3/J1
@@ -4356,6 +4417,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(128, y+25, 24, 0x0000);
           }
+          if (STAR_5_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_5_J1 = HIGH;
+            }
           posicion_J1 = 17;
           b_UP_J1 = LOW;
         break; //break pos 11 /UP/N3/J1
@@ -4378,6 +4444,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(128,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(128, y+25, 24, 0x0000);
           }
+          if (STAR_5_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_5_J1 = HIGH;
+            }
           posicion_J1 = 17;        
           b_UP_J1 = LOW;
         break; //break pos 14 /UP/N3/J1
@@ -4391,6 +4462,11 @@ void switch_posicion_UP_J1(int num_nivel){
             LCD_Sprite(72,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(72, y+25, 24, 0x0000);
           }
+          if (STARS_N3_J1 == 5){
+            ganar_N3 = HIGH;
+            Juegos_ganados_J1++;
+            nivel = 4;
+            }
           posicion_J1 = 18;         
           b_UP_J1 = LOW;
         break; //break pos 16 /UP/N3/J1
@@ -4844,6 +4920,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(40+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(40+160, y+25, 24, 0x0000);
           }
+          if (STAR_3_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_3_J2 = HIGH;
+            } 
           posicion_J2 = 19;
           b_UP_J2 = LOW;
         break; //break pos 1 /UP/N3/J2
@@ -4853,6 +4934,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(8+160, y+25, 24, 0x0000);
           }
+          if (STAR_1_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_1_J2 = HIGH;
+            } 
           posicion_J2 = 4;
           b_UP_J2 = LOW;
         break; //break pos 2 /UP/N3/J2
@@ -4862,6 +4948,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(40+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 40+160, y+25, 24, 0x0000);
           }
+          if (STAR_3_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_3_J2 = HIGH;
+            } 
           posicion_J2 = 19;        
           b_UP_J2= LOW;
         break; //break pos 3 /UP/N3/J2
@@ -4897,6 +4988,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(8+160, y+25, 24, 0x0000);
           }
+          if (STAR_2_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_2_J2 = HIGH;
+            } 
           posicion_J2 = 20;        
           b_UP_J2 = LOW;
         break; //break pos 8 /UP/N3/J2
@@ -4906,6 +5002,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 128+160, y+25, 24, 0x0000);
           }
+          if (STAR_5_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_5_J2 = HIGH;
+            }
           posicion_J2 = 17;        
           b_UP_J2 = LOW;
         break; //break pos 9 /UP/N3/J2
@@ -4924,6 +5025,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(128+160, y+25, 24, 0x0000);
           }
+          if (STAR_5_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_5_J2 = HIGH;
+            }
           posicion_J2 = 17;
           b_UP_J2 = LOW;
         break; //break pos 11 /UP/N3/J2
@@ -4946,6 +5052,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(128+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(128+160, y+25, 24, 0x0000);
           }
+          if (STAR_5_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_5_J2 = HIGH;
+            }
           posicion_J2 = 17;        
           b_UP_J2 = LOW;
         break; //break pos 14 /UP/N3/J2
@@ -4959,6 +5070,11 @@ void switch_posicion_UP_J2(int num_nivel){
             LCD_Sprite(72+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(72+160, y+25, 24, 0x0000);
           }
+          if (STARS_N3_J2 == 5){
+            ganar_N3 = HIGH;
+            Juegos_ganados_J2++;
+            nivel = 4;
+            }
           posicion_J2 = 18;         
           b_UP_J2 = LOW;
         break; //break pos 16 /UP/N3/J2
@@ -5467,6 +5583,11 @@ void switch_posicion_DOWN_J1(int num_nivel){
             LCD_Sprite(72,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line( 72, y-1, 24, 0x0000);
           }
+          if (STAR_4_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_4_J1 = HIGH;
+            } 
           posicion_J1 = 6;        
           b_DOWN_J1 = LOW;
         break; //break pos 12 /DOWN/N3/J1
@@ -5534,6 +5655,11 @@ void switch_posicion_DOWN_J1(int num_nivel){
             LCD_Sprite(8,y,24,24,J1_Abajo_Derecha,1,0,0,0);
             H_line(8, y-1, 24, 0x0000);
           }
+          if (STAR_2_J1 == LOW){
+            STARS_N3_J1++;
+            STARS_J1++;
+            STAR_2_J1 = HIGH;
+            } 
           posicion_J1 = 8;          
           b_DOWN_J1 = LOW;
         break; //break pos 20 /DOWN/N3/J1
@@ -6024,6 +6150,11 @@ void switch_posicion_DOWN_J2(int num_nivel){
             LCD_Sprite(72+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line( 72+160, y-1, 24, 0x0000);
           }
+          if (STAR_4_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_4_J2 = HIGH;
+            } 
           posicion_J2 = 6;        
           b_DOWN_J2 = LOW;
         break; //break pos 12 /DOWN/N3/J2
@@ -6091,6 +6222,11 @@ void switch_posicion_DOWN_J2(int num_nivel){
             LCD_Sprite(8+160,y,24,24,J2_Abajo_Derecha,1,0,0,0);
             H_line(8+160, y-1, 24, 0x0000);
           }
+          if (STAR_2_J2 == LOW){
+            STARS_N3_J2++;
+            STARS_J2++;
+            STAR_2_J2 = HIGH;
+            } 
           posicion_J2 = 8;          
           b_DOWN_J2 = LOW;
         break; //break pos 20 /DOWN/N3/J2
