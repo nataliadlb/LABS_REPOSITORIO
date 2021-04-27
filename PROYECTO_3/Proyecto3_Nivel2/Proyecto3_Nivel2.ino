@@ -520,11 +520,11 @@ void Personajes_usar(int num_per_J1, int num_per_J2){ //EN BASE A LO QUE ESCOGIE
       
       case 0:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Mun_24.txt");
-        //J1_Arriba_Derecha = Muneco_Arriba_Derecha;
-       //open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mu_UP_D.txt");
+//       open_SD_bitmap(J1_Arriba_Derecha, 2305, "Mu_UP_D.txt");
 //        open_SD_bitmap(J1_Izquierda_Arriba, 2305, "Mu_I_UP.txt");
 //        open_SD_bitmap(J1_Izquierda_Abajo, 2305, "Mu_I_DO.txt");
         break;
+        
       case 1:
         open_SD_bitmap(J1_Abajo_Derecha, 2305, "Cal_24.txt");
 //        open_SD_bitmap(J1_Arriba_Derecha, 2305, "C_UP_D.txt");
