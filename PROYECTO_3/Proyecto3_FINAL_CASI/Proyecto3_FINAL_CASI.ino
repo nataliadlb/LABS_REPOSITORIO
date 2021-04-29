@@ -225,8 +225,9 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(PUSH_UP_J2), UP_J2, FALLING);
   attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J1), DOWN_J1, FALLING);
   attachInterrupt(digitalPinToInterrupt(PUSH_DOWN_J2), DOWN_J2, FALLING);
-
   digitalWrite(BUZZER, LOW);
+  delay(300);
+  digitalWrite(BUZZER, HIGH);
   LCD_Init();
   LCD_Clear(0x0000);
   LCD_Bitmap(20, 90, 279, 60, fondo);
@@ -257,8 +258,10 @@ void loop() {
     //digitalWrite(BUZZER, HIGH);
     switch (nivel){
       case 1:
+        digitalWrite(BUZZER, LOW);
         Nivel_pantalla(1); //Titulo del nivel al que pasan
         delay(500);
+        digitalWrite(BUZZER, HIGH);
         Mapa_nivel(1); //bloques del nivel 
         bajar_banderas_stars();
         while (ganar_N1 != HIGH){
@@ -305,8 +308,10 @@ void loop() {
       case 2:
         Marcador_pantalla(); //muestra juegos ganados y cantidad de estrellas
         delay(2500);
+        digitalWrite(BUZZER, LOW);
         Nivel_pantalla(2); //Titulo del nivel al que pasan
         delay(500);
+        digitalWrite(BUZZER, HIGH);
         Mapa_nivel(2); //bloques del nivel 
         bajar_banderas_stars();
         while(ganar_N2 != HIGH){
@@ -352,8 +357,10 @@ void loop() {
       case 3:
         Marcador_pantalla(); //muestra juegos ganados y cantidad de estrellas
         delay(2500);
+        digitalWrite(BUZZER, LOW);
         Nivel_pantalla(3); //Titulo del nivel al que pasan
         delay(500);
+        digitalWrite(BUZZER, HIGH);
         Mapa_nivel(3); //bloques del nivel 
         bajar_banderas_stars();
         
@@ -1379,7 +1386,7 @@ void Mapa_nivel(int nivel_mapa){
       }
     else if  (STARS_J1 < STARS_J2){
       String text_ganador = "GANADOR J2";
-      LCD_Print(text_ganador, 70, 110, 2, 0x07FF, 0x0000);
+      LCD_Print(text_ganador, 70, 60, 2, 0x07FF, 0x0000);
       switch (num_personaje_J2){
         case 0:
         while(JUEGO_EN_PROGRESO == HIGH){
