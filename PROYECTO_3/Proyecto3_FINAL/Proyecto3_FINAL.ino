@@ -18,7 +18,7 @@
 #include "bitmaps.h"
 #include "font.h"
 #include "lcd_registers.h"
-#include "pitches.h"
+
 
 #define LCD_RST PD_0
 #define LCD_CS PD_1
