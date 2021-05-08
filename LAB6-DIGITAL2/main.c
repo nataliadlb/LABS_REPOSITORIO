@@ -82,6 +82,7 @@ main(void)
     // Loop forever.
     //
     while(1){
+
         if(semaforo == 0){
             // Turn on the RED 1LED.
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
