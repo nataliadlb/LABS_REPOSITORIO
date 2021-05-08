@@ -44,8 +44,8 @@ File myFile;
 
 
 //--- BANDERAS ---//
-volatile byte flag_jugar = LOW; //BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGER
-volatile byte flag_boton_jugar = LOW;
+
+volatile byte flag_boton_jugar = LOW;//BANDERA QUE INDICA QUE YA TERMINARON DE ESCOGER
 volatile byte ganar_N1 = LOW;
 volatile byte ganar_N2 = LOW;
 volatile byte ganar_N3 = LOW;
@@ -134,24 +134,24 @@ void Listo_personajes(void); //Mostrar texto de listo cuando se elige personaje
 
 //---- FUNCIONES PANTALLAS ----//
 void Nivel_pantalla(int Num_Nivel); //para mostrar la pantalla del nivel que toca
-void Marcador_pantalla(void);
-void Pantalla_instrucciones(void);
+void Marcador_pantalla(void); //pantalla que muestra el marcador y cuantas estrella tiene cada jugador
+void Pantalla_instrucciones(void); //pantala que muestra las instrucciones del juego
 
 //---- FUNCIONES APARECER EN LOS MAPAS ----//
 void Posicion_inicial_munecos(int nivel_pos_i); //funcion para poner o munecos 
 void Posicion_meta(int nivel_pos_i); //funcion para poner la meta en cada mapa
 void Posicion_estrellas(int nivel_pos_i); //funcion par aponer las estrellas en cada nivel
-void Mostrar_stars_en_mapa(int nivel_pos_i);
+void Mostrar_stars_en_mapa(int nivel_pos_i); //funcion para colocar las estrellas en cada mapa
 
 //---- FUNCION DE CADA MAPA (BLOQUES, ESTRELLAS, ENEMIGOS) ----//
-void Mapa_nivel(int nivel_mapa);
+void Mapa_nivel(int nivel_mapa); //funcion para crear los mapas e imprimirlos
 
 //---- FUNCIONES PARA ESCOGER PERSONAJE EN TODO EL JEUGO ----//
-void Personajes_usar(int num_per_J1, int num_per_J2);
+void Personajes_usar(int num_per_J1, int num_per_J2); //funcion para asignar de la SD el personaje que se escogio
 
 //--- FUNCIONES PARA SD ---//
-void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename);
-int ACII_to_HEX(char *puntero);
+void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename); //funcion obtiene archivo de la SD
+int ACII_to_HEX(char *puntero);// funcion que convierte los caracteres del arreglo a HEX 
 
 //--- FUNCIONES AL APACHAR CADA BOTON EN CADA JUGADOR ---//
 void switch_posicion_LEFT_J1(int num_nivel);
@@ -165,7 +165,7 @@ void switch_posicion_UP_J2(int num_nivel);
 void switch_posicion_DOWN_J2(int num_nivel);
 
 //--- FUNCIONES BORRAR BANDERA ESTRELLAS ---//
-void bajar_banderas_stars(void);
+void bajar_banderas_stars(void); //funcion para bajar banderas al iniciar cada nivel
 
 //--- GRAFICOS ---//
 extern uint8_t fondo[];
@@ -535,13 +535,10 @@ void Pantalla_instrucciones(void){
 void Static_Pantalla_Inicio(void){
     Juegos_ganados_J1 = 0;
     Juegos_ganados_J2 = 0;
-    //FillRect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int c);
-    //FillRect(0, 0, 319, 239, 0x0000);         //FONDO
     String text_escoge_J = "ELIGE PERSONAJE"; //TEXTOS DE LA PANTALLA
     String text_boton_jugar = "JUGAR";
     String text_J1 = "J1";
     String text_J2 = "J2";
-    // LCD_Print(String text, int x, int y, int fontSize, int color, int background);
     LCD_Print(text_escoge_J, 45, 20, 2,0x0000, 0xFF40); //MOSTRAR LOS TEXTOS
     LCD_Print(text_J1, 75, 60, 2, 0xFF40, 0x0000);
     LCD_Print(text_J2, 205, 60, 2, 0xFF40, 0x0000);
