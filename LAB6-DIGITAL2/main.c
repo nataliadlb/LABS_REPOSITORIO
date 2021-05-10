@@ -99,44 +99,30 @@ main(void)
             // Turn on the RED 1LED.
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_ROJO);
             delayMs(1000);
-            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
-            //}
 
             // Turn off the RED LED.
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            //}
             delayMs(1000);
 
             // Turn on the BLUE LED.
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_AMARILLO);
-            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
-            //}
             delayMs(1000);
 
             // Turn off the BLUE LED.
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            //}
             delayMs(1000);
 
             for (i = 0; i < 3; i++){
                 // Turn on the GREEN LED.
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_VERDE);
-                //for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){ // Delay for a bit
-                // }
                 delayMs(1000);
 
                 // Turn off the LED.
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-                //for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){
-                //}
                 delayMs(1000);
             }
 
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            //}
             delayMs(1000);
             semaforo = 1;
 
@@ -145,7 +131,7 @@ main(void)
     }
 }
 
-void delayMs(uint32_t ui32Ms) {
+void delayMs(uint32_t ui32Ms) {//Funcion obtenida de https://gist.github.com/ctring/7f12d812fb594eecc493
 
     // 1 clock cycle = 1 / SysCtlClockGet() second
     // 1 SysCtlDelay = 3 clock cycle = 3 / SysCtlClockGet() second
