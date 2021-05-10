@@ -29,7 +29,7 @@
 //*****************************************************************************
 uint8_t i;
 uint8_t semaforo = 0;
-
+uint32_t value = 0;
 
 //*****************************************************************************
 //
@@ -60,7 +60,7 @@ __error__(char *pcFilename, uint32_t ui32Line)
 int
 main(void){
     //Config de reloj
-    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
 
     // Enable the GPIO port that is used for the on-board LED.
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
@@ -80,39 +80,53 @@ main(void){
     //*****************************************************************************
 
     while(1){
-
-        if(semaforo == 0){
-            // Turn on the RED 1LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_ROJO);
-            delayMs(1000);
-
-            // Turn off the RED LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            delayMs(1000);
-
-            // Turn on the BLUE LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_AMARILLO);
-            delayMs(1000);
-
-            // Turn off the BLUE LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            delayMs(1000);
-
-            for (i = 0; i < 3; i++){
-                // Turn on the GREEN LED.
+        if ( !GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4) ){
+            semaforo = 1;
+            if(semaforo == 1 & GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4)){
+                // Turn on the RED 1LED.
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_VERDE);
                 delayMs(1000);
 
-                // Turn off the LED.
+                // Turn off the RED LED.
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
                 delayMs(1000);
+
+                for (i = 0; i < 3; i++){
+                    // Turn on the GREEN LED.
+                    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_VERDE);
+                    delayMs(500);
+
+                    // Turn off the LED.
+                    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+                    delayMs(500);
+                }
+
+                // Turn on YELLOW LED
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_AMARILLO);
+                delayMs(1000);
+
+                // Turn off YELLOW
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+                delayMs(1000);
+
+                // Turn on the RED 1LED.
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_ROJO);
+                delayMs(1000);
+
+                semaforo = 0;
             }
-
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-            delayMs(1000);
-            semaforo = 1;
-
         }
+
+        //value= GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_4);
+        //if( (value & GPIO_PIN_4) == 0)
+        //    semaforo = 1;
+
+
+        //if (GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4) == 0){
+        //    semaforo = 1;
+        //}
+
+
 
     }
 }
