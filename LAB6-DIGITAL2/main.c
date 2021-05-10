@@ -1,24 +1,10 @@
 //*****************************************************************************
-//
-// blinky.c - Simple example to blink the on-board LED.
-//
-// Copyright (c) 2012-2017 Texas Instruments Incorporated.  All rights reserved.
-// Software License Agreement
-//
-// Texas Instruments (TI) is supplying this software for use solely and
-// exclusively on TI's microcontroller products. The software is owned by
-// TI and/or its suppliers, and is protected under applicable copyright
-// laws. You may not combine this software with "viral" open-source
-// software in order to form a larger program.
-//
-// THIS SOFTWARE IS PROVIDED "AS IS" AND WITH ALL FAULTS.
-// NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT
-// NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. TI SHALL NOT, UNDER ANY
-// CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-// DAMAGES, FOR ANY REASON WHATSOEVER.
-//
-// This is part of revision 2.1.4.178 of the EK-TM4C123GXL Firmware Package.
+// Laboratorio # 6
+// Natalia de León Bericán
+// carne: 18193
+// Digital 2
+// Sección 20
+// Mayo 2021
 //
 //*****************************************************************************
 
@@ -37,14 +23,18 @@
 #define LED_AMARILLO GPIO_PIN_1|GPIO_PIN_3
 
 //*****************************************************************************
+//
 // VARIABLES
+//
 //*****************************************************************************
 uint8_t i;
 uint8_t semaforo = 0;
 
 
 //*****************************************************************************
+//
 // PROTOTIPOS DE FUNCIONES
+//
 //*****************************************************************************
 void delayMs(uint32_t ui32Ms);
 
@@ -68,10 +58,8 @@ __error__(char *pcFilename, uint32_t ui32Line)
 //
 //*****************************************************************************
 int
-main(void)
-{
-    volatile uint32_t ui32Loop; //delay
-
+main(void){
+    //Config de reloj
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
 
     // Enable the GPIO port that is used for the on-board LED.
@@ -82,8 +70,6 @@ main(void)
     }
 
     // Enable the GPIO pins. OUTPUTS/INPUTS
-    // enable the GPIO pin for digital function.
-
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, LED_ROJO); //RED LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2); //BLUE LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); //GREEN LED
@@ -131,12 +117,12 @@ main(void)
     }
 }
 
-void delayMs(uint32_t ui32Ms) {//Funcion obtenida de https://gist.github.com/ctring/7f12d812fb594eecc493
 
-    // 1 clock cycle = 1 / SysCtlClockGet() second
-    // 1 SysCtlDelay = 3 clock cycle = 3 / SysCtlClockGet() second
-    // 1 second = SysCtlClockGet() / 3
-    // 0.001 second = 1 ms = SysCtlClockGet() / 3 / 1000
-
+//*****************************************************************************
+//
+// FUNCIONES
+//
+//*****************************************************************************
+void delayMs(uint32_t ui32Ms) {  //Funcion obtenida de https://gist.github.com/ctring/7f12d812fb594eecc493
     SysCtlDelay(ui32Ms * (SysCtlClockGet() / 3 / 1000));
 }
