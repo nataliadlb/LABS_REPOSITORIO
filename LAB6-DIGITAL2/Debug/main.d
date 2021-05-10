@@ -12,10 +12,13 @@ main.obj: C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/incl
 main.obj: C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/machine/_stdint.h
 main.obj: C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_stdint.h
 main.obj: C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdbool.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/tm4c123gh6pm.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/debug.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/sysctl.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/systick.h
 
 ../main.c:
 
@@ -41,6 +44,8 @@ C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/sys/_s
 
 C:/Program\ Files\ (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdbool.h:
 
+C:/ti/TivaWare_C_Series-2.1.4.178/inc/tm4c123gh6pm.h:
+
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h:
 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/debug.h:
@@ -48,4 +53,8 @@ C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/debug.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/sysctl.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/systick.h:
 

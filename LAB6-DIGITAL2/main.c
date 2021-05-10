@@ -24,16 +24,30 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "inc/tm4c123gh6pm.h"
 #include "inc/hw_memmap.h"
 #include "driverlib/debug.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
+#include "inc/hw_types.h"
+#include "driverlib/systick.h"
+
+#define LED_ROJO GPIO_PIN_1
+#define LED_VERDE GPIO_PIN_3
+#define LED_AMARILLO GPIO_PIN_1|GPIO_PIN_3
 
 //*****************************************************************************
 // VARIABLES
 //*****************************************************************************
 uint8_t i;
 uint8_t semaforo = 0;
+
+
+//*****************************************************************************
+// PROTOTIPOS DE FUNCIONES
+//*****************************************************************************
+void delayMs(uint32_t ui32Ms);
+
 
 //*****************************************************************************
 //
@@ -50,80 +64,93 @@ __error__(char *pcFilename, uint32_t ui32Line)
 
 //*****************************************************************************
 //
-// Blink the on-board LED.
+// CONFIGURACION
 //
 //*****************************************************************************
 int
 main(void)
 {
-    volatile uint32_t ui32Loop;
+    volatile uint32_t ui32Loop; //delay
 
-    //
+    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+
     // Enable the GPIO port that is used for the on-board LED.
-    //
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
-    //
     // Check if the peripheral access is enabled.
-    //
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF))
-    {
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
     }
 
-    //
-    // Enable the GPIO pin for the LED (PF3).  Set the direction as output, and
+    // Enable the GPIO pins. OUTPUTS/INPUTS
     // enable the GPIO pin for digital function.
-    //
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1); //RED LED
+
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, LED_ROJO); //RED LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2); //BLUE LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); //GREEN LED
+    GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_4); //PUSH COMO ENTRADA
 
-    //
+    //*****************************************************************************
     // Loop forever.
-    //
+    //*****************************************************************************
+
     while(1){
 
         if(semaforo == 0){
             // Turn on the RED 1LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-            for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
-            }
-            // Turn off the RED LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x0);
-            for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            }
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_ROJO);
+            delayMs(1000);
+            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
+            //}
 
+            // Turn off the RED LED.
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
+            //}
+            delayMs(1000);
 
             // Turn on the BLUE LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-            for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
-            }
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_AMARILLO);
+            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){ // Delay for a bit.
+            //}
+            delayMs(1000);
 
             // Turn off the BLUE LED.
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x0);
-            for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            }
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
+            //}
+            delayMs(1000);
 
             for (i = 0; i < 3; i++){
                 // Turn on the GREEN LED.
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
-                for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){ // Delay for a bit
-                 }
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, LED_VERDE);
+                //for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){ // Delay for a bit
+                // }
+                delayMs(1000);
 
                 // Turn off the LED.
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x0);
-                for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){
-                }
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+                //for(ui32Loop = 0; ui32Loop < 400000; ui32Loop++){
+                //}
+                delayMs(1000);
             }
 
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x0);
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x0);
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x0);
-            for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
-            }
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+            //for(ui32Loop = 0; ui32Loop < 900000; ui32Loop++){
+            //}
+            delayMs(1000);
             semaforo = 1;
 
         }
 
     }
+}
+
+void delayMs(uint32_t ui32Ms) {
+
+    // 1 clock cycle = 1 / SysCtlClockGet() second
+    // 1 SysCtlDelay = 3 clock cycle = 3 / SysCtlClockGet() second
+    // 1 second = SysCtlClockGet() / 3
+    // 0.001 second = 1 ms = SysCtlClockGet() / 3 / 1000
+
+    SysCtlDelay(ui32Ms * (SysCtlClockGet() / 3 / 1000));
 }
