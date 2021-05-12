@@ -70,7 +70,7 @@ int main(void){
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
      }
     // Configurar OUTPUTS/INPUTS
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, LED_ROJO); //RED LED
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, LED_ROJO);   //RED LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2); //BLUE LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); //GREEN LED
 
