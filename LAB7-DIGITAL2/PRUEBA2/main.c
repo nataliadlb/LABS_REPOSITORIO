@@ -43,7 +43,7 @@ uint32_t ui32Period;
 //*****************************************************************************
 void Timer0IntHandler(void);
 void InitUART(void);
-
+void UARTIntHandler(void);
 //*****************************************************************************
 //
 // The error routine that is called if the driver library encounters an error.
@@ -70,11 +70,19 @@ int main(void){
     // Config reloj para habilitar puerto F
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
+    // Config reloj para habilitar puerto B
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+
     // Verificar que se habilitó puerto F
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
      }
+
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB)){
+    }
+
     // Configurar OUTPUTS/INPUTS
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_1);
 
     /**
         CONFIGURACION TIMER
@@ -110,6 +118,19 @@ int main(void){
     // Se inicializa la comunicación UART
     InitUART();
 
+    // Se manda mensajes por UART
+    UARTCharPut(UART0_BASE, 'H');
+    UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, 'l');
+    UARTCharPut(UART0_BASE, 'a');
+    UARTCharPut(UART0_BASE, ' ');
+    UARTCharPut(UART0_BASE, 'M');
+    UARTCharPut(UART0_BASE, 'u');
+    UARTCharPut(UART0_BASE, 'n');
+    UARTCharPut(UART0_BASE, 'd');
+    UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, 10);
+    UARTCharPut(UART0_BASE, 13);
 
 
     //*****************************************************************************
@@ -134,15 +155,23 @@ void Timer0IntHandler(void){
 
     // Read the current state of the GPIO pin and
     // write back the opposite state
-    if (GPIOPinRead(GPIO_PORTF_BASE, LED_AZUL)){
-        GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO | LED_AZUL | LED_VERDE, 0);
+    if (GPIOPinRead(GPIO_PORTB_BASE, GPIO_PIN_1)){
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1 , 0);
     }
     else{
-        GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL, LED_AZUL);
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1, GPIO_PIN_1);
     }
     // Clear the timer interrupt
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 }
+
+//**************************************************************************************************************
+// Handler de la interrupcion del UART - Recordar modificar el archivo tm4c123ght6pm_startup_css.c
+//**************************************************************************************************************
+void UARTIntHandler(void){
+
+}
+
 
 //**************************************************************************************************************
 // Inicialización de UART - Tomado del ejemplo que subio Pablo Mazariegos
@@ -163,5 +192,5 @@ void InitUART(void){
             UART0_BASE, SysCtlClockGet(), 115200,
             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
 
-    //UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
+    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 }
