@@ -20,7 +20,7 @@
 
 #define LED_ROJO GPIO_PIN_1
 #define LED_VERDE GPIO_PIN_3
-#define LED_AMARILLO GPIO_PIN_1|GPIO_PIN_3
+#define LED_AMARILLO GPIO_PIN_1 | GPIO_PIN_3
 
 //*****************************************************************************
 //
