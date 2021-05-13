@@ -40,7 +40,9 @@
 uint32_t ui32Period;
 uint32_t ui32Status;
 
-int Led_status = false;
+uint8_t Ban_rojo = 0;
+uint8_t Ban_verde = 0;
+uint8_t Ban_azul = 0;
 char letra ='o';
 
 //*****************************************************************************
@@ -133,16 +135,16 @@ int main(void){
 
 
     // Se manda mensajes por UART
-    UARTCharPut(UART0_BASE, 'H');
+    UARTCharPut(UART0_BASE, 'C');
     UARTCharPut(UART0_BASE, 'o');
-    UARTCharPut(UART0_BASE, 'l');
-    UARTCharPut(UART0_BASE, 'a');
-    UARTCharPut(UART0_BASE, ' ');
-    UARTCharPut(UART0_BASE, 'M');
-    UARTCharPut(UART0_BASE, 'u');
+    UARTCharPut(UART0_BASE, 'm');
+    UARTCharPut(UART0_BASE, 'e');
     UARTCharPut(UART0_BASE, 'n');
-    UARTCharPut(UART0_BASE, 'd');
+    UARTCharPut(UART0_BASE, 'z');
+    UARTCharPut(UART0_BASE, 'a');
+    UARTCharPut(UART0_BASE, 'm');
     UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, 's');
     UARTCharPut(UART0_BASE, 10);
     UARTCharPut(UART0_BASE, 13);
 
@@ -169,39 +171,45 @@ void Timer0IntHandler(void){
     // Clear the timer interrupt
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 
+    //LED ROJO
+    if (letra == 'r' & Ban_rojo == 1){ //activar toggle led rojo
+        if (GPIOPinRead(GPIO_PORTF_BASE, LED_ROJO)){
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO, 0);
+        }
+        else {
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO , LED_ROJO);
+        }
+    }
+    else if (letra == 'r' & Ban_rojo == 2){ //desactivar toggle led rojo
+        GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO , 0);
+        Ban_rojo = 0;
+    }
+    //LED VERDE
+    else if (letra == 'g' & Ban_verde == 1){ //activar toggle led verde
+        if (GPIOPinRead(GPIO_PORTF_BASE, LED_VERDE)){
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_VERDE, 0);
+        }
+        else {
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_VERDE , LED_VERDE);
+        }
+    }
+    else if (letra == 'g' & Ban_verde == 2){ //desactivar toggle led verde
+        GPIOPinWrite(GPIO_PORTF_BASE, LED_VERDE , 0);
+        Ban_verde = 0;
+    }
 
-    switch(letra){
-
-        case 'r':
-            if (GPIOPinRead(GPIO_PORTF_BASE, LED_ROJO)){
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO, 0);
-            }
-            else {
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO , LED_ROJO);
-            }
-            break;
-
-        case 'g':
-            if (GPIOPinRead(GPIO_PORTF_BASE, LED_VERDE)){
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_VERDE, 0);
-            }
-            else {
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_VERDE , LED_VERDE);
-            }
-            break;
-
-        case 'b':
-            if (GPIOPinRead(GPIO_PORTF_BASE, LED_AZUL)){
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL, 0);
-            }
-            else {
-                GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL , LED_AZUL);
-            }
-            break;
-
-        case 'o':
-            GPIOPinWrite(GPIO_PORTF_BASE, LED_ROJO|LED_AZUL|LED_VERDE, 0);
-            break;
+    //LED AZUL
+    if (letra == 'b' & Ban_azul == 1){ //activar toggle led azul
+        if (GPIOPinRead(GPIO_PORTF_BASE, LED_AZUL)){
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL, 0);
+        }
+        else {
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL , LED_AZUL);
+        }
+    }
+    else if (letra == 'b' & Ban_azul == 2){ //desactivar toggle led azul
+        GPIOPinWrite(GPIO_PORTF_BASE, LED_AZUL , 0);
+        Ban_azul = 0;
     }
 
 }
@@ -220,6 +228,16 @@ void UARTIntHandler(void){
         while(UARTCharsAvail(UART0_BASE)){
             letra = UARTCharGet(UART0_BASE);
             UARTCharPutNonBlocking(UART0_BASE,letra);
+
+            if (letra == 'r'){ //depende el caracter se aumenta la bandera de ese led
+                Ban_rojo++;
+            }
+            else if (letra == 'g'){
+                Ban_verde++;
+            }
+            else if (letra == 'b'){
+                Ban_azul++;
+            }
 
         }
 }
@@ -256,11 +274,10 @@ void InitUART(void){
     UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
     UARTEnable (UART0_BASE);
 
-    IntPrioritySet(INT_UART0, 0x0);
-    IntRegister(INT_UART0, UARTIntHandler);
-    UARTFIFOEnable(UART0_BASE);
-
-    UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
+//    IntRegister(INT_UART0, UARTIntHandler);
+//    UARTFIFOEnable(UART0_BASE);
+//
+//    UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
 }
 
 
