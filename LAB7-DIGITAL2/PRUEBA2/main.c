@@ -37,13 +37,13 @@
 // VARIABLES
 //
 //*****************************************************************************
-uint32_t ui32Period;
-uint32_t ui32Status;
+uint32_t ui32Period; //periodo para TMR0
+uint32_t ui32Status; //Status de UART
 
 uint8_t Ban_rojo = 0;
 uint8_t Ban_verde = 0;
 uint8_t Ban_azul = 0;
-char letra ='o';
+char letra;
 
 //*****************************************************************************
 //
@@ -75,17 +75,16 @@ __error__(char *pcFilename, uint32_t ui32Line)
 //*****************************************************************************
 
 int main(void){
+
     //Config de reloj a 40MHz
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
 
     // Config reloj para habilitar puerto F
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
-
     // Verificar que se habilitó puerto F
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
      }
-
 
     // Configurar OUTPUTS/INPUTS
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
@@ -103,10 +102,6 @@ int main(void){
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER0)){
     }
 
-    SysCtlPeripheralReset (SYSCTL_PERIPH_TIMER0);
-    SysCtlDelay (5);
-
-    TimerDisable(TIMER0_BASE, TIMER_A|TIMER_B);
     // Configuración del Timer 0 como temporizador períodico
     TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
 
@@ -126,9 +121,6 @@ int main(void){
 
     // Se habilita la interrupción por el TIMER0A
     IntEnable(INT_TIMER0A);
-
-    // Se habilitan las interrupciones Globales
-    //IntMasterEnable();
 
     // Se habilita el Timer
     TimerEnable(TIMER0_BASE, TIMER_A);
@@ -227,7 +219,7 @@ void UARTIntHandler(void){
         // Loop while there are characters in the receive FIFO.
         while(UARTCharsAvail(UART0_BASE)){
             letra = UARTCharGet(UART0_BASE);
-            UARTCharPutNonBlocking(UART0_BASE,letra);
+            UARTCharPutNonBlocking(UART0_BASE,letra); //manda a un puerto especifico
 
             if (letra == 'r'){ //depende el caracter se aumenta la bandera de ese led
                 Ban_rojo++;
@@ -259,6 +251,7 @@ void InitUART(void){
     GPIOPinConfigure(GPIO_PA0_U0RX);
     GPIOPinConfigure(GPIO_PA1_U0TX);
 
+    // Se habilitan las interrupciones Globales
     IntMasterEnable();
 
     /* Make the UART pins be peripheral controlled. */
@@ -274,10 +267,6 @@ void InitUART(void){
     UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
     UARTEnable (UART0_BASE);
 
-//    IntRegister(INT_UART0, UARTIntHandler);
-//    UARTFIFOEnable(UART0_BASE);
-//
-//    UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
 }
 
 
