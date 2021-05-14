@@ -60,6 +60,7 @@ uint32_t ui32Period; //periodo para TMR0
 uint32_t ui32Status; //Status de UART
 char letra;
 uint8_t ban_ocupado = 0;
+uint8_t debouncing = 0;
 
 //*****************************************************************************
 //
@@ -196,9 +197,7 @@ int main(void){
     //*****************************************************************************
 
     while(1){
-        //Mostrar_display();
         LEDS_G_R();
-
 
     }
 }
@@ -246,29 +245,34 @@ void LEDS_G_R(void){
         GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
         GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
         ban_ocupado++;
-        Mostrar_display();
+        debouncing = 1;
+
     }
     else if((GPIOPinRead(GPIO_PORTD_BASE, PUSH_2))){
         while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){} //debouncing push2
-        GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0);
-        GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2);
+        GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0); //OFF green
+        GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
         ban_ocupado++;
-        Mostrar_display();
+        debouncing = 1; //doble debouncing
+
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_3))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}//debouncing push 3
         GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
         GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
         ban_ocupado++;
-        Mostrar_display();
+        debouncing = 1;
+
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){} //debouncing push 4
         GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
         GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
         ban_ocupado++;
-        Mostrar_display();
+        debouncing = 1;
+
     }
+    Mostrar_display();
 }
 
 //**************************************************************************************************************
@@ -276,27 +280,31 @@ void LEDS_G_R(void){
 //**************************************************************************************************************
 void Mostrar_display(void){
 
-    if (ban_ocupado == 0){
-        DISPLAY(5); //Se apagan todos
-        DISPLAY(4);
+    if (debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
+        if (ban_ocupado == 0){
+            DISPLAY(5); //Se apagan todos
+            DISPLAY(4);
+        }
+        else if (ban_ocupado == 1){
+            DISPLAY(5);
+            DISPLAY(3);
+        }
+        else if (ban_ocupado == 2){
+            DISPLAY(5);
+            DISPLAY(2);
+        }
+        else if (ban_ocupado == 3){
+            DISPLAY(5);
+            DISPLAY(1);
+        }
+        else if (ban_ocupado == 4){
+            DISPLAY(5);
+            DISPLAY(0);
+        }
+        debouncing = 0;
     }
-    else if (ban_ocupado == 1){
-        DISPLAY(5);
-        DISPLAY(3);
-    }
-    else if (ban_ocupado == 2){
-        DISPLAY(5);
-        DISPLAY(2);
-    }
-    else if (ban_ocupado == 3){
-        DISPLAY(5);
-        DISPLAY(1);
-    }
-    else if (ban_ocupado == 4){
-        DISPLAY(5);
-        DISPLAY(0);
 
-    }
+
 }
 //**************************************************************************************************************
 // FUNCION DE NUMEROS PARA DISPLAY
