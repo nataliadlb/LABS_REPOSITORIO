@@ -59,7 +59,8 @@
 uint32_t ui32Period; //periodo para TMR0
 uint32_t ui32Status; //Status de UART
 char letra;
-//uint8_t
+uint8_t ban_ocupado = 0;
+
 //*****************************************************************************
 //
 // PROTOTIPOS DE FUNCIONES
@@ -71,6 +72,8 @@ void UARTIntHandler(void);
 
 void DISPLAY(uint8_t num_display);
 void delayMs(uint32_t ui32Ms);
+void LEDS_G_R(void);
+void Mostrar_display(void);
 
 //*****************************************************************************
 //
@@ -181,38 +184,21 @@ int main(void){
 //    UARTCharPut(UART0_BASE, 10);
 //    UARTCharPut(UART0_BASE, 13);
 //
-
+    //TODOS LOS PARQUEOS DISPONIBLES
+    GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);
+    GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2);
+    GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
+    GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
+    DISPLAY(4);
+    ban_ocupado = 0;
     //*****************************************************************************
     // Loop forever.
     //*****************************************************************************
 
     while(1){
-        if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
-            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2);
-            GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
+        //Mostrar_display();
+        LEDS_G_R();
 
-            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2);
-            GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
-            GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
-            DISPLAY(0);
-            delayMs(1000);
-            DISPLAY(5);
-            DISPLAY(1);
-            delayMs(1000);
-            DISPLAY(5);
-            DISPLAY(2);
-            delayMs(1000);
-            DISPLAY(5);
-            DISPLAY(3);
-            delayMs(1000);
-            DISPLAY(5);
-            DISPLAY(4);
-            delayMs(1000);
-
-        }
 
     }
 }
@@ -251,9 +237,69 @@ void UARTIntHandler(void){
         }
 }
 
+//**************************************************************************************************************
+// FUNCION PARA ENCENDER LEDS DEPENDIENDO SI ESTA VACIO U OCUPADO
+//**************************************************************************************************************
+void LEDS_G_R(void){
+    if((GPIOPinRead(GPIO_PORTB_BASE, PUSH_1))){
+        while(GPIOPinRead(GPIO_PORTB_BASE, PUSH_1)){}//debouncing push 1
+        GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
+        GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
+        ban_ocupado++;
+        Mostrar_display();
+    }
+    else if((GPIOPinRead(GPIO_PORTD_BASE, PUSH_2))){
+        while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){} //debouncing push2
+        GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0);
+        GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2);
+        ban_ocupado++;
+        Mostrar_display();
+    }
+    else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_3))){
+        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}//debouncing push 3
+        GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
+        GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
+        ban_ocupado++;
+        Mostrar_display();
+    }
+    else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
+        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){} //debouncing push 4
+        GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
+        GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
+        ban_ocupado++;
+        Mostrar_display();
+    }
+}
 
 //**************************************************************************************************************
-// Handler de la interrupcion del UART - Recordar modificar el archivo tm4c123ght6pm_startup_css.c
+// FUNCION PARA ENCENDER LEDS DEPENDIENDO SI ESTA VACIO U OCUPADO
+//**************************************************************************************************************
+void Mostrar_display(void){
+
+    if (ban_ocupado == 0){
+        DISPLAY(5); //Se apagan todos
+        DISPLAY(4);
+    }
+    else if (ban_ocupado == 1){
+        DISPLAY(5);
+        DISPLAY(3);
+    }
+    else if (ban_ocupado == 2){
+        DISPLAY(5);
+        DISPLAY(2);
+    }
+    else if (ban_ocupado == 3){
+        DISPLAY(5);
+        DISPLAY(1);
+    }
+    else if (ban_ocupado == 4){
+        DISPLAY(5);
+        DISPLAY(0);
+
+    }
+}
+//**************************************************************************************************************
+// FUNCION DE NUMEROS PARA DISPLAY
 //**************************************************************************************************************
 void DISPLAY(uint8_t num_display){
     switch(num_display){
