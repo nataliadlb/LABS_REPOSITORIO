@@ -59,7 +59,7 @@
 uint32_t ui32Period; //periodo para TMR0
 uint32_t ui32Status; //Status de UART
 char letra;
-
+//uint8_t
 //*****************************************************************************
 //
 // PROTOTIPOS DE FUNCIONES
@@ -69,6 +69,8 @@ void Timer0IntHandler(void);
 void InitUART(void);
 void UARTIntHandler(void);
 
+void DISPLAY(uint8_t num_display);
+void delayMs(uint32_t ui32Ms);
 
 //*****************************************************************************
 //
@@ -195,15 +197,21 @@ int main(void){
             GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2);
             GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
+            DISPLAY(0);
+            delayMs(1000);
+            DISPLAY(5);
+            DISPLAY(1);
+            delayMs(1000);
+            DISPLAY(5);
+            DISPLAY(2);
+            delayMs(1000);
+            DISPLAY(5);
+            DISPLAY(3);
+            delayMs(1000);
+            DISPLAY(5);
+            DISPLAY(4);
+            delayMs(1000);
 
-            GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
-            GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
-            GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
-            GPIOPinWrite(GPIO_PORTC_BASE, led_e , led_e);
-            GPIOPinWrite(GPIO_PORTC_BASE, led_f , led_f);
-            GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
-            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
         }
 
     }
@@ -245,6 +253,60 @@ void UARTIntHandler(void){
 
 
 //**************************************************************************************************************
+// Handler de la interrupcion del UART - Recordar modificar el archivo tm4c123ght6pm_startup_css.c
+//**************************************************************************************************************
+void DISPLAY(uint8_t num_display){
+    switch(num_display){
+        case 0:
+            GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_e , led_e);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_f , led_f);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
+            break;
+        case 1:
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
+            break;
+        case 2:
+            GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_e , led_e);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
+            break;
+        case 3:
+            GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
+            break;
+        case 4:
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_f , led_f);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
+            break;
+        case 5:
+            GPIOPinWrite(GPIO_PORTB_BASE, led_a, 0);
+            GPIOPinWrite(GPIO_PORTD_BASE, led_b , 0);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_c , 0);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_d , 0);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_e , 0);
+            GPIOPinWrite(GPIO_PORTC_BASE, led_f , 0);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_g , 0);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_dp , 0);
+            break;
+    }
+}
+//**************************************************************************************************************
 // Inicialización de UART - Tomado del ejemplo que subio Pablo Mazariegos
 //**************************************************************************************************************
 void InitUART(void){
@@ -278,4 +340,9 @@ void InitUART(void){
 
 }
 
-
+//**************************************************************************************************************
+// FUNCION DELAY
+//**************************************************************************************************************
+void delayMs(uint32_t ui32Ms) {  //Funcion obtenida de https://gist.github.com/ctring/7f12d812fb594eecc493
+    SysCtlDelay(ui32Ms * (SysCtlClockGet() / 3 / 1000));
+}
