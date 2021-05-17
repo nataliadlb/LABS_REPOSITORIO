@@ -61,6 +61,8 @@ uint32_t ui32Status; //Status de UART
 char letra;
 uint8_t ban_ocupado = 0;
 uint8_t debouncing = 0;
+uint8_t Aumento = 1;
+
 
 //*****************************************************************************
 //
@@ -192,12 +194,14 @@ int main(void){
     GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
     DISPLAY(4);
     ban_ocupado = 0;
+
     //*****************************************************************************
     // Loop forever.
     //*****************************************************************************
 
     while(1){
         LEDS_G_R();
+        Mostrar_display();
 
     }
 }
@@ -242,37 +246,74 @@ void UARTIntHandler(void){
 void LEDS_G_R(void){
     if((GPIOPinRead(GPIO_PORTB_BASE, PUSH_1))){
         while(GPIOPinRead(GPIO_PORTB_BASE, PUSH_1)){}//debouncing push 1
-        GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
-        GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
-        ban_ocupado++;
-        debouncing = 1;
+        if (Aumento == 1){
+            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
+            ban_ocupado++;
+            debouncing = 1;
+        }
+        else if (Aumento == 0){
+            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);//se enciende led verde
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , 0);//se apaga led rojo
+            ban_ocupado--;
+            debouncing = 1;
+        }
+
 
     }
     else if((GPIOPinRead(GPIO_PORTD_BASE, PUSH_2))){
         while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){} //debouncing push2
-        GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0); //OFF green
-        GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
-        ban_ocupado++;
-        debouncing = 1; //doble debouncing
+        if (Aumento == 1){
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0); //OFF green
+            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
+            ban_ocupado++;
+            debouncing = 1;
+        }
+        else if (Aumento == 0){
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2); //OFF green
+            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , 0); //ON red
+            ban_ocupado--;
+            debouncing = 1;
+        }
+
 
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_3))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}//debouncing push 3
-        GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
-        GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
-        ban_ocupado++;
-        debouncing = 1;
+
+        if (Aumento == 1){
+            GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
+            ban_ocupado++;
+            debouncing = 1;
+        }
+        else if (Aumento == 0){
+            GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , 0);
+            ban_ocupado--;
+            debouncing = 1;
+        }
+
 
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){} //debouncing push 4
-        GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
-        GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
-        ban_ocupado++;
-        debouncing = 1;
+        if (Aumento == 1){
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
+            GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
+            ban_ocupado++;
+            debouncing = 1;
+        }
+        else if (Aumento == 0){
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
+            GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , 0);
+            ban_ocupado--;
+            debouncing = 1;
+        }
+
 
     }
-    Mostrar_display();
+    //Mostrar_display();
 }
 
 //**************************************************************************************************************
@@ -280,29 +321,66 @@ void LEDS_G_R(void){
 //**************************************************************************************************************
 void Mostrar_display(void){
 
-    if (debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
+    if (Aumento == 1 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
         if (ban_ocupado == 0){
             DISPLAY(5); //Se apagan todos
             DISPLAY(4);
+            Aumento = 1;
+            debouncing = 0;
         }
         else if (ban_ocupado == 1){
             DISPLAY(5);
             DISPLAY(3);
+            Aumento = 1;
+            debouncing = 0;
         }
         else if (ban_ocupado == 2){
             DISPLAY(5);
             DISPLAY(2);
+            Aumento = 1;
+            debouncing = 0;
         }
         else if (ban_ocupado == 3){
             DISPLAY(5);
             DISPLAY(1);
+            Aumento = 1;
+            debouncing = 0;
         }
         else if (ban_ocupado == 4){
             DISPLAY(5);
             DISPLAY(0);
+            Aumento = 0;
+            debouncing = 0;
         }
-        debouncing = 0;
     }
+     if (Aumento == 0 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
+         if (ban_ocupado == 3){
+             DISPLAY(5); //Se apagan todos
+             DISPLAY(1);
+             Aumento = 0;
+             debouncing = 0;
+         }
+         else if (ban_ocupado == 2){
+             DISPLAY(5);
+             DISPLAY(2);
+             Aumento = 0;
+             debouncing = 0;
+         }
+         else if (ban_ocupado == 1){
+             DISPLAY(5);
+             DISPLAY(3);
+             Aumento = 0;
+             debouncing = 0;
+         }
+         else if (ban_ocupado == 0){
+             DISPLAY(5);
+             DISPLAY(4);
+             //ban_ocupado = 0;
+             Aumento = 1;
+             debouncing = 0;
+         }
+
+        }
 
 
 }
