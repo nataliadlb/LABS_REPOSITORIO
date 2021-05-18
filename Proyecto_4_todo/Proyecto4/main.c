@@ -68,12 +68,10 @@ char letra;
 uint8_t ban_ocupado = 0;
 uint8_t debouncing = 0;
 uint8_t Aumento = 1;
+uint8_t Dismin = 0;
 
 //UART
-uint8_t Parqueo1 = 0;
-uint8_t Parqueo2 = 0;
-uint8_t Parqueo3 = 0;
-uint8_t Parqueo4 = 0;
+
 
 
 //*****************************************************************************
@@ -174,6 +172,8 @@ int main(void){
     UARTCharPut(UART0_BASE, 's');
     UARTCharPut(UART0_BASE, 10);
     UARTCharPut(UART0_BASE, 13);
+
+    ban_ocupado = 0;
 //
     //TODOS LOS PARQUEOS DISPONIBLES
     GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);
@@ -190,7 +190,7 @@ int main(void){
     while(1){
         LEDS_G_R();
         Mostrar_display();
-        MandarVal();
+        //MandarVal();
     }
 }
 
@@ -228,14 +228,19 @@ void LEDS_G_R(void){
             GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
             ban_ocupado++;
             debouncing = 1;
-            Parqueo1 = 1;
+            UARTCharPut(UART0_BASE, '0');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
         else if (Aumento == 0){
             GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);//se enciende led verde
             GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , 0);//se apaga led rojo
             ban_ocupado--;
             debouncing = 1;
-            Parqueo1 = 0;
+            Dismin = 1;
+            UARTCharPut(UART0_BASE, '1');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
 
     }
@@ -246,14 +251,19 @@ void LEDS_G_R(void){
             GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
             ban_ocupado++;
             debouncing = 1;
-            Parqueo2 = 1;
+            UARTCharPut(UART0_BASE, '2');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
         else if (Aumento == 0){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2); //OFF green
             GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , 0); //ON red
             ban_ocupado--;
             debouncing = 1;
-            Parqueo2 = 0;
+            Dismin = 1;
+            UARTCharPut(UART0_BASE, '3');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
 
 
@@ -266,14 +276,19 @@ void LEDS_G_R(void){
             GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
             ban_ocupado++;
             debouncing = 1;
-            Parqueo3 = 1;
+            UARTCharPut(UART0_BASE, '4');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
         else if (Aumento == 0){
             GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
             GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , 0);
             ban_ocupado--;
             debouncing = 1;
-            Parqueo3 = 0;
+            Dismin = 1;
+            UARTCharPut(UART0_BASE, '5');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
 
 
@@ -285,14 +300,19 @@ void LEDS_G_R(void){
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
             ban_ocupado++;
             debouncing = 1;
-            Parqueo4 = 1;
+            UARTCharPut(UART0_BASE, '6');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
         else if (Aumento == 0){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , 0);
             ban_ocupado--;
             debouncing = 1;
-            Parqueo4 = 0;
+            Dismin = 1;
+            UARTCharPut(UART0_BASE, '7');
+            UARTCharPut(UART0_BASE, 10);
+            UARTCharPut(UART0_BASE, 13);
         }
 
 
@@ -337,7 +357,7 @@ void Mostrar_display(void){
             debouncing = 0;
         }
     }
-     if (Aumento == 0 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
+     if (Dismin == 1 && Aumento == 0 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
          if (ban_ocupado == 3){
              DISPLAY(5); //Se apagan todos
              DISPLAY(1);
@@ -491,55 +511,3 @@ void delayMs(uint32_t ui32Ms) {  //Funcion obtenida de https://gist.github.com/c
     SysCtlDelay(ui32Ms * (SysCtlClockGet() / 3 / 1000));
 }
 
-//*****************************************************************************
-//
-// Send a string to the UART.  This function sends a string of characters to a
-// particular UART module.
-//
-//*****************************************************************************
-void MandarVal(void){
-    //    // Se manda mensajes por UART
-    if (Parqueo1 == 0){ //parqueo 1 vacio = 0
-        UARTCharPut(UART0_BASE, '0');
-        UARTCharPut(UART0_BASE, 10);
-        UARTCharPut(UART0_BASE, 13);
-    }
-    if (Parqueo1 == 1){ //parqueo 1 OCUPADO = 1
-            UARTCharPut(UART0_BASE, '1');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    //
-    if (Parqueo2 == 0){ //parqueo 2 VACIO = 3
-            UARTCharPut(UART0_BASE, '3');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    if (Parqueo2 == 1){ //parqueo 2 OCUPADO = 4
-            UARTCharPut(UART0_BASE, '4');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    //
-    if (Parqueo3 == 0){ //parqueo 2 VACIO = 5
-            UARTCharPut(UART0_BASE, '5');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    if (Parqueo3 == 1){ //parqueo 2 OCUPADO = 6
-            UARTCharPut(UART0_BASE, '6');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    //
-    if (Parqueo4 == 0){ //parqueo 2 VACIO = 7
-            UARTCharPut(UART0_BASE, '7');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-    if (Parqueo4 == 1){ //parqueo 2 OCUPADO = 8
-            UARTCharPut(UART0_BASE, '8');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
-    }
-}
