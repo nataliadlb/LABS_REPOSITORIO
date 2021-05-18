@@ -201,23 +201,6 @@ int main(void){
 //*****************************************************************************
 
 //**************************************************************************************************************
-// Handler de la interrupcion del UART - Recordar modificar el archivo tm4c123ght6pm_startup_css.c
-//**************************************************************************************************************
-//void UARTIntHandler(void){
-//        // Get the interrupt status
-//        ui32Status = UARTIntStatus(UART2_BASE, true);
-//
-//        // Clear the asserted interrupts.
-//        UARTIntClear(UART2_BASE, ui32Status);
-//
-//        // Loop while there are characters in the receive FIFO.
-//        while(UARTCharsAvail(UART2_BASE)){
-//            letra = UARTCharGet(UART2_BASE);
-//            UARTCharPutNonBlocking(UART2_BASE,letra); //manda a un puerto especifico
-//        }
-//}
-
-//**************************************************************************************************************
 // FUNCION PARA ENCENDER LEDS DEPENDIENDO SI ESTA VACIO U OCUPADO
 //**************************************************************************************************************
 void LEDS_G_R(void){
