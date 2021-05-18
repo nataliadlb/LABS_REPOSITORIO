@@ -102,7 +102,6 @@ String SendHTML(uint8_t led1stat) {
   ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
   ptr += "<title>Parqueos</title>\n";
   ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 50px auto; text-align: center;}\n";
-  //ptr += ".newspaper {column-count: 4 ; column-rule-style: solid}" ;
   ptr += ".column {float: left ; width: 25%; pading: 10px}\n";
   ptr += "row:after {content:""; display: table; clear: both}\n";
   ptr += "</style>\n";
@@ -115,7 +114,7 @@ String SendHTML(uint8_t led1stat) {
   ptr += "<div class=\"row\">\n";
   
     ptr += "<div class=\"column\">\n";
-      ptr += "<h2> PARQUEO 1 </h2>\n";
+      ptr += "<h2> PARQUEO 1 </h2>\n"; 
     ptr += "</div>";
 
     ptr += "<div class=\"column\">\n";
