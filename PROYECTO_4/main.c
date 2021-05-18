@@ -44,13 +44,14 @@
 #define PUSH_4 GPIO_PIN_1 // PORT E
 
 #define led_a GPIO_PIN_7 // PORT B
-#define led_b GPIO_PIN_6 // PORT D
+#define led_b GPIO_PIN_4 // PORT A
 #define led_c GPIO_PIN_7 // PORT C
 #define led_d GPIO_PIN_6 // PORT C
 #define led_e GPIO_PIN_5 // PORT C
 #define led_f GPIO_PIN_4 // PORT C
 #define led_g GPIO_PIN_3 // PORT B
 #define led_dp GPIO_PIN_6 // PORT B
+
 //*****************************************************************************
 //
 // VARIABLES
@@ -103,26 +104,30 @@ int main(void){
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
 
     // Config reloj para habilitar puertos
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     // Verificar que se habilitaron los puertos
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA)){
      }
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB)){
      }
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC)){
-         }
+     }
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD)){
-         }
+     }
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOE)){
-         }
+     }
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)){
+     }
 
     // Configurar OUTPUTS/INPUTS
     //GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_4);
     GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_1 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
     GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
     GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_6);
@@ -202,7 +207,6 @@ int main(void){
     while(1){
         LEDS_G_R();
         Mostrar_display();
-
     }
 }
 
@@ -218,8 +222,6 @@ int main(void){
 void Timer0IntHandler(void){
     // Clear the timer interrupt
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-
-
 }
 
 //**************************************************************************************************************
@@ -227,16 +229,15 @@ void Timer0IntHandler(void){
 //**************************************************************************************************************
 void UARTIntHandler(void){
         // Get the interrupt status
-        ui32Status = UARTIntStatus(UART0_BASE, true);
+        ui32Status = UARTIntStatus(UART2_BASE, true);
 
         // Clear the asserted interrupts.
-        UARTIntClear(UART0_BASE, ui32Status);
+        UARTIntClear(UART2_BASE, ui32Status);
 
         // Loop while there are characters in the receive FIFO.
-        while(UARTCharsAvail(UART0_BASE)){
-            letra = UARTCharGet(UART0_BASE);
-            UARTCharPutNonBlocking(UART0_BASE,letra); //manda a un puerto especifico
-
+        while(UARTCharsAvail(UART2_BASE)){
+            letra = UARTCharGet(UART2_BASE);
+            UARTCharPutNonBlocking(UART2_BASE,letra); //manda a un puerto especifico
         }
 }
 
@@ -381,8 +382,6 @@ void Mostrar_display(void){
          }
 
         }
-
-
 }
 //**************************************************************************************************************
 // FUNCION DE NUMEROS PARA DISPLAY
@@ -391,7 +390,7 @@ void DISPLAY(uint8_t num_display){
     switch(num_display){
         case 0:
             GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , led_b);
             GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
             GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
             GPIOPinWrite(GPIO_PORTC_BASE, led_e , led_e);
@@ -399,13 +398,13 @@ void DISPLAY(uint8_t num_display){
             GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
             break;
         case 1:
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , led_b);
             GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
             GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
             break;
         case 2:
             GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , led_b);
             GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
             GPIOPinWrite(GPIO_PORTC_BASE, led_e , led_e);
             GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
@@ -413,14 +412,14 @@ void DISPLAY(uint8_t num_display){
             break;
         case 3:
             GPIOPinWrite(GPIO_PORTB_BASE, led_a , led_a);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , led_b);
             GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
             GPIOPinWrite(GPIO_PORTC_BASE, led_d , led_d);
             GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
             GPIOPinWrite(GPIO_PORTB_BASE, led_dp , led_dp);
             break;
         case 4:
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , led_b);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , led_b);
             GPIOPinWrite(GPIO_PORTC_BASE, led_c , led_c);
             GPIOPinWrite(GPIO_PORTC_BASE, led_f , led_f);
             GPIOPinWrite(GPIO_PORTB_BASE, led_g , led_g);
@@ -428,7 +427,7 @@ void DISPLAY(uint8_t num_display){
             break;
         case 5:
             GPIOPinWrite(GPIO_PORTB_BASE, led_a, 0);
-            GPIOPinWrite(GPIO_PORTD_BASE, led_b , 0);
+            GPIOPinWrite(GPIO_PORTA_BASE, led_b , 0);
             GPIOPinWrite(GPIO_PORTC_BASE, led_c , 0);
             GPIOPinWrite(GPIO_PORTC_BASE, led_d , 0);
             GPIOPinWrite(GPIO_PORTC_BASE, led_e , 0);
@@ -444,31 +443,31 @@ void DISPLAY(uint8_t num_display){
 void InitUART(void){
 
     /*Enable the peripheral UART Module 0*/
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART0)){
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2)){
     }
 
     /*Enable the GPIO Port A*/
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
 
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
+    GPIOPinConfigure(GPIO_PD6_U2RX);
+    GPIOPinConfigure(GPIO_PD7_U2TX);
 
     // Se habilitan las interrupciones Globales
     IntMasterEnable();
 
     /* Make the UART pins be peripheral controlled. */
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7);
 
-    UARTDisable(UART0_BASE);
+    UARTDisable(UART2_BASE);
     /* Sets the configuration of a UART. */
     UARTConfigSetExpClk(
-            UART0_BASE, SysCtlClockGet(), 115200,
+            UART2_BASE, SysCtlClockGet(), 115200,
             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-    IntEnable (INT_UART0);
+    IntEnable (INT_UART2);
 
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
-    UARTEnable (UART0_BASE);
+    UARTIntEnable(UART2_BASE, UART_INT_RX | UART_INT_RT);
+    UARTEnable (UART2_BASE);
 
 }
 
