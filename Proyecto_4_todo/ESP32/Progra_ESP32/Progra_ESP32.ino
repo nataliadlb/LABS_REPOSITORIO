@@ -36,8 +36,6 @@ void setup() {
   Serial.println("Try Connecting to ");
   Serial.println(ssid);
 
-  pinMode(LED1pin, OUTPUT);
-
   // Connect to your wi-fi modem
   WiFi.begin(ssid, password);
 
@@ -67,9 +65,9 @@ void setup() {
 void loop() {
   server.handleClient();
   // reply only when you receive data:
-  if (Serial.available() > 0) {
+  if (Serial2.available() > 0) {
     // read the incoming byte:
-    Val = Serial.read();
+    Val = Serial2.read();
 
     // say what you got:
     Serial.print("I received: ");
