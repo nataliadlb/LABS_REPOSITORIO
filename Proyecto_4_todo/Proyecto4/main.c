@@ -62,18 +62,14 @@
 // VARIABLES
 //
 //*****************************************************************************
-//uint32_t ui32Period; //periodo para TMR0
-//uint32_t ui32Status; //Status de UART
-uint8_t ban_ocupado = 0;
-uint8_t debouncing = 0;
-uint8_t Aumento = 1;
-uint8_t Aumento1 = 1;
-uint8_t Aumento2 = 1;
-uint8_t Aumento3 = 1;
-uint8_t Aumento4 = 1;
-uint8_t Dismin = 0;
 
-//UART
+uint8_t ban_ocupado = 0; //valor de parqueos ocupados
+uint8_t debouncing = 0; //debouncing de todos los botones
+uint8_t Aumento1 = 1; //bandera para saber si ya se presiono push1
+uint8_t Aumento2 = 1; //bandera para saber si ya se presiono push2
+uint8_t Aumento3 = 1; //bandera para saber si ya se presiono push3
+uint8_t Aumento4 = 1; //bandera para saber si ya se presiono push4
+
 
 
 
@@ -139,12 +135,12 @@ int main(void){
      }
 
     // Configurar OUTPUTS/INPUTS
-    //GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_3 | GPIO_PIN_4);
     GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_1 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
     GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_6 | GPIO_PIN_7);
     GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_6);
     GPIOPinTypeGPIOOutput(GPIO_PORTE_BASE, GPIO_PIN_2 | GPIO_PIN_4);
+    //GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
     GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0); //PUSH COMO ENTRADA
     GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_1);
@@ -206,23 +202,22 @@ int main(void){
 void LEDS_G_R(void){
     if((GPIOPinRead(GPIO_PORTB_BASE, PUSH_1))){
         while(GPIOPinRead(GPIO_PORTB_BASE, PUSH_1)){}//debouncing push 1
-        if (Aumento == 1 && Aumento1 == 1){
+        if (Aumento1 == 1){
             GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
             GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
-            ban_ocupado++;
-            debouncing = 1;
-            Aumento1 = 0;
-            UARTCharPut(UART0_BASE, '0');
+            ban_ocupado++; //aumenta valor de parqueos ocupados
+            debouncing = 1; //bandera de debouncing
+            Aumento1 = 0; //control de que si ya se apacho una vez el boton
+            UARTCharPut(UART0_BASE, '0'); //se manda el caracter por UART
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
         }
-        else if (Aumento == 0 && Aumento1 == 0){
+        else if (Aumento1 == 0){
             GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);//se enciende led verde
             GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , 0);//se apaga led rojo
-            ban_ocupado--;
-            debouncing = 1;
-            Dismin = 1;
-            Aumento1 = 1;
+            ban_ocupado--; //se disminuye variable de parqueos ocupados
+            debouncing = 1; //bandera debouncing
+            Aumento1 = 1; //bandera que significa que se presiono por segunda vez el boton
             UARTCharPut(UART0_BASE, '1');
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
@@ -231,7 +226,7 @@ void LEDS_G_R(void){
     }
     else if((GPIOPinRead(GPIO_PORTD_BASE, PUSH_2))){
         while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){} //debouncing push2
-        if (Aumento == 1 && Aumento2 == 1){
+        if (Aumento2 == 1){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0); //OFF green
             GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
             ban_ocupado++;
@@ -241,12 +236,11 @@ void LEDS_G_R(void){
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
         }
-        else if (Aumento == 0 && Aumento2 == 0){
+        else if (Aumento2 == 0){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2); //OFF green
             GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , 0); //ON red
             ban_ocupado--;
             debouncing = 1;
-            Dismin = 1;
             Aumento2 = 1;
             UARTCharPut(UART0_BASE, '3');
             UARTCharPut(UART0_BASE, 10);
@@ -257,7 +251,7 @@ void LEDS_G_R(void){
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_3))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}//debouncing push 3
 
-        if (Aumento == 1 && Aumento3 == 1){
+        if (Aumento3 == 1){
             GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
             GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , led_red3);
             ban_ocupado++;
@@ -267,12 +261,11 @@ void LEDS_G_R(void){
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
         }
-        else if (Aumento == 0 && Aumento3 == 0){
+        else if (Aumento3 == 0){
             GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
             GPIOPinWrite(GPIO_PORTB_BASE, led_red3 , 0);
             ban_ocupado--;
             debouncing = 1;
-            Dismin = 1;
             Aumento3 = 1;
             UARTCharPut(UART0_BASE, '5');
             UARTCharPut(UART0_BASE, 10);
@@ -283,7 +276,7 @@ void LEDS_G_R(void){
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
         while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){} //debouncing push 4
-        if (Aumento == 1 && Aumento4 == 1){
+        if (Aumento4 == 1){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
             ban_ocupado++;
@@ -293,19 +286,16 @@ void LEDS_G_R(void){
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
         }
-        else if (Aumento == 0 && Aumento4 == 0){
+        else if (Aumento4 == 0){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , 0);
             ban_ocupado--;
             debouncing = 1;
-            Dismin = 1;
             Aumento4 = 1;
             UARTCharPut(UART0_BASE, '7');
             UARTCharPut(UART0_BASE, 10);
             UARTCharPut(UART0_BASE, 13);
         }
-
-
     }
 
 }
@@ -315,65 +305,33 @@ void LEDS_G_R(void){
 //**************************************************************************************************************
 void Mostrar_display(void){
 
-    if (Aumento == 1 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
+    if (debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
         if (ban_ocupado == 0){
             DISPLAY(5); //Se apagan todos
             DISPLAY(4);
-            //Aumento = 1;
             debouncing = 0;
         }
         else if (ban_ocupado == 1){
             DISPLAY(5);
             DISPLAY(3);
-            //Aumento = 1;
             debouncing = 0;
         }
         else if (ban_ocupado == 2){
             DISPLAY(5);
             DISPLAY(2);
-            //Aumento = 1;
             debouncing = 0;
         }
         else if (ban_ocupado == 3){
             DISPLAY(5);
             DISPLAY(1);
-            //Aumento = 1;
             debouncing = 0;
         }
         else if (ban_ocupado == 4){
             DISPLAY(5);
             DISPLAY(0);
-            Aumento = 0;
             debouncing = 0;
         }
     }
-     if (Dismin == 1 && Aumento == 0 && debouncing == 1 && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_4) == 0) && (GPIOPinRead(GPIO_PORTE_BASE, PUSH_3) == 0) && (GPIOPinRead(GPIO_PORTD_BASE, PUSH_2) == 0) && (GPIOPinRead(GPIO_PORTB_BASE, PUSH_1) == 0)){
-         if (ban_ocupado == 3){
-             DISPLAY(5); //Se apagan todos
-             DISPLAY(1);
-             //Aumento = 0;
-             debouncing = 0;
-         }
-         else if (ban_ocupado == 2){
-             DISPLAY(5);
-             DISPLAY(2);
-             //Aumento = 0;
-             debouncing = 0;
-         }
-         else if (ban_ocupado == 1){
-             DISPLAY(5);
-             DISPLAY(3);
-             //Aumento = 0;
-             debouncing = 0;
-         }
-         else if (ban_ocupado == 0){
-             DISPLAY(5);
-             DISPLAY(4);
-             Aumento = 1;
-             debouncing = 0;
-         }
-
-        }
 }
 //**************************************************************************************************************
 // FUNCION DE NUMEROS PARA DISPLAY
