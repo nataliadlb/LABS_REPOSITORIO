@@ -122,34 +122,34 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Proyecto4_D2.out \
+Proyecto4_digital2.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Proyecto4_D2.out" \
+"Proyecto4_digital2.out" \
 
 BIN_OUTPUTS += \
-Proyecto4_D2.hex \
+Proyecto4_digital2.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Proyecto4_D2.hex" \
+"Proyecto4_digital2.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "Proyecto4_D2.out"
+	@$(MAKE) --no-print-directory -Onone "Proyecto4_digital2.out"
 
 # Tool invocations
-Proyecto4_D2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Proyecto4_digital2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=TARGET_IS_TM4C123_RB1 --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Proyecto4_D2.map" --heap_size=0 --stack_size=512 -i"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/lib" -i"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Proyecto4_D2_linkInfo.xml" --rom_model -o "Proyecto4_D2.out" $(ORDERED_OBJS)
+	"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=TARGET_IS_TM4C123_RB1 --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Proyecto4_digital2.map" --heap_size=0 --stack_size=512 -i"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/lib" -i"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Proyecto4_digital2_linkInfo.xml" --rom_model -o "Proyecto4_digital2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-Proyecto4_D2.hex: $(EXE_OUTPUTS)
+Proyecto4_digital2.hex: $(EXE_OUTPUTS)
 	@echo 'Building secondary target: "$@"'
 	@echo 'Invoking: Arm Hex Utility'
-	"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex" --diag_wrap=off -o "Proyecto4_D2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/Program Files (x86)/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex" --diag_wrap=off -o "Proyecto4_digital2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building secondary target: "$@"'
 	@echo ' '
 

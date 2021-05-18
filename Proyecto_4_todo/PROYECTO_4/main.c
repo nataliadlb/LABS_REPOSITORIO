@@ -145,52 +145,52 @@ int main(void){
         CONFIGURACION UART
     */
     // Se inicializa la comunicación UART
-    //InitUART();
+    InitUART();
 
-//    /**
-//        CONFIGURACION TIMER
-//    */
-//    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
-//    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER0)){
-//    }
-//
-//    // Configuración del Timer 0 como temporizador períodico
-//    TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
-//
-//    // Se calcula el período para el temporizador (1 seg)
-//    ui32Period = (SysCtlClockGet()) / 2;
-//
-//    // Establecer el periodo del temporizador
-//    TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period - 1);
-//
-//    TimerEnable (TIMER0_BASE, TIMER_A|TIMER_B);
-//
-//    // Se establece que exista la interrupción por Timeout
-//    TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-//
-//    //Establecemos la ISR
-//    TimerIntRegister(TIMER0_BASE, TIMER_A, Timer0IntHandler);
-//
-//    // Se habilita la interrupción por el TIMER0A
-//    IntEnable(INT_TIMER0A);
-//
-//    // Se habilita el Timer
-//    TimerEnable(TIMER0_BASE, TIMER_A);
-//
-//
-//    // Se manda mensajes por UART
-//    UARTCharPut(UART0_BASE, 'C');
-//    UARTCharPut(UART0_BASE, 'o');
-//    UARTCharPut(UART0_BASE, 'm');
-//    UARTCharPut(UART0_BASE, 'e');
-//    UARTCharPut(UART0_BASE, 'n');
-//    UARTCharPut(UART0_BASE, 'z');
-//    UARTCharPut(UART0_BASE, 'a');
-//    UARTCharPut(UART0_BASE, 'm');
-//    UARTCharPut(UART0_BASE, 'o');
-//    UARTCharPut(UART0_BASE, 's');
-//    UARTCharPut(UART0_BASE, 10);
-//    UARTCharPut(UART0_BASE, 13);
+    /**
+        CONFIGURACION TIMER
+    */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER0)){
+    }
+
+    // Configuración del Timer 0 como temporizador períodico
+    TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
+
+    // Se calcula el período para el temporizador (1 seg)
+    ui32Period = (SysCtlClockGet()) / 2;
+
+    // Establecer el periodo del temporizador
+    TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period - 1);
+
+    TimerEnable (TIMER0_BASE, TIMER_A|TIMER_B);
+
+    // Se establece que exista la interrupción por Timeout
+    TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+
+    //Establecemos la ISR
+    TimerIntRegister(TIMER0_BASE, TIMER_A, Timer0IntHandler);
+
+    // Se habilita la interrupción por el TIMER0A
+    IntEnable(INT_TIMER0A);
+
+    // Se habilita el Timer
+    TimerEnable(TIMER0_BASE, TIMER_A);
+
+
+    // Se manda mensajes por UART
+    UARTCharPut(UART0_BASE, 'C');
+    UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, 'm');
+    UARTCharPut(UART0_BASE, 'e');
+    UARTCharPut(UART0_BASE, 'n');
+    UARTCharPut(UART0_BASE, 'z');
+    UARTCharPut(UART0_BASE, 'a');
+    UARTCharPut(UART0_BASE, 'm');
+    UARTCharPut(UART0_BASE, 'o');
+    UARTCharPut(UART0_BASE, 's');
+    UARTCharPut(UART0_BASE, 10);
+    UARTCharPut(UART0_BASE, 13);
 //
     //TODOS LOS PARQUEOS DISPONIBLES
     GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);
