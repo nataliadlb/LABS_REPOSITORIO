@@ -111,59 +111,88 @@ String SendInicioHTML(uint8_t Valor) {
   ptr += "</head>\n";
   
   ptr += "<body>\n";
-  ptr += "<h1>Control de parqueos &#128664</h1>\n";
+  ptr += "<h1 style=\"font-size:48px\">Control de parqueos  &#128663</h1>\n";
   
   ptr += "<div class=\"row\">\n"; // crear 4 columnas para los titulos de los parqueos
   
     ptr += "<div class=\"column\">\n";
-      ptr += "<h2> PARQUEO 1 </h2>\n";
-      //ptr += "<p>LIBRE</p>\n";
-      if (Valor == 48){
-        ptr += "<p>OCUPADO</p>\n";
-        //p1 = 0;
+      ptr += "<h2 style=\"font-size:32px\"> PARQUEO 1 </h2>\n";
+      if (Valor == 48){ //si se ingresa el valor 0, quiere decir que esta ocupado P1
+        p1 = 1;
         } 
-      if (Valor == 49 || p1 == 0){
-        ptr += "<p>LIBRE</p>\n";
-        //p1 = 1;
+      if (Valor == 49){
+        p1 = 0;
         } 
+      if (p1 == 0){
+        p1 = 0;
+        ptr += "<p style=\"font-size:25px\">LIBRE</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#9989</p>\n";
+        }
+      if (p1 == 1){
+        p1 = 1;
+        ptr += "<p style=\"font-size:25px\">OCUPADO</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#10060</p>\n";
+        }
+
     ptr += "</div>";
 
     ptr += "<div class=\"column\">\n";
-      ptr += "<h2> PARQUEO 2 </h2>\n";
-      //ptr += "<p>LIBRE</p>\n";
-      if (Valor == 50){
-        ptr += "<p>OCUPADO</p>\n";
-        //p2 = 1;
+      ptr += "<h2 style=\"font-size:32px\"> PARQUEO 2 </h2>\n";
+      if (Valor == 50 ){
+        p2 = 1;        
         } 
-      if (p2 == 0 || Valor == 51){
-        ptr += "<p>LIBRE</p>\n";
+      if (Valor == 51){
+        p2 = 0;
+        }
+      if (p2 == 0){
+        p2 = 0;
+        ptr += "<p style=\"font-size:25px\">LIBRE</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#9989</p>\n";
+        }
+      if (p2 == 1){
         p2 = 1;
+        ptr += "<p style=\"font-size:25px\">OCUPADO</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#10060</p>\n";
         } 
     ptr += "</div>";
 
     ptr += "<div class=\"column\">\n";
-      ptr += "<h2> PARQUEO 3 </h2>\n";
-      //ptr += "<p>LIBRE</p>\n";
+      ptr += "<h2 style=\"font-size:32px\"> PARQUEO 3 </h2>\n";
       if (Valor == 52){
-        ptr += "<p>OCUPADO</p>\n";
-        //p3 = 1;
+        p3 = 1;
         } 
-      if (Valor == 55 || p3 == 0){
-        ptr += "<p>LIBRE</p>\n";
-        //p3 = 1;
+      if (Valor == 53){
+        p3 = 0;
+        }
+      if (p3 == 0){
+        p3 = 0;
+        ptr += "<p style=\"font-size:25px\">LIBRE</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#9989</p>\n";
+        }
+      if (p3 == 1){
+        p3 = 1;
+        ptr += "<p style=\"font-size:25px\">OCUPADO</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#10060</p>\n";
         } 
     ptr += "</div>";
 
     ptr += "<div class=\"column\">\n";
-      ptr += "<h2> PARQUEO 4 </h2>\n";
-      //ptr += "<p>LIBRE</p>\n";
+      ptr += "<h2 style=\"font-size:32px\"> PARQUEO 4 </h2>\n";
       if (Valor == 54){
-        ptr += "<p>OCUPADO</p>\n";
-        //p4 = 1;
+        p4 = 1;
         } 
-      if (Valor == 55 || p4 == 0){
-        ptr += "<p>LIBRE</p>\n";
-        //p4 = 1;
+      if (Valor == 55){
+        p4 = 0;
+        }
+      if (p4 == 0){
+        p4 = 0;
+        ptr += "<p style=\"font-size:25px\">LIBRE</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#9989</p>\n";
+        }
+      if (p4 == 1){
+        p4 = 1;
+        ptr += "<p style=\"font-size:25px\">OCUPADO</p>\n";
+        ptr += "<p style=\"font-size:25px\">&#10060</p>\n";
         } 
     ptr += "</div>";
   
