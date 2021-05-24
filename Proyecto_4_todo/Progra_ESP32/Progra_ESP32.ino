@@ -1,9 +1,12 @@
 /*************************************************************************************************
-  ESP32 Web Server
-  Ejemplo de creación de Web server 
-  Basándose en los ejemplos de: 
-  https://lastminuteengineers.com/creating-esp32-web-server-arduino-ide/
-  https://electropeak.com/learn
+/**
+ Proyecto # 4
+ Natalia de León Bericán
+ carne: 18193
+ Digital 2
+ Sección 20
+ Mayo 2021
+*/
 **************************************************************************************************/
 //************************************************************************************************
 // Librerías
@@ -18,7 +21,7 @@
 //************************************************************************************************
 // SSID & Password
 const char* ssid = "CASA WIFI 2";  // Enter your SSID here
-const char* password = "casa2020";  //Enter your Password here
+const char* password = "*******";  //Enter your Password here
 
 WebServer server(80);  // Object of WebServer(HTTP port, 80 is defult)
 
@@ -33,7 +36,7 @@ int p4 = 0;
 //************************************************************************************************
 void setup() {
   Serial.begin(115200);
-  //Serial2.begin(115200, SERIAL_8N1, 16, 17);
+  Serial2.begin(115200, SERIAL_8N1, 16, 17);
   Serial.println("Try Connecting to ");
   Serial.println(ssid);
 
@@ -51,9 +54,6 @@ void setup() {
   Serial.println(WiFi.localIP());  //Show ESP32 IP on serial
 
   server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
-  //server.on("/led1on", handle_led1on);
-  //server.on("/led1off", handle_led1off);
-  
   server.onNotFound(handle_NotFound);
 
   server.begin();
@@ -66,37 +66,19 @@ void setup() {
 void loop() {
   server.handleClient();
   // reply only when you receive data:
-  if (Serial.available() > 0) {
+  if (Serial2.available() > 0) {
     // read the incoming byte:
-    Val = Serial.read();
-
-    // say what you got:
-    Serial.print("I received: ");
-    Serial.println(Val, DEC);
+    Val = Serial2.read();
   }
 }
 //************************************************************************************************
 // Handler de Inicio página
 //************************************************************************************************
 void handle_OnConnect() {
-  Serial.println("INICIO");
+  //Serial.println("INICIO");
   server.send(200, "text/html", SendInicioHTML(Val));
 }
-//************************************************************************************************
-// Handler de led1on
-//************************************************************************************************
-//void handle_led1on() {
-//  Serial.println("Mandando información...");
-//  server.send(200, "text/html", SendHTML(Val));
-//}
-////************************************************************************************************
-//// Handler de led1off
-////************************************************************************************************
-//void handle_led1off() {
-//  LED1status = LOW;
-//  Serial.println("GPIO2 Status: OFF");
-//  server.send(200, "text/html", SendHTML(LED1status));
-//}
+
 //************************************************************************************************
 // Procesador de HTML
 //************************************************************************************************
@@ -139,7 +121,7 @@ String SendInicioHTML(uint8_t Valor) {
     ptr += "<div class=\"column\">\n";
       ptr += "<h2 style=\"font-size:32px\"> PARQUEO 2 </h2>\n";
       if (Valor == 50 ){
-        p2 = 1;        
+        p2 = 1;      
         } 
       if (Valor == 51){
         p2 = 0;
@@ -197,76 +179,23 @@ String SendInicioHTML(uint8_t Valor) {
     ptr += "</div>";
   
   ptr += "</div>";
-
+  // refresh
+  ptr += "<script>\n";
+  ptr += "<!--\n";
+  ptr += "function timedRefresh(timeoutPeriod) {\n";
+  ptr += "\tsetTimeout(\"location.reload(true);\",timeoutPeriod);\n";
+  ptr += "}\n";
+  ptr += "\n";
+  ptr += "window.onload = timedRefresh(1000);\n";
+  ptr += "\n";
+  ptr += "//   -->\n";
+  ptr += "</script>\n";
   ptr += "</body>\n";
   ptr += "</html>\n";
+  
   return ptr;
 }
 
-////************************************************************************************************
-//// Procesador de HTML
-////************************************************************************************************
-//String SendHTML(uint8_t Valor) {
-//  String ptr = "<!DOCTYPE html> <html>\n";
-//  ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
-//  ptr += "<title>Parqueos</title>\n";
-//  ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 50px auto; text-align: center;}\n";
-//  ptr += ".column {float: left ; width: 25%; pading: 10px}\n";
-//  ptr += "row:after {content:""; display: table; clear: both}\n";
-//  ptr += "</style>\n";
-//  ptr += "</head>\n";
-//  
-//  ptr += "<body>\n";
-//  ptr += "<h1>Control de parqueos &#128664</h1>\n";
-//  
-//  ptr += "<div class=\"row\">\n"; // crear 4 columnas para los titulos de los parqueos
-//  
-//    ptr += "<div class=\"column\">\n";
-//      ptr += "<h2> PARQUEO 1 </h2>\n";
-//      if (Valor == 48){
-//        ptr += "<p>OCUPADO</p>\n";
-//        } 
-//      else if (Valor == 49){
-//        ptr += "<p>LIBRE</p>\n";
-//        } 
-//    ptr += "</div>";
-//
-//    ptr += "<div class=\"column\">\n";
-//      ptr += "<h2> PARQUEO 2 </h2>\n";
-//      if (Valor == 50){
-//        ptr += "<p>OCUPADO</p>\n";
-//        } 
-//      else if (Valor == 51){
-//        ptr += "<p>LIBRE</p>\n";
-//        } 
-//    ptr += "</div>";
-//
-//    ptr += "<div class=\"column\">\n";
-//      ptr += "<h2> PARQUEO 3 </h2>\n";
-//      if (Valor == 52){
-//        ptr += "<p>OCUPADO</p>\n";
-//        } 
-//      else if (Valor == 53){
-//        ptr += "<p>LIBRE</p>\n";
-//        } 
-//    ptr += "</div>";
-//
-//    ptr += "<div class=\"column\">\n";
-//      ptr += "<h2> PARQUEO 4 </h2>\n";
-//      if (Valor == 54){
-//        ptr += "<p>OCUPADO</p>\n";
-//        } 
-//      else if (Valor == 55){
-//        ptr += "<p>LIBRE</p>\n";
-//        } 
-//    ptr += "</div>";
-//  
-//  ptr += "</div>";
-//
-//  ptr += "</body>\n";
-//  ptr += "</html>\n";
-//  return ptr;
-//}
 //************************************************************************************************
 // Handler de not found
 //************************************************************************************************

@@ -70,23 +70,15 @@ uint8_t Aumento2 = 1; //bandera para saber si ya se presiono push2
 uint8_t Aumento3 = 1; //bandera para saber si ya se presiono push3
 uint8_t Aumento4 = 1; //bandera para saber si ya se presiono push4
 
-
-
-
 //*****************************************************************************
 //
 // PROTOTIPOS DE FUNCIONES
 //
 //*****************************************************************************
 void InitUART(void);
-void UARTIntHandler(void);
-
 void DISPLAY(uint8_t num_display);
-void delayMs(uint32_t ui32Ms);
 void LEDS_G_R(void);
 void Mostrar_display(void);
-
-
 
 //*****************************************************************************
 //
@@ -157,21 +149,6 @@ int main(void){
     // Se inicializa la comunicación UART
     InitUART();
 
-
-////    // Se manda mensajes por UART
-//    UARTCharPut(UART0_BASE, 'C');
-//    UARTCharPut(UART0_BASE, 'o');
-//    UARTCharPut(UART0_BASE, 'm');
-//    UARTCharPut(UART0_BASE, 'e');
-//    UARTCharPut(UART0_BASE, 'n');
-//    UARTCharPut(UART0_BASE, 'z');
-//    UARTCharPut(UART0_BASE, 'a');
-//    UARTCharPut(UART0_BASE, 'm');
-//    UARTCharPut(UART0_BASE, 'o');
-//    UARTCharPut(UART0_BASE, 's');
-//    UARTCharPut(UART0_BASE, 10);
-//    UARTCharPut(UART0_BASE, 13);
-
     //TODOS LOS PARQUEOS DISPONIBLES
     GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);
     GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2);
@@ -185,8 +162,8 @@ int main(void){
     //*****************************************************************************
 
     while(1){
-        LEDS_G_R();
-        Mostrar_display();
+        LEDS_G_R(); // En donde lee si se presionan los push
+        Mostrar_display(); //Muestra en el display el numero de parqueos libres
     }
 }
 
@@ -201,55 +178,47 @@ int main(void){
 //**************************************************************************************************************
 void LEDS_G_R(void){
     if((GPIOPinRead(GPIO_PORTB_BASE, PUSH_1))){
-        while(GPIOPinRead(GPIO_PORTB_BASE, PUSH_1)){}//debouncing push 1
+        while(GPIOPinRead(GPIO_PORTB_BASE, PUSH_1)){}              //debouncing push 1
         if (Aumento1 == 1){
-            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);//se apaga led verde
-            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);//se enciende led rojo
-            ban_ocupado++; //aumenta valor de parqueos ocupados
-            debouncing = 1; //bandera de debouncing
-            Aumento1 = 0; //control de que si ya se apacho una vez el boton
-            UARTCharPut(UART0_BASE, '0'); //se manda el caracter por UART
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , 0);         //se apaga led verde
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , led_red1);    //se enciende led rojo
+            ban_ocupado++;                                         //aumenta valor de parqueos ocupados
+            debouncing = 1;                                        //bandera de debouncing
+            Aumento1 = 0;                                          //control de que si ya se apacho una vez el boton
+            UARTCharPut(UART1_BASE, '0');                          //se manda el caracter por UART
         }
         else if (Aumento1 == 0){
-            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1);//se enciende led verde
-            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , 0);//se apaga led rojo
-            ban_ocupado--; //se disminuye variable de parqueos ocupados
-            debouncing = 1; //bandera debouncing
-            Aumento1 = 1; //bandera que significa que se presiono por segunda vez el boton
-            UARTCharPut(UART0_BASE, '1');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            GPIOPinWrite(GPIO_PORTB_BASE, led_green1 , led_green1); //se enciende led verde
+            GPIOPinWrite(GPIO_PORTB_BASE, led_red1 , 0);            //se apaga led rojo
+            ban_ocupado--;                                          //se disminuye variable de parqueos ocupados
+            debouncing = 1;                                         //bandera debouncing
+            Aumento1 = 1;                                           //bandera que significa que se presiono por segunda vez el boton
+            UARTCharPut(UART1_BASE, '1');                           //se manda valor a UART
         }
 
     }
     else if((GPIOPinRead(GPIO_PORTD_BASE, PUSH_2))){
-        while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){} //debouncing push2
+        while(GPIOPinRead(GPIO_PORTD_BASE, PUSH_2)){}               //debouncing push2
         if (Aumento2 == 1){
-            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0); //OFF green
-            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2); //ON red
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , 0);          //OFF green
+            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , led_red2);     //ON red
             ban_ocupado++;
             debouncing = 1;
             Aumento2 = 0;
-            UARTCharPut(UART0_BASE, '2');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '2');                           //se manda valor a UART
         }
         else if (Aumento2 == 0){
-            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2); //OFF green
-            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , 0); //ON red
+            GPIOPinWrite(GPIO_PORTD_BASE, led_green2 , led_green2); //ON green
+            GPIOPinWrite(GPIO_PORTD_BASE, led_red2 , 0);            //OFF red
             ban_ocupado--;
             debouncing = 1;
             Aumento2 = 1;
-            UARTCharPut(UART0_BASE, '3');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '3');                           //se manda valor a UART
         }
 
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_3))){
-        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}//debouncing push 3
+        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_3)){}               //debouncing push 3
 
         if (Aumento3 == 1){
             GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , 0);
@@ -257,9 +226,8 @@ void LEDS_G_R(void){
             ban_ocupado++;
             debouncing = 1;
             Aumento3 = 0;
-            UARTCharPut(UART0_BASE, '4');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '4');                          //se manda valor a UART
+
         }
         else if (Aumento3 == 0){
             GPIOPinWrite(GPIO_PORTE_BASE, led_green3 , led_green3);
@@ -267,24 +235,20 @@ void LEDS_G_R(void){
             ban_ocupado--;
             debouncing = 1;
             Aumento3 = 1;
-            UARTCharPut(UART0_BASE, '5');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '5');                           //se manda valor a UART
         }
 
 
     }
     else if((GPIOPinRead(GPIO_PORTE_BASE, PUSH_4))){
-        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){} //debouncing push 4
+        while(GPIOPinRead(GPIO_PORTE_BASE, PUSH_4)){}               //debouncing push 4
         if (Aumento4 == 1){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , 0);
             GPIOPinWrite(GPIO_PORTE_BASE, led_red4 , led_red4);
             ban_ocupado++;
             debouncing = 1;
             Aumento4 = 0;
-            UARTCharPut(UART0_BASE, '6');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '6');                           //se manda valor a UART
         }
         else if (Aumento4 == 0){
             GPIOPinWrite(GPIO_PORTD_BASE, led_green4 , led_green4);
@@ -292,9 +256,7 @@ void LEDS_G_R(void){
             ban_ocupado--;
             debouncing = 1;
             Aumento4 = 1;
-            UARTCharPut(UART0_BASE, '7');
-            UARTCharPut(UART0_BASE, 10);
-            UARTCharPut(UART0_BASE, 13);
+            UARTCharPut(UART1_BASE, '7');                           //se manda valor a UART
         }
     }
 
@@ -311,22 +273,22 @@ void Mostrar_display(void){
             DISPLAY(4);
             debouncing = 0;
         }
-        else if (ban_ocupado == 1){
+        else if (ban_ocupado == 1){ // Si hay un parqueo ocupado
             DISPLAY(5);
             DISPLAY(3);
             debouncing = 0;
         }
-        else if (ban_ocupado == 2){
+        else if (ban_ocupado == 2){ // Si hay dos parqueo ocupado
             DISPLAY(5);
             DISPLAY(2);
             debouncing = 0;
         }
-        else if (ban_ocupado == 3){
+        else if (ban_ocupado == 3){ // Si hay tres parqueo ocupado
             DISPLAY(5);
             DISPLAY(1);
             debouncing = 0;
         }
-        else if (ban_ocupado == 4){
+        else if (ban_ocupado == 4){ // Si hay cuatro parqueo ocupado
             DISPLAY(5);
             DISPLAY(0);
             debouncing = 0;
@@ -392,69 +354,34 @@ void DISPLAY(uint8_t num_display){
 //**************************************************************************************************************
 void InitUART(void){
 
-//    /*Enable the peripheral UART Module 2*/
-//    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
-//
-//    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1)){
-//    }
-//
-//    /*Enable the GPIO Port d*/
-//    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
-//
-//    GPIOPinConfigure(GPIO_PC4_U1RX);
-//    GPIOPinConfigure(GPIO_PC5_U1TX);
-//
-//    // Se habilitan las interrupciones Globales
-//    IntMasterEnable();
-//
-//    /* Make the UART pins be peripheral controlled. */
-//    GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
-//
-//    UARTDisable(UART1_BASE);
-//    /* Sets the configuration of a UART. */
-//    UARTConfigSetExpClk(
-//            UART1_BASE, SysCtlClockGet(), 115200,
-//            (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-//
-//    IntEnable (INT_UART1);
-//
-//    UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);
-//    UARTEnable (UART1_BASE);
+    /*Enable the peripheral UART Module 1*/
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
 
-
-    /*Enable the peripheral UART Module 0*/
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART0)){
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1)){
     }
 
-    /*Enable the GPIO Port A*/
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    /*Enable the GPIO Port d*/
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
+    GPIOPinConfigure(GPIO_PC4_U1RX);
+    GPIOPinConfigure(GPIO_PC5_U1TX);
 
     // Se habilitan las interrupciones Globales
     IntMasterEnable();
 
     /* Make the UART pins be peripheral controlled. */
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
-    UARTDisable(UART0_BASE);
+    UARTDisable(UART1_BASE);
     /* Sets the configuration of a UART. */
     UARTConfigSetExpClk(
-            UART0_BASE, SysCtlClockGet(), 115200,
+            UART1_BASE, SysCtlClockGet(), 115200,
             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-    IntEnable (INT_UART0);
 
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
-    UARTEnable (UART0_BASE);
+    IntEnable (INT_UART1);
 
+    UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);
+    UARTEnable (UART1_BASE);
 }
 
-//**************************************************************************************************************
-// FUNCION DELAY
-//**************************************************************************************************************
-void delayMs(uint32_t ui32Ms) {  //Funcion obtenida de https://gist.github.com/ctring/7f12d812fb594eecc493
-    SysCtlDelay(ui32Ms * (SysCtlClockGet() / 3 / 1000));
-}
 
